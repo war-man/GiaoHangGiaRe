@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Models.EntityModel.BangGia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-1-1">
+                <div class="uk-overflow-container">
+                    <div class="md-card uk-margin-medium-bottom">
+                        <div class="md-card-content">
+                            <p>
+                                @Html.ActionLink("Create New", "Create")
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Ten)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NoiDung)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BaoGia)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ten)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoiDung)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BaoGia)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Ma }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Ma }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Ma })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

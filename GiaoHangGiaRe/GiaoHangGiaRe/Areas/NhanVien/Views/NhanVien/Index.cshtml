@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Models.EntityModel.NhanViens>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-1-1">
+                <div class="uk-overflow-container">
+                    <div class="md-card uk-margin-medium-bottom">
+                        <div class="md-card-content">
+                            <table id="example" class="uk-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Tên tài khoản
+                                        </th>
+                                        <th>
+                                            Tên nhân viên
+                                        </th>
+                                        <th>
+                                            Ngày sinh
+                                        </th>
+                                        <th>
+                                            Số điện thoại
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MaNhanVien)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TenNhanVien)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NgaySinh)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                           
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrangThai)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.MaNhanVien }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.MaNhanVien }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.MaNhanVien })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+}

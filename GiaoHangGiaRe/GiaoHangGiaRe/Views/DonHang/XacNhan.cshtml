@@ -1,0 +1,167 @@
+﻿@model GiaoHangGiaRe.Models.ChiTietDonHang
+
+@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+}
+<style>
+    .KhungThongTinDonHang {
+    }
+</style>
+<div class="container">
+    <h2>Xác nhận đơn hàng</h2>
+
+    <dl class="dl-horizontal col-lg-4" style="background-color:darkgrey;  padding-top:3%;padding-bottom:3%;">
+        <dt>
+            Người gửi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.NguoiGui)
+        </dd>
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.SoDienThoaiNguoiGui)
+        </dd>
+        <dt>
+            Người nhận
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.NguoiNhan)
+        </dd>
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.SoDienThoaiNguoiNhan)
+        </dd>
+    </dl>
+    <table class="table">
+        <tr>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th>
+                Trọng lượng
+            </th>
+            <th>
+                Chiều dài
+            </th>
+            <th>
+                Chiều rộng
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.KienHang)
+        {
+            ViewBag.MaDonHang = item.MaDonHang;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrongLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChieuDai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChieuRong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "KienHang", new { id = item.MaKienHang }, null) |
+                    @Html.ActionLink("Details", "Details", "KienHang", new { id = item.MaKienHang }, null) |
+                    @Html.ActionLink("Delete", "Delete", "KienHang", new { id = item.MaKienHang }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <strong>Đơn hàng: @ViewBag.MaDonHang</strong>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.DonHang.MaDonHang)
+            @Html.HiddenFor(model => model.DonHang.TinhTrang)
+            @Html.HiddenFor(model => model.DonHang.ThanhTien)
+            @Html.HiddenFor(model => model.DonHang.TenTaiKhoan)
+            @Html.HiddenFor(model => model.DonHang.ThoiDiemDatDonHang)
+            @Html.HiddenFor(model => model.DonHang.ThoiDiemHoanThanhDH)
+            @Html.HiddenFor(model => model.DonHang.ThoiDiemTiepNhanDon)
+            @Html.HiddenFor(model => model.DonHang.NguoiGui) @Html.HiddenFor(model => model.DonHang.NguoiNhan)
+            @Html.HiddenFor(model => model.DonHang.DiaChiGui) @Html.HiddenFor(model => model.DonHang.DiaChiNhan)
+            @Html.HiddenFor(model => model.DonHang.SoDienThoaiNguoiGui) @Html.HiddenFor(model => model.DonHang.SoDienThoaiNguoiNhan)
+            @Html.HiddenFor(model => model.DonHang.GhiChu)
+        </div>
+        <div class="form-group">         
+                <input type="submit" value="Xác nhận yêu cầu" class="btn btn-warning" />          
+        </div>
+    }
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script>
+        var myhub = $.connection.myHub;
+        var DonHang = {};
+        $("form").submit(function (e) {
+           // e.preventDefault();           
+            DonHang.MaDonHang = $("input[name='DonHang.MaDonHang']").val();
+            DonHang.NguoiGui = $("input[name='DonHang.NguoiGui']").val();
+            DonHang.NguoiNhan = $("input[name='DonHang.NguoiNhan']").val();
+            DonHang.DiaChiNhan = $("input[name='DonHang.DiaChiNhan']").val();
+            DonHang.SoDienThoaiNguoiNhan = $("input[name='DonHang.SoDienThoaiNguoiNhan']").val();
+            DonHang.TinhTrang = $("input[name='DonHang.TinhTrang']").val();
+            DonHang.ThanhTien = $("input[name='DonHang.ThanhTien']").val();
+            DonHang.TenTaiKhoan = $("input[name='DonHang.TenTaiKhoan']").val();
+            DonHang.ThoiDiemDatDonHang = $("input[name='DonHang.ThoiDiemDatDonHang']").val();
+            DonHang.ThoiDiemHoanThanhDH = $("input[name='DonHang.ThoiDiemHoanThanhDH']").val();
+            DonHang.ThoiDiemTiepNhanDon = $("input[name='DonHang.ThoiDiemTiepNhanDon']").val();
+            DonHang.DiaChiGui = $("input[name='DonHang.DiaChiGui']").val();
+            DonHang.SoDienThoaiNguoiGui = $("input[name='DonHang.SoDienThoaiNguoiGui']").val();
+            DonHang.GhiChu = $("input[name='DonHang.GhiChu']").val();
+            console.log(DonHang);
+            $.connection.hub.start().done(function () {
+                myhub.server.updateDonhang(DonHang);
+            });
+        });
+       
+      
+    </script>
+}

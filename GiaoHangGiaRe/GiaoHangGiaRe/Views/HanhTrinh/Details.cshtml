@@ -1,0 +1,112 @@
+﻿@model Models.EntityModel.HanhTrinh
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HanhTrinh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HanhTrinh1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HanhTrinh1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuangDuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuangDuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deleted)
+        </dd>
+        <dd>
+             @Html.HiddenFor(model => model.HanhTrinh1)
+    
+        </dd>
+        <dd>
+            @Html.HiddenFor(model => model.DiemBatDau)
+
+        </dd>
+    </dl>
+</div>
+<div id="map" style="height:60%;width:50%"></div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHanhTrinh }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@section scripts {
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script> 
+    <script type="text/javascript">
+        var string = $('#HanhTrinh1').val();
+        var batdau = $('#DiemBatDau').val();
+    // Tạo thành mảng với mỗi phần tử ngăn bởi khoảng trắng
+        // kết quả là mảng có hai phần tử gồm: welcome và feetuts.net
+        var ht=string.split("*");
+        var bd = batdau.split("*"); 
+        function initMap() {
+           var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 10
+           });
+           var pos = new google.maps.LatLng(bd[0], bd[1]);
+           infoWindow = new google.maps.InfoWindow;
+           infoWindow.setPosition(pos);        
+           map.setCenter(pos);
+           for (i = 0; i < string.split("*").length - 3; i++) {
+               var myTrip = [new google.maps.LatLng(ht[i], ht[i + 1]), new google.maps.LatLng(ht[i+2], ht[i + 3])];
+               alert(myTrip);
+               var flightPath = new google.maps.Polygon({
+                   path: myTrip,
+                   strokeColor: "#0000FF",
+                   strokeOpacity: 0.8,
+                   strokeWeight: 11,
+                   fillColor: "#0000FF",
+                   fillOpacity: 0.4
+               });
+               flightPath.setMap(map);
+           }
+        }      
+    </script>  
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQGBPP_d_tQMOwtct5xZcpKTTp8GosylQ&callback=initMap">
+</script>
+}

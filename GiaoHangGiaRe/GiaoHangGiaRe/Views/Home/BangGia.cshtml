@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Models.EntityModel.BangGia>
+@{
+    ViewBag.Title = "Bảng giá";
+}
+<div class="container">
+    <div class="well-lg" style="background-color:#FFCCCC;">
+       <p class="danger">* Bảng giá chỉ mang tính chất tham khảo</p> 
+    </div>
+    <table class="table table-hover">
+       
+        <thead>
+            <tr>
+                <th>Số thứ tự</th>
+                <th>@Html.DisplayNameFor(model=>model.Ten)</th>               
+                <th>@Html.DisplayNameFor(model => model.NoiDung)</th>  
+                <th>@Html.DisplayNameFor(model => model.BaoGia)</th>  
+            </tr>
+        </thead>
+        <tbody>
+          
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelitem=>item.Ma)</td>
+                    <td>@Html.DisplayFor(modelitem => item.Ten)</td>
+                    <td>@Html.DisplayFor(modelitem => item.NoiDung)</td>
+                    <td>@Html.DisplayFor(modelitem => item.BaoGia)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p class="text-danger">* Khách hàng có nhu cầu chuyển hàng lớn hơn có thể liên hệ với nhân viên @Html.ActionLink("tại đây", "Contact") để được báo giá cụ thể hơn.</p>
+</div>

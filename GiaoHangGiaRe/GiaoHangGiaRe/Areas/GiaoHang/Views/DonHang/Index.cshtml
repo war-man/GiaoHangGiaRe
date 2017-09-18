@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Models.EntityModel.DonHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiGui)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChiGui)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoaiNguoiGui)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoaiNguoiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaNhanVienGiao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiDiemDatDonHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiDiemTiepNhanDon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiDiemHoanThanhDH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThanhTien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTaiKhoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaHanhTrinh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiGui)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChiGui)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoaiNguoiGui)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChiNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoaiNguoiNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaNhanVienGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiDiemDatDonHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiDiemTiepNhanDon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiDiemHoanThanhDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThanhTien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTaiKhoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaHanhTrinh)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaDonHang }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaDonHang }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDonHang })
+        </td>
+    </tr>
+}
+
+</table>

@@ -21,3 +21,44 @@ C:\Users\minhhhhhhhhhhhhhhh\Documents\Visual Studio 2017\Projects\GiaoHangGiaRe\
 C:\Users\minhhhhhhhhhhhhhhh\Documents\Visual Studio 2017\Projects\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update20.resources
 C:\Users\minhhhhhhhhhhhhhhh\Documents\Visual Studio 2017\Projects\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.InitialBaseline.resources
 C:\Users\minhhhhhhhhhhhhhhh\Documents\Visual Studio 2017\Projects\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update21.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Models.dll.config
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Models.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Models.pdb
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\EntityFramework.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\EntityFramework.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.updatecsdl10.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.SuaMaKhachHang.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.SuaNhanVienXoaTaiKhoan.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.SuaNhanVienSuaKhachHang.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update10.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update11.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update110.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update12.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update121.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update20.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.InitialBaseline.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.update21.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.csproj.GenerateResource.Cache
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.pdb
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Helpers.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Mvc.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Razor.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Helpers.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Mvc.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.Razor.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\bin\Debug\System.Web.WebPages.Razor.xml

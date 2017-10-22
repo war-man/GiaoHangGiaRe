@@ -1,4 +1,4 @@
-namespace Models.EntityModel
+﻿namespace Models.EntityModel
 {
     using System;
     using System.Collections.Generic;
@@ -12,17 +12,21 @@ namespace Models.EntityModel
         [Key]
         public int MaHanhTrinh { get; set; }
 
-        [Display(Name = "H��nh tr��nh")]
+        [Display(Name = "Hành trình")]
         public string HanhTrinh1 { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Điểm bắt đầu")]
         public string DiemBatDau { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Điểm kết thúc")]
         public string DiemKetThuc { get; set; }
 
+        [Display(Name = "Quãng đường")]
         public int? QuangDuong { get; set; }
 
+        [Display(Name = "Thời gian")]
         public int? ThoiGian { get; set; }
 
         public bool? deleted { get; set; }

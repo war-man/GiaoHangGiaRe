@@ -16,6 +16,9 @@
         [Display(Name = "Tên tài khoản")]
         public string TenTaiKhoan { set; get; }
 
+        [Display(Name = "Chức vụ")]
+        public string ChucVu { set; get; }
+
         [StringLength(50)]
         [Display(Name = "Tên nhân viên")]
         public string TenNhanVien { get; set; }

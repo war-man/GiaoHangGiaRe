@@ -11,19 +11,21 @@ namespace Models.EntityModel
             : base("name=GiaoHangGiaReDbContext")
         {
         }
-
+        public virtual DbSet<LichSu> LichSus { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<HanhTrinh> HanhTrinhs { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
-        public virtual DbSet<KienHang> KienHangs { get; set; }
+        public virtual DbSet<KienHang> KienHangs { get; set; } 
         public virtual DbSet<LoaiKhachHang> LoaiKhachHangs { get; set; }
         public virtual DbSet<NhanViens> NhanViens { get; set; }
-        //public virtual DbSet<PhanQuen> PhanQuens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-       // public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TinNhan> TinNhans { get; set; }
         public virtual DbSet<BangGia> BangGias { get; set; }
+        public virtual DbSet<UuDai> UuDais { get; set; }
+        public virtual DbSet<KhoChua> KhoChuas { get; set; }
+        public virtual DbSet<No> Nos { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,21 +39,7 @@ namespace Models.EntityModel
 
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.ThanhTien)
-                .HasPrecision(19, 4);
-
-            //modelBuilder.Entity<NhanViens>()
-            //    .Property(e => e.MatKhau)
-            //    .IsFixedLength();
-
-            //modelBuilder.Entity<PhanQuen>()
-            //    .HasMany(e => e.NhanViens)
-            //    .WithOptional(e => e.PhanQuen)
-            //    .HasForeignKey(e => e.MaPhanQuyen);
-
-            //modelBuilder.Entity<PhanQuen>()
-            //    .HasMany(e => e.TaiKhoans)
-            //    .WithOptional(e => e.PhanQuen)
-            //    .HasForeignKey(e => e.MaPhanQuyen);
+                .HasPrecision(19, 4);       
 
             modelBuilder.Entity<TinNhan>()
                 .Property(e => e.NoiDung)

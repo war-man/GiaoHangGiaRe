@@ -105,50 +105,38 @@ namespace Models.Migrations
                         MoTa = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.MaLoaiKH);
-            
+
             CreateTable(
                 "dbo.NhanVien",
                 c => new
-                    {
-                        MaNhanVien = c.Int(nullable: false, identity: true),
-                        TenNhanVien = c.String(maxLength: 50),
-                        NgaySinh = c.DateTime(),
-                        NgayBatDau = c.DateTime(),
-                        DiaChi = c.String(maxLength: 50),
-                        MaPhanQuyen = c.Int(),
-                        MatKhau = c.String(maxLength: 20, fixedLength: true),
-                        SoDienThoai = c.String(maxLength: 20),
-                        Email = c.String(maxLength: 50),
-                        TrangThai = c.String(maxLength: 50),
-                        deleted = c.Boolean(),
-                        TenTaiKhoan = c.String(maxLength: 50),
-                    })
-                .PrimaryKey(t => t.MaNhanVien)
-                .ForeignKey("dbo.PhanQuen", t => t.MaPhanQuyen)
-                .Index(t => t.MaPhanQuyen);
+                {
+                    MaNhanVien = c.Int(nullable: false, identity: true),
+                    TenNhanVien = c.String(maxLength: 50),
+                    NgaySinh = c.DateTime(),
+                    NgayBatDau = c.DateTime(),
+                    DiaChi = c.String(maxLength: 50),
+                    MaPhanQuyen = c.Int(),
+                    MatKhau = c.String(maxLength: 20, fixedLength: true),
+                    SoDienThoai = c.String(maxLength: 20),
+                    Email = c.String(maxLength: 50),
+                    TrangThai = c.String(maxLength: 50),
+                    deleted = c.Boolean(),
+                    TenTaiKhoan = c.String(maxLength: 50),
+                })
+                .PrimaryKey(t => t.MaNhanVien);
+                
             
-            CreateTable(
-                "dbo.PhanQuen",
-                c => new
-                    {
-                        MaPhanQuen = c.Int(nullable: false, identity: true),
-                        TenPhanQuen = c.String(maxLength: 50),
-                        ThongTin = c.String(),
-                    })
-                .PrimaryKey(t => t.MaPhanQuen);
             
-            CreateTable(
-                "dbo.TaiKhoan",
-                c => new
-                    {
-                        MaTaiKhoan = c.Int(nullable: false, identity: true),
-                        TaiKhoan = c.String(maxLength: 50),
-                        MatKhau = c.String(maxLength: 50),
-                        MaPhanQuyen = c.Int(),
-                    })
-                .PrimaryKey(t => t.MaTaiKhoan)
-                .ForeignKey("dbo.PhanQuen", t => t.MaPhanQuyen)
-                .Index(t => t.MaPhanQuyen);
+            //CreateTable(
+            //    "dbo.TaiKhoan",
+            //    c => new
+            //        {
+            //            MaTaiKhoan = c.Int(nullable: false, identity: true),
+            //            TaiKhoan = c.String(maxLength: 50),
+            //            MatKhau = c.String(maxLength: 50),
+            //            MaPhanQuyen = c.Int(),
+            //        })
+            //    .PrimaryKey(t => t.MaTaiKhoan);
             
             CreateTable(
                 "dbo.sysdiagrams",
@@ -177,14 +165,9 @@ namespace Models.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.TaiKhoan", "MaPhanQuyen", "dbo.PhanQuen");
-            DropForeignKey("dbo.NhanVien", "MaPhanQuyen", "dbo.PhanQuen");
-            DropIndex("dbo.TaiKhoan", new[] { "MaPhanQuyen" });
-            DropIndex("dbo.NhanVien", new[] { "MaPhanQuyen" });
             DropTable("dbo.TinNhan");
             DropTable("dbo.sysdiagrams");
             DropTable("dbo.TaiKhoan");
-            DropTable("dbo.PhanQuen");
             DropTable("dbo.NhanVien");
             DropTable("dbo.LoaiKhachHang");
             DropTable("dbo.KienHang");

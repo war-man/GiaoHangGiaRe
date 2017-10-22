@@ -43,5 +43,8 @@
         [StringLength(50)]
         [Display(Name = "Nội dung")]
         public string NoiDung { get; set; }
+
+        [Display(Name = "Mã kho chứa")]
+        public int MaKhoChua { get; set; }
     }
 }

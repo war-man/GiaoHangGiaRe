@@ -39,9 +39,8 @@
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime? NgaySinh { get; set; }
 
-        [StringLength(50)]
         [Display(Name = "Trạng thái")]
-        public string TrangThai { get; set; }
+        public int TrangThai { get; set; }
 
         public bool? deleted { get; set; }
 

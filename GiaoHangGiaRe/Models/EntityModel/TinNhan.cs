@@ -19,5 +19,6 @@
         public DateTime? ThoiGian { get; set; }
 
         public int? MaKienHang { get; set; }
+
     }
 }

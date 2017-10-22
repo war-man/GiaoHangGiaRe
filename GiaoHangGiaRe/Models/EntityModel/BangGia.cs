@@ -2,9 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Core.Metadata.Edm;
 
     [Table("BangGia")]
-    public partial class BangGia
+    public partial class BangGia 
     {
         [Key]
         public int Ma { get; set; }

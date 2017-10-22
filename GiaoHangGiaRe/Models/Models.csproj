@@ -81,12 +81,18 @@
     <Compile Include="EntityModel\GiaoHangGiaReDbContext.cs" />
     <Compile Include="EntityModel\HanhTrinh.cs" />
     <Compile Include="EntityModel\HoaDon.cs" />
+    <Compile Include="EntityModel\InterfaceRepository.cs" />
+    <Compile Include="EntityModel\IRepository.cs" />
     <Compile Include="EntityModel\KhachHang.cs" />
+    <Compile Include="EntityModel\KhoChua.cs" />
     <Compile Include="EntityModel\KienHang.cs" />
+    <Compile Include="EntityModel\LichSu.cs" />
     <Compile Include="EntityModel\LoaiKhachHang.cs" />
     <Compile Include="EntityModel\NhanVien.cs" />
+    <Compile Include="EntityModel\No.cs" />
     <Compile Include="EntityModel\sysdiagram.cs" />
     <Compile Include="EntityModel\TinNhan.cs" />
+    <Compile Include="EntityModel\UuDai.cs" />
     <Compile Include="Migrations\201708220113472_updatecsdl1.0.cs" />
     <Compile Include="Migrations\201708220113472_updatecsdl1.0.Designer.cs">
       <DependentUpon>201708220113472_updatecsdl1.0.cs</DependentUpon>
@@ -135,6 +141,30 @@
     <Compile Include="Migrations\201709052014291_update2.1.Designer.cs">
       <DependentUpon>201709052014291_update2.1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710111017274_them-bang-LichSu.cs" />
+    <Compile Include="Migrations\201710111017274_them-bang-LichSu.Designer.cs">
+      <DependentUpon>201710111017274_them-bang-LichSu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111031393_them-bangLichSu3.cs" />
+    <Compile Include="Migrations\201710111031393_them-bangLichSu3.Designer.cs">
+      <DependentUpon>201710111031393_them-bangLichSu3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160456393_themUuDai.cs" />
+    <Compile Include="Migrations\201710160456393_themUuDai.Designer.cs">
+      <DependentUpon>201710160456393_themUuDai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160459445_themUuDai2.cs" />
+    <Compile Include="Migrations\201710160459445_themUuDai2.Designer.cs">
+      <DependentUpon>201710160459445_themUuDai2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171015092_themNothemKhoChua.cs" />
+    <Compile Include="Migrations\201710171015092_themNothemKhoChua.Designer.cs">
+      <DependentUpon>201710171015092_themNothemKhoChua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710180928585_sualinhtinh.cs" />
+    <Compile Include="Migrations\201710180928585_sualinhtinh.Designer.cs">
+      <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -178,6 +208,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709052014291_update2.1.resx">
       <DependentUpon>201709052014291_update2.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111017274_them-bang-LichSu.resx">
+      <DependentUpon>201710111017274_them-bang-LichSu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111031393_them-bangLichSu3.resx">
+      <DependentUpon>201710111031393_them-bangLichSu3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160456393_themUuDai.resx">
+      <DependentUpon>201710160456393_themUuDai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160459445_themUuDai2.resx">
+      <DependentUpon>201710160459445_themUuDai2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171015092_themNothemKhoChua.resx">
+      <DependentUpon>201710171015092_themNothemKhoChua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710180928585_sualinhtinh.resx">
+      <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,24 +13,10 @@ namespace GiaoHangGiaRe.Hub
         GiaoHangGiaReDbContext db = new GiaoHangGiaReDbContext();
         List<DonHang> dsDonHang = new List<DonHang>();
         
-        //public static void LayDanhSachDonHang(DonHang dh)
-        //{
-        //dsDonHang = db.DonHangs.ToList();
-        //var context = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-        //context.Clients.All.upadateDonHang(dh);
-        //}
-        //public void GuiDLTrungTam()
-        //{
-        //Clients.Group("admin",);
-        //}
-        //public void GuiTinNhan(float userId, float message)
-        //{
-        //    Clients.All.NhanTinNhan(userId,message);
-        //    //Clients.User(userId).Send(message);
+       
         //}
         public void UpdateDonhang(DonHang donhang)
-        {
-            
+        {            
             Clients.All.updatedonhang(donhang);
         }
         public void GuiToaDo(float lat, float lng)
@@ -46,12 +32,7 @@ namespace GiaoHangGiaRe.Hub
                 Clients.Client(connectionId).addChatMessage(name + ": " + message);
             }
         }
-        //public void DanhSachOnline()
-        //{
-        //    string name = Context.User.Identity.Name;
-           
-           
-        //}
+        
         public override Task OnConnected()
         {       
             string name = Context.User.Identity.Name;

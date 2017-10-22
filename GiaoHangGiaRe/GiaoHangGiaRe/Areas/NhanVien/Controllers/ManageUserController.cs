@@ -53,16 +53,7 @@ namespace GiaoHangGiaRe.Areas.NhanVien.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddToRole(string UserId, string[] RoleId)
         {
-            ApplicationUser model = context.Users.Find(UserId);
-            if (RoleId != null && RoleId.Count() > 0)
-            {
-                foreach (string item in RoleId)
-                {
-                    IdentityRole role = context.Roles.Find(RoleId);
-                    model.Roles.Add(new IdentityUserRole() { UserId = UserId, RoleId = item });
-                }
-                context.SaveChanges();
-            }
+            ApplicationUser model = context.Users.Find(UserId);         
             ViewBag.RoleId = new SelectList(context.Roles.ToList().Where(item => model.Roles.FirstOrDefault(r => r.RoleId == item.Id) == null).ToList(), "Id", "Name");
             return RedirectToAction("EditRole", new { Id = UserId });
         }

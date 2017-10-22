@@ -84,4 +84,12 @@ namespace GiaoHangGiaRe.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+    public class ExternalLoginViewModel
+    {
+        public string Name { get; set; }
+
+        public string Url { get; set; }
+
+        public string State { get; set; }
+    }
 }

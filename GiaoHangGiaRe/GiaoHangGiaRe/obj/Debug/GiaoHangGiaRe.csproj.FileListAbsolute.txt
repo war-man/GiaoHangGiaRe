@@ -170,7 +170,9 @@ D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Models.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Newtonsoft.Json.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Owin.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Net.Http.Formatting.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Cors.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Helpers.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.Cors.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.Owin.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.WebHost.dll
@@ -201,6 +203,7 @@ D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.Owin.Security.Fac
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Net.Http.Formatting.xml
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.xml
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.Cors.xml
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.Owin.xml
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Http.WebHost.xml
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.Helpers.xml
@@ -221,7 +224,13 @@ D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csprojR
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.InitialCreate.resources
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.updateUser10.resources
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.update20.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.themImageLink.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.thembangLichSu2.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.LichSu.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.LichSu2.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.LichSu3.resources
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csproj.GenerateResource.Cache
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csproj.CoreCompileInputs.cache
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.pdb
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.sualinhtinh.resources

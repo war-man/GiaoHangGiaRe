@@ -64,6 +64,16 @@ namespace GiaoHangGiaRe.Models
         public bool RememberMe { get; set; }
     }
 
+    public class LoginViewModel2
+    {
+        [Required]
+        public string TenTaiKhoan { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+        public bool RememberMe { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required]

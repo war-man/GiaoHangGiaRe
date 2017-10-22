@@ -5,7 +5,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 namespace GiaoHangGiaRe.App_Start
 {
     public class WebApiConfig
@@ -25,6 +25,9 @@ namespace GiaoHangGiaRe.App_Start
             );
             //Uri format config
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            var corsAttr = new EnableCorsAttribute("http://localhost:3000", "*", "*");
+            config.EnableCors(corsAttr);
         }
       
     }

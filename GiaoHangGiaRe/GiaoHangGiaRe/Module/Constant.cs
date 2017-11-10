@@ -10,21 +10,21 @@ namespace GiaoHangGiaRe.Module
     {
         const int _DefaultPage = 1;
         const int _DefaultSize = 5;
-        const string _DeleteAction = "Delete";
-        const string _UpdateAction = "Update";
-        const string _CreateAction = "Create";
-        const string _BangNhanVien = "NhanVien";
-        const string _BangKhachHang = "KhacHang";
-        const string _BangHoaDon = "HoaDon";
-        const string _BangDonHang = "DonHang";
+        const string _DeleteAction = "Xóa";
+        const string _UpdateAction = "Chỉnh sửa";
+        const string _CreateAction = "Tạo mới";
+        const string _BangNhanVien = "Nhân viên";
+        const string _BangKhachHang = "Khách hàng";
+        const string _BangHoaDon = "Hóa đơn";
+        const string _BangDonHang = "Đơn hàng";
         const string _BangUser = "User";
         const string _BangRole = "Role";
-        const string _BangTinNhan = "TinNhan";
-        const string _BangKienHang = "KienHang";
-        const string _BangBangGia = "BangGia";
-        const string _BangUuDai = "UuDai";
-        const string _BangKhoChua = "KhoChua";
-        const string _BangNo = "No";
+        const string _BangTinNhan = "Tin nhắn";
+        const string _BangKienHang = "Kiện hàng";
+        const string _BangBangGia = "Bảng giá";
+        const string _BangUuDai = "Ưu đãi";
+        const string _BangKhoChua = "Kho chứa";
+        const string _BangNo = "Nợ";
         public static int DefaultPage{ get { return _DefaultPage; }}
         public static int DefaultSize { get { return _DefaultSize; } }
         public static string DeleteAction { get { return _DeleteAction; } }

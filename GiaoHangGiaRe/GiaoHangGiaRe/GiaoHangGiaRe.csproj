@@ -75,6 +75,9 @@
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.2.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
     </Reference>
@@ -243,12 +246,12 @@
     <Compile Include="Controllers\api\DonHangAPIController.cs" />
     <Compile Include="Controllers\api\HoaDonApiController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
-    <Compile Include="Controllers\api\HubApiController.cs" />
     <Compile Include="Controllers\api\KhachHangApiController.cs" />
     <Compile Include="Controllers\api\KhoChuaApiController.cs" />
     <Compile Include="Controllers\api\KienHangApiController.cs" />
     <Compile Include="Controllers\api\LichSuApiController.cs" />
     <Compile Include="Controllers\api\LoaiKhachHangApiController.cs" />
+    <Compile Include="Controllers\api\NhanVienApiController.cs" />
     <Compile Include="Controllers\api\NoApiController.cs" />
     <Compile Include="Controllers\api\RoleManagerApiController.cs" />
     <Compile Include="Controllers\api\TaiKhoanApiController.cs" />
@@ -308,6 +311,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IdentityRepository.cs" />
     <Compile Include="Models\InterfaceRepository.cs" />
+    <Compile Include="Models\KhachHangViewModel.cs" />
     <Compile Include="Models\KienHangModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Module\Bang_Gia\BangGiaServices.cs" />

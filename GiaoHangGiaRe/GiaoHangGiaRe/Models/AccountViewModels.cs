@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GiaoHangGiaRe.Models
@@ -101,7 +102,7 @@ namespace GiaoHangGiaRe.Models
         public string DiaChi { set; get; }
 
         [Required]
-        [Display(Name = "Tên tài khoản")]      
+        [Display(Name = "Tên tài khoản")]
         public string TenTaiKhoan { set; get; }
 
         [StringLength(50)]
@@ -143,4 +144,14 @@ namespace GiaoHangGiaRe.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    public class UpdateAccountViewModel
+    {
+        public string Id { set; get; }
+        public string HoTen { set; get; }
+        public string SoDienThoai { set; get; }
+        public string DiaChi { set; get; }
+        //public DateTime NgaySinh { set; get; }
+    }
+
+
 }

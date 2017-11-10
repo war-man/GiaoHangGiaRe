@@ -234,3 +234,5 @@ D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csproj.
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.dll
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.pdb
 D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.sualinhtinh.resources
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.Owin.Cors.dll
+D:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.Owin.Cors.xml

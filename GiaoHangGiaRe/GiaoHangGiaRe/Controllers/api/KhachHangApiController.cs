@@ -56,11 +56,6 @@ namespace GiaoHangGiaRe.Controllers.api
         [Route("update")]
         public IHttpActionResult PutKhachHang(KhachHang input)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (input.MaKhachHang <= 0)
             {
                 return BadRequest();

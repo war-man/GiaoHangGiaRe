@@ -14,7 +14,8 @@ namespace GiaoHangGiaRe.App_Start
         public static void Register(HttpConfiguration config)
         {
             // TODO: Add any additional configuration code.
-
+            //var corsAttr = new EnableCorsAttribute("http://localhost:3000", "*", "*");
+            //config.EnableCors(corsAttr);
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -26,8 +27,6 @@ namespace GiaoHangGiaRe.App_Start
             //Uri format config
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
-            var corsAttr = new EnableCorsAttribute("http://localhost:3000", "*", "*");
-            config.EnableCors(corsAttr);
         }
       
     }

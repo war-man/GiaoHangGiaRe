@@ -42,7 +42,17 @@ namespace GiaoHangGiaRe.Controllers
         [ResponseType(typeof(ApplicationUser))]
         public IHttpActionResult GetById(string id)
         {
-            return Ok(_userServices.GetById(id));
+            var user = _userServices.GetById(id);
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("get-by-username")]
+        [ResponseType(typeof(ApplicationUser))]
+        public IHttpActionResult GetByUsername(string id)
+        {
+            var user = _userServices.GetuserByUsername(id);
+            return Ok(user);
         }
 
         // GET:
@@ -75,9 +85,18 @@ namespace GiaoHangGiaRe.Controllers
         // PUT: api/TaiKhoanApi/5
         [HttpPut]
         [Route("update")]
-        public IHttpActionResult Update(RegisterViewModel input)
+        public IHttpActionResult Update(ApplicationUser input)
         {
-            return Ok();
+            UpdateAccountViewModel _input = new UpdateAccountViewModel
+            {
+                Id= input.Id,
+                DiaChi = input.DiaChi,
+                HoTen = input.HoTen,
+                SoDienThoai = input.PhoneNumber,
+
+            };
+            _userServices.Update(_input);
+            return Ok(_input);
         }
 
 
@@ -101,7 +120,6 @@ namespace GiaoHangGiaRe.Controllers
         {
             return Ok(_userServices.GetRoleByUserId(id));
         }
-
         //GET
 
         [HttpGet]

@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace GiaoHangGiaRe.Controllers.api
 {
     [Authorize]
-    [RoutePrefix("hoadon")]
+    [RoutePrefix("api/hoadon")]
     public class HoaDonApiController : ApiController
     {
         private HoaDonServices _hoaDonServices;

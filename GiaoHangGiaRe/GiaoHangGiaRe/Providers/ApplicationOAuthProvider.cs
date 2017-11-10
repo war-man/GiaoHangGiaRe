@@ -16,28 +16,6 @@ namespace GiaoHangGiaRe.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        //public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-        //{
-        //    context.Validated();
-        //}
-
-        //public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-        //{
-        //    context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
-        //    if (context.UserName != context.Password)
-        //    {
-        //        context.SetError("invalid_grant", "The user name or password is incorrect.");
-        //        return;
-        //    }
-
-        //    var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-        //    identity.AddClaim(new Claim("sub", context.UserName));
-        //    identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-
-        //    context.Validated(identity);
-
-        //}
         private readonly string _publicClientId;
 
         public ApplicationOAuthProvider(string publicClientId)
@@ -66,8 +44,11 @@ namespace GiaoHangGiaRe.Providers
                OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
+            List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+            //string imagelink = user.ImageLink;
+            AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            //AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -109,11 +90,12 @@ namespace GiaoHangGiaRe.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, string Roles)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                {"roles",Roles}
             };
             return new AuthenticationProperties(data);
         }

@@ -7,6 +7,7 @@ using Owin;
 using GiaoHangGiaRe.Models;
 using Microsoft.Owin.Security.OAuth;
 using GiaoHangGiaRe.Providers;
+using System.Web.Http.Cors;
 
 namespace GiaoHangGiaRe
 {
@@ -17,6 +18,10 @@ namespace GiaoHangGiaRe
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            //app.UseOAuthBearerTokens(OAuthOptions);
+            ///Install-Package Microsoft.Owin.Cors -Version 2.1.0
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);

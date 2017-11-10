@@ -24,7 +24,12 @@ namespace GiaoHangGiaRe.Controllers
         [Route("get-all")]
         public IHttpActionResult Get(int? page,int?size)
         {
-            return Ok(_bangGiaServices.GetAll(page,size));
+            return Ok(new {
+                data=_bangGiaServices.GetAll(page, size),
+                total=_bangGiaServices.Count(),
+                size=size,
+                page=page
+            });
         }
 
         // GET: api/get-by-id

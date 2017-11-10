@@ -23,8 +23,8 @@ namespace GiaoHangGiaRe.Module
             {
                 HanhDong = Constant.CreateAction,
                 TenTaiKhoan = HttpContext.Current.User.Identity.Name,
-                NoiDung = input.ToString(),
-                ViTriThaoTac = "BangGia"
+                NoiDung = Constant.CvtToString(input),
+                ViTriThaoTac = Constant.BangGia
             });
         }
 
@@ -32,6 +32,14 @@ namespace GiaoHangGiaRe.Module
         {
             var banggia=_banggiarepository.SelectById(id);
             _banggiarepository.Delete(id);
+
+            lichSuServices.Create(new LichSu
+            {
+                HanhDong = Constant.DeleteAction,
+                TenTaiKhoan = HttpContext.Current.User.Identity.Name,
+                NoiDung = id.ToString(),
+                ViTriThaoTac = Constant.BangGia
+            });
             return banggia;
         }
 
@@ -53,6 +61,14 @@ namespace GiaoHangGiaRe.Module
         public void Update(BangGia input)
         {
             _banggiarepository.Update(input);
+
+            lichSuServices.Create(new LichSu
+            {
+                HanhDong = Constant.UpdateAction,
+                TenTaiKhoan = HttpContext.Current.User.Identity.Name,
+                NoiDung = Constant.CvtToString(input),
+                ViTriThaoTac = Constant.BangGia
+            });
         }
         public int Count()
         {

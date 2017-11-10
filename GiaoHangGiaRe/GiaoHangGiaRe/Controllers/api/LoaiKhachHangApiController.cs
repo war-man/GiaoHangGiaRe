@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace GiaoHangGiaRe.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/loaikhachhang")]
+    [RoutePrefix("api/loaikh")]
     public class LoaiKhachHangApiController : ApiController
     {
         private LoaiKHServices _loaiKHServices;

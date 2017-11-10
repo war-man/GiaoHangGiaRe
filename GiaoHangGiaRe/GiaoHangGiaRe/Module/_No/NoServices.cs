@@ -22,6 +22,7 @@ namespace GiaoHangGiaRe.Module
 
         public void Create(No input)
         {
+            input.ThoiGian = DateTime.Now;
             _noRepository.Insert(input);
             lichSuServices.Create(new LichSu
             {

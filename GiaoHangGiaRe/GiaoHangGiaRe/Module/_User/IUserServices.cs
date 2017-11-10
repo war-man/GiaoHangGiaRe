@@ -27,7 +27,7 @@ namespace GiaoHangGiaRe.Module
         List<string> AddToRole(string UserId, string[] RoleId);
 
         //cho cac phuong thuc PUT
-        void Update(RegisterViewModel input);
+        void Update(UpdateAccountViewModel input);
         IdentityRole EditRole(IdentityRole input);
         List<string> RemoveUserRole(string UserId, string[] RoleId);
 

@@ -29,7 +29,7 @@ namespace GiaoHangGiaRe.Module
 
             lichSuServices.Create(new LichSu
             {
-                TenTaiKhoan = userServices.GetCurrentUser().UserName,
+                TenTaiKhoan = HttpContext.Current.User.Identity.Name,
                 HanhDong = Constant.CreateAction,
                 ViTriThaoTac = Constant.KhachHang,
                 NoiDung = Constant.CvtToString(input)
@@ -42,7 +42,7 @@ namespace GiaoHangGiaRe.Module
 
             lichSuServices.Create(new LichSu
             {
-                TenTaiKhoan = userServices.GetCurrentUser().UserName,
+                TenTaiKhoan = HttpContext.Current.User.Identity.Name,
                 HanhDong = Constant.DeleteAction,
                 ViTriThaoTac = Constant.KhachHang,
                 NoiDung = id.ToString()
@@ -90,7 +90,7 @@ namespace GiaoHangGiaRe.Module
 
             lichSuServices.Create(new LichSu
             {
-                TenTaiKhoan = userServices.GetCurrentUser().UserName,
+                TenTaiKhoan = HttpContext.Current.User.Identity.Name,
                 HanhDong = Constant.UpdateAction,
                 ViTriThaoTac = Constant.KhachHang,
                 NoiDung = Constant.CvtToString(input)

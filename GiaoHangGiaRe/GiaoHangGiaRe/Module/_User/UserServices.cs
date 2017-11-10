@@ -95,14 +95,26 @@ namespace GiaoHangGiaRe.Module
         public ApplicationUser GetById(string id)
         {
             var user = UserManager.FindById(id);
+           // var user2 = _userRepository.SelectById(id);
             return user;
         }
 
-        public void Update(RegisterViewModel input)
+        public void Update(UpdateAccountViewModel input)
         {
-            throw new NotImplementedException();
-            //GetuserByUsername(input.TenTaiKhoan);
-            //_userRepository.Update(input);
+            var user = GetById(input.Id);
+            user.HoTen = input.HoTen;
+            user.DiaChi = input.DiaChi;
+            user.PhoneNumber = input.SoDienThoai;
+            //user.NgaySinh = input.NgaySinh; user chua co thuoc tinh NgaySinh
+            UserManager.Update(user);
+
+            lichSuServices.Create(new LichSu
+            {
+                TenTaiKhoan = GetCurrentUser().UserName,
+                HanhDong = Constant.UpdateAction,
+                ViTriThaoTac = Constant.User,
+                NoiDung = input.Id
+            });
         }
 
         public List<string> GetRoleByUserId(string userid)

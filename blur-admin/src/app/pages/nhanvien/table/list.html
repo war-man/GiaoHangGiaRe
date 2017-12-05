@@ -1,0 +1,66 @@
+<style>
+    td {
+      max-width: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+  </style>
+<div class="row" ng-init="init()">
+  <div class="col-md-12">
+    <div ba-panel ba-panel-title="" ba-panel-class="with-scroll"> 
+      <div class="add-row-editable-table">
+        <button class="btn btn-primary" ng-click="gotoAddNhanVien()">Thêm mới</button>
+      </div>
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>                         
+          <td>Tên tài khoản</td>
+          <td>Tên nhân viên</td>   
+          <td>Chức vụ</td>                        
+          <td>Địa chỉ</td>
+          <td>Số điện thoại</td>
+          <td>Email</td>                         
+          <td>Thao tác</td>
+        </tr>
+        <tr ng-repeat="nhanvien in resdata" class="editable-row">
+          <td>
+            <span editable-text="nhanvien.TenTaiKhoan" e-name="TenTaiKhoan" e-form="rowform" e-required>
+              {{ nhanvien.TenTaiKhoan || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="nhanvien.TenNhanVien" e-name="TenNhanVien" e-form="rowform" e-required>
+              {{ nhanvien.TenNhanVien || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="nhanvien.ChucVu" e-name="ChucVu" e-form="rowform" e-required>
+              {{ nhanvien.ChucVu || 'empty' }}
+            </span>
+          </td>
+          <td>
+              <span editable-text="nhanvien.DiaChi" e-name="DiaChi" e-form="rowform" e-required>
+                {{ nhanvien.DiaChi || 'empty' }}
+              </span>
+          </td>
+          <td>
+            <span editable-text="nhanvien.SoDienThoai" e-name="SoDienThoai" e-form="rowform" e-required>
+              {{ nhanvien.SoDienThoai || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="nhanvien.Email" e-name="Email" e-form="rowform" e-required>
+              {{ nhanvien.Email || 'empty' }}
+            </span>
+          </td>                                                                       
+          <td>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/nhanvien/edit/{{nhanvien.MaNhanVien}}">Edit</a >
+              <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteNhanVien(nhanvien.MaNhanVien)">Delete</button>                           
+            </div> 
+          </td>
+        </tr>
+      </table>                    
+    </div>
+  </div>
+</div>

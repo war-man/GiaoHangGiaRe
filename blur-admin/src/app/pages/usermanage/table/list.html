@@ -1,0 +1,55 @@
+<div class="row">
+        <div class="col-md-12">
+            <label>Số dòng
+                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                        ng-model="PageSize" ng-options="i for i in [5,10,15,20,25]">
+                </select>
+              </label>
+        </div>
+        <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+                <div class="add-row-editable-table">
+                    <button class="btn btn-primary" ng-click="gotoAddUser()">Thêm mới</button>
+                    <!-- {{resdata}} -->
+                </div>
+        <table class="table table-bordered table-hover table-condensed" st-table="">
+          <thead>
+            <tr>
+              <td>STT</td>
+              <td>User name</td>
+              <td>Họ tên</td>
+              <td>Số điện thoại</td>
+              <td>Thao tác</td>
+            </tr>
+          </thead>
+            <tbody>
+            <tr ng-repeat="user in resdata" class="editable-row">
+              <td>
+                  {{$index+1}}
+              </td>
+              <td>
+                  <span editable-text="user.UserName" e-name="UserName" e-form="rowform" e-required>
+                    {{ user.UserName || 'empty' }}
+                  </span>
+              </td>
+              <td>
+                <span editable-text="user.HoTen" e-name="HoTen" e-form="rowform" e-required>
+                  {{ user.HoTen || 'empty' }}
+                </span>
+            </td>
+              <td>
+                <span editable-text="user.PhoneNumber" e-name="PhoneNumber" e-form="rowform" e-required>
+                  {{ user.PhoneNumber || 'empty' }}
+                </span>
+            </td>
+              <td>
+                </form>
+                <div class="buttons">
+                  <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/usermanager/edit/{{user.Id}}">Edit</a>
+                  <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteUser(user.Id)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+    </table>
+    </div>
+</div>

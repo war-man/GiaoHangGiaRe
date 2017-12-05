@@ -1,0 +1,34 @@
+
+<div ng-init="getById()" class="minh-form"
+ba-panel
+ba-panel-title="Sửa nhân viên"
+ba-panel-class="with-scroll">
+<!-- {{model}}
+{{$state.current.name}} -->
+    <form class="col-md-8">
+
+        <div class="form-group">
+        <label for="Id">Họ tên</label>
+        <input type="text" ng-model="model.TenNhanVien" class="form-control" id="TenNhanVien" placeholder="Họ tên">
+        </div>
+
+        <div class="form-group">
+        <label for="SoDienThoai">Số điện thoại</label>
+        <input type="text" ng-model="model.SoDienThoai" class="form-control" id="SoDienThoai" placeholder="Số điện thoại">
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" ng-model="model.Email" class="form-control" id="Email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChi">Địa chỉ</label>
+            <input type="text" ng-model="model.DiaChi" class="form-control" id="DiaChi" placeholder="Địa chỉ">
+        </div>
+        <button progress-button="progressFunction()" ng-click="editNhanVien(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,100 @@
+﻿@model Models.EntityModel.KhachHang
+
+@{
+    ViewBag.Title = "Chi tiết";
+}
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-1-1">
+                <div class="uk-overflow-container">
+                    <div class="md-card uk-margin-medium-bottom">
+                        <div class="md-card-content">
+
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TenKhachHang)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TenKhachHang)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CongTy)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.CongTy)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SoDienThoai)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SoDienThoai)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DiaChi)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DiaChi)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.MaLoaiKH)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.MaLoaiKH)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NgaySinh)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NgaySinh)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TrangThai)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TrangThai)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TenTaiKhoan)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TenTaiKhoan)
+                                </dd>
+
+                            </dl>
+
+                            <p>
+                                @Html.ActionLink("Edit", "Edit",null, new { id = Model.MaKhachHang },new { @class = "btn btn-default" }) 
+                                @Html.ActionLink("<< Trở về", "Index", null, new { @class = "btn btn-default" })
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

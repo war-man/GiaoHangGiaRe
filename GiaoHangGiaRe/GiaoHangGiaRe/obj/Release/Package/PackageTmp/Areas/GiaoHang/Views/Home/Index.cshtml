@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Giao hàng giá rẻ";
+}
+<div class="container">
+    <h2></h2>
+    <div id="dsdonhang"></div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script >
+        var myhub = $.connection.myHub;
+        myhub.client.laydsDonHang = function (data) {
+            //document.getElementById("dsdonhang").innerHTML = data;
+            //alert()
+            var tb;
+            tb='<table class="table table-bordered" id="table">' +
+                '<thead> <tr> <th>Người gửi</th> ' +
+                ' <th>Địa chỉ gửi' +
+                '</th><th>Người nhận</th>' +
+                '</th><th>Địa chỉ nhận</th>' + '</th><th>Số điện thoại nhận</th>' + '</th><th>SĐT ngời gửi</th>'
+                //+ '</th><th>Tình trạng</th>'
+                + '</th><th>Thời điểm đặt</th>' + '</th><th>Ghi chú</th>'
+                 +'</tr></thead> <tbody>';
+            if (data == null)
+            {
+            } else
+            {
+                for (i = 0; i < data.length; i++) {
+                   tb+='<tr>'
+                        +'<td>' + data[i].NguoiGui + '</td>'
+                        +'<td>' + data[i].DiaChiGui + '</td>'
+                        + '<td>' + data[i].NguoiNhan + '</td>'
+                           + '<td>' + data[i].DiaChiNhan + '</td>'
+                        +'<td>' + data[i].SoDienThoaiNguoiNhan + '</td>'
+                        +'<td>' + data[i].SoDienThoaiNguoiGui + '</td>'
+                        //+'<td>' + data[i].TinhTrang + '</td>'
+                        +'<td>' + data[i].ThoiDiemDatDonHang + '</td>'
+                        + '<td>' + data[i].GhiChu + '</td>'
+                        + '<td> @Html.ActionLink("Tiếp nhận", "Create", null, new { @class = "btn btn-info btn-sm" })</td>'
+                        + '</tr>';
+                }
+                tb += ' </tbody></table';
+            }
+            document.getElementById('dsdonhang').innerHTML = tb;
+        }
+        myhub.client.updatedonhang = function (data) {
+            var html='<tr>'
+                       +'<td>' + data.NguoiGui + '</td>'
+                       +'<td>' + data.DiaChiGui + '</td>'
+                       + '<td>' + data.NguoiNhan + '</td>'
+                          + '<td>' + data.DiaChiNhan + '</td>'
+                       +'<td>' + data.SoDienThoaiNguoiNhan + '</td>'
+                       +'<td>' + data.SoDienThoaiNguoiGui + '</td>'
+                       //+'<td>' + data.TinhTrang + '</td>'
+                       +'<td>' + data.ThoiDiemDatDonHang + '</td>'
+                       + '<td>' + data.GhiChu + '</td>'
+                       + '</tr>';
+            $('#table').find('tbody').append(html);
+          }
+
+        //alert("");
+        $.connection.hub.start();
+    </script>
+    }

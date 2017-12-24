@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+<div class="container">
+    <h2>@ViewBag.Title.</h2>
+    <address>
+        Trần Ngọc Minh<br />
+        Đại học Thăng Long<br />
+        <abbr title="Phone">Số điện thoại:</abbr>
+        019239812093
+    </address>
+    <address>
+        <strong>Hỗ trợ:</strong>   <a href="mailto:ngocminh2306@gmail.com">ngocminh2306@gmail.com</a><br />
+    </address>
+    <ul id="useronline"></ul>
+    <ul id="user"></ul>
+</div>
+@*Live chat*@
+@Html.Partial("ChatWidget")
+<div id="map" style="height:50%;width:50%"></div>
+@section scripts {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/googlemap.js"></script>
+    <script type="text/javascript">
+        var maphub = $.connection.myHub;
+        maphub.client.SoNguoiOnline = function (so) {
+           // $('#user').append(so);
+            document.getElementById("user").innerText=so;
+        }
+        maphub.client.DanhSachOnline = function (data) {
+            document.getElementById("useronline").innerText = data;
+            //document.getElementById("user").innerText = so;
+        }
+    maphub.client.layToaDo = function (lat, lng) {
+       // $('#ToaDo').append('<li>' + lat + ' - ' + lng + '</li>');
+        var myTrip = [new google.maps.LatLng(lat, lng), new google.maps.LatLng(lat, lng)];
+        var flightPath = new google.maps.Polygon({
+            path: myTrip,
+            strokeColor: "#0000FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 11,
+            fillColor: "#0000FF",
+            fillOpacity: 0.4
+        });
+
+        flightPath.setMap(map);
+    }
+    //$.connection.hub.start().done(function () {
+    //    maphub.server.danhSachOnline();
+    //});
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQGBPP_d_tQMOwtct5xZcpKTTp8GosylQ&callback=initMap">
+    </script>
+}
+

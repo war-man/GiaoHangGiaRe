@@ -105,6 +105,6 @@
       "main": [
         "dist/smart-table.js"
       ]
-	}
+	  }
   }
 }

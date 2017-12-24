@@ -1,4 +1,4 @@
-$sidebar-width: 180px;
+$sidebar-width: 280px;
 $angle-left: "\f100";
 $angle-right: "\f101";
 
@@ -102,9 +102,9 @@ a.al-sidebar-list-link {
 }
 
 .slimScrollBar, .slimScrollRail {
-  border-radius: 0px !important;
-  width: 4px !important;
-  left: 176px;
+  // border-radius: 0px !important;
+  // width: 4px !important;
+  // left: 176px;
 }
 
 @mixin layout-collapsed() {
@@ -160,15 +160,15 @@ a.al-sidebar-list-link {
 }
 
 .sidebar-hover-elem{
-  width: 4px;
-  background: $primary;
-  position: absolute;
-  top: -150px;
-  left: 176px;
-  transition: all 0.5s ease;
-  transition-property: top, height;
-  height: 42px;
-  display: block;
+  // width: 4px;
+  // background: $primary;
+  // position: absolute;
+  // top: -150px;
+  // left: 176px;
+  // transition: all 0.5s ease;
+  // transition-property: top, height;
+  // height: 42px;
+  // display: block;
 }
 
 .sidebar-select-elem {

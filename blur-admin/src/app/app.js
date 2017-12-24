@@ -37,11 +37,6 @@ angular.module("BlurAdmin").config([ function () {
 
   angular.module("BlurAdmin").run(["$rootScope", "$state", function ($rootScope, $state) {
     
-        //$rootScope.$state = $state; // state to be accessed from view
-        //$rootScope.$settings = settings; // state to be accessed from view
-    
-        //$rootScope.Host = TMDTConfig.host;
-    
         $rootScope.logout = function () {
             localStorage.removeItem("token");
             window.location = "/auth.html";
@@ -49,20 +44,6 @@ angular.module("BlurAdmin").config([ function () {
         console.log('chạy app run');
     
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
-            // Restangular.all("accounts").customGET("MyInformation").then(function (resp) {
-            //     $rootScope.userInfo = resp.result;
-            //     var role = $rootScope.userInfo.roleName;
-    
-            //     var validRoles = ["Admin", "ContentManager", "OnlineManager", "StoreManager", "CSKH"];
-            //     if (validRoles.indexOf(role) < 0) {
-            //          //myApp.logout();          
-            //     }
-    
-            // }).catch(function (err) {          
-            //     $rootScope.userInfo = {
-            //         roleName: "Guest"
-            //     };
-            // });
         });
     
        

@@ -7,7 +7,8 @@ ba-panel-class="with-scroll" >
     <div ng-repeat="error in errorMessage">
         <p style="color:red">{{error}}</p>
     </div>
-    <form class="col-md-8">
+    <div class="col-md-3"></div>
+    <form class="col-md-6">
 
         <div class="form-group">
             <label for="TenTaiKhoan">User name</label>
@@ -54,7 +55,9 @@ ba-panel-class="with-scroll" >
             <label for="PassWord">Mật khẩu</label>
             <input type="PassWord" class="form-control" id="PassWord" placeholder="Mật khẩu mặc định 123456" disabled>
         </div>
-
-        <button progress-button="progressFunction()" ng-click="addUser(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+        <div class="submit-button">
+            <button progress-button="progressFunction()" ng-click="addUser(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+        </div>
     </form>
+    <div class="col-md-3"></div>
 </div>

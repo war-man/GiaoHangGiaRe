@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {Routes, RouterModule} from "@angular/router";
+import {Routes, RouterModule} from '@angular/router';
+
+import {HttpService} from '../providers/http-service';
+import {LoginService} from '../providers/login_service/login.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -28,15 +31,16 @@ const routes: Routes = [
     DonhangComponent,
     LoginComponent
   ],
-  
   imports: [
-    
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

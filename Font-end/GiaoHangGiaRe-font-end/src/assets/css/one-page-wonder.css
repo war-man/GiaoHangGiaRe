@@ -172,10 +172,19 @@ header.masthead .bg-circle-4 {
   box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
 }
 
-.a:focus, a:hover{
+a:focus{
   color: rgb(252, 252, 252);
   background: rgb(46, 136, 61);
 }
+a:hover{
+  color: rgb(252, 252, 252);
+  background: rgba(93, 236, 117, 0.548);
+}
+a:active{
+  color: rgb(252, 252, 252);
+  background: rgb(51, 138, 66);
+}
+
 .rounded-circle{
   height: 420px;
   width: 420px;

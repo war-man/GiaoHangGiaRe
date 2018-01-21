@@ -13,7 +13,7 @@ angular.module('BlurAdmin', [
   'ngJsTree',
   'angular-progress-button-styles',
 
-  
+  'BlurAdmin.services',
   'BlurAdmin.theme',
   'BlurAdmin.pages'
 ]);
@@ -26,13 +26,7 @@ angular.module("BlurAdmin").config([ function () {
       if (auth == undefined) {
           window.location = "/auth.html";
       }
-  
-      //auth = JSON.parse(auth);
-    //   if(auth!=null){
-    //       var token = auth.accessToken;
-          
-    //   }
-     
+      
   }]);
 
   angular.module("BlurAdmin").run(["$rootScope", "$state", function ($rootScope, $state) {

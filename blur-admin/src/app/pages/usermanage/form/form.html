@@ -1,56 +1,39 @@
-
-<div class="minh-form"
-ba-panel
-ba-panel-title="Thêm mới"
-ba-panel-class="with-scroll" >
-
-    <div ng-repeat="error in errorMessage">
-        <p style="color:red">{{error}}</p>
-    </div>
+<div class="minh-form" ba-panel ba-panel-title="Thêm mới" ba-panel-class="with-scroll">
     <div class="col-md-3"></div>
     <form class="col-md-6">
-
         <div class="form-group">
             <label for="TenTaiKhoan">User name</label>
             <input required type="text" ng-model="model.TenTaiKhoan" class="form-control" id="TenTaiKhoan" placeholder="Tên tài khoản">
         </div>
-
         <div class="form-group">
             <label for="HoTen">Họ tên</label>
             <input required type="text" ng-model="model.HoTen" class="form-control" id="HoTen" placeholder="Họ tên">
         </div>
-
         <div class="form-group">
             <label for="Email">Email</label>
-            <input required type="email" ng-model="model.Email" class="form-control form-control-rounded" id="Email" placeholder="abc@vidu.com" value="model.Email" >
+            <input required type="email" ng-model="model.Email" class="form-control form-control-rounded" id="Email" placeholder="abc@vidu.com"
+                value="model.Email">
         </div>
-
         <div class="form-group">
             <label for="SoDienThoai">Số điện thoại</label>
             <input required type="text" ng-model="model.SoDienThoai" class="form-control" id="SoDienThoai" placeholder="Số điện thoại">
         </div>
-
         <div class="form-group">
             <label for="DiaChi">Địa chỉ</label>
             <textarea required placeholder="Địa chỉ" ng-model="model.DiaChi" class="form-control" id="DiaChi"></textarea>
         </div>
-
         <div class="form-group">
             <label for="DiaChi">Nhóm phân quyền</label>
-            <ui-select ng-model="model.SelectRole.value.Name" required
-                        class="btn-group bootstrap-select form-control"
-                        ng-disabled="false"
-                        append-to-body="true"
-                        search-enabled="true">
-                    <ui-select-match placeholder="Hãy chọn một nhóm">
-                        {{$select.selected.Name}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="item in roleSelect | filter: $select.search">
-                        <span ng-bind-html="item.Name"></span>
-                    </ui-select-choices>
+            <ui-select ng-model="model.SelectRole.value.Name" required class="btn-group bootstrap-select form-control" ng-disabled="false"
+                append-to-body="true" search-enabled="true">
+                <ui-select-match placeholder="Hãy chọn một nhóm">
+                    {{$select.selected.Name}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in roleSelect | filter: $select.search">
+                    <span ng-bind-html="item.Name"></span>
+                </ui-select-choices>
             </ui-select>
-        </div> 
-
+        </div>
         <div class="form-group">
             <label for="PassWord">Mật khẩu</label>
             <input type="PassWord" class="form-control" id="PassWord" placeholder="Mật khẩu mặc định 123456" disabled>

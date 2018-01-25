@@ -6,14 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Diagnostics;
-using System.Web.Script.Serialization;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -95,7 +90,6 @@ namespace GiaoHangGiaRe.Module
         public ApplicationUser GetById(string id)
         {
             var user = UserManager.FindById(id);
-           // var user2 = _userRepository.SelectById(id);
             return user;
         }
 
@@ -137,8 +131,6 @@ namespace GiaoHangGiaRe.Module
                 foreach (string item in RoleId)
                 {
                     UserManager.AddToRole(UserId, item);
-                    //IdentityRole role = _userRepository.Roles.Find(RoleId);
-                    //user.Roles.Add(new IdentityUserRole() { UserId = UserId.ToString(), RoleId = item });
                 }           
             }
             lichSuServices.Create(new LichSu

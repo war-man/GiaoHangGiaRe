@@ -1,4 +1,23 @@
 @import 'common';
-
 // injector
 // endinjector
+.add-button{
+    float: right;
+    margin-bottom: 10px;
+}
+.text-center{
+    text-align: center;
+}
+.action-button{
+    text-align:  center;
+}
+
+//custom boostrap
+.pagination{
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+//serach box
+.search-box{
+    float: left;
+}

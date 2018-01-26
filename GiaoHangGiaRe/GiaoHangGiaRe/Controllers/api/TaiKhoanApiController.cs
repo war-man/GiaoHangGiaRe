@@ -31,8 +31,8 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(new {
                 data=_userServices.GetAll(page, size),
                 total=_userServices.Count(),
-                size=size,
-                page=page
+                size,
+                page
             });
         }
 
@@ -113,7 +113,6 @@ namespace GiaoHangGiaRe.Controllers
         }
 
         //GET
-
         [HttpGet]
         [Route("get-role-user")]
         public IHttpActionResult GetRoleByUserId(string id)

@@ -5,10 +5,10 @@
     angular.module('BlurAdmin.pages')
         .controller('usermanagercontroller', usermanagercontroller);
     /** @ngInject */
-    function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal) {
+    function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr) {
         $scope.Size = 5;
         $scope.listUser;
-        $scope.tablePage= {};
+        $scope.tablePage = {};
         $scope.model = {};
         $scope.currentstate = $state.current.name;
         $scope.errorMessage;
@@ -30,15 +30,15 @@
                 }
             })
         }
-        function innitTableParams(size, currenPage, totalRecord){
+        function innitTableParams(size, currenPage, totalRecord) {
             $scope.tablePage.totalRecord = totalRecord;
             $scope.tablePage.size = size;
-            $scope.tablePage.totalPage = totalRecord/size;
+            $scope.tablePage.totalPage = totalRecord / size;
             $scope.tablePage.currenPage = currenPage;
-            $scope.tablePage.arrayPage= [];  
-            for(var i=0;i< $scope.tablePage.totalPage;  i++){
+            $scope.tablePage.arrayPage = [];
+            for (var i = 0; i < $scope.tablePage.totalPage; i++) {
                 $scope.tablePage.arrayPage.push(i);
-            }  
+            }
         }
 
         GetRoleAPI.role_get_all().then(function (res) { //Lấy danh sách Role       
@@ -57,6 +57,7 @@
                 });
         };
 
+        //EDIT USER
         $scope.editUser = function (model) {
             GetUserAPI.user_update(model)
                 .success(function (data, status) {
@@ -68,24 +69,24 @@
         };
 
         //DELETE USER
-        $scope.deleteUser = function (page,id) {
-           
-                $uibModal.open({
-                  animation: true,
-                  templateUrl: page,
-                //   size: size,
-                  resolve: {
-                    items: function () {
-                    //   return $scope.items;
-                    console.log(111);
-                    }
-                  }
-                });
-            
-            // GetUserAPI.user_delete(id).success(function (data, status) {
-            //         $state.go('usermanager.list', {}, { reload: true });
-            //     })
+        $scope.deleteUser = function (id) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/basicModal.html',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.message = 'Bạn có chắc muốn xóa người dùng ' + id + '?';
+                    $scope.title = 'Xóa user ' + id;
+                    $scope.ok = 'Đồng ý';
+                },
+            }).result.then(function (data) {
+                GetUserAPI.user_delete(id).success(function (data, status) {                  
+                    $state.go('usermanager.list', {}, { reload: true });
+                })
+            }, function () {
+            });
         }
+
+        //Add USER 
         $scope.addUser = function (model) {
             model.Role = model.SelectRole.value.Name.Name; // Chuyển giá trị từ select role vào role
             console.log(model);

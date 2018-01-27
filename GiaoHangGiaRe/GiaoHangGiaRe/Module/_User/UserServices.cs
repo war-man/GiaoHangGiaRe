@@ -180,11 +180,17 @@ namespace GiaoHangGiaRe.Module
             return _userManager.FindByName(username.ToString());
         }
 
-        public List<ApplicationUser> GetAll(int? page, int? size)
-        {       
+        public List<ApplicationUser> GetAll(int? page=null, int? size =null, string user_name ="", string user_id = "", string name = "")
+        {
             if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) return _userRepository.GetAll().ToList();
-            List<ApplicationUser> users = _userRepository.GetAll()
+            if (!size.HasValue) size = Constant.DefaultSize;
+            if (user_name == null)
+                user_name = "";
+            if (user_id == null)
+                user_id = "";
+            if (name == null)
+                name = "";
+            List<ApplicationUser> users = _userRepository.GetAll().Where(p=>p.UserName.Contains(user_name) && p.Id.Contains(user_id) && p.HoTen.Contains(name))
                 .OrderBy(p => p.Id)
                 .Take(size.Value)
                 .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();

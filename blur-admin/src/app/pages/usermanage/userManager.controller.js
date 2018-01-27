@@ -13,17 +13,20 @@
         $scope.currentstate = $state.current.name;
         $scope.errorMessage;
         $scope.roleSelect;
+        $scope.filter = {};
+        $scope.params = {page: $scope.tablePage.currenPage, size: $scope.Size};
         $scope.gotoAddUser = function () {
             $state.go('usermanager.add');
         };
-        GetUserAPI.user_get_all().then((res) => {
+        innitTableParams($scope.Size, 0);
+        GetUserAPI.user_get_all($scope.params).then((res) => {
             if (res.status == '200') {
                 $scope.listUser = res.data.data;
                 innitTableParams($scope.Size, 0, res.data.total);
             }
         })
         $scope.gotoPage = function (page) {
-            GetUserAPI.user_get_all(page, $scope.Size).then((res) => {
+            GetUserAPI.user_get_all($scope.params).then((res) => {
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
                     innitTableParams($scope.Size, page, res.data.total);
@@ -43,7 +46,7 @@
 
         GetRoleAPI.role_get_all().then(function (res) { //Lấy danh sách Role       
             $scope.roleSelect = res.data.data;
-            console.log($scope.roleSelect);
+            //console.log($scope.roleSelect);
         });
 
         $scope.getbyid = function () {
@@ -56,6 +59,18 @@
                     console.log($scope.errorMessage);
                 });
         };
+
+        //SEARCH
+        $scope.search = function () {
+            $scope.params.user_name = $scope.filter.user_name;
+            $scope.params.user_id = $scope.filter.id;
+            $scope.params.name =$scope.filter.name;
+            GetUserAPI.user_get_all($scope.params).then((res) => {
+                if (res.status == '200') {
+                    $scope.listUser = res.data.data;
+                }
+            })
+        }
 
         //EDIT USER
         $scope.editUser = function (model) {
@@ -79,7 +94,7 @@
                     $scope.ok = 'Đồng ý';
                 },
             }).result.then(function (data) {
-                GetUserAPI.user_delete(id).success(function (data, status) {                  
+                GetUserAPI.user_delete(id).success(function (data, status) {
                     $state.go('usermanager.list', {}, { reload: true });
                 })
             }, function () {

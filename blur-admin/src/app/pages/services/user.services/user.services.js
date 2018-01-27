@@ -7,8 +7,8 @@
     function GetUserAPI($http, $rootScope, localStorage, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all TaiKhKhoan
-        var user_get_all = function (page, size) {
-            var result = $http.get(host + 'taikhoan/get-all?page=' + page + '&size=' + size).success(function (data) {
+        var user_get_all = function (params) {
+            var result = $http.get(host + 'taikhoan/get-all', {params}).success(function (data) {
             }).error(function () {
                 toastr.error('Error');
             });

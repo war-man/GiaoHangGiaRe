@@ -26,10 +26,10 @@ namespace GiaoHangGiaRe.Controllers
         [HttpGet]
         [Route("get-all")]
         [ResponseType(typeof(ApplicationUser))]
-        public IHttpActionResult Get(int? page, int? size)
+        public IHttpActionResult Get(int? page =null, int? size = null, string user_name = "", string user_id = "", string name = "")
         {
             return Ok(new {
-                data=_userServices.GetAll(page, size),
+                data=_userServices.GetAll(page, size, user_name, user_id, name),
                 total=_userServices.Count(),
                 size,
                 page

@@ -25,13 +25,13 @@ namespace GiaoHangGiaRe.Controllers
         // GET: api/LichSuApi
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult GetLichSus(int? page,int? size)
+        public IHttpActionResult GetLichSus(int? page = null,int? size = null)
         {
             return Ok(new {
                 data = _lichSuServices.GetAll(page, size),
                 total = _lichSuServices.Count(),
-                size=size,
-                page=page
+                size,
+                page
                 });
         }
 

@@ -15,12 +15,11 @@ namespace GiaoHangGiaRe.Module
     {
         //cho cac phuong thuc GET
         ApplicationUser GetById(string id);
-        List<ApplicationUser> GetAll(int?page,int?size);
+        List<ApplicationUser> GetAll(int?page,int?size, string user_name, string user_id, string name);
         List<ApplicationUser> GetUserOfRole(string role);
         List<string> GetRoleByUserId(string userid);
         List<Claim> Claims(string userId);
         ApplicationUser GetuserByUsername(object username);
-
 
         //cho cac phuong thuc POST
         IdentityResult Create(RegisterViewModel input);
@@ -36,12 +35,6 @@ namespace GiaoHangGiaRe.Module
 
         //Khac
 
-        int Count();
-
-       
-        
-
-
-       
+        int Count();  
     }
 }

@@ -8,13 +8,10 @@ namespace GiaoHangGiaRe.Hub
     [Authorize]
     public class MyHub : Hub
     {
-
         private readonly static ConnectionMapping<string> _connections = new ConnectionMapping<string>();
         GiaoHangGiaReDbContext db = new GiaoHangGiaReDbContext();
         List<DonHang> dsDonHang = new List<DonHang>();
-        
-       
-        //}
+
         public void UpdateDonhang(DonHang donhang)
         {            
             Clients.All.updatedonhang(donhang);

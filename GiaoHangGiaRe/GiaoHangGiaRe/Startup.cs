@@ -14,7 +14,7 @@ namespace GiaoHangGiaRe
             
             ConfigureAuth(app);
             app.MapSignalR();          
-            GlobalHost.HubPipeline.RequireAuthentication();
+            //GlobalHost.HubPipeline.RequireAuthentication();
         }
         //public void Configure(IApplicationBuilder app)
         //{

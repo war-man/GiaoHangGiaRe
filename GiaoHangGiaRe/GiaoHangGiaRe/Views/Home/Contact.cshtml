@@ -25,6 +25,7 @@
     <script src="~/Scripts/googlemap.js"></script>
     <script type="text/javascript">
         var maphub = $.connection.myHub;
+        console.log(maphub)
         maphub.client.SoNguoiOnline = function (so) {
            // $('#user').append(so);
             document.getElementById("user").innerText=so;
@@ -34,7 +35,8 @@
             //document.getElementById("user").innerText = so;
         }
     maphub.client.layToaDo = function (lat, lng) {
-       // $('#ToaDo').append('<li>' + lat + ' - ' + lng + '</li>');
+        // $('#ToaDo').append('<li>' + lat + ' - ' + lng + '</li>');
+        console.log(lat, lng);
         var myTrip = [new google.maps.LatLng(lat, lng), new google.maps.LatLng(lat, lng)];
         var flightPath = new google.maps.Polygon({
             path: myTrip,

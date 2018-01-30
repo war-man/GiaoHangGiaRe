@@ -5,14 +5,18 @@
     function bandocontroller($scope, $timeout ,$rootScope) {
         $rootScope. maphub.client.DanhSachOnline = function (data) {
            console.log(data);
+           $scope.$apply(function (){
+            $scope.danhSachonline = data;
+            })
         }
 
         $rootScope.maphub.client.layToaDo = function (data) {
-            console.log(data);
+            $scope.$apply(function (){
+                $scope.layToaDo = data;
+            })    
          }
 
         $.connection.hub.start().done(function () {
-
             $rootScope.maphub.server.guiToaDo(123,321);
         });
 
@@ -29,6 +33,6 @@
         }
         $timeout(function(){
             initMap();
-          }, 1000);
+          }, 100);
     }
 })();

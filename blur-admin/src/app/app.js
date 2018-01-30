@@ -32,13 +32,14 @@ angular.module("BlurAdmin").run(["$rootScope", "$state", "$http", function ($roo
     }
     else {
         $http.defaults.headers.common.Authorization = token.token_type + ' ' + token.access_token;
-        $.signalR.ajaxDefaults.headers = { 'Authorization': token.token_type + ' ' + token.access_token};
+        $.signalR.ajaxDefaults.headers = { 'Authorization': token.token_type + ' ' + token.access_token };
         $.connection.hub.url = "http://117.0.11.152:8080/signalr";
         $rootScope.maphub = $.connection.myHub;
         $rootScope.maphub.client.SoNguoiOnline = function (data) {
-            $rootScope.soNguoiOnline = data;
-            console.log(data);
-         }
+            $rootScope.$apply(function () {
+                $rootScope.soNguoiOnline = data;
+            })
+        }
     }
     $rootScope.logout = function () {
         localStorage.removeItem("token");

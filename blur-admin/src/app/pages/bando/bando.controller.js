@@ -23,7 +23,7 @@
 
 
         function initMap() {
-            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            var image = 'assets/img/app/map/posstion_maker.png';
             var mapCanvas = document.getElementById('google-maps');
             var mapOptions = {
                 center: new google.maps.LatLng(21.022736, 105.8019441, 13),

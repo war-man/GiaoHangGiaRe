@@ -1,12 +1,10 @@
 (function () {
     'use strict';
-
     angular.module('BlurAdmin.pages.bando').controller('bandocontroller', bandocontroller);
     function bandocontroller($scope, $timeout, $rootScope) {
         $rootScope.maphub.client.DanhSachOnline = function (data) {
-            console.log(data);
             $scope.$apply(function () {
-                $scope.danhSachonline = data;
+                $rootScope.danhSachonline = data;
             })
         }
 
@@ -19,8 +17,6 @@
         $.connection.hub.start().done(function () {
             $rootScope.maphub.server.guiToaDo(123, 321);
         });
-
-
 
         function initMap() {
             var image = 'assets/img/app/map/posstion_maker.png';
@@ -45,7 +41,7 @@
                         icon: image
                     });
                     infoWindow.setPosition(pos);
-                    
+
                     map.setCenter(pos);
                     google.maps.event.addListener(beachMarker, "mouseout", function () {
                         infoWindow.close();
@@ -68,7 +64,6 @@
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
-
         }
         $timeout(function () {
             initMap();

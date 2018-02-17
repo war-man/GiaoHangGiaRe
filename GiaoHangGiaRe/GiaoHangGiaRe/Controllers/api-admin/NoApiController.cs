@@ -26,8 +26,8 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(new {
                 data = _noServices.GetAll(page, size),
                 total = _noServices.Count(),
-                page=page,
-                size=size
+                page,
+                size
                 }
             );
         }

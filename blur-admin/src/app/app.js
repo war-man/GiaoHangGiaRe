@@ -15,16 +15,14 @@ angular.module('BlurAdmin', [
     'BlurAdmin.theme',
     'BlurAdmin.pages'
 ]);
-angular.module('BlurAdmin').constant('BASE', 'http://116.107.0.204:8080/');
+angular.module('BlurAdmin').constant('BASE', 'http://116.111.54.160:8080/');
 
-// angular.module('BlurAdmin', ['ng.epoch','n3-pie-chart']);
-angular.module('BlurAdmin').value('backendServerUrl', 'http://116.107.0.204:8080');
 /* Init global settings request run the app */
 angular.module("BlurAdmin").config(["BASE", function (BASE) {
 
 }]);
 
-angular.module("BlurAdmin").run(["$rootScope", "$state", "$http", function ($rootScope, $state, $http) {
+angular.module("BlurAdmin").run(["BASE", "$rootScope", "$state", "$http", function (BASE, $rootScope, $state, $http) {
     var auth = localStorage.getItem("token");// Không có token sẽ nhảy về auth.html
     var token = JSON.parse(auth);
     if (auth == undefined) {
@@ -33,7 +31,7 @@ angular.module("BlurAdmin").run(["$rootScope", "$state", "$http", function ($roo
     else {
         $http.defaults.headers.common.Authorization = token.token_type + ' ' + token.access_token;
         $.signalR.ajaxDefaults.headers = { 'Authorization': token.token_type + ' ' + token.access_token };
-        $.connection.hub.url = "http://116.107.0.204:8080/signalr";
+        $.connection.hub.url = BASE + "signalr";
         $rootScope.maphub = $.connection.myHub;
         $rootScope.maphub.client.SoNguoiOnline = function (data) {
             $rootScope.$apply(function () {

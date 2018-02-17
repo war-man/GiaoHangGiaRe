@@ -18,7 +18,11 @@ namespace GiaoHangGiaRe.Hub
         }
         public void GuiToaDo(float lat, float lng)
         {
-            Clients.All.layToaDo(lat, lng);
+            Clients.Group("Manager").layToaDo(lat, lng);
+        }
+        public void GuiToaDo_TheoDoi(float lat, float lng) //Toa do gui cho khach hang khi nguoi giao hang giao hang
+        {
+            Clients.Group("User").layToaDo(lat, lng);
         }
         public void SendChatMessage(string who, string message)
         {

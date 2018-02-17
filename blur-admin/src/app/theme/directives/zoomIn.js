@@ -15,7 +15,8 @@
         var delay = 1000;
 
         if ($rootScope.$pageFinishedLoading) {
-          delay = 100;
+          delay = 1;
+          //delay = 100;
         }
 
         $timeout(function () {

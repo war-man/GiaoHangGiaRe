@@ -2,26 +2,30 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-import {HttpService} from '../providers/http-service';
-import {LoginService} from '../providers/login_service/login.service';
+import { HttpService } from '../providers/http-service';
+import { LoginService } from '../providers/login_service/login.service';
 
 import { AppComponent } from './app.component';
+
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { MypageComponent } from './mypage/mypage.component';
 import { DonhangComponent } from './donhang/donhang.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'mypage', component: MypageComponent },
-  { path: 'donhang', component: DonhangComponent },
-  { path: 'login', component: LoginComponent }
- ];
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'mypage', component: MypageComponent },
+      { path: 'donhang', component: DonhangComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'logout', component: LogoutComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +33,14 @@ const routes: Routes = [
     AboutComponent,
     MypageComponent,
     DonhangComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [
     HttpService,

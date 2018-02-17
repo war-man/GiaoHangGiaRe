@@ -1,5 +1,6 @@
-import { Component, OnInit, Injectable  } from '@angular/core';
-import {LoginService} from '../../providers/login_service/login.service';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { LoginService } from '../../providers/login_service/login.service';
+import { Router } from '@angular/router';
 @Injectable()
 @Component({
   selector: 'app-login',
@@ -7,13 +8,22 @@ import {LoginService} from '../../providers/login_service/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  model = { username: '', password: '' };
   userData: any;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
   }
   ngOnInit() {
-    this.loginService.getUserData().then((res) => {
-      this.userData = res;
+  }
+  submitData() {
+    const input = 'grant_type=password&username=' + this.model.username + '&password=' + this.model.password;
+    this.loginService.login(input).then((res) => {
+      if (res) {
+        this.userData = res;
+        this.loginService.stoteUserData(this.userData);
+        this.router.navigateByUrl('/home');
+        window.location.reload();
+      }
     });
   }
 }

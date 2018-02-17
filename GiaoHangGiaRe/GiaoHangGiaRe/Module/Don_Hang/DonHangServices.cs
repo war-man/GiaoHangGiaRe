@@ -59,12 +59,12 @@ namespace GiaoHangGiaRe.Module
             _donhangRepository.Delete(id);
         }
 
-        public List<DonHang> GetAll(int? page, int? size)
+        public List<DonHang> GetAll(int? page = 0, int? size= 50, string user_name = null, string user_id = null, int? ma_nhanvien = null)
         {
             if (!page.HasValue) page = Constant.DefaultPage;
             //if (!size.HasValue) size = _donhangRepository.GetAll().Count();
             if (!size.HasValue) size = _donhangRepository.GetAll().Count();
-            var res = _donhangRepository.GetAll()
+            var res = _donhangRepository.GetAll().Where(p=>p.TenTaiKhoan.Contains(user_name) && p.MaNhanVienGiao == ma_nhanvien)
                 .Skip((page.Value - 1) * size.Value)
                .Take(size.Value).ToList();
             return res;

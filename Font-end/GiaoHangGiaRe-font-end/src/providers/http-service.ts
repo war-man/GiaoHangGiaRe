@@ -10,18 +10,22 @@ export class HttpService {
         this.base_url = config.host;
     }
     buildHeaders(): any {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
         if (localStorage.getItem('access_token')) {
             headers.append('access_token', localStorage.getItem('access_token'));
         }
         return headers;
     }
     get(inner_url: string): any {
-        return new Promise((resolve, reject) => {
-            this.http.get(this.base_url + inner_url, this.buildHeaders()).subscribe((res) => {
-                resolve(res.json);
-                console.log(res);
-            });
-        });
+        return Observable
+            .from(this.http.get(this.base_url + inner_url, this.buildHeaders()).map(res => res.json()));
+    };
+    put(inner_url: string, input: any): any {
+        return Observable
+            .from(this.http.put(this.base_url + inner_url, input, this.buildHeaders()).map(res => res.json()));
+    };
+    post(inner_url: string, input: any): any {
+        return Observable
+            .from(this.http.post(this.base_url + inner_url, input, this.buildHeaders()).map(res => res.json()));
     };
 }

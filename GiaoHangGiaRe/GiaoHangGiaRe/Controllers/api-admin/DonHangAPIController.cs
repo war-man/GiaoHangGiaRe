@@ -23,7 +23,7 @@ namespace GiaoHangGiaRe.Controllers
         //[Authorize(Roles ="manager")] 
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult GetDonHangs(int? page,int? size)
+        public IHttpActionResult GetDonHangs(int? page = 0,int? size = 50, string user_name = null, string user_id =  null, string nhanvien= null)
         {
             //return Ok(db.DonHangs.ToList());        
             return Ok(new {

@@ -11,7 +11,7 @@ namespace GiaoHangGiaRe.Module
     interface IDonHangServices
     {
         //dung cho phuong  thuc GET
-        List<DonHang> GetAll(int? page, int? size);
+        List<DonHang> GetAll(int? page, int? size, string user_name, string user_id, int? ma_nhanvien);
         List<DonHang> SearchByKey(int? page, int? size, string key);
         DonHang GetById(object id);
         List<DonHang> GetByUser(object username);

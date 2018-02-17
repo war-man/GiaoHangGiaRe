@@ -1,13 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
 using GiaoHangGiaRe.Module;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -28,6 +20,9 @@ namespace GiaoHangGiaRe.Controllers
         [ResponseType(typeof(ApplicationUser))]
         public IHttpActionResult Get(int? page =null, int? size = null, string user_name = "", string user_id = "", string name = "")
         {
+            //if (User.IsInRole("Administrators"))
+            //{
+            //};
             return Ok(new {
                 data=_userServices.GetAll(page, size, user_name, user_id, name),
                 total=_userServices.Count(),
@@ -98,7 +93,6 @@ namespace GiaoHangGiaRe.Controllers
             _userServices.Update(_input);
             return Ok(_input);
         }
-
 
         // DELETE: api/TaiKhoanApi/5
         [HttpDelete]

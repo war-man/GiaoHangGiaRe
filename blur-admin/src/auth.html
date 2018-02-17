@@ -75,12 +75,10 @@
     var password = $("input[name='MatKhau']").val();
     var input = 'grant_type=password&username=' + username + '&password=' + password;
     $.ajax({
-      url: "http://116.107.0.204:8080/token",
+      url: "http://116.111.54.160:8080/token",
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
-      crossDomain: true,
-      //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       data: input
     }).done(function (data, status) {
 

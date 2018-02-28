@@ -128,5 +128,13 @@ namespace GiaoHangGiaRe.Module
             });
             return input.MaDonHang;
         }
+        public bool donHangIsOfUser(int MaDonHang)
+        {
+            if (_donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().TenTaiKhoan && p.MaDonHang == MaDonHang).ToList().Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

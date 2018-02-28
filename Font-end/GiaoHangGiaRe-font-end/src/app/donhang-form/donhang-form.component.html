@@ -1,0 +1,94 @@
+<div class="col-md-2"></div>
+<div class="col-md-8 minh-form" [formGroup]="donhangForm" (ngSubmit)="submitDonHangData()">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="">Người gửi</label>
+      <input formControlName="nguoiGui" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Người gửi">
+      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+    <div class="form-group">
+      <label for="">Số điện thoại người gửi</label>
+      <input formControlName="sdtNguoiGui" type="text" class="form-control" placeholder="Số điện thoại người gửi">
+    </div>
+    <div class="form-group">
+      <label for="">Địa chỉ gửi</label>
+      <input formControlName="diaChiGui" type="text" class="form-control" placeholder="Địa chỉ gửi">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="">Người nhận</label>
+      <input formControlName="nguoiNhan" type="text" class="form-control" placeholder="Người nhận">
+    </div>
+    <div class="form-group">
+      <label for="">Số điện thoại người nhận</label>
+      <input formControlName="sdtNguoiNhan" type="text" class="form-control" placeholder="Số điện thoại người nhận">
+    </div>
+    <div class="form-group">
+      <label for="">Địa chỉ nhận</label>
+      <input formControlName="diaChiNhan" type="text" class="form-control" placeholder="Địa chỉ nhận">
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-success " style="text-align: center">
+      <div class="panel-heading" style="padding: 30px;">
+        <button type="button" class="btn btn-lg btn-warning" (click)="modal.show()">Thêm kiện hàng</button>
+        <!-- BUTTON Them kien hang  MODAL-->
+      </div>
+      <div *ngIf="kienhang_array.length ==0" class="panel-body">Bạn chưa thêm kiện hàng nào.</div>
+      <div class="panel-body">
+        <div class="kienhang-box col-md-4" *ngFor="let kienhang of kienhang_array; let i = index">
+          <div style="text-align:right">
+            <span>Kiện hàng số: {{i+1}} </span>
+            <button (click)="editKienHang(i,modal.show())" class="btn btn-default btn-sm glyphicon glyphicon-pencil"></button>
+            <button (click)="deleteKienHang(i)" class="btn btn-default btn-sm glyphicon glyphicon-remove"></button>
+          </div>
+          <div style="padding-bottom: 10px; text-align:left">
+            <div>Tên kiện hàng: {{ kienhang.first }}</div>
+            <div>Phân loại: {{ kienhang.first }}</div>
+            <div>Số lượng: {{ kienhang.first }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="">Ghi chú</label>
+      <input formControlName="ghiChu" type="text" class="form-control" placeholder="Ghi chú">
+    </div>
+    <div class="form-group">
+      <label for="">Thành tiền</label>
+      <input formControlName="thanhTien" type="text" class="form-control" placeholder="Thành tiền">
+    </div>
+    <small class="form-text text-muted">Bạn phải thêm ít nhất một kiện hàng.</small>
+    <div style="text-align: center">
+      <button type="submit" class="btn btn-primary">Thêm đơn hàng</button>
+    </div>
+  </div>
+</div>
+<div class="col-md-2"></div>
+
+<!-- Them kien hang  MODAL-->
+
+<app-modal #modal>
+  <div class="app-modal-header">
+    Thêm kiện hàng mới
+  </div>
+  <div class="app-modal-body">
+    <div [formGroup]="kienhangForm" (ngSubmit)="submitData()">
+      <div class="form-group">
+        <label for="">Tên kiện hàng</label>
+        <input formControlName="first" type="text" class="form-control" placeholder="Người nhận">
+      </div>
+      <div class="form-group">
+        <label for="">Loại hàng</label>
+        <input formControlName="last" type="text" class="form-control" placeholder="Số điện thoại người nhận">
+      </div>
+    </div>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.hide(isCreate = true, kienhangForm.reset())">Hủy</button>
+    <button *ngIf="isCreate" type="button" class="btn btn-primary" (click)="submitData(modal.hide())">Thêm mới</button>
+    <button *ngIf="!isCreate" type="button" class="btn btn-primary" (click)="updateData(i, modal.hide())">Cập nhật</button>
+  </div>
+</app-modal>

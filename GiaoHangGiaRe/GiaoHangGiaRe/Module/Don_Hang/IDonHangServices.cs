@@ -32,6 +32,7 @@ namespace GiaoHangGiaRe.Module
         //dung cho phuong thuc khac
         int count();
         bool IsExists(object id);
+        bool donHangIsOfUser(int MaDonHang);
 
     }
 }

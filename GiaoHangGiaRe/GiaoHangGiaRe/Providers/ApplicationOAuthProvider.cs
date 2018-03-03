@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using GiaoHangGiaRe.Models;
+using System.Web.Script.Serialization;
 
 namespace GiaoHangGiaRe.Providers
 {
@@ -43,7 +44,7 @@ namespace GiaoHangGiaRe.Providers
                 CookieAuthenticationDefaults.AuthenticationType);
             List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             //string imagelink = user.ImageLink;
-            AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
+            AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)), user);
 
             //AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
@@ -87,12 +88,13 @@ namespace GiaoHangGiaRe.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, string Roles)
+        public static AuthenticationProperties CreateProperties(string userName, string Roles, ApplicationUser user)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 { "userName", userName },
-                {"roles",Roles}
+                {"roles",Roles},
+                {"user",new JavaScriptSerializer().Serialize(user)}
             };
             return new AuthenticationProperties(data);
         }

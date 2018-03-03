@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class DonHangService {
   constructor(private httpService: HttpService, private router: Router) {
   }
-  getDonHang() {
+  getDonHang() : any{
     return new Promise((resolve, reject) => {
       this.httpService.get('user/api/donhang/get-all').subscribe((res) => {
         resolve(res);
@@ -17,7 +17,7 @@ export class DonHangService {
       })
     });
   }
-  taoDonHang(input){
+  taoDonHang(input) : any{
     return new Promise((resolve, reject) => {
         this.httpService.post('user/api/donhang/create', input).subscribe((res) => {
           resolve(res);

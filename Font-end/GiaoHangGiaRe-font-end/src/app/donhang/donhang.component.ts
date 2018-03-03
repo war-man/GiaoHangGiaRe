@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./donhang.component.scss']
 })
 export class DonhangComponent implements OnInit {
-
+  listDonHang: any[];
   constructor(private donhang_Service: DonHangService, private router: Router) { }
 
   ngOnInit() {
     this.donhang_Service.getDonHang().then(res =>{
       console.log(res);
+      this.listDonHang = res.list;
     })
   }
 

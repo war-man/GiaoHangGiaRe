@@ -2,26 +2,26 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
+      <th>Người gửi</th>
+      <th>Địa chỉ gửi</th>
+      <th>Số điện thoại gửi</th>
+      <th>Người nhận</th>
+      <th>Đại chỉ nhận</th>
+      <th>Số điện thoại nhận</th>
+      <th>Ghi chú</th>
+      <th>Thành tiền</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>john@example.com</td>
-    </tr>
-    <tr>
-      <td>Mary</td>
-      <td>Moe</td>
-      <td>mary@example.com</td>
-    </tr>
-    <tr>
-      <td>July</td>
-      <td>Dooley</td>
-      <td>july@example.com</td>
+    <tr *ngFor="let item of listDonHang; let i = index">
+      <td>{{item.NguoiGui}}</td>
+      <td>{{item.DiaChiGui}}</td>
+      <td>{{item.SoDienThoaiNguoiGui}}</td>
+      <td>{{item.NguoiNhan}}</td>
+      <td>{{item.DiaChiNhan}}</td>
+      <td>{{item.SoDienThoaiNguoiNhan}}</td>
+      <td>{{item.GhiChu}}</td>
+      <td>{{item.ThanhTien}}</td>
     </tr>
   </tbody>
 </table>

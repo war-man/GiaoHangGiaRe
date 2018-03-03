@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
+using Newtonsoft.Json.Linq;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -20,6 +21,7 @@ namespace GiaoHangGiaRe.Controllers
        // private GiaoHangGiaReDbContext db = new GiaoHangGiaReDbContext();
         private DonHangServices _donHangServices = new DonHangServices();
         private KienHangServices _kienhangServices = new KienHangServices();
+        private UserServices _userServices = new UserServices();
 
         // GET: api/DonHangAPI
         [Authorize]
@@ -32,7 +34,7 @@ namespace GiaoHangGiaRe.Controllers
                 list = _donHangServices.GetDonHangCurrentuser(),
                 page,
                 size,
-                total = _donHangServices.count()
+                total = _donHangServices.GetDonHangCurrentuser().Count
             });
         }
 
@@ -95,14 +97,17 @@ namespace GiaoHangGiaRe.Controllers
         // POST: api/DonHangAPI
         [ResponseType(typeof(DonHang))]
         [Route("create")]
-        public IHttpActionResult PostDonHang(DonHang donHang, KienHang[] kienHang)
+        public IHttpActionResult PostDonHang([FromBody] JObject data)
         {
+            DonHang donHang = data["donHang"].ToObject<DonHang>();
+            KienHang[] kienHang = data["kienHang"].ToObject<KienHang[]>();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             if (!_donHangServices.IsExists(donHang.MaDonHang) && kienHang != null)
             {
+                donHang.TenTaiKhoan = _userServices.GetCurrentUser().TenTaiKhoan;
                 _donHangServices.Create(donHang);
                 for(int i =0; i< kienHang.Length; i++)
                 {

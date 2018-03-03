@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HttpService } from '../providers/http-service';
 import { LoginService } from '../providers/login_service/login.service';
+import {DonHangService} from '../providers/donhang_service/donhang.service';
 
 import { AppComponent } from './app.component';
 
@@ -52,7 +53,8 @@ const routes: Routes = [
   ],
   providers: [
     HttpService,
-    LoginService
+    LoginService,
+    DonHangService
   ],
   bootstrap: [AppComponent]
 })

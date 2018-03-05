@@ -12,10 +12,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ConferenceApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import {DonHangModule} from '../pages/donhang/donhang.module';
+import { DonHangPage } from '../pages/donhang/donhang';
 
 import { AboutPage } from '../pages/about/about';
-import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
@@ -30,7 +29,10 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
+import {HttpService} from '../providers/http_services';
 import { UserData } from '../providers/user-data';
+import { UserServices } from '../providers/user-services/user-services';
+import { DonhangServicesProvider } from '../providers/donhang-services/donhang-services';
 
 
 @NgModule({
@@ -40,7 +42,6 @@ import { UserData } from '../providers/user-data';
     AccountPage,
     LoginPage,
     MapPage,
-    PopoverPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,
@@ -49,12 +50,13 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+
+    DonHangPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    DonHangModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -69,7 +71,8 @@ import { UserData } from '../providers/user-data';
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
-        { component: SignupPage, name: 'SignupPage', segment: 'signup' }
+        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
+        { component: DonHangPage, name: 'DonHangPage', segment: 'page-donhang' }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -81,7 +84,6 @@ import { UserData } from '../providers/user-data';
     AccountPage,
     LoginPage,
     MapPage,
-    PopoverPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,
@@ -90,15 +92,21 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+
+    DonHangPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    HttpService,
     ConferenceData,
     UserData,
     InAppBrowser,
     SplashScreen,
-    Geolocation
+    Geolocation,
+    UserServices,
+    DonhangServicesProvider
+   
   ]
 })
 export class AppModule { }

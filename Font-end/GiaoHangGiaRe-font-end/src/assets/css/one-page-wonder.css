@@ -197,3 +197,10 @@ a:active{
   color: red;
   padding: 5px;
 }
+.them_donhang{
+  float: right;
+  margin: 50px;
+}
+.text-center{
+  text-align: center;
+}

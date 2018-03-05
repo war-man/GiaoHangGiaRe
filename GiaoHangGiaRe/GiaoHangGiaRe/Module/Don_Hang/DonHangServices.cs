@@ -35,7 +35,14 @@ namespace GiaoHangGiaRe.Module
 
         public int Create(DonHang input)
         {
+            DateTime time = new DateTime();
+            time = DateTime.Now;
+            input.ThoiDiemDatDonHang = time;
             _donhangRepository.Insert(input);
+            DonHang input2 = new DonHang();
+            input2 =_donhangRepository.GetAll().Where(p => p.ThoiDiemDatDonHang == time && 
+            p.TenTaiKhoan == userServices.GetCurrentUser().TenTaiKhoan 
+            &&p.ThanhTien == input.ThanhTien && p.NguoiGui == input.NguoiGui && p.NguoiNhan == input.NguoiNhan).FirstOrDefault();
             lichSuServices.Create(new LichSu
             {
                 TenTaiKhoan = userServices.GetCurrentUser().UserName,
@@ -43,7 +50,7 @@ namespace GiaoHangGiaRe.Module
                 ViTriThaoTac = "User",
                 NoiDung = new JavaScriptSerializer().Serialize(input)
             });
-            return input.MaDonHang;
+            return input2.MaDonHang;
         }
 
         public void Delete(object id)

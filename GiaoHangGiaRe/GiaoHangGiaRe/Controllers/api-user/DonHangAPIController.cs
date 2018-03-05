@@ -47,20 +47,28 @@ namespace GiaoHangGiaRe.Controllers
         //    return Ok(_donHangServices.GetByUser(username));
         //}
 
-        // GET: api/DonHangAPI/5
-        //[HttpGet]
-        //[Route("get-by-id")]
-        //[ResponseType(typeof(DonHang))]
-        //public IHttpActionResult GetDonHang(int id)
-        //{
-        //    if (id <= 0)
-        //    {
-        //        return ResponseMessage(Request.CreateErrorResponse
-        //            (HttpStatusCode.InternalServerError, "id không hợp lệ!"));
-        //    }
-        //    else 
-        //        return Ok(_donHangServices.GetById(id));
-        //}
+        //GET: api/DonHangAPI/5
+        [HttpGet]
+        [Route("get-by-id")]
+        [ResponseType(typeof(DonHang))]
+        public IHttpActionResult GetDonHang(int id)
+        {
+            if (id <= 0)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "id không hợp lệ!"));
+            }
+            else
+            {
+                DonHang donhang = new DonHang();
+                donhang = _donHangServices.GetDonHangCurrentuser().Where(p => p.MaDonHang == id).First();
+                return Ok(new
+                {
+                    donhang = donhang,
+                    kienhang = _kienhangServices.GetByMaDonHang(donhang.MaDonHang)
+                });
+            }
+        }
 
         //[HttpGet]
         //[Route("sort-by")]
@@ -108,9 +116,10 @@ namespace GiaoHangGiaRe.Controllers
             if (!_donHangServices.IsExists(donHang.MaDonHang) && kienHang != null)
             {
                 donHang.TenTaiKhoan = _userServices.GetCurrentUser().TenTaiKhoan;
-                _donHangServices.Create(donHang);
+                int MaDH = _donHangServices.Create(donHang);
                 for(int i =0; i< kienHang.Length; i++)
                 {
+                    kienHang[i].MaDonHang = MaDH;
                     _kienhangServices.Create(kienHang[i]);
                 }
             }

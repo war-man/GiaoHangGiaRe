@@ -1,5 +1,5 @@
-<a class="btn btn-info" [routerLink]="['/donhang-them']">Thêm đơn hàng mới</a>
-<table class="table table-bordered">
+<a class="btn btn-info them_donhang" [routerLink]="['/donhang-them']">Thêm đơn hàng mới</a>
+<table class="table table-bordered text-center">
   <thead>
     <tr>
       <th>Người gửi</th>
@@ -10,6 +10,7 @@
       <th>Số điện thoại nhận</th>
       <th>Ghi chú</th>
       <th>Thành tiền</th>
+      <!-- <th>Thành tiền</th> -->
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
       <td>{{item.SoDienThoaiNguoiNhan}}</td>
       <td>{{item.GhiChu}}</td>
       <td>{{item.ThanhTien}}</td>
+      <td><a (click)="gotoDonHangDetails(item.MaDonHang)" class="btn btn-warning">Chi tiết</a></td>
     </tr>
   </tbody>
 </table>

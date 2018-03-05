@@ -72,7 +72,6 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.WebPages.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Web.WebPages.Razor.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\WebGrease.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Models.pdb
-E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Models.dll.config
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\EntityFramework.xml
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\EntityFramework.SqlServer.xml
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.AspNet.Identity.Core.xml
@@ -120,7 +119,6 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrati
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.LichSu3.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.sualinhtinh.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csproj.GenerateResource.Cache
-E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.csproj.CoreCompileInputs.cache
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.pdb
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Microsoft.AspNetCore.Authorization.dll

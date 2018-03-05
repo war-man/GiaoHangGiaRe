@@ -23,7 +23,7 @@ export class SupportPage {
 
   ionViewDidEnter() {
     let toast = this.toastCtrl.create({
-      message: 'This does not actually send a support request.',
+      message: 'Bạn chưa nhập câu hỏi hoặc góp ý cho chúng tôi.',
       duration: 3000
     });
     toast.present();
@@ -54,11 +54,11 @@ export class SupportPage {
 
     return new Promise((resolve: any, reject: any) => {
       let alert = this.alertCtrl.create({
-        title: 'Leave this page?',
-        message: 'Are you sure you want to leave this page? Your support message will not be submitted.'
+        title: 'Rời khỏi đây?',
+        message: 'Nếu bạn rời khỏi màn hình, thông điệp của bạn sẽ không được gửi đi.'
       });
-      alert.addButton({ text: 'Stay', handler: reject });
-      alert.addButton({ text: 'Leave', role: 'cancel', handler: resolve });
+      alert.addButton({ text: 'Ở lại', handler: reject });
+      alert.addButton({ text: 'Rời đi', role: 'cancel', handler: resolve });
 
       alert.present();
     });

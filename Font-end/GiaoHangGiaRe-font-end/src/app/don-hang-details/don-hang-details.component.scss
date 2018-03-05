@@ -1,0 +1,32 @@
+.details_donhang_page{
+    margin-top: 50px;
+    width: 80%;
+    margin:auto;
+    .kienhang-box{
+        background-color: rgba(228, 227, 227, 0.527);
+        min-height: 50px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .kienhang_title{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top:15px;
+        margin-bottom: 15px;
+    }
+    .details_nhan{
+        border: 1px solid black;
+        padding: 15px;
+        float: left;
+    }
+    .details_gui{
+        border: 1px solid black;
+        padding: 15px;
+        float: right;
+    }
+    .thanhtien_donhang{
+        margin-top:15px;
+        margin-bottom: 15px;
+    }
+}

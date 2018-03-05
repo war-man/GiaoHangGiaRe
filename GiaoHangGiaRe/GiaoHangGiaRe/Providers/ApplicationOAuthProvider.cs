@@ -34,7 +34,7 @@ namespace GiaoHangGiaRe.Providers
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                 return;
             }
 

@@ -1,0 +1,83 @@
+<div class="">
+  <div class="details_donhang_page panel-group">
+    <div class="col-md-12" style="padding-top: 50px">
+      <div class="details_gui">
+        <div class="panel-heading"> Thông tin bên gửi hàng</div>
+        <div class="panel-body-default">
+          <div class="panel-body col-md-12">
+            <div class="lable-col col-md-6">
+              Người gửi:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.NguoiGui}}
+            </div>
+            <div class="lable-col col-md-6">
+              Địa chỉ gửi hàng:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.DiaChiGui}}
+            </div>
+            <div class="lable-col col-md-6">
+              Số điện thoại người gửi:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.SoDienThoaiNguoiGui}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="details_nhan">
+        <div class="panel-heading">Thông tin bên nhận hàng</div>
+        <div class="panel-panel-default">
+          <div class="panel-body col-md-12">
+            <div class="lable-col col-md-6">
+              Người nhận hàng:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.NguoiNhan}}
+            </div>
+            <div class="lable-col col-md-6">
+              Địa chỉ nhận hàng:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.DiaChiNhan}}
+            </div>
+            <div class="lable-col col-md-6">
+              Số điện thoại người nhận:
+            </div>
+            <div class="data-col col-md-6">
+              {{DonHang?.SoDienThoaiNguoiNhan}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 thanhtien_donhang"> Thành tiền: {{DonHang?.ThanhTien}}</div>
+    <div class="col-md-12 kienhang_title"> Tổng số kiện hàng: {{kienhang_array.length}}</div>
+    <div class="col-md-12">
+      <div class="kienhang-box col-md-4" *ngFor="let kienhang of kienhang_array; let i = index">
+        <div style="text-align:center">
+          <span>Kiện hàng số: {{i+1}} </span>
+        </div>
+        <div style="padding-bottom: 10px; text-align:left" class="col-md-12">
+          <div class="col-md-6">Tên kiện hàng: </div>
+          <div class="col-md-6">{{ kienhang.NoiDung }}</div>
+          <div class="col-md-6">Mô tả: </div>
+          <div class="col-md-6">{{ kienhang.MoTa }}</div>
+          <div class="col-md-6">Trọng lượng: </div>
+          <div class="col-md-6">{{ kienhang.TrongLuong }}</div>
+          <div class="col-md-6">Chiều dài: </div>
+          <div class="col-md-6">{{ kienhang.ChieuDai }}</div>
+          <div class="col-md-6">Chiều rộng: </div>
+          <div class="col-md-6">{{ kienhang.ChieuRong }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding-top: 20px">
+      <div class="col-md-4"> </div>
+      <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" (click)="editDonHang()"> Chỉnh sửa đơn hàng</div>
+      <div class="col-md-2 btn btn-info" style="margin-left: 20px; margin-right:20px" (click)="theoDoiDonHang()"> Theo dõi tình trạng</div>
+      <div class="col-md-4"> </div>
+    </div>
+  </div>
+</div>

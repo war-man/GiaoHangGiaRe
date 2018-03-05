@@ -13,7 +13,7 @@ namespace GiaoHangGiaRe.Module
         List<KienHang> GetAll(int? page,int? size);
         KienHang GetById(object id);
         List<KienHang> SearchByKey(int? page, int? size, string key);
-        KienHang GetByMaDonHang(int MaDonHang);
+        List<KienHang> GetByMaDonHang(int MaDonHang);
         List<KienHang> GetByKhoChua(int MaKhoChua);
 
         //Cho phuong thuc POST

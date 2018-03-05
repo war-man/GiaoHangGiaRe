@@ -4,7 +4,7 @@
 		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<ion-title>Support</ion-title>
+		<ion-title>Hỗ trợ khách hàng</ion-title>
 	</ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
 	<form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">
 		<ion-list no-lines>
 			<ion-item>
-				<ion-label stacked color="primary">Enter your support message below</ion-label>
+				<ion-label stacked color="primary">Hãy nhập câu hỏi, lời góp ý của bạn ở dưới: </ion-label>
 				<ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>
 			</ion-item>
 		</ion-list>
@@ -28,7 +28,7 @@
 		</p>
 
 		<div padding>
-			<button ion-button block type="submit">Submit</button>
+			<button ion-button block type="submit">Gửi đi</button>
 		</div>
 	</form>
 </ion-content>

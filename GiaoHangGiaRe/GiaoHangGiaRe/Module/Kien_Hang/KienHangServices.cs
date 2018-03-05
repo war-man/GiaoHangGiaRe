@@ -49,9 +49,9 @@ namespace GiaoHangGiaRe.Module
             return _repositoryKienHang.GetAll().Where(p => p.MaKhoChua == MaKhoChua).ToList();
         }
 
-        public KienHang GetByMaDonHang(int MaDonHang)
+        public List<KienHang> GetByMaDonHang(int MaDonHang)
         {
-            return _repositoryKienHang.GetAll().Where(p => p.MaDonHang == MaDonHang).FirstOrDefault();
+            return _repositoryKienHang.GetAll().Where(p => p.MaDonHang == MaDonHang).ToList();
         }
 
         public bool IsExists(object id)

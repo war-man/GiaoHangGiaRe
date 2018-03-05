@@ -2,6 +2,7 @@ import { HttpService } from '../http-service';
 import { Injectable } from '@angular/core';
 import { error } from 'selenium-webdriver';
 import { Router } from '@angular/router';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class DonHangService {
@@ -26,5 +27,17 @@ export class DonHangService {
           reject(err);
         })
       });
+  }
+  getDonHangDetails(id) : any{
+   let params: URLSearchParams  = new URLSearchParams();
+   params.set('id', id);
+    return new Promise((resolve, reject) => {
+      this.httpService.get('user/api/donhang/get-by-id', params).subscribe((res) => {
+        resolve(res);
+      }, err => {
+        err = err.json();
+        reject(err);
+      })
+    });
   }
 }

@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
-
 import { UserData } from '../../providers/user-data';
-
-import { UserOptions } from '../../interfaces/user-options';
-
-import { TabsPage } from '../tabs-page/tabs-page';
-import { SignupPage } from '../signup/signup';
+import { UserServices } from '../../providers/user-services/user-services';
 
 
 @Component({
@@ -16,21 +10,28 @@ import { SignupPage } from '../signup/signup';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  login: UserOptions = { username: '', password: '' };
-  submitted = false;
+  lgonForm: FormGroup;
+  login_err: any;
+  constructor(public navCtrl: NavController,
+    public userData: UserData,
+    private formBuilder: FormBuilder,
+    private user_Services: UserServices) {
 
-  constructor(public navCtrl: NavController, public userData: UserData) { }
-
-  onLogin(form: NgForm) {
-    this.submitted = true;
-
-    if (form.valid) {
-      this.userData.login(this.login.username);
-      this.navCtrl.push(TabsPage);
-    }
   }
-
-  onSignup() {
-    this.navCtrl.push(SignupPage);
+  ngOnInit() {
+    this.lgonForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
+  submitData() {
+    if(this.lgonForm.valid){
+      this.user_Services.login(this.lgonForm.value).then(res =>{
+        this.login_err = '';
+        this.userData.login(res);
+      }, err =>{
+        this.login_err = err.json().error_description;
+      })
+    }
   }
 }

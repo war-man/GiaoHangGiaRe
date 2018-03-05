@@ -48,8 +48,8 @@ namespace GiaoHangGiaRe.Module
         public KhoChua GetKhoChuaOfDonHang(int MaDonHang)
         {
             throw new NotImplementedException();
-            var listkienhang=kienHangServices.GetByMaDonHang(MaDonHang);
-            return _khochuaRepository.GetAll().Where(p => p.MaKhoChua == kienHangServices.GetByMaDonHang(MaDonHang).MaKhoChua).FirstOrDefault();
+            //var listkienhang=kienHangServices.GetByMaDonHang(MaDonHang);
+            //return _khochuaRepository.GetAll().Where(p => p.MaKhoChua == kienHangServices.GetByMaDonHang(MaDonHang).MaKhoChua).FirstOrDefault();
         }
 
         public KhoChua GetKhoChuaOfKienHang(int MaKienHang)

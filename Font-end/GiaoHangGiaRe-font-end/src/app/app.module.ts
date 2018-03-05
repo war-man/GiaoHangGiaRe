@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+
+import { DataService } from '../providers/data_services';
 import { HttpService } from '../providers/http-service';
 import { LoginService } from '../providers/login_service/login.service';
 import {DonHangService} from '../providers/donhang_service/donhang.service';
@@ -19,6 +21,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { DonhangFormComponent } from 'app/donhang-form/donhang-form.component';
 import { ModalDirective } from './modal.directive';
 import { KienhangModalComponent } from './kienhang-modal/kienhang-modal.component';
+import { DonHangDetailsComponent } from './don-hang-details/don-hang-details.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent },
@@ -28,7 +31,8 @@ const routes: Routes = [
       { path: 'donhang', component: DonhangComponent },
       { path: 'login', component: LoginComponent },
       { path: 'logout', component: LogoutComponent },
-      { path: 'donhang-them', component: DonhangFormComponent }
+      { path: 'donhang-them', component: DonhangFormComponent },
+      { path: 'chittiet-donhang', component: DonHangDetailsComponent }
 ];
 
 @NgModule({
@@ -42,7 +46,8 @@ const routes: Routes = [
     DonhangFormComponent,
     LogoutComponent,
     ModalDirective,
-    KienhangModalComponent
+    KienhangModalComponent,
+    DonHangDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -52,6 +57,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [
+    DataService,
     HttpService,
     LoginService,
     DonHangService

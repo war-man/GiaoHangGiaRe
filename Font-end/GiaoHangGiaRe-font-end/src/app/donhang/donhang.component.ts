@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DonHangService} from '../../providers/donhang_service/donhang.service';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
+import {DonHangDetailsComponent} from '../don-hang-details/don-hang-details.component';
+import { DataService } from '../../providers/data_services';
 
 @Component({
   selector: 'app-donhang',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class DonhangComponent implements OnInit {
   listDonHang: any[];
-  constructor(private donhang_Service: DonHangService, private router: Router) { }
+  constructor(private donhang_Service: DonHangService, public dataservice: DataService, private router: Router) { }
 
   ngOnInit() {
     this.donhang_Service.getDonHang().then(res =>{
@@ -17,5 +19,11 @@ export class DonhangComponent implements OnInit {
       this.listDonHang = res.list;
     })
   }
-
+  gotoDonHangDetails(id){
+    this.donhang_Service.getDonHangDetails(id).then(res=>{
+      console.log(res);
+      this.router.navigateByUrl('chittiet-donhang');
+      this.dataservice.DonHangDetails = res;
+    })
+  }
 }

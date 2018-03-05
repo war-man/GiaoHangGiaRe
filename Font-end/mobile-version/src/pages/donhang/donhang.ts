@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
-import { ConferenceData } from '../../providers/conference-data';
-
-import { Platform } from 'ionic-angular';
+import { DonhangServicesProvider } from '../../providers/donhang-services/donhang-services';
 
 @Component({
-  selector: 'page-map',
-  templateUrl: 'map.html'
+  selector: 'page-donhang',
+  templateUrl: 'donhang.html'
 })
 export class DonHangPage {
-
-  constructor(public confData: ConferenceData, public platform: Platform) {
+  listDonHang: any;
+  constructor(private donhang_Services: DonhangServicesProvider) {
   }
   ngOnInit() {
+    this.donhang_Services.getAllDonHang().then(res => {
+      this.listDonHang = res.list;
+    }, err => {
+      console.log(err);
+    })
+  }
+  gotoDetailsDonHang(MaDonHang){
+    console.log(MaDonHang);
   }
 }

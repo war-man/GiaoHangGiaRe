@@ -30,31 +30,42 @@ export class UserData {
     }
   };
 
-  login(username: string): void {
+  login(user: any): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
+    this.setUser(JSON.parse(user.user));
+    this.setUserAuth(user);
     this.events.publish('user:login');
   };
 
-  signup(username: string): void {
+  signup(user: string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
+    this.setUser(user);
     this.events.publish('user:signup');
   };
 
   logout(): void {
     this.storage.remove(this.HAS_LOGGED_IN);
-    this.storage.remove('username');
+    this.storage.remove('user');
     this.events.publish('user:logout');
   };
 
-  setUsername(username: string): void {
-    this.storage.set('username', username);
+  setUserAuth(userAuth: any): void{
+    this.storage.set('userAuth', userAuth);
+  }
+
+  setUser(user: any): void {
+    this.storage.set('user', user);
   };
 
-  getUsername(): Promise<string> {
-    return this.storage.get('username').then((value) => {
+  getUser(): Promise<any> {
+    return this.storage.get('user').then((value) => {
       return value;
+    });
+  };
+
+  getUserAuth(): Promise<any> {
+    return this.storage.get('userAuth').then((userAuth) => {
+      return userAuth;
     });
   };
 

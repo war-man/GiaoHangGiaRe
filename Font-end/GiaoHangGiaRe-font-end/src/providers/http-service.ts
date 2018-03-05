@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { config } from '../providers/config';
 import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
@@ -11,7 +11,7 @@ export class HttpService {
     constructor(public http: Http, private router: Router) {
         this.base_url = config.host;
     }
-    buildHeaders(): any {
+    buildHeaders(params?: URLSearchParams): any {
         let headers = new Headers({ 'Content-Type': 'application/json' });
 
         if (localStorage.getItem('userProfile')) {
@@ -19,11 +19,17 @@ export class HttpService {
             headers.append('Authorization', userProfile.token_type + ' ' + userProfile.access_token);
         }
         const options = new RequestOptions({ headers: headers });
+        if(params){
+            options.search =  params;
+        }
         return options;
     }
-    get(inner_url: string): any {
+    get(inner_url: string, params?: URLSearchParams ): any {
+        if(!params){
+            params = new URLSearchParams();
+        }
         return Observable
-            .from(this.http.get(this.base_url + inner_url, this.buildHeaders()).map(res => res.json()))
+            .from(this.http.get(this.base_url + inner_url , this.buildHeaders(params)).map(res => res.json()))
             .do(data => {
 
             }, err => {
@@ -31,6 +37,10 @@ export class HttpService {
                     err = err.json();
                     alert(err.Message);
                     this.router.navigateByUrl('/login');
+                }
+                if (err.status == 500) {
+                    err = err.json();
+                    alert(err.Message);
                 }
             });
     };
@@ -45,6 +55,10 @@ export class HttpService {
                     alert(err.Message);
                     this.router.navigateByUrl('/login');
                 }
+                if (err.status == 500) {
+                    err = err.json();
+                    alert(err.Message);
+                }
             });
     };
     post(inner_url: string, input: any): any {
@@ -57,6 +71,10 @@ export class HttpService {
                     err = err.json();
                     alert(err.Message);
                     this.router.navigateByUrl('/login');
+                }
+                if (err.status == 500) {
+                    err = err.json();
+                    alert(err.Message);
                 }
             });
     };

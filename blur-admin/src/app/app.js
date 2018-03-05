@@ -15,7 +15,7 @@ angular.module('BlurAdmin', [
     'BlurAdmin.theme',
     'BlurAdmin.pages'
 ]);
-angular.module('BlurAdmin').constant('BASE', 'http://116.111.54.160:8080/');
+angular.module('BlurAdmin').constant('BASE', 'http://localhost:8195/');
 
 /* Init global settings request run the app */
 angular.module("BlurAdmin").config(["BASE", function (BASE) {

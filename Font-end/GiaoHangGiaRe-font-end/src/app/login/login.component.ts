@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   model = { username: '', password: '' };
   userData: any;
-
+  login_err: any;
   constructor(private loginService: LoginService, private router: Router) {
   }
   ngOnInit() {
@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
         window.location.reload();
       }
+    }, err => {
+      this.login_err = err.error_description;
     });
   }
 }

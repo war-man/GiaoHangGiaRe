@@ -1,0 +1,7 @@
+.kienhang-box{
+    background-color: rgba(228, 227, 227, 0.527);
+    min-height: 50px;
+    max-width: 32%;
+    border-radius: 10px;
+    margin: 5px;
+}

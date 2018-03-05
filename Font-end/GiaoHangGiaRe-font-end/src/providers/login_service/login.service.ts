@@ -23,7 +23,10 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       this.httpService.post('token', input).subscribe((res) => {
         resolve(res);
-      });
+      }, err => {
+        err = err.json();
+        reject(err);
+      })
     });
   }
 }

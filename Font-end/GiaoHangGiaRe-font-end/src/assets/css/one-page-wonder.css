@@ -189,3 +189,11 @@ a:active{
   height: 420px;
   width: 420px;
 }
+.minh-form{
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+.err_message{
+  color: red;
+  padding: 5px;
+}

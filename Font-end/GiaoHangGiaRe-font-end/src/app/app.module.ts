@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HttpService } from '../providers/http-service';
 import { LoginService } from '../providers/login_service/login.service';
+import {DonHangService} from '../providers/donhang_service/donhang.service';
 
 import { AppComponent } from './app.component';
 
@@ -15,6 +16,9 @@ import { MypageComponent } from './mypage/mypage.component';
 import { DonhangComponent } from './donhang/donhang.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { DonhangFormComponent } from 'app/donhang-form/donhang-form.component';
+import { ModalDirective } from './modal.directive';
+import { KienhangModalComponent } from './kienhang-modal/kienhang-modal.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent },
@@ -23,7 +27,8 @@ const routes: Routes = [
       { path: 'mypage', component: MypageComponent },
       { path: 'donhang', component: DonhangComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'logout', component: LogoutComponent }
+      { path: 'logout', component: LogoutComponent },
+      { path: 'donhang-them', component: DonhangFormComponent }
 ];
 
 @NgModule({
@@ -34,9 +39,13 @@ const routes: Routes = [
     MypageComponent,
     DonhangComponent,
     LoginComponent,
-    LogoutComponent
+    DonhangFormComponent,
+    LogoutComponent,
+    ModalDirective,
+    KienhangModalComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -44,7 +53,8 @@ const routes: Routes = [
   ],
   providers: [
     HttpService,
-    LoginService
+    LoginService,
+    DonHangService
   ],
   bootstrap: [AppComponent]
 })

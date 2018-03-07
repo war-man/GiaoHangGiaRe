@@ -64,7 +64,8 @@
     </div>
     <small class="form-text text-muted">Bạn phải thêm ít nhất một kiện hàng.</small>
     <div style="text-align: center">
-      <button type="submit" (click)="submitDonHangData()" class="btn btn-primary">Thêm đơn hàng</button>
+      <button type="submit" *ngIf="donHangCreate" (click)="submitDonHangData()" class="btn btn-primary">Thêm đơn hàng</button>
+      <button type="submit" *ngIf="!donHangCreate" (click)="submitUpdateDonHangData()" class="btn btn-primary">Sửa đơn hàng</button>
     </div>
   </div>
 </div>

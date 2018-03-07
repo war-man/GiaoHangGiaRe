@@ -1,5 +1,5 @@
 <div class="">
-  <div class="details_donhang_page panel-group">
+  <div *ngIf="DonHang" class="details_donhang_page panel-group">
     <div class="col-md-12" style="padding-top: 50px">
       <div class="details_gui">
         <div class="panel-heading"> Thông tin bên gửi hàng</div>
@@ -75,8 +75,8 @@
     </div>
     <div class="col-md-12" style="padding-top: 20px">
       <div class="col-md-4"> </div>
-      <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" (click)="editDonHang()"> Chỉnh sửa đơn hàng</div>
-      <div class="col-md-2 btn btn-info" style="margin-left: 20px; margin-right:20px" (click)="theoDoiDonHang()"> Theo dõi tình trạng</div>
+      <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" (click)="editDonHang(DonHang.MaDonHang)"> Chỉnh sửa đơn hàng</div>
+      <div class="col-md-2 btn btn-info" style="margin-left: 20px; margin-right:20px" (click)="theoDoiDonHang(DonHang.MaDonHang)"> Theo dõi tình trạng</div>
       <div class="col-md-4"> </div>
     </div>
   </div>

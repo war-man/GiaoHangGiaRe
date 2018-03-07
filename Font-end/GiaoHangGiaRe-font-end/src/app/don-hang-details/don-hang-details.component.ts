@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Params, Route } from '@angular/router';
+import { Router, Params, Route, ActivatedRoute } from '@angular/router';
+import {DonHangService} from '../../providers/donhang_service/donhang.service';
 import { DataService } from '../../providers/data_services';
 
 @Component({
@@ -10,22 +11,33 @@ import { DataService } from '../../providers/data_services';
 export class DonHangDetailsComponent implements OnInit {
   DonHang: any;
   kienhang_array: any;
-  constructor(private router: Router, public dataservice: DataService) {
-    let tam = this.dataservice.DonHangDetails;
-    if (tam.kienhang) {
-      this.kienhang_array = tam.kienhang;
-    }
-    this.DonHang = tam.donhang;
+  id: number;
+  private sub: any;
+  constructor(private router: Router, private route: ActivatedRoute,
+    private donhang_Service: DonHangService) {
+   
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id']; 
+    })
+  this.donhang_Service.getDonHangDetails(this.id).then(res=>{
+      console.log(res);
+      if (res.kienhang) {
+        this.kienhang_array = res.kienhang;
+      }
+      this.DonHang = res.donhang;
+    })
   }
 
   ngOnInit() {
   }
-  editDonHang() {
-
+  editDonHang(id) {
+    // this.router.navigateByUrl('/donhang-them', {});
+    this.router.navigate(['/donhang-them',id]);
   }
-  theoDoiDonHang() {
+  theoDoiDonHang(id) {
 
   }
   ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

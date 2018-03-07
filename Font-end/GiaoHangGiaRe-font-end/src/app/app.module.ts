@@ -31,8 +31,9 @@ const routes: Routes = [
       { path: 'donhang', component: DonhangComponent },
       { path: 'login', component: LoginComponent },
       { path: 'logout', component: LogoutComponent },
-      { path: 'donhang-them', component: DonhangFormComponent },
-      { path: 'chittiet-donhang', component: DonHangDetailsComponent }
+      { path: 'donhang-them/:id', component: DonhangFormComponent },//update
+      { path: 'donhang-them', component: DonhangFormComponent }, //them
+      { path: 'chittiet-donhang/:id', component: DonHangDetailsComponent }
 ];
 
 @NgModule({

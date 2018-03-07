@@ -15,15 +15,7 @@ export class DonhangComponent implements OnInit {
 
   ngOnInit() {
     this.donhang_Service.getDonHang().then(res =>{
-      console.log(res);
       this.listDonHang = res.list;
-    })
-  }
-  gotoDonHangDetails(id){
-    this.donhang_Service.getDonHangDetails(id).then(res=>{
-      console.log(res);
-      this.router.navigateByUrl('chittiet-donhang');
-      this.dataservice.DonHangDetails = res;
     })
   }
 }

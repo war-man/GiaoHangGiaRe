@@ -23,7 +23,7 @@
       <td>{{item.SoDienThoaiNguoiNhan}}</td>
       <td>{{item.GhiChu}}</td>
       <td>{{item.ThanhTien}}</td>
-      <td><a (click)="gotoDonHangDetails(item.MaDonHang)" class="btn btn-warning">Chi tiết</a></td>
+      <td><a   [routerLink]="['/chittiet-donhang', item.MaDonHang]" class="btn btn-warning">Chi tiết</a></td>
     </tr>
   </tbody>
 </table>

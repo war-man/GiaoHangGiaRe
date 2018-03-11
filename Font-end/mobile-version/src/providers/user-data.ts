@@ -34,7 +34,18 @@ export class UserData {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUser(JSON.parse(user.user));
     this.setUserAuth(user);
-    this.events.publish('user:login');
+    var user1 = JSON.parse(user.user);
+    let isShipper;
+    for(let i= 0; i< user1.Roles.length; i++){
+      if(user1.Roles[i].RoleId == 'ship'){
+        isShipper = true;
+      }
+    }
+    if(isShipper){
+      this.events.publish('user:loginShipper');
+    }else{
+      this.events.publish('user:login');
+    }
   };
 
   signup(user: string): void {

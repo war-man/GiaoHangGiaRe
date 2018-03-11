@@ -1,6 +1,7 @@
 export const config = {
     host: 'http://localhost:8195/'
 }
+import { LoadingController, Loading} from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
@@ -9,10 +10,16 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpService {
     base_url: string;
-    constructor(public http: Http, public userData: UserData, ) {
+    loading: Loading;
+    constructor(public http: Http, public userData: UserData,
+     private loadingCtrl: LoadingController ) {
         this.base_url = config.host;
     }
     buildHeaders() {
+        this.loading = this.loadingCtrl.create({
+            content: ''
+        });
+        this.loading.present();
         let headers = new Headers({ "Content-Type": "application/json" });
         return this.userData.getUserAuth().then((userAuth) => {
             if (userAuth) {
@@ -32,9 +39,15 @@ export class HttpService {
             .switchMap((headers) =>
                 this.http.get(this.base_url + inner_url, { headers: headers, params: params1.toString() }).map(res => res.json()))
             .do(done => {
+                if(this.loading){
+                    this.loading.dismiss();
+                }
                 console.log(done);
             }, err => {
                 console.log(err);
+                if(this.loading){
+                    this.loading.dismiss();
+                }
             })
     }
     post(inner_url, input?: any, params1?: HttpParams) {
@@ -46,8 +59,14 @@ export class HttpService {
             .switchMap((headers) => this.http.post(this.base_url + inner_url, input, { headers: headers, params: params1.toString() }).map(res => res.json()))
             .do(done => {
                 console.log(done);
+                if(this.loading){
+                    this.loading.dismiss();
+                }
             }, err => {
                 console.log(err);
+                if(this.loading){
+                    this.loading.dismiss();
+                }
             })
     }
     put(inner_url, input?: any, params1?: HttpParams) {
@@ -59,8 +78,14 @@ export class HttpService {
             .switchMap((headers) => this.http.put(this.base_url + inner_url, JSON.stringify(input), { headers: headers, params: params1.toString() }).map(res => res.json()))
             .do(done => {
                 console.log(done);
+                if(this.loading){
+                    this.loading.dismiss();
+                }
             }, err => {
                 console.log(err);
+                if(this.loading){
+                    this.loading.dismiss();
+                }
             })
     }
 }

@@ -197,3 +197,4 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Swashbuckle.AspNetCore.Swag
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\Swashbuckle.AspNetCore.SwaggerUI.xml
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Diagnostics.DiagnosticSource.xml
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Text.Encodings.Web.xml
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.themimage.resources

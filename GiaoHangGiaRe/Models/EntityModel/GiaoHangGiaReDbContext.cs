@@ -25,7 +25,7 @@ namespace Models.EntityModel
         public virtual DbSet<UuDai> UuDais { get; set; }
         public virtual DbSet<KhoChua> KhoChuas { get; set; }
         public virtual DbSet<No> Nos { get; set; }
-
+        public virtual DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

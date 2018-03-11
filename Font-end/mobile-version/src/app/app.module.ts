@@ -6,26 +6,25 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { DonHangPage } from '../pages/donhang/donhang';
+import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
+import {DonHangDetailPage} from '../pages/DonHangModule/don-hang-detail/don-hang-detail';
+import {CreateDonHangPage} from '../pages/DonHangModule/create-don-hang/create-don-hang';
+import {UpdateDonHangPage} from '../pages/DonHangModule/update-don-hang/update-don-hang';
+import {DonHanGiaoHangPage} from '../pages/DonHangModule/don-han-giao-hang/don-han-giao-hang';
+import {KienHangFormPage} from '../pages/kien-hang-form/kien-hang-form';
 
 import { AboutPage } from '../pages/about/about';
-import { AccountPage } from '../pages/account/account';
-import { LoginPage } from '../pages/login/login';
+import { AccountPage } from '../pages/TaiKhoanModule/account/account';
+import { LoginPage } from '../pages/TaiKhoanModule/login/login';
 import { MapPage } from '../pages/map/map';
-import { SchedulePage } from '../pages/schedule/schedule';
-import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
-import { SessionDetailPage } from '../pages/session-detail/session-detail';
-import { SignupPage } from '../pages/signup/signup';
-import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
-import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
+import { SignupPage } from '../pages/TaiKhoanModule/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
-import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
@@ -42,17 +41,17 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
     AccountPage,
     LoginPage,
     MapPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
-    TutorialPage,
     SupportPage,
 
-    DonHangPage
+    DonHangPage,
+    DonHangDetailPage,
+    CreateDonHangPage,
+    UpdateDonHangPage,
+    DonHanGiaoHangPage,
+
+    KienHangFormPage
   ],
   imports: [
     BrowserModule,
@@ -60,19 +59,17 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
-        { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
-        { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:sessionId' },
-        { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },
-        { component: SpeakerListPage, name: 'SpeakerList', segment: 'speakerList' },
-        { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:speakerId' },
         { component: MapPage, name: 'Map', segment: 'map' },
         { component: AboutPage, name: 'About', segment: 'about' },
-        { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },
-        { component: DonHangPage, name: 'DonHangPage', segment: 'page-donhang' }
+        { component: DonHangPage, name: 'DonHangPage', segment: 'page-donhang' },
+        { component: DonHangDetailPage, name: 'DonHangDetailPage', segment: 'page-donhang-details' }, 
+        { component: CreateDonHangPage, name: 'CreateDonHangPage', segment: 'create-donhang' }, 
+        { component: UpdateDonHangPage, name: 'UpdateDonHangPage', segment: 'update-donhang' },
+        { component: KienHangFormPage, name: 'KienHangFormPage', segment: 'kienhang-form' }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -84,19 +81,19 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
     AccountPage,
     LoginPage,
     MapPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
-    TutorialPage,
     SupportPage,
 
-    DonHangPage
+    DonHangPage,
+    DonHangDetailPage,
+    CreateDonHangPage,
+    UpdateDonHangPage,
+    DonHanGiaoHangPage,
+    KienHangFormPage
   ],
   providers: [
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HttpService,
     ConferenceData,

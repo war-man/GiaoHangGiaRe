@@ -55,9 +55,11 @@ namespace GiaoHangGiaRe.Module
         }
         public IdentityResult Create(RegisterViewModel input)
         {       
-            var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi, TenTaiKhoan = input.TenTaiKhoan };             
+            var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi,
+                TenTaiKhoan = input.TenTaiKhoan };             
             var result = UserManager.Create(user, input.Password);
-
+            var currentUser = UserManager.FindByName(user.UserName);
+            var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
             lichSuServices.Create(new LichSu
             {
                 TenTaiKhoan = GetCurrentUser().UserName,

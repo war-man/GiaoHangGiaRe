@@ -6,16 +6,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
 import { AboutPage } from '../pages/about/about';
-import { AccountPage } from '../pages/account/account';
-import { LoginPage } from '../pages/login/login';
+import { AccountPage } from '../pages/TaiKhoanModule/account/account';
+import { LoginPage } from '../pages/TaiKhoanModule/login/login';
 import { MapPage } from '../pages/map/map';
-import { SignupPage } from '../pages/signup/signup';
+import { SignupPage } from '../pages/TaiKhoanModule/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
-import { TutorialPage } from '../pages/tutorial/tutorial';
-import { SchedulePage } from '../pages/schedule/schedule';
-// import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
-import { DonHangPage } from '../pages/donhang/donhang';
+import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
+import { DonHanGiaoHangPage } from '../pages/DonHangModule/don-han-giao-hang/don-han-giao-hang';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -38,19 +36,24 @@ export class ConferenceApp {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
-
+  GiaoHang = "GiaoHang";
   // List of pages that can be navigated to from the left menu
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
-    { title: 'Bản đồ', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
-    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+    { title: 'Bản đồ', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 0, icon: 'map' },
+    { title: 'Giới thiệu', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 1, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Tài khoản', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
-    { title: 'Đơn hàng', name: 'DonHangPage', component: DonHangPage, icon: 'information-circle'},
+    { title: 'Đơn hàng', name: 'DonHangPage', component: DonHangPage, icon: 'information-circle' },
+    { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
+  ];
+  loggedInPagesGiaoHang: PageInterface[] = [
+    { title: 'Tài khoản', name: 'AccountPage', component: AccountPage, icon: 'person' },
+    { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    { title: 'Đơn hàng tiếp nhận', name: 'DonHanGiaoHangPage', component: DonHanGiaoHangPage, icon: 'information-circle' },
     { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
@@ -71,21 +74,17 @@ export class ConferenceApp {
   ) {
 
     // Check if the user has already seen the tutorial
-    this.storage.get('hasSeenTutorial')
-      .then((hasSeenTutorial) => {
-        if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
-        } else {
-          this.rootPage = TutorialPage;
-        }
-        this.platformReady()
-      });
-
     // load the conference data
     confData.load();
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
+      if (hasLoggedIn) {
+        this.rootPage = AboutPage;
+      } else {
+        this.rootPage = LoginPage;
+      }
+      this.platformReady()
       this.enableMenu(hasLoggedIn === true);
     });
     this.enableMenu(true);
@@ -121,14 +120,15 @@ export class ConferenceApp {
     }
   }
 
-  openTutorial() {
-    this.nav.setRoot(TutorialPage);
-  }
-
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.nav.setRoot(AboutPage);
       this.enableMenu(true);
+    });
+
+    this.events.subscribe('user:loginShipper', () => {
+      this.nav.setRoot(AboutPage);
+      this.enableMenu(true, true);
     });
 
     this.events.subscribe('user:signup', () => {
@@ -136,12 +136,16 @@ export class ConferenceApp {
     });
 
     this.events.subscribe('user:logout', () => {
+      this.nav.setRoot(LoginPage);
       this.enableMenu(false);
     });
   }
 
-  enableMenu(loggedIn: boolean) {
-    this.menu.enable(loggedIn, 'loggedInMenu');
+  enableMenu(loggedIn: boolean, shipper?: any) {
+    console.log(loggedIn && shipper);
+    console.log(loggedIn && !shipper);
+    this.menu.enable(loggedIn && shipper , 'loggedInPagesGiaoHang');
+    this.menu.enable(loggedIn && !shipper, 'loggedInMenu');
     this.menu.enable(!loggedIn, 'loggedOutMenu');
   }
 

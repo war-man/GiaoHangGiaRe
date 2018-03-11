@@ -42,6 +42,7 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themUuDai2
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themNothemKhoChua.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.sualinhtinh.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.csproj.GenerateResource.Cache
-E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.pdb
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themimage.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themimage2.resources

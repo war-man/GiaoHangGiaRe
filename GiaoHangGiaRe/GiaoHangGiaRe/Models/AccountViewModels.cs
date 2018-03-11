@@ -111,6 +111,11 @@ namespace GiaoHangGiaRe.Models
 
         [StringLength(20)]
         [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+
+        [StringLength(20)]
+        [Required]
         [Display(Name = "Số điện thoại")]
         [Phone]
         public string SoDienThoai { get; set; }

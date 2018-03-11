@@ -430,6 +430,10 @@
     <Compile Include="Migrations\201710180928059_sualinhtinh.Designer.cs">
       <DependentUpon>201710180928059_sualinhtinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803110922448_themimage.cs" />
+    <Compile Include="Migrations\201803110922448_themimage.Designer.cs">
+      <DependentUpon>201803110922448_themimage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -3544,6 +3548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710180928059_sualinhtinh.resx">
       <DependentUpon>201710180928059_sualinhtinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803110922448_themimage.resx">
+      <DependentUpon>201803110922448_themimage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

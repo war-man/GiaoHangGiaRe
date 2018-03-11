@@ -81,6 +81,7 @@
     <Compile Include="EntityModel\GiaoHangGiaReDbContext.cs" />
     <Compile Include="EntityModel\HanhTrinh.cs" />
     <Compile Include="EntityModel\HoaDon.cs" />
+    <Compile Include="EntityModel\Image.cs" />
     <Compile Include="EntityModel\InterfaceRepository.cs" />
     <Compile Include="EntityModel\IRepository.cs" />
     <Compile Include="EntityModel\KhachHang.cs" />
@@ -165,6 +166,14 @@
     <Compile Include="Migrations\201710180928585_sualinhtinh.Designer.cs">
       <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803110925588_themimage.cs" />
+    <Compile Include="Migrations\201803110925588_themimage.Designer.cs">
+      <DependentUpon>201803110925588_themimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803110935189_themimage2.cs" />
+    <Compile Include="Migrations\201803110935189_themimage2.Designer.cs">
+      <DependentUpon>201803110935189_themimage2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +235,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710180928585_sualinhtinh.resx">
       <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803110925588_themimage.resx">
+      <DependentUpon>201803110925588_themimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803110935189_themimage2.resx">
+      <DependentUpon>201803110935189_themimage2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

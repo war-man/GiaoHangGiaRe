@@ -16,7 +16,7 @@ import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
 import {DonHangDetailPage} from '../pages/DonHangModule/don-hang-detail/don-hang-detail';
 import {CreateDonHangPage} from '../pages/DonHangModule/create-don-hang/create-don-hang';
 import {UpdateDonHangPage} from '../pages/DonHangModule/update-don-hang/update-don-hang';
-import {DonHanGiaoHangPage} from '../pages/DonHangModule/don-han-giao-hang/don-han-giao-hang';
+import {DonHanGiaoHangPage} from '../pages/GiaoHangModule/don-han-giao-hang/don-han-giao-hang';
 import {KienHangFormPage} from '../pages/kien-hang-form/kien-hang-form';
 
 import { AboutPage } from '../pages/about/about';
@@ -69,7 +69,8 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
         { component: DonHangDetailPage, name: 'DonHangDetailPage', segment: 'page-donhang-details' }, 
         { component: CreateDonHangPage, name: 'CreateDonHangPage', segment: 'create-donhang' }, 
         { component: UpdateDonHangPage, name: 'UpdateDonHangPage', segment: 'update-donhang' },
-        { component: KienHangFormPage, name: 'KienHangFormPage', segment: 'kienhang-form' }
+        { component: KienHangFormPage, name: 'KienHangFormPage', segment: 'kienhang-form' },
+        { component: DonHanGiaoHangPage, name: 'DonHanGiaoHangPage', segment: 'donhang-giaohang' }
       ]
     }),
     IonicStorageModule.forRoot()

@@ -1,7 +1,7 @@
 export const config = {
-    host: 'http://localhost:8195/'
+    host: 'http://192.168.30.101:8080/'
 }
-import { LoadingController, Loading} from 'ionic-angular';
+import { LoadingController, Loading, AlertController} from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class HttpService {
     base_url: string;
     loading: Loading;
-    constructor(public http: Http, public userData: UserData,
+    constructor(public http: Http, public userData: UserData, public AlertCtr: AlertController,
      private loadingCtrl: LoadingController ) {
         this.base_url = config.host;
     }
@@ -46,7 +46,11 @@ export class HttpService {
             }, err => {
                 console.log(err);
                 if(this.loading){
-                    this.loading.dismiss();
+                    this.loading.dismiss().then(() =>{
+                        this.AlertCtr.create({
+                            title: err.Text
+                        })
+                    })
                 }
             })
     }
@@ -65,7 +69,11 @@ export class HttpService {
             }, err => {
                 console.log(err);
                 if(this.loading){
-                    this.loading.dismiss();
+                    this.loading.dismiss().then(() =>{
+                        this.AlertCtr.create({
+                            title: err.Text
+                        })
+                    })
                 }
             })
     }
@@ -84,7 +92,11 @@ export class HttpService {
             }, err => {
                 console.log(err);
                 if(this.loading){
-                    this.loading.dismiss();
+                    this.loading.dismiss().then(() =>{
+                        this.AlertCtr.create({
+                            title: err.Text
+                        })
+                    })
                 }
             })
     }

@@ -17,6 +17,7 @@ namespace GiaoHangGiaRe.App_Start
             //var corsAttr = new EnableCorsAttribute("*", "*", "*");
             //config.EnableCors(corsAttr);
             // Web API routes
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

@@ -13,7 +13,7 @@ import { SignupPage } from '../pages/TaiKhoanModule/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { SupportPage } from '../pages/support/support';
 import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
-import { DonHanGiaoHangPage } from '../pages/DonHangModule/don-han-giao-hang/don-han-giao-hang';
+import { DonHanGiaoHangPage } from '../pages/GiaoHangModule/don-han-giao-hang/don-han-giao-hang';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';

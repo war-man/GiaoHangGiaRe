@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { UserServices } from '../../../providers/user-services/user-services';
 
 import { UserData } from '../../../providers/user-data';
-
-import { UserOptions } from '../../../interfaces/user-options';
-
-import { TabsPage } from '../../tabs-page/tabs-page';
 
 
 @Component({
@@ -28,7 +23,11 @@ export class SignupPage {
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      
+      email: ['', [Validators.required]],
+      HoTen: ['', [Validators.required]],
+      DiaChi: ['', [Validators.required]],
+      CongTy: ['', [Validators.required]],
+      SoDienThoai: ['', [Validators.required]]
     });
   }
   submitData() {

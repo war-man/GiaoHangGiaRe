@@ -13,15 +13,14 @@
 		<img src="assets/img/appicon.svg" alt="Ionic Logo">
 	</div>
 
-	<form #signupForm="ngForm" novalidate>
+	<form [formGroup]="signupForm" (ngSubmit)="submitData()" novalidate>
 		<ion-list no-lines>
 			<ion-item>
-				<ion-label stacked color="primary">Username</ion-label>
+				<ion-label stacked color="primary">Tên tài khoản</ion-label>
 				<ion-input formControlName="username" type="text" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
-				Username is required
+			<p ion-text color="danger" padding-left>
 			</p>
 
 			<ion-item>
@@ -29,44 +28,42 @@
 				<ion-input formControlName="email" type="text" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
-				Email is required
+			<p ion-text color="danger" padding-left>
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">HoTen</ion-label>
+				<ion-label stacked color="primary">Họ tên</ion-label>
 				<ion-input formControlName="HoTen" type="text" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="HoTen.valid || submitted == false" color="danger" padding-left>
-				HoTen is required
+			<p ion-text color="danger" padding-left>
+				
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">DiaChi</ion-label>
+				<ion-label stacked color="primary">Địa chỉ</ion-label>
 				<ion-input formControlName="DiaChi" type="text"  required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="DiaChi.valid || submitted == false" color="danger" padding-left>
-				DiaChi is required
+			<p ion-text color="danger" padding-left>
+				
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">CongTy</ion-label>
+				<ion-label stacked color="primary">Nơi làm việc</ion-label>
 				<ion-input formControlName="CongTy"type="text"  required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="CongTy.valid || submitted == false" color="danger" padding-left>
-				CongTy is required
+			<p ion-text color="danger" padding-left>
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">SoDienThoai</ion-label>
+				<ion-label stacked color="primary">Số điện thoại</ion-label>
 				<ion-input formControlName="SoDienThoai" type="text" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="SoDienThoai.valid || submitted == false" color="danger" padding-left>
-				SoDienThoai is required
+			<p ion-text color="danger" padding-left>
+				
 			</p>
 
 			<ion-item>
@@ -74,8 +71,8 @@
 				<ion-input formControlName="password" type="password" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
-				Password is required
+			<p ion-text  color="danger" padding-left>
+				Mật khẩu bắt buộc
 			</p>
 		</ion-list>
 

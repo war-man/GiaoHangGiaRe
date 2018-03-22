@@ -88,11 +88,14 @@ export class UserData {
 
   checkIsShip(): Promise<boolean> {
     return this.getUser().then(user1 => {
-      for (let i = 0; i < user1.Roles.length; i++) {
-        if (user1.Roles[i].RoleId == 'ship') {
-          return true;
+      if(user1 && user1.Roles){
+        for (let i = 0; i < user1.Roles.length; i++) {
+          if (user1.Roles[i].RoleId == 'ship') {
+            return true;
+          }
         }
       }
+      return false;
     })
   }
 

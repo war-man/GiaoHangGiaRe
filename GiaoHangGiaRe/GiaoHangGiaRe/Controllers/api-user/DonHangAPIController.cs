@@ -38,6 +38,30 @@ namespace GiaoHangGiaRe.Controllers
             });
         }
 
+        [HttpGet]
+        [Route("get-all-waitting")]
+        public IHttpActionResult GetDonHangsWaitting(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
+        {
+            return Ok(new
+            {
+                list = _donHangServices.GetDonHangWaitting(),
+                page,
+                size,
+                total = _donHangServices.GetDonHangWaitting().Count
+            });
+        }
+        [HttpGet]
+        [Route("get-all-shipper")]
+        public IHttpActionResult GetDonHangsShipper(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
+        {
+            return Ok(new
+            {
+                list = _donHangServices.GetDonHangCurrentShipper(),
+                page,
+                size,
+                total = _donHangServices.GetDonHangCurrentShipper().Count
+            });
+        }
         // GET: api/DonHangAPI/5
         //[HttpGet]
         //[Route("get-by-username")]
@@ -87,6 +111,7 @@ namespace GiaoHangGiaRe.Controllers
         // PUT: api/DonHangAPI/5
         [ResponseType(typeof(void))]
         [Route("update")]
+        [HttpPut]
         public IHttpActionResult PutDonHang(DonHang donHang)
         {
             if (!ModelState.IsValid)
@@ -101,10 +126,35 @@ namespace GiaoHangGiaRe.Controllers
             _donHangServices.Update(donHang);
             return Ok(1);
         }
+        [ResponseType(typeof(void))]
+        [Route("ship_receive")]
+        [HttpPut]
+        public IHttpActionResult ShipReceiveDonHang(int MaDonHang)
+        {
+            if (MaDonHang <= 0 || _donHangServices.donHangIsOfUser(MaDonHang))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                DonHang donHang = _donHangServices.GetById(MaDonHang);
+                if (donHang.TinhTrang == 0 ) // Tình trạng đơn hàng đang chờ
+                {
+                    donHang.TinhTrang = 1;
+                    _donHangServices.Update(donHang);
+                    return Ok(1);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+        }
 
         // POST: api/DonHangAPI
         [ResponseType(typeof(DonHang))]
         [Route("create")]
+        [HttpPost]
         public IHttpActionResult PostDonHang([FromBody] JObject data)
         {
             DonHang donHang = data["donHang"].ToObject<DonHang>();

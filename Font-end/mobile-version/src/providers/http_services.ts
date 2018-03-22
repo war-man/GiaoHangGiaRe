@@ -1,5 +1,6 @@
 export const config = {
-    host: 'http://192.168.30.101:8080/'
+    // host: 'http://192.168.30.101:8080/'
+    host: 'http://localhost:8195/'
 }
 import { LoadingController, Loading, AlertController} from 'ionic-angular';
 import { Http, Headers } from '@angular/http';

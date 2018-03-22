@@ -16,8 +16,11 @@ import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
 import {DonHangDetailPage} from '../pages/DonHangModule/don-hang-detail/don-hang-detail';
 import {CreateDonHangPage} from '../pages/DonHangModule/create-don-hang/create-don-hang';
 import {UpdateDonHangPage} from '../pages/DonHangModule/update-don-hang/update-don-hang';
-import {DonHanGiaoHangPage} from '../pages/GiaoHangModule/don-han-giao-hang/don-han-giao-hang';
 import {KienHangFormPage} from '../pages/kien-hang-form/kien-hang-form';
+
+// GiaoHang
+import {DonHangGiaoHangPage} from '../pages/GiaoHangModule/don-hang-giao-hang/don-hang-giao-hang';
+import {DonHangWaittingPage} from '../pages/GiaoHangModule/don-hang-waitting/don-hang-waitting';
 
 import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/TaiKhoanModule/account/account';
@@ -32,6 +35,7 @@ import {HttpService} from '../providers/http_services';
 import { UserData } from '../providers/user-data';
 import { UserServices } from '../providers/user-services/user-services';
 import { DonhangServicesProvider } from '../providers/donhang-services/donhang-services';
+import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang-popover';
 
 
 @NgModule({
@@ -49,14 +53,19 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
     DonHangDetailPage,
     CreateDonHangPage,
     UpdateDonHangPage,
-    DonHanGiaoHangPage,
+    DonHangGiaoHangPage,
+    PopoverDonHangPage,
+    KienHangFormPage,
 
-    KienHangFormPage
+    //Don Hang
+    DonHangWaittingPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(ConferenceApp, {}, {
+    IonicModule.forRoot(ConferenceApp, {
+      mode: 'ios'
+    }, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
         { component: MapPage, name: 'Map', segment: 'map' },
@@ -70,7 +79,10 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
         { component: CreateDonHangPage, name: 'CreateDonHangPage', segment: 'create-donhang' }, 
         { component: UpdateDonHangPage, name: 'UpdateDonHangPage', segment: 'update-donhang' },
         { component: KienHangFormPage, name: 'KienHangFormPage', segment: 'kienhang-form' },
-        { component: DonHanGiaoHangPage, name: 'DonHanGiaoHangPage', segment: 'donhang-giaohang' }
+        { component: DonHangGiaoHangPage, name: 'DonHangGiaoHangPage', segment: 'donhang-giaohang' },
+        { component: PopoverDonHangPage, name: 'PopoverDonHangPage', segment: 'popover-donhang-page' },
+
+        { component: DonHangWaittingPage, name: 'DonHangWaittingPage', segment: 'donhang-waitting' }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -90,8 +102,11 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
     DonHangDetailPage,
     CreateDonHangPage,
     UpdateDonHangPage,
-    DonHanGiaoHangPage,
-    KienHangFormPage
+    DonHangGiaoHangPage,
+    KienHangFormPage,
+    PopoverDonHangPage,
+
+    DonHangWaittingPage
   ],
   providers: [
     Camera,

@@ -41,9 +41,8 @@
         [Display(Name = "Ghi chú")]
         public string GhiChu { get; set; }
 
-        [StringLength(50)]
         [Display(Name = "Tình trạng")]
-        public string TinhTrang { get; set; }
+        public int TinhTrang { get; set; }
 
         [Display(Name = "Thời điểm đặt hàng")]
         public DateTime? ThoiDiemDatDonHang { get; set; }

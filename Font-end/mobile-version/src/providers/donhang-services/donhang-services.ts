@@ -21,6 +21,24 @@ export class DonhangServicesProvider {
       })
     })
   }
+  getAllDonHangWaitting() : any{
+    return new Promise((resolve, reject) => {
+      this.http_Service.get('user/api/donhang/get-all-waitting').subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+  getAllDonHangShipper() : any{
+    return new Promise((resolve, reject) => {
+      this.http_Service.get('user/api/donhang/get-all-shipper').subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
   createDonHang(input) : any{
     return new Promise((resolve, reject) => {
       this.http_Service.post('user/api/donhang/create', input).subscribe(res => {

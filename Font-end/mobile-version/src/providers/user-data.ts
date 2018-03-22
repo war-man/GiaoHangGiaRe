@@ -13,7 +13,7 @@ export class UserData {
   constructor(
     public events: Events,
     public storage: Storage
-  ) {}
+  ) { }
 
   hasFavorite(sessionName: string): boolean {
     return (this._favorites.indexOf(sessionName) > -1);
@@ -36,14 +36,14 @@ export class UserData {
     this.setUserAuth(user);
     var user1 = JSON.parse(user.user);
     let isShipper;
-    for(let i= 0; i< user1.Roles.length; i++){
-      if(user1.Roles[i].RoleId == 'ship'){
+    for (let i = 0; i < user1.Roles.length; i++) {
+      if (user1.Roles[i].RoleId == 'ship') {
         isShipper = true;
       }
     }
-    if(isShipper){
+    if (isShipper) {
       this.events.publish('user:loginShipper');
-    }else{
+    } else {
       this.events.publish('user:login');
     }
   };
@@ -60,7 +60,7 @@ export class UserData {
     this.events.publish('user:logout');
   };
 
-  setUserAuth(userAuth: any): void{
+  setUserAuth(userAuth: any): void {
     this.storage.set('userAuth', userAuth);
   }
 
@@ -85,6 +85,16 @@ export class UserData {
       return value === true;
     });
   };
+
+  checkIsShip(): Promise<boolean> {
+    return this.getUser().then(user1 => {
+      for (let i = 0; i < user1.Roles.length; i++) {
+        if (user1.Roles[i].RoleId == 'ship') {
+          return true;
+        }
+      }
+    })
+  }
 
   checkHasSeenTutorial(): Promise<string> {
     return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {

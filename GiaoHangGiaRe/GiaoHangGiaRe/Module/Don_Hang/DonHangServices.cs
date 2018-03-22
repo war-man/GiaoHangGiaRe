@@ -38,6 +38,7 @@ namespace GiaoHangGiaRe.Module
             DateTime time = new DateTime();
             time = DateTime.Now;
             input.ThoiDiemDatDonHang = time;
+            input.TinhTrang = 0;
             _donhangRepository.Insert(input);
             DonHang input2 = new DonHang();
             input2 =_donhangRepository.GetAll().Where(p => p.ThoiDiemDatDonHang == time && 
@@ -95,8 +96,20 @@ namespace GiaoHangGiaRe.Module
 
         public List<DonHang> GetDonHangCurrentShipper()// Nguoi giao hang muon xem danh sach don hang minh giao
         {
+            if (nhanVienServices.GetNhanVienCurrentUser() != null)
+            {
+                var res = _donhangRepository.GetAll()
+                .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien))
+                .ToList();
+                return res;
+            }
+            return new List<DonHang>();
+        }
+
+        public List<DonHang> GetDonHangWaitting()// Nguoi giao hang muon xem danh sach don hang dang cho`
+        {
             var res = _donhangRepository.GetAll()
-                .Where(p => p.MaNhanVienGiao == nhanVienServices.GetNhanVienCurrentUser().MaNhanVien)
+                .Where(p => p.TinhTrang == 0)
                 .ToList();
             return res;
         }

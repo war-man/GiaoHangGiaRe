@@ -43,7 +43,7 @@ namespace GiaoHangGiaRe.Hub
             IEnumerable<string> ds;
             ds = _connections.GetUserConnections();
             Clients.All.DanhSachOnline(ds);
-            dsDonHang = (from dh in db.DonHangs where dh.TinhTrang== "Đã khóa yêu cầu" select dh).ToList();
+            dsDonHang = (from dh in db.DonHangs where dh.TinhTrang== 1 select dh).ToList();
             Clients.All.laydsDonHang(dsDonHang);
             
             return base.OnConnected();

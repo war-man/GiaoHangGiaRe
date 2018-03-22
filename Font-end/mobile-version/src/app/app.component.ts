@@ -13,7 +13,9 @@ import { SignupPage } from '../pages/TaiKhoanModule/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { SupportPage } from '../pages/support/support';
 import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
-import { DonHanGiaoHangPage } from '../pages/GiaoHangModule/don-han-giao-hang/don-han-giao-hang';
+import { DonHangGiaoHangPage } from '../pages/GiaoHangModule/don-hang-giao-hang/don-hang-giao-hang';
+
+import {DonHangWaittingPage} from '../pages/GiaoHangModule/don-hang-waitting/don-hang-waitting';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -53,7 +55,8 @@ export class ConferenceApp {
   loggedInPagesGiaoHang: PageInterface[] = [
     { title: 'Tài khoản', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
-    { title: 'Đơn hàng tiếp nhận', name: 'DonHanGiaoHangPage', component: DonHanGiaoHangPage, icon: 'information-circle' },
+    { title: 'Đơn hàng chờ', name: 'DonHangWaittingPage', component: DonHangWaittingPage, icon: 'help' },
+    { title: 'Đơn hàng tiếp nhận', name: 'DonHangGiaoHangPage', component: DonHangGiaoHangPage, icon: 'information-circle' },
     { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
@@ -85,7 +88,10 @@ export class ConferenceApp {
         this.rootPage = LoginPage;
       }
       this.platformReady()
-      this.enableMenu(hasLoggedIn === true);
+      this.userData.checkIsShip().then(isShip =>{
+        this.enableMenu(hasLoggedIn === true, isShip=== true );
+      })
+      
     });
     this.enableMenu(true);
 
@@ -142,8 +148,6 @@ export class ConferenceApp {
   }
 
   enableMenu(loggedIn: boolean, shipper?: any) {
-    console.log(loggedIn && shipper);
-    console.log(loggedIn && !shipper);
     this.menu.enable(loggedIn && shipper , 'loggedInPagesGiaoHang');
     this.menu.enable(loggedIn && !shipper, 'loggedInMenu');
     this.menu.enable(!loggedIn, 'loggedOutMenu');

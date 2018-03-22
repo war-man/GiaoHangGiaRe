@@ -382,7 +382,6 @@
     <Compile Include="Controllers\api-admin\UuDaiApiController.cs" />
     <Compile Include="Controllers\api-user\DonHangAPIController.cs" />
     <Compile Include="Controllers\api-user\userTaiKhoanApiController.cs" />
-    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HanhTrinhController.cs" />
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -433,6 +432,14 @@
     <Compile Include="Migrations\201803110922448_themimage.cs" />
     <Compile Include="Migrations\201803110922448_themimage.Designer.cs">
       <DependentUpon>201803110922448_themimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201501265_suaTinhTrang_donHang.cs" />
+    <Compile Include="Migrations\201803201501265_suaTinhTrang_donHang.Designer.cs">
+      <DependentUpon>201803201501265_suaTinhTrang_donHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201713358_suaTinhTrang_donHang2.cs" />
+    <Compile Include="Migrations\201803201713358_suaTinhTrang_donHang2.Designer.cs">
+      <DependentUpon>201803201713358_suaTinhTrang_donHang2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3552,6 +3559,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803110922448_themimage.resx">
       <DependentUpon>201803110922448_themimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201501265_suaTinhTrang_donHang.resx">
+      <DependentUpon>201803201501265_suaTinhTrang_donHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201713358_suaTinhTrang_donHang2.resx">
+      <DependentUpon>201803201713358_suaTinhTrang_donHang2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

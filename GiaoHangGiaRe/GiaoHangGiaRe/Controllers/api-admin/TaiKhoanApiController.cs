@@ -1,5 +1,7 @@
 ﻿using GiaoHangGiaRe.Models;
 using GiaoHangGiaRe.Module;
+using Models.EntityModel;
+using System;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -10,6 +12,7 @@ namespace GiaoHangGiaRe.Controllers
     public class TaiKhoanApiController : ApiController
     {
         private UserServices _userServices ;
+        private NhanVienServices _nhanVienServices;
         public TaiKhoanApiController()
         {
             _userServices = new UserServices();
@@ -66,7 +69,20 @@ namespace GiaoHangGiaRe.Controllers
         public IHttpActionResult Create(RegisterViewModel input)
         {
             input.Password = "123456"; // Mat khau mac dinh
-            return Ok(_userServices.Create(input));
+            _userServices.Create(input);
+            ApplicationUser new_user = new ApplicationUser();
+            new_user = _userServices.GetuserByUsername(input.TenTaiKhoan);
+            _nhanVienServices.Create(new NhanViens
+            {
+                TenTaiKhoan = new_user.TenTaiKhoan,
+                Email = new_user.Email,
+                DiaChi = new_user.DiaChi,
+                NgayBatDau = DateTime.Now,
+                TrangThai = 1,
+                TenNhanVien = new_user.HoTen,
+                SoDienThoai = new_user.PhoneNumber
+            });
+            return Ok();
         }
 
         [HttpPost]

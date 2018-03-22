@@ -9,16 +9,13 @@ import { NavController, NavParams } from 'ionic-angular';
  */
 
 @Component({
-  selector: 'page-don-han-giao-hang',
-  templateUrl: 'don-han-giao-hang.html',
+  selector: 'page-don-hang-waitting',
+  templateUrl: 'don-hang-waitting.html',
 })
-export class DonHanGiaoHangPage {
-
+export class DonHangWaittingPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DonHanGiaoHangPage');
+  ngOnInit() {
   }
-
 }

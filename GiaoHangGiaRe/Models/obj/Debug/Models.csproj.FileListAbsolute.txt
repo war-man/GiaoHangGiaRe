@@ -46,3 +46,5 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.dll
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.pdb
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themimage.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.themimage2.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.suaTinhTrang_donHang.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Debug\Models.Migrations.thaydoi8.resources

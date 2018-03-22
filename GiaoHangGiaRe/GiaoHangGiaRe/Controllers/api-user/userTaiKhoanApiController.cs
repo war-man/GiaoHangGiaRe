@@ -28,7 +28,6 @@ namespace GiaoHangGiaRe.Controllers
         [Route("register")]
         public IHttpActionResult Resister(RegisterViewModel input)
         { 
-            //input.Password = "123456"; Nguoi dung phai nhap Mat Khau de dang ky
             return Ok(_userServices.Create(input));
         }
 

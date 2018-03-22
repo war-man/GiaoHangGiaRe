@@ -21,7 +21,7 @@ namespace GiaoHangGiaRe.Areas.NhanVien.Controllers
         }
         public ActionResult DanhSachHangCho()
         {
-            var dshangcho = from dh in db.DonHangs where dh.TinhTrang == "Đang chờ" select dh;
+            var dshangcho = from dh in db.DonHangs where dh.TinhTrang == 0 select dh;
             return View(dshangcho.ToList());
         }
         // GET: NhanVien/DonHang/Details/5

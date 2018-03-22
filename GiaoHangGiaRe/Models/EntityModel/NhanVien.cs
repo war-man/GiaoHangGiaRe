@@ -41,9 +41,8 @@
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [StringLength(50)]
         [Display(Name = "Trạng thái")]
-        public string TrangThai { get; set; }
+        public int TrangThai { get; set; }
 
         public bool? deleted { get; set; }
 

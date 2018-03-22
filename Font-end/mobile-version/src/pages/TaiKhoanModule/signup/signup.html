@@ -17,7 +17,7 @@
 		<ion-list no-lines>
 			<ion-item>
 				<ion-label stacked color="primary">Username</ion-label>
-				<ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
+				<ion-input formControlName="username" type="text" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
@@ -25,8 +25,53 @@
 			</p>
 
 			<ion-item>
+				<ion-label stacked color="primary">Email</ion-label>
+				<ion-input formControlName="email" type="text" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
+				Email is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">HoTen</ion-label>
+				<ion-input formControlName="HoTen" type="text" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="HoTen.valid || submitted == false" color="danger" padding-left>
+				HoTen is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">DiaChi</ion-label>
+				<ion-input formControlName="DiaChi" type="text"  required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="DiaChi.valid || submitted == false" color="danger" padding-left>
+				DiaChi is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">CongTy</ion-label>
+				<ion-input formControlName="CongTy"type="text"  required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="CongTy.valid || submitted == false" color="danger" padding-left>
+				CongTy is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">SoDienThoai</ion-label>
+				<ion-input formControlName="SoDienThoai" type="text" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="SoDienThoai.valid || submitted == false" color="danger" padding-left>
+				SoDienThoai is required
+			</p>
+
+			<ion-item>
 				<ion-label stacked color="primary">Password</ion-label>
-				<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
+				<ion-input formControlName="password" type="password" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>

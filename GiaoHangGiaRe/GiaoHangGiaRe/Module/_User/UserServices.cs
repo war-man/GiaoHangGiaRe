@@ -59,7 +59,10 @@ namespace GiaoHangGiaRe.Module
                 TenTaiKhoan = input.TenTaiKhoan };             
             var result = UserManager.Create(user, input.Password);
             var currentUser = UserManager.FindByName(user.UserName);
-            var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
+            if (input.Role != null) // Nếu có Role thì thêm không thì thôi
+            {
+                var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
+            }
             lichSuServices.Create(new LichSu
             {
                 TenTaiKhoan = GetCurrentUser().UserName,

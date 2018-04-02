@@ -21,7 +21,7 @@ namespace GiaoHangGiaRe.Controllers
         [HttpGet]
         [Route("get-all")]
         [ResponseType(typeof(ApplicationUser))]
-        public IHttpActionResult Get(int? page =null, int? size = null, string user_name = "", string user_id = "", string name = "")
+        public IHttpActionResult Get(int? page =0, int? size = 50, string user_name = "", string user_id = "", string name = "")
         {
             //if (User.IsInRole("Administrators"))
             //{

@@ -20,9 +20,10 @@
             }).error(function (err) {
                 toastr.error('Error');
                 console.log(err);
+
                 // localStorage.clear();
                 // $rootScope.token=null;
-                // window.location = "/auth.html";    
+                window.location = "/auth.html";    
             });
             return result;;
         };

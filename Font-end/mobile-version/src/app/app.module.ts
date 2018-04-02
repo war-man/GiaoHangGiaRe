@@ -36,7 +36,8 @@ import { UserData } from '../providers/user-data';
 import { UserServices } from '../providers/user-services/user-services';
 import { DonhangServicesProvider } from '../providers/donhang-services/donhang-services';
 import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang-popover';
-
+import { SignalrServiceProvider } from '../providers/signalr-service/signalr-service';
+import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
 
 @NgModule({
   declarations: [
@@ -118,8 +119,9 @@ import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang
     SplashScreen,
     Geolocation,
     UserServices,
-    DonhangServicesProvider
-   
+    DonhangServicesProvider,
+    SignalrServiceProvider,
+    SignalR
   ]
 })
 export class AppModule { }

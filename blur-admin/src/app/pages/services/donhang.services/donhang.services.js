@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages')
         .factory('GetDonHangAPI', GetBangGiaAPI);
     /** @ngInject */
-    function GetBangGiaAPI($http, $rootScope, localStorage, BASE) {
+    function GetBangGiaAPI($http, $rootScope, localStorage, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all DonHang
         var donhang_get_all = function (params) {

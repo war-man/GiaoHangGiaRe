@@ -3,21 +3,21 @@
 		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<ion-title>Signup</ion-title>
+		<ion-title>Đăng ký tài khoản</ion-title>
 	</ion-navbar>
 </ion-header>
 
 <ion-content class="login-page">
 
 	<div class="logo">
-		<img src="assets/img/appicon.svg" alt="Ionic Logo">
+		<img src="assets/img/appicon.svg" alt="">
 	</div>
 
 	<form [formGroup]="signupForm" (ngSubmit)="submitData()" novalidate>
 		<ion-list no-lines>
 			<ion-item>
 				<ion-label stacked color="primary">Tên tài khoản</ion-label>
-				<ion-input formControlName="username" type="text" required>
+				<ion-input formControlName="TenTaiKhoan" type="text" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text color="danger" padding-left>
@@ -25,7 +25,7 @@
 
 			<ion-item>
 				<ion-label stacked color="primary">Email</ion-label>
-				<ion-input formControlName="email" type="text" required>
+				<ion-input formControlName="email" type="email" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text color="danger" padding-left>
@@ -59,7 +59,7 @@
 
 			<ion-item>
 				<ion-label stacked color="primary">Số điện thoại</ion-label>
-				<ion-input formControlName="SoDienThoai" type="text" required>
+				<ion-input formControlName="SoDienThoai" type="number" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text color="danger" padding-left>
@@ -68,16 +68,16 @@
 
 			<ion-item>
 				<ion-label stacked color="primary">Password</ion-label>
-				<ion-input formControlName="password" type="password" required>
+				<ion-input formControlName="Password" type="password" required>
 				</ion-input>
 			</ion-item>
-			<p ion-text  color="danger" padding-left>
-				Mật khẩu bắt buộc
+			<p ion-text  color="danger" *ngFor="let err of signup_err" padding-left>
+				{{err}}
 			</p>
 		</ion-list>
 
 		<div padding>
-			<button ion-button (click)="onSignup(signupForm)" type="submit" block>Create</button>
+			<button ion-button type="submit" block>Đăng ký</button>
 		</div>
 	</form>
 

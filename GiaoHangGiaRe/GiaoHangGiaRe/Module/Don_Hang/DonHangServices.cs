@@ -67,23 +67,24 @@ namespace GiaoHangGiaRe.Module
             _donhangRepository.Delete(id);
         }
 
-        public List<DonHang> GetAll(int? page = 0, int? size= 50, string user_name = null, string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
+        public List<DonHang> GetAll(int? page = 0, int? size= 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
         {
             if (!page.HasValue) page = Constant.DefaultPage;
             if (!size.HasValue) size = _donhangRepository.GetAll().Count();
-            List<DonHang> res = new List<DonHang>();
+            List<DonHang> res ;
             if (user_name == null)
                 user_name = "";
             if (ma_nhanvien == null)
             {
-                res = _donhangRepository.GetAll().Where(p => p.TinhTrang >= 0 && p.TenTaiKhoan.Contains(user_name))
-                .Skip((page.Value - 1) * size.Value)
-               .Take(size.Value * (size.Value * (page.Value - 1))).ToList();
+                res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0)
+                .OrderBy(p => p.MaDonHang)
+                .Take(size.Value)
+                .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();
             }
             else
             {
                 res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan.Contains(user_name) && p.MaNhanVienGiao == ma_nhanvien)
-                .Skip((size.Value))
+                .Skip((page.Value - 1) * size.Value)
                .Take(size.Value).ToList();
             }
             return res;

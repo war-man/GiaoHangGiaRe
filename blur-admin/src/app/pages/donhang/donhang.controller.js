@@ -16,7 +16,6 @@
         $scope.gotoAddDonHang = function () {
             $state.go('donhang.add');
         };
-        debugger
         innitTableParams($scope.Size, 0);
         GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
             if (res.status == '200') {

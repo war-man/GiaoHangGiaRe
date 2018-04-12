@@ -29,4 +29,15 @@ export class LoginService {
       })
     });
   }
+  register(input: any): any {
+    console.log(input);
+    return new Promise((resolve, reject) => {
+      this.httpService.post('user/api/taikhoan/register', input).subscribe((res) => {
+        resolve(res);
+      }, err => {
+        err = err.json();
+        reject(err);
+      })
+    });
+  }
 }

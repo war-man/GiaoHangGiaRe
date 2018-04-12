@@ -39,6 +39,7 @@ namespace GiaoHangGiaRe.Module
             time = DateTime.Now;
             input.ThoiDiemDatDonHang = time;
             input.TinhTrang = 0;
+            input.TenTaiKhoan = userServices.GetCurrentUser().TenTaiKhoan == null? userServices.GetCurrentUser().UserName: userServices.GetCurrentUser().TenTaiKhoan;
             _donhangRepository.Insert(input);
             DonHang input2 = new DonHang();
             input2 =_donhangRepository.GetAll().Where(p => p.ThoiDiemDatDonHang == time && 
@@ -70,25 +71,34 @@ namespace GiaoHangGiaRe.Module
         public List<DonHang> GetAll(int? page = 0, int? size= 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
         {
             if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) size = _donhangRepository.GetAll().Count();
-            List<DonHang> res ;
+            if (!size.HasValue) size = _donhangRepository.GetAll().Count(); 
             if (user_name == null)
+            {
                 user_name = "";
-            if (ma_nhanvien == null)
-            {
-                res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0)
-                .OrderBy(p => p.MaDonHang)
-                .Take(size.Value)
-                .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();
             }
-            else
+            //mac dinh tinh trang =0
+            if (tinhtrang == null)
             {
-                res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan.Contains(user_name) && p.MaNhanVienGiao == ma_nhanvien)
-                .Skip((page.Value - 1) * size.Value)
-               .Take(size.Value).ToList();
+                tinhtrang = 0;
             }
+            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0 && p.TenTaiKhoan.Contains(user_name) && p.TinhTrang==tinhtrang)
+            .OrderBy(p => p.MaDonHang)
+            .Skip(size.Value * (page.Value))
+            .Take(size.Value).ToList();
             return res;
         }
+        //public List<DonHang> GetAllForUser(int? page = 0, int? size = 50, int? tinhtrang = 0)
+        //{
+        //    if (!page.HasValue) page = Constant.DefaultPage;
+        //    if (!size.HasValue) size = _donhangRepository.GetAll().Count();
+
+        //    //mac dinh tinh trang =0
+        //    List<DonHang> res = _donhangRepository.GetAll().Where(p=> p.TinhTrang == tinhtrang)
+        //    .OrderBy(p => p.MaDonHang)
+        //    .Take(size.Value)
+        //    .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();
+        //    return res;
+        //}
 
         public DonHang GetById(object id) // lay don hang theo id
         {
@@ -126,9 +136,9 @@ namespace GiaoHangGiaRe.Module
             return res;
         }
 
-        public List<DonHang> GetDonHangCurrentuser() //lay cac don hang cua user
+        public List<DonHang> GetDonHangCurrentuser(int tinhtrang = 0) //lay cac don hang cua user
         {
-            var res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName);
+            var res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName && p.TinhTrang == tinhtrang);
             return res.ToList();
         }
 
@@ -149,7 +159,16 @@ namespace GiaoHangGiaRe.Module
 
         public int Update(DonHang input)
         {
-            _donhangRepository.Update(input);
+            DonHang donhang_tam = _donhangRepository.SelectById(input.MaDonHang);
+            donhang_tam.DiaChiGui = input.DiaChiGui;
+            donhang_tam.DiaChiNhan = input.DiaChiNhan;
+            donhang_tam.GhiChu = input.GhiChu;
+            donhang_tam.NguoiGui = input.NguoiGui;
+            donhang_tam.NguoiNhan = input.NguoiNhan;
+            donhang_tam.SoDienThoaiNguoiGui = input.SoDienThoaiNguoiGui;
+            donhang_tam.SoDienThoaiNguoiNhan = input.SoDienThoaiNguoiNhan;
+            donhang_tam.ThanhTien = input.ThanhTien;
+            _donhangRepository.Update(donhang_tam);
 
             lichSuServices.Create(new LichSu
             {
@@ -158,7 +177,7 @@ namespace GiaoHangGiaRe.Module
                 ViTriThaoTac = Constant.User,
                 NoiDung = new JavaScriptSerializer().Serialize(input)
             });
-            return input.MaDonHang;
+            return donhang_tam.MaDonHang;
         }
         public bool donHangIsOfUser(int MaDonHang)
         {

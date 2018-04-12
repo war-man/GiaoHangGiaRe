@@ -17,7 +17,6 @@
       $scope.user = [];
       GetUserAPI.user_current_user()
       .success(function(data){
-        console.log(data);
         $scope.user=data;
       });
       } 

@@ -15,7 +15,7 @@
                     toastr.error('Error');
                 });
             return result;
-        };
+        }
 
         //craete DonHang
         var donhang_create = function (input) {
@@ -48,7 +48,7 @@
                 .error(function (data, status) {
                 });
             return result;
-        };
+        }
 
         //get-by-id DonHang
         var donhang_getby_id = function (id) {
@@ -56,8 +56,8 @@
                 .success(function (data) {
                 }).error(function () {
                 });
-            return result;;
-        };
+            return result;
+        }
         return {
             donhang_get_all: donhang_get_all,
             donhang_create: donhang_create,

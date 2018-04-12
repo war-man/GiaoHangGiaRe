@@ -15,7 +15,7 @@ namespace GiaoHangGiaRe.Module
         List<DonHang> SearchByKey(int? page, int? size, string key);
         DonHang GetById(object id);
         List<DonHang> GetByUser(object username);
-        List<DonHang> GetDonHangCurrentuser();
+        List<DonHang> GetDonHangCurrentuser(int tinhtrang);
         List<DonHang> GetDonHangCurrentShipper();
 
         List<DonHang> GetByKhoChua(int MaKhoChua);

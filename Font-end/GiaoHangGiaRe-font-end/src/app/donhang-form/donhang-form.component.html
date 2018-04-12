@@ -3,30 +3,30 @@
   <div class="col-md-6">
     <div class="form-group">
       <label for="">Người gửi</label>
-      <input formControlName="nguoiGui" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Người gửi">
+      <input formControlName="NguoiGui" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Người gửi">
       <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="">Số điện thoại người gửi</label>
-      <input formControlName="sdtNguoiGui" type="text" class="form-control" placeholder="Số điện thoại người gửi">
+      <input formControlName="SoDienThoaiNguoiGui" type="text" class="form-control" placeholder="Số điện thoại người gửi">
     </div>
     <div class="form-group">
       <label for="">Địa chỉ gửi</label>
-      <input formControlName="diaChiGui" type="text" class="form-control" placeholder="Địa chỉ gửi">
+      <input formControlName="DiaChiGui" type="text" class="form-control" placeholder="Địa chỉ gửi">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="">Người nhận</label>
-      <input formControlName="nguoiNhan" type="text" class="form-control" placeholder="Người nhận">
+      <input formControlName="NguoiNhan" type="text" class="form-control" placeholder="Người nhận">
     </div>
     <div class="form-group">
       <label for="">Số điện thoại người nhận</label>
-      <input formControlName="sdtNguoiNhan" type="number" class="form-control" placeholder="Số điện thoại người nhận">
+      <input formControlName="SoDienThoaiNguoiNhan" type="text" class="form-control" placeholder="Số điện thoại người nhận">
     </div>
     <div class="form-group">
       <label for="">Địa chỉ nhận</label>
-      <input formControlName="diaChiNhan" type="text" class="form-control" placeholder="Địa chỉ nhận">
+      <input formControlName="DiaChiNhan" type="text" class="form-control" placeholder="Địa chỉ nhận">
     </div>
   </div>
   <div class="col-md-12">
@@ -56,14 +56,14 @@
 
     <div class="form-group">
       <label for="">Ghi chú</label>
-      <input formControlName="ghiChu" type="text" class="form-control" placeholder="Ghi chú">
+      <input formControlName="GhiChu" type="text" class="form-control" placeholder="Ghi chú">
     </div>
     <div class="form-group">
       <label for="">Thành tiền</label>
-      <input formControlName="thanhTien" type="number" class="form-control" placeholder="Thành tiền">
+      <input formControlName="ThanhTien" type="number" class="form-control" placeholder="Thành tiền">
     </div>
     <small class="form-text text-muted">Bạn phải thêm ít nhất một kiện hàng.</small>
-    <div style="text-align: center">
+    <div style="text-align: center;">
       <button type="submit" *ngIf="donHangCreate" (click)="submitDonHangData()" class="btn btn-primary">Thêm đơn hàng</button>
       <button type="submit" *ngIf="!donHangCreate" (click)="submitUpdateDonHangData()" class="btn btn-primary">Sửa đơn hàng</button>
     </div>

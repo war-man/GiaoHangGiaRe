@@ -3,8 +3,7 @@
     angular.module('BlurAdmin.pages.donhang')
         .controller('donhangcontroller', donhangcontroller);
     function donhangcontroller($scope, $filter, GetDonHangAPI, $state, $stateParams) {
-        $scope.listDonHang={};
-        $scope.model;
+        $scope.listDonHang = {};
         $scope.Size = 5;
 
         $scope.tablePage = {};
@@ -12,14 +11,14 @@
         $scope.currentstate = $state.current.name;
         $scope.errorMessage;
         $scope.filter = {};
-        $scope.params = {page: $scope.tablePage.currenPage, size: $scope.Size};
+        $scope.params = { page: $scope.tablePage.currenPage, size: $scope.Size };
         $scope.gotoAddDonHang = function () {
             $state.go('donhang.add');
         };
         innitTableParams($scope.Size, 0);
         GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
             if (res.status == '200') {
-                $scope.listDonHang = res.data.list;     
+                $scope.listDonHang = res.data.list;
                 innitTableParams($scope.Size, 0, res.data.total);
             }
         })
@@ -42,9 +41,12 @@
             }
         }
         //SEARCH
+        $scope.SelectChange = function (tinhtrang) {
+            $scope.params.tinhtrang = $scope.filter.TinhTrang;
+            $scope.search();
+        }
         $scope.search = function () {
             $scope.params.user_name = $scope.filter.user_name;
-            $scope.params.tinhtrang = $scope.filter.TinhTrang;
 
             GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
                 if (res.status == '200') {
@@ -52,5 +54,5 @@
                 }
             })
         }
-    }
+    };
 })();

@@ -18,6 +18,7 @@ namespace GiaoHangGiaRe.Module
         private LichSuServices lichSuServices;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ImageServices _imageServices;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -51,39 +52,45 @@ namespace GiaoHangGiaRe.Module
         {
             _userRepository = new IdentityRepository<ApplicationUser>();
             lichSuServices = new LichSuServices();
+            _imageServices = new ImageServices();
             //UserManager = new ApplicationUserManager();
         }
         public IdentityResult Create(RegisterViewModel input)
         {       
             var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi,
-                TenTaiKhoan = input.TenTaiKhoan };             
+                TenTaiKhoan = input.TenTaiKhoan };
+            Image img = new Image();
+            img = new Image
+            {
+                RoleId = "",
+                title = "",
+                create_by = user.TenTaiKhoan,
+                create_at = DateTime.Now,
+                ImageContent = input.Base64
+            };
+            _imageServices.Create(img);
             var result = UserManager.Create(user, input.Password);
             var currentUser = UserManager.FindByName(user.UserName);
             if (input.Role != null) // Nếu có Role thì thêm không thì thôi
             {
                 var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
             }
-            lichSuServices.Create(new LichSu
-            {
-                TenTaiKhoan = GetCurrentUser().UserName,
-                HanhDong = Constant.CreateAction,
-                ViTriThaoTac = Constant.User,
-                NoiDung = Constant.CvtToString(input)
-            });
 
             return result;
         }
 
         public IdentityResult Delete(string id)
         {
-            lichSuServices.Create(new LichSu {
-                TenTaiKhoan = GetCurrentUser().UserName,
-                HanhDong = Constant.DeleteAction,
-                ViTriThaoTac = Constant.User,
-                NoiDung = id
-            });
+            //lichSuServices.Create(new LichSu
+            //{
+            //    TenTaiKhoan = GetCurrentUser().UserName,
+            //    HanhDong = Constant.UpdateAction,
+            //    ViTriThaoTac = Constant.User,
+            //    NoiDung = id
+            //});
             var user = UserManager.FindById(id);
-           return UserManager.Delete(user);
+            user.isDelete = true;
+            return UserManager.Update(user);
         }
         public ApplicationUser GetCurrentUser()
         {
@@ -195,10 +202,12 @@ namespace GiaoHangGiaRe.Module
                 user_id = "";
             if (name == null)
                 name = "";
-            List<ApplicationUser> users = _userRepository.GetAll().Where(p=>p.UserName.Contains(user_name) && p.Id.Contains(user_id) && p.HoTen.Contains(name))
+            List<ApplicationUser> users = _userRepository.GetAll().Where(p=>(p.UserName.Contains(user_name) || p.TenTaiKhoan.Contains(user_name)) && p.Id.Contains(user_id) && p.HoTen.Contains(name)
+            &&p.isDelete == false)
                 .OrderBy(p => p.Id)
+                .Skip(size.Value * page.Value)
                 .Take(size.Value)
-                .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();
+                .ToList();
             return users;
         }
 

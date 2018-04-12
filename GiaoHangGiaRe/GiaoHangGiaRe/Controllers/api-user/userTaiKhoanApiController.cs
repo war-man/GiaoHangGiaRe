@@ -25,6 +25,7 @@ namespace GiaoHangGiaRe.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("register")]
         public IHttpActionResult Resister(RegisterViewModel input)
         { 

@@ -7,26 +7,21 @@ using System.Threading.Tasks;
 
 namespace GiaoHangGiaRe.Module
 {
-    interface INoServices
+    interface IImageServices
     {
         //Cho phuong thuc GET
-        List<No> GetAll(int? page, int? size , string KyHieu);
-        List<No> GetNoCurrentUser(int? page, int? size, string KyHieu);
-        
-        No GetById(int Id);
-        List<No> GetNoOfKH(int MaKH);
+
+        Image GetById(int Id);
 
         //Cho phuong thuc POST
-        void Create(No input);
+        bool Create(Image input);
 
         //Cho phuong thuc PUT
-        void SetHoanThanh(int id);
-        void Update(No input);
+        void Update(Image input);
 
         //Cho phuong thuc DELETE
         void Delete(int id);
 
         int Count();
-        int CountNoCurenUser();
     }
 }

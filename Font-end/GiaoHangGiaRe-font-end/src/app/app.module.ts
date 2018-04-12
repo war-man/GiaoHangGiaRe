@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AgmCoreModule } from '@agm/core';
 
 import { DataService } from '../providers/data_services';
 import { HttpService } from '../providers/http-service';
@@ -22,13 +22,17 @@ import { DonhangFormComponent } from 'app/donhang-form/donhang-form.component';
 import { ModalDirective } from './modal.directive';
 import { KienhangModalComponent } from './kienhang-modal/kienhang-modal.component';
 import { DonHangDetailsComponent } from './don-hang-details/don-hang-details.component';
+import { ContactComponent } from './contact/contact.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
       { path: 'mypage', component: MypageComponent },
       { path: 'donhang', component: DonhangComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'logout', component: LogoutComponent },
       { path: 'donhang-them/:id', component: DonhangFormComponent },//update
@@ -42,19 +46,24 @@ const routes: Routes = [
     HomeComponent,
     AboutComponent,
     MypageComponent,
+    ContactComponent,
     DonhangComponent,
     LoginComponent,
     DonhangFormComponent,
     LogoutComponent,
     ModalDirective,
     KienhangModalComponent,
-    DonHangDetailsComponent
+    DonHangDetailsComponent,
+    RegisterComponent
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBv5_hf7TmyJiZIkOnLJEJpcotnQfn4rQE'
+    }),
     RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [

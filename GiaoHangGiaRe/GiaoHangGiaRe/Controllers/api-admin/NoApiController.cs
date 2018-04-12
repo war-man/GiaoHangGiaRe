@@ -9,8 +9,9 @@ using System.Web.Http;
 
 namespace GiaoHangGiaRe.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/no")]
+    [Authorize]
+
     public class NoApiController : ApiController
     {
         private NoServices _noServices;
@@ -21,10 +22,10 @@ namespace GiaoHangGiaRe.Controllers
         // GET: api/get-all
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult Get(int? page, int? size)
+        public IHttpActionResult Get(int? page, int? size, string kyhieu="")
         {
             return Ok(new {
-                data = _noServices.GetAll(page, size),
+                data = _noServices.GetAll(page, size, kyhieu),
                 total = _noServices.Count(),
                 page,
                 size

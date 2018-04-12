@@ -8,8 +8,8 @@
     function GetNoAPI($http, $rootScope, localStorage, BASE) {
         var host = BASE + 'api/';
         //get-all NhanVien
-        var no_get_all = function (page, size) {
-            var result = $http.get(host + 'no/get-all?page=' + page + '&size=' + size)
+        var no_get_all = function (params) {
+            var result = $http.get(host + 'no/get-all',{ params })
                 .success(function (data) {
                 })
                 .error(function () {
@@ -57,7 +57,7 @@
                 })
                 .error(function () {
                 });
-            return result;;
+            return result;
         };
 
         return {

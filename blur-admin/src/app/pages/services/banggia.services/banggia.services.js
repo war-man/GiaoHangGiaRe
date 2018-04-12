@@ -15,7 +15,7 @@
             .error(function () {
             });
             return result;
-        };
+        }
 
         //craete BangGia
         var banggia_create = function (input) {
@@ -42,10 +42,10 @@
         //Update BangGia
         var banggia_update = function (input) {
             var url = host + 'banggia/update';
-            var result = $http.put(url, data)
-                .success(function (data, status) {
+            var result = $http.put(url, input)
+                .success(function () {
                 })
-                .error(function (data, status) {
+                .error(function () {
                 });
             return result;
         };
@@ -56,7 +56,7 @@
             .success(function (data) {
             }).error(function () {
             });
-            return result;;
+            return result;  
         };
         return {
             banggia_get_all: banggia_get_all,

@@ -70,7 +70,7 @@ namespace GiaoHangGiaRe.Module
 
         public void Update(KienHang input)
         {
-            _repositoryKienHang.Insert(input);
+            _repositoryKienHang.Update(input);
         }
     }
 }

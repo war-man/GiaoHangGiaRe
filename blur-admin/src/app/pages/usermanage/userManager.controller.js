@@ -6,7 +6,7 @@
         .controller('usermanagercontroller', usermanagercontroller);
     /** @ngInject */
     function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr) {
-        $scope.Size = 5;
+        $scope.Size = 50;
         $scope.listUser;
         $scope.tablePage = {};
         $scope.model = {};
@@ -14,18 +14,22 @@
         $scope.errorMessage;
         $scope.roleSelect;
         $scope.filter = {};
-        $scope.params = {page: $scope.tablePage.currenPage, size: $scope.Size};
+        $scope.params = { page: $scope.tablePage.currenPage, size: $scope.Size };
         $scope.gotoAddUser = function () {
             $state.go('usermanager.add');
         };
         innitTableParams($scope.Size, 0);
-        GetUserAPI.user_get_all($scope.params).then((res) => {
-            if (res.status == '200') {
-                $scope.listUser = res.data.data;
-                innitTableParams($scope.Size, 0, res.data.total);
-            }
-        })
+        Init();
+        function Init() {
+            GetUserAPI.user_get_all($scope.params).then((res) => {
+                if (res.status == '200') {
+                    $scope.listUser = res.data.data;
+                    innitTableParams($scope.Size, 0, res.data.total);
+                }
+            })
+        }
         $scope.gotoPage = function (page) {
+            $scope.params.page = page;
             GetUserAPI.user_get_all($scope.params).then((res) => {
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
@@ -46,7 +50,6 @@
 
         GetRoleAPI.role_get_all().then(function (res) { //Lấy danh sách Role       
             $scope.roleSelect = res.data.data;
-            //console.log($scope.roleSelect);
         });
 
         $scope.getbyid = function () {
@@ -62,12 +65,15 @@
 
         //SEARCH
         $scope.search = function () {
-            $scope.params.user_name = $scope.filter.user_name;
-            $scope.params.user_id = $scope.filter.id;
-            $scope.params.name =$scope.filter.name;
+            $scope.params.page = 0;
+            $scope.params.size = null;
+            $scope.params.user_name = $scope.filter.user_name ? $scope.filter.user_name : null;
+            $scope.params.user_id = $scope.filter.id ? $scope.filter.id : null;
+            $scope.params.name = $scope.filter.name ? $scope.filter.name : null;
             GetUserAPI.user_get_all($scope.params).then((res) => {
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
+                    innitTableParams(res.data.size, res.data.page, res.data.total);
                 }
             })
         }

@@ -1,5 +1,6 @@
 ﻿using GiaoHangGiaRe.Models;
 using GiaoHangGiaRe.Module;
+using Microsoft.AspNet.Identity;
 using Models.EntityModel;
 using System;
 using System.Web.Http;
@@ -16,6 +17,7 @@ namespace GiaoHangGiaRe.Controllers
         public TaiKhoanApiController()
         {
             _userServices = new UserServices();
+            _nhanVienServices = new NhanVienServices();
         }
         // GET: api/TaiKhoanApi
         [HttpGet]
@@ -113,13 +115,28 @@ namespace GiaoHangGiaRe.Controllers
         // DELETE: api/TaiKhoanApi/5
         [HttpDelete]
         [Route("delete")]
+        [Authorize]
         public IHttpActionResult Delete(string id)
         {
-            var user = _userServices.GetById(id);     
+            var user = _userServices.GetById(id);
             if (user == null)
                 return Ok("User khong ton tai!");
-            _userServices.Delete(id);
-            return Ok(user);
+            else
+            {
+                if (IdentityResult.Failed() == _userServices.Delete(id))
+                {
+                    string message = "Xóa user thất bại.";
+                    return Ok(new
+                    {
+                        message
+                    });               
+                }
+                else
+                {
+                    return Ok(user);
+                }
+                
+            }
         }
 
         //GET

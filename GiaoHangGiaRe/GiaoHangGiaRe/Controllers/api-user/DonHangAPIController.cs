@@ -27,17 +27,32 @@ namespace GiaoHangGiaRe.Controllers
         [Authorize]
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult GetDonHangs(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
+        public IHttpActionResult GetDonHangs(int tinhtrang = 0)
         {     
             return Ok(new
             {
-                list = _donHangServices.GetDonHangCurrentuser(),
-                page,
-                size,
-                total = _donHangServices.GetDonHangCurrentuser().Count
+                list = _donHangServices.GetDonHangCurrentuser(tinhtrang),
+                total = _donHangServices.GetDonHangCurrentuser(tinhtrang).Count
             });
         }
 
+        [HttpGet]
+        [Route("get-status")]
+        public IHttpActionResult GetDetailsStatus()
+        {
+            statusDonHang _statusDonHang = new statusDonHang()
+            {
+                Huy = _donHangServices.GetDonHangCurrentuser(-1).Count,
+                DangCho = _donHangServices.GetDonHangCurrentuser().Count,
+                DangGiaoHang = _donHangServices.GetDonHangCurrentuser(1).Count,
+                NhapKho = _donHangServices.GetDonHangCurrentuser(2).Count,
+                GiaoHangCong = _donHangServices.GetDonHangCurrentuser(3).Count
+            };
+            return Ok(new
+            {
+                _statusDonHang
+            });
+        }
         [HttpGet]
         [Route("get-all-waitting")]
         public IHttpActionResult GetDonHangsWaitting(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
@@ -112,19 +127,42 @@ namespace GiaoHangGiaRe.Controllers
         [ResponseType(typeof(void))]
         [Route("update")]
         [HttpPut]
-        public IHttpActionResult PutDonHang(DonHang donHang)
+        public IHttpActionResult PutDonHang([FromBody] JObject data)
         {
+            DonHang donHang = data["donHang"].ToObject<DonHang>();
+            KienHang[] kienHang = data["kienHang"].ToObject<KienHang[]>();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (donHang.MaDonHang <= 0 || _donHangServices.donHangIsOfUser(donHang.MaDonHang))
+            if (_donHangServices.IsExists(donHang.MaDonHang) && kienHang != null)
             {
-                return BadRequest();
+                if (donHang.MaDonHang <= 0)
+                {
+                    return BadRequest();
+                }
+                int MaDH = _donHangServices.Update(donHang);
+                for (int i = 0; i < kienHang.Length; i++)
+                {
+                    kienHang[i].MaDonHang = MaDH;
+                    _kienhangServices.Update(kienHang[i]);
+                }
             }
-            _donHangServices.Update(donHang);
+            else
+                return BadRequest();
+
             return Ok(1);
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            //if (donHang.MaDonHang <= 0 || _donHangServices.donHangIsOfUser(donHang.MaDonHang))
+            //{
+            //    return BadRequest();
+            //}
+            //_donHangServices.Update(donHang);
+            //return Ok(1);
         }
         [ResponseType(typeof(void))]
         [Route("ship_receive")]
@@ -197,5 +235,14 @@ namespace GiaoHangGiaRe.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+    }
+    public class statusDonHang
+    {
+        public int Huy { get; set; }
+        public int DangCho { get; set; }
+        public int DangGiaoHang { get; set; }
+        public int NhapKho { get; set; }
+        public int GiaoHangCong { get; set; }
+
     }
 }

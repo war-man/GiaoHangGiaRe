@@ -96,6 +96,7 @@ namespace GiaoHangGiaRe.Models
         [Required]
         [Display(Name = "Họ tên")]
         public string HoTen { set; get; }
+        public string Base64 { set; get; }
 
         [Required]
         [Display(Name = "Địa chỉ")]

@@ -8,9 +8,11 @@ import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 export class DonHangService {
   constructor(private httpService: HttpService, private router: Router) {
   }
-  getDonHang() : any{
+  getDonHang(tinhtrang?) : any{
+    let params: URLSearchParams  = new URLSearchParams();
+   params.set('tinhtrang', tinhtrang);
     return new Promise((resolve, reject) => {
-      this.httpService.get('user/api/donhang/get-all').subscribe((res) => {
+      this.httpService.get('user/api/donhang/get-all', params).subscribe((res) => {
         resolve(res);
       }, err => {
         err = err.json();
@@ -21,6 +23,26 @@ export class DonHangService {
   taoDonHang(input) : any{
     return new Promise((resolve, reject) => {
         this.httpService.post('user/api/donhang/create', input).subscribe((res) => {
+          resolve(res);
+        }, err => {
+          err = err.json();
+          reject(err);
+        })
+      });
+  }
+  getDonHangStatus(): any {
+    return new Promise((resolve, reject) => {
+      this.httpService.get('user/api/donhang/get-status').subscribe((res) => {
+        resolve(res);
+      }, err => {
+        err = err.json();
+        reject(err);
+      })
+    });
+  }
+  updateDonHang(input) : any{
+    return new Promise((resolve, reject) => {
+        this.httpService.put('user/api/donhang/update', input).subscribe((res) => {
           resolve(res);
         }, err => {
           err = err.json();

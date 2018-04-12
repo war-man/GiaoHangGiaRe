@@ -1,6 +1,6 @@
 <div class="">
   <div *ngIf="DonHang" class="details_donhang_page panel-group">
-    <div class="col-md-12" style="padding-top: 50px">
+    <div class="col-md-12" style="padding-top: 50px; display:flex;">
       <div class="details_gui">
         <div class="panel-heading"> Thông tin bên gửi hàng</div>
         <div class="panel-body-default">
@@ -54,8 +54,8 @@
     </div>
     <div class="col-md-12 thanhtien_donhang"> Thành tiền: {{DonHang?.ThanhTien}}</div>
     <div class="col-md-12 kienhang_title"> Tổng số kiện hàng: {{kienhang_array.length}}</div>
-    <div class="col-md-12">
-      <div class="kienhang-box col-md-4" *ngFor="let kienhang of kienhang_array; let i = index">
+    <div class="col-md-12" style="margin-left:120px;">
+      <div class="kienhang-box col-md-3" *ngFor="let kienhang of kienhang_array; let i = index">
         <div style="text-align:center">
           <span>Kiện hàng số: {{i+1}} </span>
         </div>
@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12" style="padding-top: 20px">
+    <div class="col-md-12" style="padding-top: 20px;  padding-bottom:100px;">
       <div class="col-md-4"> </div>
       <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" (click)="editDonHang(DonHang.MaDonHang)"> Chỉnh sửa đơn hàng</div>
       <div class="col-md-2 btn btn-info" style="margin-left: 20px; margin-right:20px" (click)="theoDoiDonHang(DonHang.MaDonHang)"> Theo dõi tình trạng</div>

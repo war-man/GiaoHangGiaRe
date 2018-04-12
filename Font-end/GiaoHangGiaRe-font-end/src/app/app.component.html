@@ -3,9 +3,9 @@
     <a class="navbar-brand" [routerLink]="['/home']">Trang chủ</a>
     <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/mypage']">Trang cá nhân</a>
     <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/donhang']">Đơn hàng</a>
-    <a class="navbar-brand" [routerLink]="['']">Liên hệ</a>
+    <a class="navbar-brand" [routerLink]="['/contact']">Liên hệ</a>
     <div class="" style="float:right">
-      <a *ngIf="!isLoggedIn" class="navbar-brand" href="#">Đăng ký</a>
+      <a *ngIf="!isLoggedIn" class="navbar-brand" [routerLink]="['/register']">Đăng ký</a>
       <a *ngIf="!isLoggedIn" class="navbar-brand" [routerLink]="['/login']">Đăng nhập</a>
       <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/logout']">Đăng xuất <span>(Xin chào {{userProfile.userName}})</span></a>
       <a class="navbar-brand" [routerLink]="['/about']">Giới thiệu</a>

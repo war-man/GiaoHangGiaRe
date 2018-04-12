@@ -21,7 +21,7 @@
         public int SoTien { get; set; }
 
         [Display(Name = "Mã khách hàng")]
-        public int MaKhachHang { get; set; }
+        public string MaKhachHang { get; set; }
 
         [Display(Name = "Thời gian")]
         public DateTime ThoiGian { get; set; }

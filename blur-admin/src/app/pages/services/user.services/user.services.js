@@ -8,15 +8,16 @@
         var host = BASE + 'api/';
         //get-all TaiKhKhoan
         var user_get_all = function (params) {
-            var result = $http.get(host + 'taikhoan/get-all', { params }).success(function (data) {
+            var result = $http.get(host + 'taikhoan/get-all', { params })
+            .success(function () {
             }).error(function () {
                 toastr.error('Error');
             });
-            return result
-        };
+            return result;
+        }
         //get-current user TaiKhoan
         var user_current_user = function () {
-            var result = $http.get(host + 'taikhoan/get-current-user').success(function (data) {
+            var result = $http.get(host + 'taikhoan/get-current-user').success(function () {
             }).error(function (err) {
                 toastr.error('Error');
                 console.log(err);
@@ -24,28 +25,28 @@
                 // localStorage.clear();
                 // $rootScope.token=null;
                 window.location = "/auth.html";    
-            });
-            return result;;
-        };
+            })
+            return result;
+        }
 
         //get-by-id TaiKhoan
         var user_getby_id = function (id) {
-            var result = $http.get(host + 'taikhoan/get-by-id?id=' + id.id).success(function (data) {
+            var result = $http.get(host + 'taikhoan/get-by-id?id=' + id.id).success(function () {
             }).error(function () {
                 toastr.error('Error');
-            });
-            return result;;
-        };
+            })
+            return result;
+        }
 
         //update     
         var user_update = function (input) {
             var url = host + 'taikhoan/update';
-            var result = $http.put(url, input).success(function (data, status) {
+            var result = $http.put(url, input).success(function () {
                 oastr.success('Cập nhật thành công!');
             })
-                .error(function (data, status) {
+                .error(function () {
                     toastr.error('Error');
-                });
+                })
             return result;
         }
 
@@ -53,22 +54,22 @@
         var user_create = function (input) {
             var url = host + 'taikhoan/create';
             var data = input;
-            var result = $http.post(url, data).success(function (Response) {
+            var result = $http.post(url, data).success(function () {
             })
-                .error(function (data, status, Errors) {
-                });
+                .error(function () {
+                })
             return result;
         }
 
         //delete TaiKhoan
         var user_delete = function (id) {
             var url = host + 'taikhoan/delete?id=' + id;
-            var result = $http.delete(url).success(function (ré) {
+            var result = $http.delete(url).success(function () {
                 toastr.success('Đã xóa thành công!');
             })
-                .error(function (err) {
+                .error(function () {
                     toastr.error('Error');
-                });
+                })
             return result;
         }
 
@@ -81,7 +82,7 @@
                 })
                 .error(function (data, status) {
                     toastr.error('Error');
-                });
+                })
             return result;
         }
 

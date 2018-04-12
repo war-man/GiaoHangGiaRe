@@ -1,5 +1,6 @@
 ﻿namespace Models.EntityModel
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,7 @@
         public string ImageContent { set; get; }
         public string title { set; get; }
         public string RoleId { set; get; }
-
+        public string create_by { set; get; }
+        public DateTime create_at { set; get; }
     }
 }

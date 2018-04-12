@@ -13,16 +13,17 @@ export class DonhangFormComponent implements OnInit {
   private sub: any;
   kienhangForm: FormGroup;
   donhangForm: FormGroup;
-  DonHang = {
-    NguoiGui: '',
-    SoDienThoaiNguoiGui: '',DiaChiGui: '',NguoiNhan: '',SoDienThoaiNhan: '',DiaChiNhan: '',GhiChu: '', ThanhTien: ''
-  };
+  DonHang : any;
   kienhang_array = [];
   selected_kienhang: any;
   isCreate = true;
   donHangCreate = true;
   constructor(private formBuilder: FormBuilder, private donhang_Service: DonHangService,
     private router: Router, private route: ActivatedRoute) {
+      this.DonHang = {
+        NguoiGui: '',
+        SoDienThoaiNguoiGui: '',DiaChiGui: '',NguoiNhan: '',SoDienThoaiNhan: '',DiaChiNhan: '',GhiChu: '', ThanhTien: ''
+      };
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; 
 
@@ -32,14 +33,14 @@ export class DonhangFormComponent implements OnInit {
             this.kienhang_array = res.kienhang;
           }
           this.DonHang = res.donhang;
-          this.donhangForm.controls['nguoiGui'].setValue(this.DonHang.NguoiGui);
-          this.donhangForm.controls['sdtNguoiGui'].setValue(this.DonHang.SoDienThoaiNguoiGui);
-          this.donhangForm.controls['diaChiGui'].setValue(this.DonHang.DiaChiGui);
-          this.donhangForm.controls['nguoiNhan'].setValue(this.DonHang.NguoiNhan);
-          this.donhangForm.controls['sdtNguoiNhan'].setValue(this.DonHang.SoDienThoaiNhan);
-          this.donhangForm.controls['diaChiNhan'].setValue(this.DonHang.DiaChiNhan);
-          this.donhangForm.controls['ghiChu'].setValue(this.DonHang.GhiChu);
-          this.donhangForm.controls['thanhTien'].setValue(this.DonHang.ThanhTien);
+          this.donhangForm.controls['NguoiGui'].setValue(this.DonHang.NguoiGui);
+          this.donhangForm.controls['SoDienThoaiNguoiGui'].setValue(this.DonHang.SoDienThoaiNguoiGui);
+          this.donhangForm.controls['DiaChiGui'].setValue(this.DonHang.DiaChiGui);
+          this.donhangForm.controls['NguoiNhan'].setValue(this.DonHang.NguoiNhan);
+          this.donhangForm.controls['SoDienThoaiNguoiNhan'].setValue(this.DonHang.SoDienThoaiNguoiNhan);
+          this.donhangForm.controls['DiaChiNhan'].setValue(this.DonHang.DiaChiNhan);
+          this.donhangForm.controls['GhiChu'].setValue(this.DonHang.GhiChu);
+          this.donhangForm.controls['ThanhTien'].setValue(this.DonHang.ThanhTien);
         })
         this.donHangCreate = false;
       }else{
@@ -47,14 +48,14 @@ export class DonhangFormComponent implements OnInit {
       }
     });
     this.donhangForm = this.formBuilder.group({
-      nguoiGui: ['', [Validators.required]],
-      sdtNguoiGui: ['', [Validators.required]],
-      diaChiGui: ['', [Validators.required]],
-      nguoiNhan: ['', [Validators.required]],
-      sdtNguoiNhan: ['', [Validators.required]],
-      diaChiNhan: ['', [Validators.required]],
-      ghiChu: ['', [Validators.required]],
-      thanhTien: ['', [Validators.required]],
+      NguoiGui: ['', [Validators.required]],
+      SoDienThoaiNguoiGui: ['', [Validators.required]],
+      DiaChiGui: ['', [Validators.required]],
+      NguoiNhan: ['', [Validators.required]],
+      SoDienThoaiNguoiNhan: ['', [Validators.required]],
+      DiaChiNhan: ['', [Validators.required]],
+      GhiChu: ['', [Validators.required]],
+      ThanhTien: ['', [Validators.required]],
     });
     this.kienhangForm = this.formBuilder.group({
       TrongLuong: ['', [Validators.required]],
@@ -83,6 +84,7 @@ export class DonhangFormComponent implements OnInit {
   }
   updateData() {
     if (this.kienhangForm.valid) {
+      this.kienhangForm.value.MaKienHang = this.kienhang_array[this.selected_kienhang].MaKienHang;
       this.kienhang_array[this.selected_kienhang] = this.kienhangForm.value;
       this.kienhangForm.reset();
     }
@@ -95,8 +97,17 @@ export class DonhangFormComponent implements OnInit {
     }
   }
   submitDonHangData() {
-    if (this.donhangForm.valid) {
+    if (this.donhangForm.valid && this.kienhang_array.length>0) {
       this.donhang_Service.taoDonHang({ donHang: this.donhangForm.value, kienHang: this.kienhang_array }).then(res => {
+        console.log(res);
+        this.router.navigateByUrl('/donhang');
+      })
+    }
+  }
+  submitUpdateDonHangData(){
+    if (this.donhangForm.valid && this.kienhang_array.length>0) {
+      this.donhangForm.value.MaDonHang = this.DonHang.MaDonHang;
+      this.donhang_Service.updateDonHang({ donHang: this.donhangForm.value, kienHang: this.kienhang_array }).then(res => {
         console.log(res);
         this.router.navigateByUrl('/donhang');
       })

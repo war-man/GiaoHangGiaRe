@@ -10,10 +10,12 @@ namespace GiaoHangGiaRe.Module
     {
         private IRepository<No> _noRepository;
         private LichSuServices lichSuServices;
+        private UserServices _userServices;
         public NoServices()
         {
             _noRepository = new IRepository<No>();
             lichSuServices = new LichSuServices();
+            _userServices = new UserServices();
         }
         public int Count()
         {
@@ -45,11 +47,19 @@ namespace GiaoHangGiaRe.Module
             });
         }
 
-        public List<No> GetAll(int? page, int? size)
+        public List<No> GetAll(int? page, int? size, string KyHieu = "")
+        {
+            if (!page.HasValue) page = Constant.DefaultPage;
+            if (!size.HasValue) return _noRepository.GetAll().ToList();
+            return _noRepository.GetAll().OrderBy(p => p.Ma).Where(p=> p.KyHieu.Contains(KyHieu))
+                    .Take(size.Value).Skip(size.Value * (page.Value - 1)).ToList();
+        }
+        public List<No> GetNoCurrentUser(int? page, int? size, string KyHieu = "")
         {
             if (!page.HasValue) page = Constant.DefaultPage;
             if (!size.HasValue) return _noRepository.GetAll().ToList();
             return _noRepository.GetAll().OrderBy(p => p.Ma)
+                .Where(p=>p.MaKhachHang == _userServices.GetCurrentUser().Id && p.KyHieu.Contains(KyHieu))
                     .Take(size.Value).Skip(size.Value * (page.Value - 1)).ToList();
         }
 
@@ -59,9 +69,12 @@ namespace GiaoHangGiaRe.Module
         }
    
 
-        public List<No> GetNoOfKH(int MaKH)
+        public List<No> GetNoOfKH(int? page, int? size,string MaKH)
         {
-            return _noRepository.GetAll().Where(p => p.MaKhachHang == MaKH).ToList();
+            if (!page.HasValue) page = Constant.DefaultPage;
+            if (!size.HasValue) return _noRepository.GetAll().ToList();
+            return _noRepository.GetAll().Where(p => p.MaKhachHang == MaKH)
+                .Take(size.Value).Skip(size.Value * (page.Value - 1)).ToList();
         }
 
         public void SetHoanThanh(int id)
@@ -81,6 +94,16 @@ namespace GiaoHangGiaRe.Module
                 NoiDung = Constant.CvtToString(input),
                 ViTriThaoTac = Constant.No
             });
+        }
+
+        public List<No> GetNoOfKH(int MaKH)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountNoCurenUser()
+        {
+            return _noRepository.GetAll().Where(p => p.MaKhachHang == _userServices.GetCurrentUser().Id).Count();
         }
     }
 }

@@ -1,29 +1,52 @@
-<a class="btn btn-info them_donhang" [routerLink]="['/donhang-them']">Thêm đơn hàng mới</a>
-<table class="table table-bordered text-center">
-  <thead>
-    <tr>
-      <th>Người gửi</th>
-      <th>Địa chỉ gửi</th>
-      <th>Số điện thoại gửi</th>
-      <th>Người nhận</th>
-      <th>Đại chỉ nhận</th>
-      <th>Số điện thoại nhận</th>
-      <th>Ghi chú</th>
-      <th>Thành tiền</th>
-      <!-- <th>Thành tiền</th> -->
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of listDonHang; let i = index">
-      <td>{{item.NguoiGui}}</td>
-      <td>{{item.DiaChiGui}}</td>
-      <td>{{item.SoDienThoaiNguoiGui}}</td>
-      <td>{{item.NguoiNhan}}</td>
-      <td>{{item.DiaChiNhan}}</td>
-      <td>{{item.SoDienThoaiNguoiNhan}}</td>
-      <td>{{item.GhiChu}}</td>
-      <td>{{item.ThanhTien}}</td>
-      <td><a   [routerLink]="['/chittiet-donhang', item.MaDonHang]" class="btn btn-warning">Chi tiết</a></td>
-    </tr>
-  </tbody>
-</table>
+<div class="donhang-page">
+  <div class="container">
+    <a class="btn btn-info them_donhang" [routerLink]="['/donhang-them']">Thêm đơn hàng mới</a>
+    <ul class="nav nav-tabs">
+      <li [ngClass]="{'active':active[0]}">
+        <a (click)="getHuy($event)" >Đã hủy ({{donHangStatus?.Huy}})</a>
+      </li>
+      <li [ngClass]="{'active':active[1]}">
+        <a (click)="getDangCho($event)" >Đang chờ ({{donHangStatus?.DangCho}})</a>
+      </li>
+      <li [ngClass]="{'active':active[2]}">
+        <a (click)="getDangGiao($event)">Đang giao hàng ({{donHangStatus?.DangGiaoHang}})</a>
+      </li>
+      <li [ngClass]="{'active':active[3]}">
+        <a (click)="getNhapKho($event)">Nhập kho ({{donHangStatus?.NhapKho}})</a>
+      </li>
+      <li [ngClass]="{'active':active[4]}">
+        <a (click)="getGiaoThanhCong($event)">Giao thành công ({{donHangStatus?.GiaoHangCong}})</a>
+      </li>
+    </ul>
+
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>Người gửi</th>
+          <th>Địa chỉ gửi</th>
+          <th>Số điện thoại gửi</th>
+          <th>Người nhận</th>
+          <th>Đại chỉ nhận</th>
+          <th>Số điện thoại nhận</th>
+          <th>Ghi chú</th>
+          <th>Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listDonHang; let i = index">
+          <td>{{item.NguoiGui}}</td>
+          <td>{{item.DiaChiGui}}</td>
+          <td>{{item.SoDienThoaiNguoiGui}}</td>
+          <td>{{item.NguoiNhan}}</td>
+          <td>{{item.DiaChiNhan}}</td>
+          <td>{{item.SoDienThoaiNguoiNhan}}</td>
+          <td>{{item.GhiChu}}</td>
+          <td>{{item.ThanhTien}}</td>
+          <td>
+            <a [routerLink]="['/chittiet-donhang', item.MaDonHang]" class="btn btn-warning">Chi tiết</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

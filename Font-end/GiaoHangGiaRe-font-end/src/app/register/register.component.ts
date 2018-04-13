@@ -31,9 +31,9 @@ export class RegisterComponent implements OnInit {
 
   }
   submitData() {
-    if (this.registerForm.valid && this.base64textString != "") {
+    if (this.registerForm.valid) {
       if (this.registerForm.value.Password == this.registerForm.value.ConfirmPassword) {
-        this.registerForm.value.Base64 = this.base64textString;
+        // this.registerForm.value.Base64 = this.base64textString;
         this.loginService.register(this.registerForm.value).then((res) => {
           if (res) {
             window.location.reload();

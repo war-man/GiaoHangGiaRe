@@ -9,6 +9,7 @@ import { DataService } from '../providers/data_services';
 import { HttpService } from '../providers/http-service';
 import { LoginService } from '../providers/login_service/login.service';
 import {DonHangService} from '../providers/donhang_service/donhang.service';
+import { BangGiaService } from '../providers/banggia_services/banggia_services';
 
 import { AppComponent } from './app.component';
 
@@ -24,6 +25,7 @@ import { KienhangModalComponent } from './kienhang-modal/kienhang-modal.componen
 import { DonHangDetailsComponent } from './don-hang-details/don-hang-details.component';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './register/register.component';
+import { BangGiaComponent } from './bang-gia/bang-gia.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent },
@@ -31,6 +33,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'mypage', component: MypageComponent },
+      { path: 'bang-gia', component: BangGiaComponent },
       { path: 'donhang', component: DonhangComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
@@ -54,7 +57,8 @@ const routes: Routes = [
     ModalDirective,
     KienhangModalComponent,
     DonHangDetailsComponent,
-    RegisterComponent
+    RegisterComponent,
+    BangGiaComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -70,7 +74,8 @@ const routes: Routes = [
     DataService,
     HttpService,
     LoginService,
-    DonHangService
+    DonHangService,
+    BangGiaService
   ],
   bootstrap: [AppComponent]
 })

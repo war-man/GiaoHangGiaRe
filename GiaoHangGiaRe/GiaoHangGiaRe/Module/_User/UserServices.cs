@@ -59,16 +59,6 @@ namespace GiaoHangGiaRe.Module
         {       
             var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi,
                 TenTaiKhoan = input.TenTaiKhoan };
-            Image img = new Image();
-            img = new Image
-            {
-                RoleId = "",
-                title = "",
-                create_by = user.TenTaiKhoan,
-                create_at = DateTime.Now,
-                ImageContent = input.Base64
-            };
-            _imageServices.Create(img);
             var result = UserManager.Create(user, input.Password);
             var currentUser = UserManager.FindByName(user.UserName);
             if (input.Role != null) // Nếu có Role thì thêm không thì thôi

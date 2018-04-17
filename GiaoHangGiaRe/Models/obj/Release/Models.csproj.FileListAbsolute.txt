@@ -47,3 +47,6 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.pdb
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.themimage.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.themimage2.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.suaTinhTrang_donHang.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.thaydoi8.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.sua_bang_no.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\Models\obj\Release\Models.Migrations.sua_bang_db.resources

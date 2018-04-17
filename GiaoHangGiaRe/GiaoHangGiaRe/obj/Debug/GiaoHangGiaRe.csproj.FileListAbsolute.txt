@@ -200,3 +200,5 @@ E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\bin\System.Text.Encodings.Web.x
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.themimage.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.suaTinhTrang_donHang.resources
 E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.suaTinhTrang_donHang2.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.sua_bang_no.resources
+E:\Git\GiaoHangGiaRe\GiaoHangGiaRe\GiaoHangGiaRe\obj\Debug\GiaoHangGiaRe.Migrations.update_Bang_User.resources

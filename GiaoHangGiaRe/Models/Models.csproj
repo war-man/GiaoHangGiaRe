@@ -182,6 +182,14 @@
     <Compile Include="Migrations\201803211407326_thaydoi8.Designer.cs">
       <DependentUpon>201803211407326_thaydoi8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804051426413_sua_bang_no.cs" />
+    <Compile Include="Migrations\201804051426413_sua_bang_no.Designer.cs">
+      <DependentUpon>201804051426413_sua_bang_no.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804110311241_sua_bang_db.cs" />
+    <Compile Include="Migrations\201804110311241_sua_bang_db.Designer.cs">
+      <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -255,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803211407326_thaydoi8.resx">
       <DependentUpon>201803211407326_thaydoi8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051426413_sua_bang_no.resx">
+      <DependentUpon>201804051426413_sua_bang_no.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804110311241_sua_bang_db.resx">
+      <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

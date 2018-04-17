@@ -7,10 +7,10 @@ import {BangGiaService} from '../../providers/banggia_services/banggia_services'
   styleUrls: ['./bang-gia.component.scss']
 })
 export class BangGiaComponent implements OnInit {
-
+  listBangGia: any;
   constructor( private _bangGiaService: BangGiaService ) {
     this._bangGiaService.getBangGia().then(res => {
-      console.log(res);
+      this.listBangGia = res.data;
     });
    }
 

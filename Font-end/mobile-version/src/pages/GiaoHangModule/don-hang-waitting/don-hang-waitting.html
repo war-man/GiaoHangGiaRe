@@ -8,8 +8,8 @@
 
   <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Đơn hàng chờ</ion-title>
   </ion-navbar>
 
@@ -17,5 +17,23 @@
 
 
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <div *ngFor="let item of lishDonHangWaitting" class="donhang-item">
+      <button ion-item no-lines (tap)="gotoDetailsDonHang(item)">
+        <ion-avatar item-start>
+          <img src="">
+        </ion-avatar>
+        <h3>Người gửi: {{item.NguoiGui}}</h3>
+        <h2>Thành tiền: {{item.ThanhTien}}</h2>
+        <p>Địa chỉ gửi: {{item.DiaChiGui}}</p>
+        <span ion-button clear item-end>Chi tiết</span>
+      </button>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

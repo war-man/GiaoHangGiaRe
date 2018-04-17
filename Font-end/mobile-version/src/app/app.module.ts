@@ -21,6 +21,7 @@ import {KienHangFormPage} from '../pages/kien-hang-form/kien-hang-form';
 // GiaoHang
 import {DonHangGiaoHangPage} from '../pages/GiaoHangModule/don-hang-giao-hang/don-hang-giao-hang';
 import {DonHangWaittingPage} from '../pages/GiaoHangModule/don-hang-waitting/don-hang-waitting';
+import {DonHangKienHangPage} from '../pages/GiaoHangModule/don-hang-kien-hang/don-hang-kien-hang';
 
 import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/TaiKhoanModule/account/account';
@@ -36,8 +37,8 @@ import { UserData } from '../providers/user-data';
 import { UserServices } from '../providers/user-services/user-services';
 import { DonhangServicesProvider } from '../providers/donhang-services/donhang-services';
 import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang-popover';
-import { SignalrServiceProvider } from '../providers/signalr-service/signalr-service';
-import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
+//import { SignalrServiceProvider } from '../providers/signalr-service/signalr-service';
+import { SignalR } from 'ng2-signalr';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
     PopoverDonHangPage,
     KienHangFormPage,
 
-    //Don Hang
+    //Don Hang Giao Hang
+    DonHangKienHangPage,
     DonHangWaittingPage
   ],
   imports: [
@@ -82,7 +84,7 @@ import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
         { component: KienHangFormPage, name: 'KienHangFormPage', segment: 'kienhang-form' },
         { component: DonHangGiaoHangPage, name: 'DonHangGiaoHangPage', segment: 'donhang-giaohang' },
         { component: PopoverDonHangPage, name: 'PopoverDonHangPage', segment: 'popover-donhang-page' },
-
+        { component: DonHangKienHangPage, name: 'DonHangKienHangPage', segment: 'donhang-kienhang-page' },
         { component: DonHangWaittingPage, name: 'DonHangWaittingPage', segment: 'donhang-waitting' }
       ]
     }),
@@ -107,7 +109,8 @@ import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
     KienHangFormPage,
     PopoverDonHangPage,
 
-    DonHangWaittingPage
+    DonHangWaittingPage,
+    DonHangKienHangPage
   ],
   providers: [
     Camera,
@@ -120,7 +123,7 @@ import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
     Geolocation,
     UserServices,
     DonhangServicesProvider,
-    SignalrServiceProvider,
+    //SignalrServiceProvider,
     SignalR
   ]
 })

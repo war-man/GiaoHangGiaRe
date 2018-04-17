@@ -1,0 +1,23 @@
+.contact_page{
+  margin-top: 100px;
+  background-color: rgba(220, 220, 220, 0.61);
+  .contact_corm{
+    textarea{
+      resize: vertical;
+    }
+  }
+  .info_contact{
+    padding-left: 100px;
+    text-align: justify;
+    .title{
+      color: rgb(255, 168, 142);
+    }
+  }
+  .map{
+    margin-top: 31px;
+    agm-map {
+      margin-top: 20px;
+      height: 50vh;
+    }
+  }
+}

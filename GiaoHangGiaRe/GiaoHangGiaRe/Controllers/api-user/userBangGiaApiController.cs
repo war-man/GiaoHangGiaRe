@@ -1,5 +1,4 @@
 ﻿using GiaoHangGiaRe.Module;
-using Models.EntityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +11,17 @@ namespace GiaoHangGiaRe.Controllers
     [RoutePrefix("user/api/banggia")]
     public class userBangGiaApiController : ApiController
     {
-        private BangGiaServices _bangGiaServices;
-        public userBangGiaApiController()
+        public BangGiaServices _bangGiaServices;
+        userBangGiaApiController()
         {
             _bangGiaServices = new BangGiaServices();
         }
+
         // GET: api/get-all
-        [AllowAnonymous]
+
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult Get(int? page, int? size)
+        public IHttpActionResult Get(int? page = null, int? size = null)
         {
             return Ok(new
             {
@@ -33,7 +33,6 @@ namespace GiaoHangGiaRe.Controllers
         }
 
         // GET: api/get-by-id
-        [AllowAnonymous]
         [HttpGet]
         [Route("get-by-id")]
         public IHttpActionResult GetById(int id)
@@ -41,4 +40,5 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(_bangGiaServices.GetById(id));
         }
     }
+
 }

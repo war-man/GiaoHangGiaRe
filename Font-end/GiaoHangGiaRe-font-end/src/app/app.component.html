@@ -2,7 +2,10 @@
   <div class="col-md-11">
     <a class="navbar-brand" [routerLink]="['/home']">Trang chủ</a>
     <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/mypage']">Trang cá nhân</a>
+    <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/bang-gia']">Bảng giá</a>
+    
     <a *ngIf="isLoggedIn" class="navbar-brand" [routerLink]="['/donhang']">Đơn hàng</a>
+  
     <a class="navbar-brand" [routerLink]="['/contact']">Liên hệ</a>
     <div class="" style="float:right">
       <a *ngIf="!isLoggedIn" class="navbar-brand" [routerLink]="['/register']">Đăng ký</a>

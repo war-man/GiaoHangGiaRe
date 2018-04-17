@@ -37,6 +37,14 @@ namespace GiaoHangGiaRe.Providers
                 context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                 return;
             }
+            else
+            {
+                if(user.isDelete == true)
+                {
+                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
+                    return;
+                }
+            }
 
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);

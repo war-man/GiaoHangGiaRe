@@ -14,10 +14,10 @@ namespace GiaoHangGiaRe.Controllers
     [Authorize]
     public class userDonHangAPIController : ApiController
     {
-       // private GiaoHangGiaReDbContext db = new GiaoHangGiaReDbContext();
         private DonHangServices _donHangServices = new DonHangServices();
         private KienHangServices _kienhangServices = new KienHangServices();
         private UserServices _userServices = new UserServices();
+        private NhanVienServices _nhanvienServices = new NhanVienServices();
 
         // GET: api/DonHangAPI
         [Authorize]
@@ -49,6 +49,7 @@ namespace GiaoHangGiaRe.Controllers
                 _statusDonHang
             });
         }
+
         [HttpGet]
         [Route("get-all-waitting")]
         public IHttpActionResult GetDonHangsWaitting(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
@@ -61,6 +62,7 @@ namespace GiaoHangGiaRe.Controllers
                 total = _donHangServices.GetDonHangWaitting().Count
             });
         }
+
         [HttpGet]
         [Route("get-all-shipper")]
         public IHttpActionResult GetDonHangsShipper(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
@@ -73,14 +75,6 @@ namespace GiaoHangGiaRe.Controllers
                 total = _donHangServices.GetDonHangCurrentShipper().Count
             });
         }
-        // GET: api/DonHangAPI/5
-        //[HttpGet]
-        //[Route("get-by-username")]
-        //[ResponseType(typeof(DonHang))]
-        //public IHttpActionResult GetDonHangByUserName(string  username)
-        //{           
-        //    return Ok(_donHangServices.GetByUser(username));
-        //}
 
         //GET: api/DonHangAPI/5
         [HttpGet]
@@ -105,19 +99,21 @@ namespace GiaoHangGiaRe.Controllers
             }
         }
 
-        //[HttpGet]
-        //[Route("sort-by")]
-        //public IHttpActionResult GetDonHangSortBy(string key)
-        //{
-        //    return Ok();
-        //}
+        [HttpGet]
+        [Route("get-kienhang-donhang")]
+        public IHttpActionResult getKienHangOfDonHang(int MaDonHang)
+        {
+            if (_donHangServices.IsExists(MaDonHang))
+            {
+                return Ok(_kienhangServices.GetByMaDonHang(MaDonHang));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                   (HttpStatusCode.InternalServerError, "id không hợp lệ!"));
+            }
 
-        //[HttpGet]
-        //[Route("search-by-key")]
-        //public IHttpActionResult GetDonHangByKey(int? page ,int? size, string key)
-        //{
-        //    return Ok(_donHangServices.SearchByKey(page,size,key));
-        //}
+        }
 
         // PUT: api/DonHangAPI/5
         [ResponseType(typeof(void))]
@@ -148,24 +144,19 @@ namespace GiaoHangGiaRe.Controllers
                 return BadRequest();
 
             return Ok(1);
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            //if (donHang.MaDonHang <= 0 || _donHangServices.donHangIsOfUser(donHang.MaDonHang))
-            //{
-            //    return BadRequest();
-            //}
-            //_donHangServices.Update(donHang);
-            //return Ok(1);
         }
+
+        /// <summary>
+        /// ssss
+        /// </summary>
+        /// <param name="MaDonHang"></param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         [Route("ship_receive")]
         [HttpPut]
         public IHttpActionResult ShipReceiveDonHang(int MaDonHang)
         {
-            if (MaDonHang <= 0 || _donHangServices.donHangIsOfUser(MaDonHang))
+            if (MaDonHang <= 0 || !_donHangServices.IsExists(MaDonHang))
             {
                 return BadRequest();
             }
@@ -174,6 +165,15 @@ namespace GiaoHangGiaRe.Controllers
                 DonHang donHang = _donHangServices.GetById(MaDonHang);
                 if (donHang.TinhTrang == 0 ) // Tình trạng đơn hàng đang chờ
                 {
+                    try
+                    {
+                        donHang.MaNhanVienGiao = _nhanvienServices.GetNhanVienCurrentUser().MaNhanVien;
+                    }
+                    catch
+                    {
+                        return ResponseMessage(Request.CreateErrorResponse
+                                           (HttpStatusCode.InternalServerError, "Tài khoản không tồn tại trong danh sách nhân viên."));
+                    }
                     donHang.TinhTrang = 1;
                     _donHangServices.Update(donHang);
                     return Ok(1);
@@ -213,24 +213,7 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(1);
         }
 
-        // DELETE: api/DonHangAPI/5
-        //[ResponseType(typeof(DonHang))]
-        //[Route("delete")]
-        //public IHttpActionResult DeleteDonHang(int id)
-        //{
-        //    var donhang = _donHangServices.GetById(id);
-        //    _donHangServices.Delete(id);
-        //    return Ok(donhang);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            
     }
     public class statusDonHang
     {

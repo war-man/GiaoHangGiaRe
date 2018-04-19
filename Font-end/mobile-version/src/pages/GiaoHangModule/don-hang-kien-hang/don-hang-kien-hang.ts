@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { DonhangServicesProvider } from '../../../providers/donhang-services/donhang-services';
 
 /**
  * Generated class for the DonHangKienHangPage page.
@@ -15,13 +16,17 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class DonHangKienHangPage {
   DonHang: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  arrayKienHang: any[];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+    public DonhangServices: DonhangServicesProvider) {
     this.DonHang = this.navParams.get('DonHang');
-    console.log(this.DonHang);
+    this.DonhangServices.getKienHangDonHang(this.DonHang.MaDonHang).then(res => {
+      this.arrayKienHang = res;
+    })
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DonHangKienHangPage');
+  tiepNhanDonHang(MaDonHang){
+    this.DonhangServices.ship_receive(MaDonHang).then(res => {
+      console.log(res);
+    })
   }
-
 }

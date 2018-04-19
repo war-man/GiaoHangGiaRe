@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http_services';
-
+import { HttpParams } from '@angular/common/http';
 /*
   Generated class for the DonhangServicesProvider provider.
 
@@ -33,6 +33,26 @@ export class DonhangServicesProvider {
   getAllDonHangShipper() : any{
     return new Promise((resolve, reject) => {
       this.http_Service.get('user/api/donhang/get-all-shipper').subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+  getKienHangDonHang(MaDonHang: any) : any{
+    let httpParams = new HttpParams().append("MaDonHang", MaDonHang)
+    return new Promise((resolve, reject) => {
+      this.http_Service.get('user/api/donhang/get-kienhang-donhang', httpParams).subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+  ship_receive(MaDonHang: any): any{
+    let httpParams = new HttpParams().append("MaDonHang", MaDonHang)
+    return new Promise((resolve, reject) => {
+      this.http_Service.put('user/api/donhang/ship_receive',null, httpParams).subscribe(res => {
         resolve(res);
       }, err => {
         reject(err);

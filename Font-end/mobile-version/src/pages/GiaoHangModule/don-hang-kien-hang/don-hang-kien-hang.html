@@ -19,4 +19,13 @@
 
 
 <ion-content padding>
+  <ion-row *ngIf="arrayKienHang?.length < 1">
+    Không có kiện hàng nào.
+  </ion-row>
+  <ion-row *ngFor="let item of arrayKienHang">
+    {{item.NoiDung}}
+  </ion-row>
 </ion-content>
+<ion-footer *ngIf="arrayKienHang?.length > 0">
+    <button ion-button block (click)="tiepNhanDonHang(DonHang.MaDonHang)">Tiếp nhận đơn hàng</button>
+</ion-footer>

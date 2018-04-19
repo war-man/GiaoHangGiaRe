@@ -24,7 +24,6 @@ export class DonHangGiaoHangPage {
     public DonhangServices: DonhangServicesProvider) {
     this.DonhangServices.getAllDonHangShipper().then(res => {
       this.listDonHang = res.list;
-      console.log(this.listDonHang);
     })
   }
 

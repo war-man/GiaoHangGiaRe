@@ -39,6 +39,12 @@ namespace GiaoHangGiaRe.Controllers
         {
             return Ok(_bangGiaServices.GetById(id));
         }
+        [HttpGet]
+        [Route("get-calculate-price")]
+        public IHttpActionResult getCalculate(float ChieuDai, float ChieuRong, float KhoiLuong, int SoLuongKienHang)
+        {
+            return Ok(ChieuDai*ChieuRong);
+        }
     }
 
 }

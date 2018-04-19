@@ -1,8 +1,8 @@
 export const config = {
-     host: 'http://192.168.30.102:8080/',
-    //host: 'http://localhost:8195/',
-    //host2: 'http://localhost:8195'
-    host2: 'http://192.168.30.102:8080/'
+    //  host: 'http://192.168.30.102:8080/',
+    //  host2: 'http://192.168.30.102:8080/',
+    host: 'http://localhost:8195/',
+    host2: 'http://localhost:8195',
 }
 import { LoadingController, Loading, AlertController} from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
@@ -49,6 +49,9 @@ export class HttpService {
                 console.log(done);
             }, err => {
                 console.log(err);
+                if(err.status == 401){
+                    this.userData.logout();
+                }
                 if(this.loading){
                     this.loading.dismiss().then(() =>{
                         this.AlertCtr.create({

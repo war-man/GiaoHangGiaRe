@@ -19,6 +19,7 @@ namespace GiaoHangGiaRe.Module
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ImageServices _imageServices;
+        private NhanVienServices _nhanvienServices;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -50,6 +51,7 @@ namespace GiaoHangGiaRe.Module
 
         public UserServices()
         {
+            _nhanvienServices = new NhanVienServices();
             _userRepository = new IdentityRepository<ApplicationUser>();
             lichSuServices = new LichSuServices();
             _imageServices = new ImageServices();
@@ -124,12 +126,21 @@ namespace GiaoHangGiaRe.Module
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Thêm user vào 1 hoặc nhiều Role
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="RoleId"></param>
+        /// <returns></string></returns>
         public List<string> AddToRole(string UserId, string[] RoleId)
         {
             var user = UserManager.FindById(UserId.ToString());
             if (RoleId != null && RoleId.Count() > 0)
             {
+                if (!_nhanvienServices.IsNhanVien(UserId))
+                {
+                    _nhanvienServices.CreateNhanVien_from_User(GetById(UserId));
+                }
                 foreach (string item in RoleId)
                 {
                     UserManager.AddToRole(UserId, item);

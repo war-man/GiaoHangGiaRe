@@ -18,14 +18,22 @@ namespace GiaoHangGiaRe.Module
         {
             return _lichsurepository.GetAll().Count();
         }
-
+        /// <summary>
+        /// Tạo lịch sử lưu lại thay đổi
+        /// </summary>
+        /// <param name="input"></param>
         public void Create(LichSu input)
         {
             if (input.TenTaiKhoan == "") input.TenTaiKhoan = "Không đăng nhập";
             input.ThoiGianThucHien = DateTime.Now;
             _lichsurepository.Insert(input);
         }
-
+        /// <summary>
+        /// Lấy tất cả thay đổi
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public List<LichSu> GetAll(int? page, int? size)
         {
             if (!page.HasValue) page = page = Constant.DefaultPage;

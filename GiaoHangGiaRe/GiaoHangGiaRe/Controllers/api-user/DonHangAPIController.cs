@@ -14,11 +14,16 @@ namespace GiaoHangGiaRe.Controllers
     [Authorize]
     public class userDonHangAPIController : ApiController
     {
-        private DonHangServices _donHangServices = new DonHangServices();
-        private KienHangServices _kienhangServices = new KienHangServices();
-        private UserServices _userServices = new UserServices();
-        private NhanVienServices _nhanvienServices = new NhanVienServices();
-
+        private DonHangServices _donHangServices;
+        private KienHangServices _kienhangServices;
+        private UserServices _userServices;
+        private NhanVienServices _nhanvienServices;
+        userDonHangAPIController() {
+            _kienhangServices = new KienHangServices();
+            _userServices = new UserServices();
+            _nhanvienServices = new NhanVienServices();
+            _donHangServices = new DonHangServices();
+        }
         // GET: api/DonHangAPI
         [Authorize]
         [HttpGet]

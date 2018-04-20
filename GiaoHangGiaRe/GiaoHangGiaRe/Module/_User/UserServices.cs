@@ -19,7 +19,7 @@ namespace GiaoHangGiaRe.Module
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ImageServices _imageServices;
-        private NhanVienServices _nhanvienServices;
+        private IRepository<NhanViens> _nhanvienRepository;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -50,11 +50,11 @@ namespace GiaoHangGiaRe.Module
         }
 
         public UserServices()
-        {
-            _nhanvienServices = new NhanVienServices();
+        { 
             _userRepository = new IdentityRepository<ApplicationUser>();
             lichSuServices = new LichSuServices();
             _imageServices = new ImageServices();
+            _nhanvienRepository = new IRepository<NhanViens>();
             //UserManager = new ApplicationUserManager();
         }
         public IdentityResult Create(RegisterViewModel input)
@@ -137,9 +137,10 @@ namespace GiaoHangGiaRe.Module
             var user = UserManager.FindById(UserId.ToString());
             if (RoleId != null && RoleId.Count() > 0)
             {
-                if (!_nhanvienServices.IsNhanVien(UserId))
+                if (_nhanvienRepository.GetAll().Any(i=>i.TenTaiKhoan == GetById(UserId).TenTaiKhoan))
                 {
-                    _nhanvienServices.CreateNhanVien_from_User(GetById(UserId));
+                    //_nhanvienServices.CreateNhanVien_from_User(GetById(UserId));
+
                 }
                 foreach (string item in RoleId)
                 {

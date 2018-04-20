@@ -137,10 +137,17 @@ namespace GiaoHangGiaRe.Module
             var user = UserManager.FindById(UserId.ToString());
             if (RoleId != null && RoleId.Count() > 0)
             {
+                //Nếu chưa có nhân viên nào thuộc tài khoản này thì tự thêm nhân viên mới 
                 if (_nhanvienRepository.GetAll().Any(i=>i.TenTaiKhoan == GetById(UserId).TenTaiKhoan))
                 {
-                    //_nhanvienServices.CreateNhanVien_from_User(GetById(UserId));
-
+                    _nhanvienRepository.Insert(new NhanViens {
+                        Email = user.Email,
+                        DiaChi = user.DiaChi,
+                        SoDienThoai = user.PhoneNumber,
+                        TenTaiKhoan = user.TenTaiKhoan,
+                        TenNhanVien = user.HoTen,
+                        NgayBatDau = DateTime.Now
+                    });
                 }
                 foreach (string item in RoleId)
                 {

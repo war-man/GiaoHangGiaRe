@@ -57,7 +57,7 @@
 
 </html>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
   $(document).ready(function () {
     $(".login-form").keypress(function (e) {
@@ -74,18 +74,18 @@
     var username = $("input[name='TaiKhoan']").val();
     var password = $("input[name='MatKhau']").val();
     var input = 'grant_type=password&username=' + username + '&password=' + password;
+    var host = "http://localhost:8195/token";
     $.ajax({
-      url: "http://localhost:8195/token",
+      url: host,
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
       data: input
-    }).done(function (data, status) {
-
+    }).done(function (data) {
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
-    }).fail(function (data, status) {
-      console.log("Lỗi đăng nhập");
+    }).fail(function (err) {
+      alert(JSON.parse(err.responseText).error_description);
     });
   }
 </script>

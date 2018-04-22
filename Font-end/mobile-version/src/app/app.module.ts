@@ -30,6 +30,7 @@ import { MapPage } from '../pages/map/map';
 import { SignupPage } from '../pages/TaiKhoanModule/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { SupportPage } from '../pages/support/support';
+import { BangGiaPage } from '../pages/bang-gia/bang-gia';
 
 import { ConferenceData } from '../providers/conference-data';
 import {HttpService} from '../providers/http_services';
@@ -39,6 +40,7 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
 import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang-popover';
 //import { SignalrServiceProvider } from '../providers/signalr-service/signalr-service';
 import { SignalR } from 'ng2-signalr';
+import { BangGiaProvider } from '../providers/bang-gia/bang-gia';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { SignalR } from 'ng2-signalr';
 
     //Don Hang Giao Hang
     DonHangKienHangPage,
-    DonHangWaittingPage
+    DonHangWaittingPage,
+
+    BangGiaPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,9 @@ import { SignalR } from 'ng2-signalr';
         { component: DonHangGiaoHangPage, name: 'DonHangGiaoHangPage', segment: 'donhang-giaohang' },
         { component: PopoverDonHangPage, name: 'PopoverDonHangPage', segment: 'popover-donhang-page' },
         { component: DonHangKienHangPage, name: 'DonHangKienHangPage', segment: 'donhang-kienhang-page' },
-        { component: DonHangWaittingPage, name: 'DonHangWaittingPage', segment: 'donhang-waitting' }
+        { component: DonHangWaittingPage, name: 'DonHangWaittingPage', segment: 'donhang-waitting' },
+        { component: BangGiaPage, name: 'BangGiaPage', segment: 'bang-gia' }
+        
       ]
     }),
     IonicStorageModule.forRoot()
@@ -110,7 +116,9 @@ import { SignalR } from 'ng2-signalr';
     PopoverDonHangPage,
 
     DonHangWaittingPage,
-    DonHangKienHangPage
+    DonHangKienHangPage,
+
+    BangGiaPage
   ],
   providers: [
     Camera,
@@ -124,7 +132,8 @@ import { SignalR } from 'ng2-signalr';
     UserServices,
     DonhangServicesProvider,
     //SignalrServiceProvider,
-    SignalR
+    SignalR,
+    BangGiaProvider
   ]
 })
 export class AppModule { }

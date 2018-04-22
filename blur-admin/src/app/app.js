@@ -45,7 +45,6 @@ angular.module("BlurAdmin").run(["BASE", "$rootScope", "$state", "$http", functi
     }
 
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
-
     });
 }
 ]);

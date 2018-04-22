@@ -14,6 +14,7 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { SupportPage } from '../pages/support/support';
 import { DonHangPage } from '../pages/DonHangModule/donhang/donhang';
 import { DonHangGiaoHangPage } from '../pages/GiaoHangModule/don-hang-giao-hang/don-hang-giao-hang';
+import { BangGiaPage } from '../pages/bang-gia/bang-gia';
 
 import {DonHangWaittingPage} from '../pages/GiaoHangModule/don-hang-waitting/don-hang-waitting';
 
@@ -49,12 +50,14 @@ export class ConferenceApp {
   loggedInPages: PageInterface[] = [
     { title: 'Tài khoản', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    { title: 'Bảng giá tham khảo', name: 'BangGiaPage', component: BangGiaPage, icon: 'help' },
     { title: 'Đơn hàng', name: 'DonHangPage', component: DonHangPage, icon: 'information-circle' },
     { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedInPagesGiaoHang: PageInterface[] = [
     { title: 'Tài khoản', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    { title: 'Bảng giá tham khảo', name: 'BangGiaPage', component: BangGiaPage, icon: 'help' },
     { title: 'Đơn hàng chờ', name: 'DonHangWaittingPage', component: DonHangWaittingPage, icon: 'help' },
     { title: 'Đơn hàng tiếp nhận', name: 'DonHangGiaoHangPage', component: DonHangGiaoHangPage, icon: 'information-circle' },
     { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
@@ -62,6 +65,7 @@ export class ConferenceApp {
   loggedOutPages: PageInterface[] = [
     { title: 'Đăng nhập', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
     { title: 'Hỗ trợ', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    { title: 'Bảng giá tham khảo', name: 'BangGiaPage', component: BangGiaPage, icon: 'help' },
     { title: 'Đăng ký', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any;

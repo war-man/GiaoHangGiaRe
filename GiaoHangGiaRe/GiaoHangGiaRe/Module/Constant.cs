@@ -47,4 +47,52 @@ namespace GiaoHangGiaRe.Module
             return new JavaScriptSerializer().Serialize(input);
         }
     }
+    public class DonHangConstant
+    {
+        /// <summary>
+        /// Đơn hàng bị khách hàng hủy hoặc do nhân viên hủy
+        /// </summary>
+        public static int Huy = -1;
+        /// <summary>
+        /// Đơn hàng mới tạo sẽ thuộc đon hàng chờ
+        /// </summary>
+        public static int DangCho = 0;
+        /// <summary>
+        /// Đơn hàng đã được nhân viên giao hàng  tiếp nhận
+        /// </summary>
+        public static int DaTiepNhan = 1;
+        /// <summary>
+        /// Đơn hàng đang được nhân viên tới địa chỉ lấy hàng
+        /// </summary>
+        public static int DangLayHang = 2;
+        /// <summary>
+        /// Đơn hàng đã lấy hàng thành công.
+        /// </summary>
+        public static int LayThanhCong = 3;
+        /// <summary>
+        /// Không thể lấy được hàng do yếu tố khách quan.
+        /// </summary>
+        public static int KhongTheLayHang = -2;
+        /// <summary>
+        /// Đơn hàng đã lấy được hàng và đang giao cho người nhận
+        /// </summary>
+        public static int DangGiao = 4;
+        /// <summary>
+        /// Đơn hàng gửi vào kho
+        /// </summary>
+        public static int GuiVaoKho = 5;
+        //Giao hangfg thành công
+        public static int GiaoThanhCong = 6;
+    }
+    public class NhanVienConstant
+    {
+        /// <summary>
+        /// Nhân viên đang hoạt động có status = 1
+        /// </summary>
+        public static int Active = 1;
+        /// <summary>
+        /// Nhân viên đang hoạt động có status = 0
+        /// </summary>
+        public static int StopActive = 0;
+    }
 }

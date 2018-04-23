@@ -29,7 +29,7 @@
         preview: 'app/feed/vader-and-me-preview.png',
         link: 'https://www.youtube.com/watch?v=IfcpzBbbamk',
         time: 'Today 9:30 pm',
-        ago: '3 hrs ago',
+        ago: '311111111111111111111111111 hrs ago',
         expanded: false,
       }, {
         type: 'image-message',

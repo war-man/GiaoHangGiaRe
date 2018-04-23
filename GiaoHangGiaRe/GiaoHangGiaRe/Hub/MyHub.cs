@@ -5,7 +5,7 @@ namespace GiaoHangGiaRe.Hub
     using global::Models.EntityModel;
     using Microsoft.AspNet.SignalR;
     using System.Threading.Tasks;
-    [Authorize]
+    //[Authorize]
     public class MyHub : Hub
     {
         private readonly static ConnectionMapping<string> _connections = new ConnectionMapping<string>();

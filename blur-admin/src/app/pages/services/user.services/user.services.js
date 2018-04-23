@@ -21,7 +21,7 @@
             }).error(function (err) {
                 toastr.error('Error');
                 console.log(err);
-
+debugger
                 // localStorage.clear();
                 // $rootScope.token=null;
                 window.location = "/auth.html";    

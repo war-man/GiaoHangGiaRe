@@ -1,4 +1,5 @@
-﻿using GiaoHangGiaRe.Module;
+﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Module;
 using Models.EntityModel;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace GiaoHangGiaRe.Controllers.api
         // POST: api/BangGiaApi
         [HttpPost]
         [Route("create")]
-        public IHttpActionResult Create(NhanViens input)
+        public IHttpActionResult Create(NhanVienCreate input)
         {
             _nhanVienServices.Create(input);
             return Ok(new

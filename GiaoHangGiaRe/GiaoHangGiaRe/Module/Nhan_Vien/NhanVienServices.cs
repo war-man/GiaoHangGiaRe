@@ -1,5 +1,6 @@
 ﻿using GiaoHangGiaRe.Models;
 using Models.EntityModel;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,35 @@ namespace GiaoHangGiaRe.Module
             return _repositoryNhanVien.GetAll().Count();
         }
 
-        public void Create(NhanViens input)
+        public void Create(NhanVienCreate input)
         {
-            _repositoryNhanVien.Insert(input);
-            lichSuServices.Create(new LichSu
+            if(userServices.GetAll().Any(p=>p.TenTaiKhoan == input.TenTaiKhoan)){
+
+                input.TrangThai = 1; //default
+            
+                _repositoryNhanVien.Insert(new NhanViens {
+                    TenTaiKhoan = input.TenTaiKhoan,
+                    TenNhanVien = input.TenNhanVien,
+                    ChucVu = input.ChucVu,
+                    DiaChi = input.DiaChi,
+                    Email = input.Email,
+                    NgaySinh = input.NgaySinh,
+                    NgayBatDau = input.NgayBatDau,
+                    SoDienThoai = input.SoDienThoai,
+                    TrangThai = input.TrangThai
+                });
+                lichSuServices.Create(new LichSu
+                {
+                    HanhDong = Constant.CreateAction,
+                    TenTaiKhoan = userServices.GetCurrentUser().UserName,
+                    NoiDung = Constant.CvtToString(input),
+                    ViTriThaoTac = Constant.NhanVien
+                });
+            }
+            else
             {
-                HanhDong = Constant.CreateAction,
-                TenTaiKhoan = userServices.GetCurrentUser().UserName,
-                NoiDung = Constant.CvtToString(input),
-                ViTriThaoTac = Constant.NhanVien
-            });
+                //throw Response
+            }
         }
 
         /// <summary>

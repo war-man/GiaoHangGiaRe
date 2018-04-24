@@ -16,9 +16,10 @@ namespace GiaoHangGiaRe.Module
         DonHang GetById(object id);
         List<DonHang> GetByUser(object username);
         List<DonHang> GetDonHangCurrentuser(int tinhtrang);
-        List<DonHang> GetDonHangCurrentShipper();
+        List<DonHangKienHang> GetDonHangCurrentShipper();
 
         List<DonHang> GetByKhoChua(int MaKhoChua);
+        List<DonHang> GetDonHangWaitting();
 
         //dung cho phuong thuc POST
         int Create(DonHang input);

@@ -15,19 +15,18 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
     <div *ngFor="let item of lishDonHangWaitting" class="donhang-item">
-      <button ion-item no-lines (tap)="gotoDetailsDonHang(item)">
-        <ion-avatar item-start>
-          <img src="">
-        </ion-avatar>
+      <button ion-item no-lines no-padding (tap)="gotoDetailsDonHang(item)">
+        <ion-thumbnail item-start>
+          <img src="{{DEFAULT_IMAGE}}">
+        </ion-thumbnail>
         <h3>Người gửi: {{item.NguoiGui}}</h3>
-        <h2>Thành tiền: {{item.ThanhTien}}</h2>
+        <span>Thành tiền: {{item.ThanhTien}}</span>
         <p>Địa chỉ gửi: {{item.DiaChiGui}}</p>
         <span ion-button clear item-end>Chi tiết</span>
       </button>

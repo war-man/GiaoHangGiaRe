@@ -4,6 +4,7 @@ import { DonhangServicesProvider } from '../../../providers/donhang-services/don
 import {DonHangDetailPage} from '../don-hang-detail/don-hang-detail';
 import {CreateDonHangPage} from '../create-don-hang/create-don-hang';
 import {PopoverDonHangPage} from '../popover-donhang/donhang-popover';
+import {DEFAULT_IMAGE} from '../../constValue';
 
 @Component({
   selector: 'page-donhang',
@@ -13,6 +14,7 @@ export class DonHangPage {
   listDonHang: any;
   respostory: any;
   popover: any;
+  DEFAULT_IMAGE = DEFAULT_IMAGE;
   listDonHangFillter: any;
   constructor(private donhang_Services: DonhangServicesProvider,
     public popoverCtrl: PopoverController,

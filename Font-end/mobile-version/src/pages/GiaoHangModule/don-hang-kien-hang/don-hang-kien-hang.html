@@ -20,10 +20,15 @@
 
 <ion-content padding>
   <ion-row *ngIf="arrayKienHang?.length < 1">
-    Không có kiện hàng nào.
+    <ion-col text-center class="empty_data">
+      <span>Không có kiện hàng nào.</span>
+    </ion-col>  
   </ion-row>
   <ion-row *ngFor="let item of arrayKienHang">
-    {{item.NoiDung}}
+    <ion-item no-padding>
+      <h3>{{item.NoiDung}}</h3>
+      <span>{{item.SoLuong}}</span>
+    </ion-item>
   </ion-row>
 </ion-content>
 <ion-footer *ngIf="arrayKienHang?.length > 0">

@@ -8,16 +8,44 @@
 
   <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    <ion-title>Đơn hàng chờ</ion-title>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Đơn hàng đã tiếp nhận</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-row *ngFor="let item of listDonHang">
-    <span>{{item.MaDonHang}}</span>
-  </ion-row>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of listDonHangKienHang" (ionSwipe)="delete(item)">
+      <ion-item no-padding>
+        <div item-start>
+          <button ion-button no-padding no-margin class="details_button" (click)="getKienHangDetails()" color="light">Xem</button>
+          <h4>Số kiện hàng: {{item.listKienHang.length}}</h4>
+        </div>
+        <ion-row>
+          <ion-col col-12>
+            <div>{{item.DonHang.NguoiGui}}</div>
+            <div>{{item.DonHang.DiaChiGui}}</div>
+            <div>{{item.DonHang.SoDienThoaiNguoiGui}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <div>{{item.DonHang.NguoiNhan}}</div>
+            <div>{{item.DonHang.DiaChiNhan}}</div>
+            <div>{{item.DonHang.SoDienThoaiNguoiNhan}}</div>
+          </ion-col>
+        </ion-row>
+        <div item-end>
+          <h5>{{item.DonHang.GhiChu}}</h5>
+        </div>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="primary" (click)="todo_layHang(item)">Lấy hàng</button>
+        <button ion-button color="secondary" (click)="todo_giaoHang(item)">Giao hàng</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

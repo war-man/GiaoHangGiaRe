@@ -15,6 +15,7 @@ namespace GiaoHangGiaRe.Module
         private NhanVienServices nhanVienServices;
         private LichSuServices lichSuServices;
         private KienHangServices kienHangServices;
+        private IRepository<KienHang> _kienhangRepository;
         public DonHangServices()
         {
             _donhangRepository = new IRepository<DonHang>();
@@ -22,6 +23,7 @@ namespace GiaoHangGiaRe.Module
             nhanVienServices = new NhanVienServices();
             lichSuServices = new LichSuServices();
             kienHangServices = new KienHangServices();
+            _kienhangRepository = new IRepository<KienHang>();
         }
         public DonHangServices(IRepository<DonHang> donhangRepository)
         {
@@ -116,16 +118,25 @@ namespace GiaoHangGiaRe.Module
             return res.ToList();
         }
 
-        public List<DonHang> GetDonHangCurrentShipper()// Nguoi giao hang muon xem danh sach don hang minh giao
+        public List<DonHangKienHang> GetDonHangCurrentShipper()// Nguoi giao hang muon xem danh sach don hang minh giao
         {
             if (nhanVienServices.GetNhanVienCurrentUser() != null)
             {
+                List<DonHangKienHang> listDonHangKienHang = new List<DonHangKienHang>();
                 var res = _donhangRepository.GetAll()
                 .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien))
                 .ToList();
-                return res;
+                foreach (var item in res)
+                {
+                    DonHangKienHang donHangkienHang = new DonHangKienHang();
+                    var resKienHang = _kienhangRepository.GetAll().Where(p => p.MaDonHang == item.MaDonHang).ToList();
+                    donHangkienHang.listKienHang = resKienHang;
+                    donHangkienHang.DonHang = item;
+                    listDonHangKienHang.Add(donHangkienHang);
+                }
+                return listDonHangKienHang;
             }
-            return new List<DonHang>();
+            return new List<DonHangKienHang>();
         }
 
         public List<DonHang> GetDonHangWaitting()// Nguoi giao hang muon xem danh sach don hang dang cho`
@@ -178,6 +189,12 @@ namespace GiaoHangGiaRe.Module
                 NoiDung = new JavaScriptSerializer().Serialize(input)
             });
             return donhang_tam.MaDonHang;
+        }
+        public void changeStatusDonHang(UpdateTrangThaiDonHang _input)
+        {
+            var donhang = _donhangRepository.SelectById(_input.MaDonHang);
+            donhang.TinhTrang = _input.TrangThai;
+            _donhangRepository.Update(donhang);
         }
         public bool donHangIsOfUser(int MaDonHang)
         {

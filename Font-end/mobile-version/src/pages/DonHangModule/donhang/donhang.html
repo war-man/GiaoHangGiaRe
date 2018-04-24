@@ -15,9 +15,9 @@
 <ion-content class="donhang-page">
   <ion-list>
     <div *ngFor="let item of listDonHang" class="donhang-item">
-      <button ion-item no-lines (tap)="gotoDetailsDonHang(item)">
+      <button ion-item no-lines no-padding (tap)="gotoDetailsDonHang(item)">
         <ion-avatar item-start>
-          <img src="">
+          <img src="{{DEFAULT_IMAGE}}">
         </ion-avatar>
         <h3>Người gửi: {{item.NguoiGui}}</h3>
         <h2>Thành tiền: {{item.ThanhTien}}</h2>
@@ -29,11 +29,5 @@
   <ion-fab right bottom>
     <button ion-fab color="light" (tap)="createDonHang()"><ion-icon name="md-add"></ion-icon>
     </button>
-    <!-- <ion-fab-list side="left">
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-    </ion-fab-list> -->
   </ion-fab>
 </ion-content>

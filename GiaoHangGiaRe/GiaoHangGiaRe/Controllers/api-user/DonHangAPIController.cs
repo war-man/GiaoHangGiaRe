@@ -7,6 +7,7 @@ using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
 using Newtonsoft.Json.Linq;
+using GiaoHangGiaRe.Models;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -151,11 +152,25 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(1);
         }
 
+        [HttpPut]
+        [Route("change_status")]
+        public IHttpActionResult ThayDoiStatusDonHang (UpdateTrangThaiDonHang _input)
+        {
+            if (_donHangServices.IsExists(_input.MaDonHang))
+            {
+                _donHangServices.changeStatusDonHang(_input);
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                                           (HttpStatusCode.InternalServerError, "Đơn hàng không tòn tại."));
+            }
+            return Ok(1);
+        }
+
         /// <summary>
         /// ssss
         /// </summary>
-        /// <param name="MaDonHang"></param>
-        /// <returns></returns>
         [ResponseType(typeof(void))]
         [Route("ship_receive")]
         [HttpPut]

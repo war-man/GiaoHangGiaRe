@@ -8,6 +8,6 @@ namespace GiaoHangGiaRe.Models
     public class UpdateTrangThaiDonHang
     {
         public int MaDonHang { set; get; }
-        public int TrangThai { set; get; }
+        public int TinhTrang { set; get; }
     }
 }

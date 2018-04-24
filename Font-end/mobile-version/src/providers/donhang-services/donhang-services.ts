@@ -59,6 +59,15 @@ export class DonhangServicesProvider {
       })
     })
   }
+  changeStatusDonHang(input) : any{
+    return new Promise((resolve, reject) => {
+      this.http_Service.put('user/api/donhang/change_status', input).subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
   createDonHang(input) : any{
     return new Promise((resolve, reject) => {
       this.http_Service.post('user/api/donhang/create', input).subscribe(res => {

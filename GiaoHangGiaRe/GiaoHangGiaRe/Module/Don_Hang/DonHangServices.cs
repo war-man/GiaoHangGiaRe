@@ -193,7 +193,7 @@ namespace GiaoHangGiaRe.Module
         public void changeStatusDonHang(UpdateTrangThaiDonHang _input)
         {
             var donhang = _donhangRepository.SelectById(_input.MaDonHang);
-            donhang.TinhTrang = _input.TrangThai;
+            donhang.TinhTrang = _input.TinhTrang;
             _donhangRepository.Update(donhang);
         }
         public bool donHangIsOfUser(int MaDonHang)

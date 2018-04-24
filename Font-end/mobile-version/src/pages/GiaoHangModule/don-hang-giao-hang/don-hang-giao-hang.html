@@ -43,8 +43,8 @@
         </div>
       </ion-item>
       <ion-item-options>
-        <button ion-button color="primary" (click)="todo_layHang(item)">Lấy hàng</button>
-        <button ion-button color="secondary" (click)="todo_giaoHang(item)">Giao hàng</button>
+        <button ion-button color="primary" (click)="todo_layHang(item.DonHang.MaDonHang)">Lấy hàng</button>
+        <button ion-button color="secondary" (click)="todo_giaoHang(item.DonHang.MaDonHang)">Giao hàng</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

@@ -53,10 +53,10 @@
         });
 
         $scope.getbyid = function () {
-            console.log($stateParams);
             GetUserAPI.user_getby_id($stateParams)
                 .success(function (data) {
                     $scope.model = data;
+                    console.log($scope.model);
                 }).error(function () {
                     $scope.errorMessage = "Không thể lấy dữ liệu có mã là " + $stateParams + "!";
                     console.log($scope.errorMessage);
@@ -101,6 +101,30 @@
                 },
             }).result.then(function (data) {
                 GetUserAPI.user_delete(id).success(function (data, status) {
+                    $state.go('usermanager.list', {}, { reload: true });
+                })
+            }, function () {
+            });
+        }
+
+        //EDIT ROLES USER
+        $scope.editRolesUser = function (user ,roleSelect = $scope.roleSelect) {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/editRolesUser.html',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.title = 'Sửa roles của user có id là:  ' + user.Id;
+                    $scope.ok = 'Đồng ý';
+                    $scope.roles = [];
+                    for(let i =0; i< user.Roles.length; i++){
+                        $scope.roles.push(user.Roles[i].RoleId)
+                    }
+                    console.log($scope.roles);
+                    $scope.roleSelect = roleSelect;
+                },
+            }).result.then(function (data) {
+                let input = {userId: user.Id,roleId: data};
+                GetUserAPI.user_add_roles(input).success(function (res) {
                     $state.go('usermanager.list', {}, { reload: true });
                 })
             }, function () {

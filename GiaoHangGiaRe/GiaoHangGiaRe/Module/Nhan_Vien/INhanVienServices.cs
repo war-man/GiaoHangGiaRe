@@ -1,4 +1,5 @@
-﻿using Models.EntityModel;
+﻿using GiaoHangGiaRe.Models;
+using Models.EntityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace GiaoHangGiaRe.Module
         NhanViens GetNhanVienCurrentUser();
 
         //Cac phuong thuc POST
-        void Create(NhanViens input);
+        void Create(NhanVienCreate input);
 
         //Cac phuong thuc PUT
         void Update(NhanViens input);

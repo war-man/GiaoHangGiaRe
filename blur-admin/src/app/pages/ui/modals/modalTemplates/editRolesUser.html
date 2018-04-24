@@ -1,0 +1,23 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="DiaChi">Nhóm phân quyền</label>
+                <br>
+                <select name="singleSelect" ng-model="roles" multiple>
+                    <option ng-repeat="role in roleSelect" value="{{role.Id}}">{{role.Name}}</option>
+                </select>
+            </div>
+        </form>
+        {{roles}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$close(roles)">{{ok}}</button>
+    </div>
+</div>

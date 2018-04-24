@@ -74,7 +74,7 @@ namespace GiaoHangGiaRe.Controllers
             _userServices.Create(input);
             ApplicationUser new_user = new ApplicationUser();
             new_user = _userServices.GetuserByUsername(input.TenTaiKhoan);
-            _nhanVienServices.Create(new NhanViens
+            _nhanVienServices.Create(new NhanVienCreate
             {
                 TenTaiKhoan = new_user.TenTaiKhoan,
                 Email = new_user.Email,

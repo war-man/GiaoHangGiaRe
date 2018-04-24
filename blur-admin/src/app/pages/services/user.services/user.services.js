@@ -9,10 +9,10 @@
         //get-all TaiKhKhoan
         var user_get_all = function (params) {
             var result = $http.get(host + 'taikhoan/get-all', { params })
-            .success(function () {
-            }).error(function () {
-                toastr.error('Error');
-            });
+                .success(function () {
+                }).error(function () {
+                    toastr.error('Error');
+                });
             return result;
         }
         //get-current user TaiKhoan
@@ -21,10 +21,9 @@
             }).error(function (err) {
                 toastr.error('Error');
                 console.log(err);
-debugger
                 // localStorage.clear();
                 // $rootScope.token=null;
-                window.location = "/auth.html";    
+                window.location = "/auth.html";
             })
             return result;
         }
@@ -86,6 +85,19 @@ debugger
             return result;
         }
 
+        //them roles     
+        var user_add_roles = function (input) {
+            var url = host + 'taikhoan/add-to-role';
+            var result = $http.post(url, input).success(function () {
+                toastr.success('Cập nhật Roles thành công.');
+            })
+                .error(function (err) {
+                    console.log(err);
+                    toastr.error('Error');
+                })
+            return result;
+        }
+
         return {
             user_get_all: user_get_all,
             user_getby_id: user_getby_id,
@@ -93,7 +105,8 @@ debugger
             user_login: user_login,
             user_delete: user_delete,
             user_update: user_update,
-            user_current_user: user_current_user
+            user_current_user: user_current_user,
+            user_add_roles: user_add_roles
         }
     }
 })();

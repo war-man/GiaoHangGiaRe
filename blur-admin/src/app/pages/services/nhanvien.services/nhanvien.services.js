@@ -5,7 +5,7 @@
         .factory('GetNhanVienAPI', GetNhanVienAPI);
     /** @ngInject */
 
-    function GetNhanVienAPI($http, $rootScope, localStorage, BASE) {
+    function GetNhanVienAPI($http, $rootScope, localStorage, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all NhanVien
         var nhanvien_get_all = function (page, size) {
@@ -13,6 +13,7 @@
                 .success(function (data) {
                 })
                 .error(function () {
+                    toastr.error('Error');
                 });
             return result;
         };
@@ -32,8 +33,10 @@
             var url = host + 'nhanvien/delete?id=' + id;
             var result = $http.delete(url)
                 .success(function (data, status) {
+                    toastr.success('Đã xóa thành công!');
                 })
                 .error(function (data, status) {
+                    toastr.error('Error');
                 });
             return result
         }

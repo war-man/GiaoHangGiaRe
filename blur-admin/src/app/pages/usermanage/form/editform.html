@@ -15,6 +15,12 @@
                 value="model.Email" disabled>
         </div>
         <div class="form-group">
+            <label for="DiaChi">Nhóm phân quyền</label>
+            <select name="singleSelect" ng-model="model.Roles">
+                <option ng-repeat="role in roleSelect" value="{{role.Id}}">{{role.Name}}</option>
+            </select><br>
+        </div>
+        <div class="form-group">
             <label for="PhoneNumber">Số điện thoại</label>
             <input type="text" ng-model="model.PhoneNumber" class="form-control" id="PhoneNumber" placeholder="Số điện thoại">
         </div>

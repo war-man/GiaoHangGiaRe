@@ -24,7 +24,10 @@
         </div>
         <div class="form-group">
             <label for="DiaChi">Nhóm phân quyền</label>
-            <ui-select ng-model="model.SelectRole.value.Name" required class="btn-group bootstrap-select form-control" ng-disabled="false"
+            <select name="singleSelect" ng-model="data.singleSelect">
+                <option ng-repeat="role in roleSelect" value="role.Id">{{role.Name}}</option>
+            </select><br>
+            <!-- <ui-select ng-model="model.SelectRole.value.Name" required class="btn-group bootstrap-select form-control" ng-disabled="false"
                 append-to-body="true" search-enabled="true">
                 <ui-select-match placeholder="Hãy chọn một nhóm">
                     {{$select.selected.Name}}
@@ -32,7 +35,7 @@
                 <ui-select-choices repeat="item in roleSelect | filter: $select.search">
                     <span ng-bind-html="item.Name"></span>
                 </ui-select-choices>
-            </ui-select>
+            </ui-select> -->
         </div>
         <div class="form-group">
             <label for="PassWord">Mật khẩu</label>

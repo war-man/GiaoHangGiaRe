@@ -71,14 +71,20 @@
 
         //delete NhanVien
         $scope.deleteNhanVien=function(id){
-            
-            GetNhanVienAPI.nhanvien_delete(id)
-            .success(function(data,status){          
-                $state.go('nhanvien.list', {}, { reload: true });
-            }).error(function(data,status){
-                alert('Dường như đã có lỗi nào đó xảy ra! Xóa user thất bại');
-            });
-
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/basicModal.html',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.message = 'Bạn có chắc muốn xóa nhân viên ' + id + '?';
+                    $scope.title = 'Xóa Nhân Viên ' + id;
+                    $scope.ok = 'Đồng ý';
+                },
+            }).result.then(function (data) {
+               GetNhanVienAPI.nhanvien_delete(id).success(function(data,status){          
+                    $state.go('nhanvien.list', {}, { reload: true });
+                })
+            }, function () {
+            });     
         };
 
         //Modal

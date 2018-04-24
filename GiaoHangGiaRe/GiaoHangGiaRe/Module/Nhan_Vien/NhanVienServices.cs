@@ -133,6 +133,7 @@ namespace GiaoHangGiaRe.Module
                 .FirstOrDefault();
             return res;
         }
+
     }
 
     enum PhanLoaiNhanVien

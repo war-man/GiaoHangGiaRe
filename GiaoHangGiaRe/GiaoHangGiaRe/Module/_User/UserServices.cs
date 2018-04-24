@@ -129,16 +129,13 @@ namespace GiaoHangGiaRe.Module
         /// <summary>
         /// Thêm user vào 1 hoặc nhiều Role
         /// </summary>
-        /// <param name="UserId"></param>
-        /// <param name="RoleId"></param>
-        /// <returns></string></returns>
         public List<string> AddToRole(string UserId, string[] RoleId)
         {
             var user = UserManager.FindById(UserId.ToString());
-            if (RoleId != null && RoleId.Count() > 0)
+            if (RoleId != null && RoleId.Length > 0)
             {
                 //Nếu chưa có nhân viên nào thuộc tài khoản này thì tự thêm nhân viên mới 
-                if (_nhanvienRepository.GetAll().Any(i=>i.TenTaiKhoan == GetById(UserId).TenTaiKhoan))
+                if (!_nhanvienRepository.GetAll().Any(i=>i.TenTaiKhoan == GetById(UserId).TenTaiKhoan))
                 {
                     _nhanvienRepository.Insert(new NhanViens {
                         Email = user.Email,

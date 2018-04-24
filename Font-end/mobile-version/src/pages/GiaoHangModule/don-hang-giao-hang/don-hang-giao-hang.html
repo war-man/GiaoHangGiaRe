@@ -17,5 +17,7 @@
 
 
 <ion-content padding>
-
+  <ion-row *ngFor="let item of listDonHang">
+    <span>{{item.MaDonHang}}</span>
+  </ion-row>
 </ion-content>

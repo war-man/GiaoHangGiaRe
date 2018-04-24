@@ -17,7 +17,7 @@ angular.module('BlurAdmin', [
 ]);
 let host = 'http://localhost:8080/';
 let host2 = 'http://localhost:8195/';
-angular.module('BlurAdmin').constant('BASE', host);
+angular.module('BlurAdmin').constant('BASE', host2);
 
 /* Init global settings request run the app */
 angular.module("BlurAdmin").config(["BASE", function (BASE) {

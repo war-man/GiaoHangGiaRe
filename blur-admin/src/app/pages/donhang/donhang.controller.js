@@ -2,6 +2,7 @@
     'use strict';
     angular.module('BlurAdmin.pages.donhang')
         .controller('donhangcontroller', donhangcontroller);
+            /** @ngInject */
     function donhangcontroller($scope, $filter, GetDonHangAPI, $state, $stateParams) {
         $scope.listDonHang = {};
         $scope.Size = 5;

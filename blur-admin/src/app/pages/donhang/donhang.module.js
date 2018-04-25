@@ -39,6 +39,14 @@
             sidebarMeta: {
               order: 100,
             },
+          }).state('donhang.report', {
+            url: '/report',
+            templateUrl: baseurl+'table/listdonhang.report.html',
+            controller: controller,
+            title: 'Đơn hàng vi phạm',
+            sidebarMeta: {
+              order: 100,
+            },
           });
       $urlRouterProvider.when('/donhang','/donhang/list');
     }

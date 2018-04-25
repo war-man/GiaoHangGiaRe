@@ -83,7 +83,6 @@
       contentType: "application/json; charset=utf-8",
       data: input
     }).done(function (data) {
-      debugger
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
     }).fail(function (err) {

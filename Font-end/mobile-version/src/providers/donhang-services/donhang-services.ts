@@ -39,6 +39,15 @@ export class DonhangServicesProvider {
       })
     })
   }
+  getLishSuDonHangShipper() : any{
+    return new Promise((resolve, reject) => {
+      this.http_Service.get('user/api/donhang/get-lishsu-donhang-shipper').subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
   getKienHangDonHang(MaDonHang: any) : any{
     let httpParams = new HttpParams().append("MaDonHang", MaDonHang)
     return new Promise((resolve, reject) => {

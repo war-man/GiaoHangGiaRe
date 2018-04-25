@@ -20,9 +20,6 @@
             var result = $http.get(host + 'taikhoan/get-current-user').success(function () {
             }).error(function (err) {
                 toastr.error('Error');
-                console.log(err);
-                // localStorage.clear();
-                // $rootScope.token=null;
                 window.location = "/auth.html";
             })
             return result;

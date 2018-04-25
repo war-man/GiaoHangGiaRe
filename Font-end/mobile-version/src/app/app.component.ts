@@ -17,6 +17,7 @@ import { DonHangGiaoHangPage } from '../pages/GiaoHangModule/don-hang-giao-hang/
 import { BangGiaPage } from '../pages/bang-gia/bang-gia';
 
 import {DonHangWaittingPage} from '../pages/GiaoHangModule/don-hang-waitting/don-hang-waitting';
+import {LichSuGiaoHangPage} from '../pages/GiaoHangModule/lich-su-giao-hang/lich-su-giao-hang';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -60,6 +61,7 @@ export class ConferenceApp {
     { title: 'Bảng giá tham khảo', name: 'BangGiaPage', component: BangGiaPage, icon: 'card' },
     { title: 'Đơn hàng chờ', name: 'DonHangWaittingPage', component: DonHangWaittingPage, icon: 'cart' },
     { title: 'Đơn hàng tiếp nhận', name: 'DonHangGiaoHangPage', component: DonHangGiaoHangPage, icon: 'clipboard' },
+    {title:'Lịch sử giao hàng', name: 'LichSuGiaoHangPage', component: LichSuGiaoHangPage, icon:'ios-code'},
     { title: 'Đăng xuất', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [

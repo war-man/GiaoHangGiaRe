@@ -40,7 +40,9 @@ import { DonhangServicesProvider } from '../providers/donhang-services/donhang-s
 import {PopoverDonHangPage} from '../pages/DonHangModule/popover-donhang/donhang-popover';
 //import { SignalrServiceProvider } from '../providers/signalr-service/signalr-service';
 import { SignalR } from 'ng2-signalr';
+import {ReportPage} from '../pages/GiaoHangModule/report/report';
 import { BangGiaProvider } from '../providers/bang-gia/bang-gia';
+import {LichSuGiaoHangPage} from '../pages/GiaoHangModule/lich-su-giao-hang/lich-su-giao-hang';
 
 @NgModule({
   declarations: [
@@ -64,8 +66,10 @@ import { BangGiaProvider } from '../providers/bang-gia/bang-gia';
     //Don Hang Giao Hang
     DonHangKienHangPage,
     DonHangWaittingPage,
+    LichSuGiaoHangPage,
 
-    BangGiaPage
+    BangGiaPage,
+    ReportPage
   ],
   imports: [
     BrowserModule,
@@ -90,6 +94,7 @@ import { BangGiaProvider } from '../providers/bang-gia/bang-gia';
         { component: PopoverDonHangPage, name: 'PopoverDonHangPage', segment: 'popover-donhang-page' },
         { component: DonHangKienHangPage, name: 'DonHangKienHangPage', segment: 'donhang-kienhang-page' },
         { component: DonHangWaittingPage, name: 'DonHangWaittingPage', segment: 'donhang-waitting' },
+        {component: LichSuGiaoHangPage, name: 'LichSuGiaoHangPage', segment:'lichsu_giaohang'},
         { component: BangGiaPage, name: 'BangGiaPage', segment: 'bang-gia' }
         
       ]
@@ -118,7 +123,9 @@ import { BangGiaProvider } from '../providers/bang-gia/bang-gia';
     DonHangWaittingPage,
     DonHangKienHangPage,
 
-    BangGiaPage
+    BangGiaPage,
+    LichSuGiaoHangPage,
+    ReportPage
   ],
   providers: [
     Camera,

@@ -3,6 +3,7 @@
   
     angular.module('BlurAdmin.pages.no')
         .controller('nocontroller', TablesPageCtrl);
+    /** @ngInject */
     function TablesPageCtrl($scope,$state, $filter,GetNoAPI,$stateParams) {
         $scope.resdata={};
         $scope.model={};

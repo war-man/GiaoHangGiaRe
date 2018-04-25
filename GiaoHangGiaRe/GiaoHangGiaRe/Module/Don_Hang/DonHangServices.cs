@@ -16,6 +16,7 @@ namespace GiaoHangGiaRe.Module
         private LichSuServices lichSuServices;
         private KienHangServices kienHangServices;
         private IRepository<KienHang> _kienhangRepository;
+        private IRepository<HoaDon> _hoadonRepository;
         public DonHangServices()
         {
             _donhangRepository = new IRepository<DonHang>();
@@ -23,6 +24,7 @@ namespace GiaoHangGiaRe.Module
             nhanVienServices = new NhanVienServices();
             lichSuServices = new LichSuServices();
             kienHangServices = new KienHangServices();
+            _hoadonRepository = new IRepository<HoaDon>();
             _kienhangRepository = new IRepository<KienHang>();
         }
         public DonHangServices(IRepository<DonHang> donhangRepository)
@@ -89,18 +91,6 @@ namespace GiaoHangGiaRe.Module
             .Take(size.Value).ToList();
             return res;
         }
-        //public List<DonHang> GetAllForUser(int? page = 0, int? size = 50, int? tinhtrang = 0)
-        //{
-        //    if (!page.HasValue) page = Constant.DefaultPage;
-        //    if (!size.HasValue) size = _donhangRepository.GetAll().Count();
-
-        //    //mac dinh tinh trang =0
-        //    List<DonHang> res = _donhangRepository.GetAll().Where(p=> p.TinhTrang == tinhtrang)
-        //    .OrderBy(p => p.MaDonHang)
-        //    .Take(size.Value)
-        //    .Skip(size.Value * (size.Value * (page.Value - 1))).ToList();
-        //    return res;
-        //}
 
         public DonHang GetById(object id) // lay don hang theo id
         {
@@ -117,20 +107,27 @@ namespace GiaoHangGiaRe.Module
             var res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == username.ToString());
             return res.ToList();
         }
-
-        public List<DonHangKienHang> GetDonHangCurrentShipper()// Nguoi giao hang muon xem danh sach don hang minh giao
+        /// <summary>
+        /// Đơn hàng shiper hiện tại đang tiếp nhận (không kể đơn hàng hoàn thành hoặc bị hủy)
+        /// </summary>
+        /// <returns></returns>
+        public List<DonHangKienHang> GetDonHangCurrentShipper()
         {
             if (nhanVienServices.GetNhanVienCurrentUser() != null)
             {
                 List<DonHangKienHang> listDonHangKienHang = new List<DonHangKienHang>();
                 var res = _donhangRepository.GetAll()
-                .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien))
+                .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien) && 
+                p.TinhTrang != DonHangConstant.Huy && p.TinhTrang != DonHangConstant.GiaoThanhCong)
                 .ToList();
                 foreach (var item in res)
                 {
                     DonHangKienHang donHangkienHang = new DonHangKienHang();
                     var resKienHang = _kienhangRepository.GetAll().Where(p => p.MaDonHang == item.MaDonHang).ToList();
-                    donHangkienHang.listKienHang = resKienHang;
+                    if(resKienHang != null)
+                    {
+                        donHangkienHang.listKienHang = resKienHang;                     
+                    }
                     donHangkienHang.DonHang = item;
                     listDonHangKienHang.Add(donHangkienHang);
                 }
@@ -138,7 +135,38 @@ namespace GiaoHangGiaRe.Module
             }
             return new List<DonHangKienHang>();
         }
-
+        /// <summary>
+        /// Lấy danh sách đơn hàng của shiper đã hoàn thành hoặc đã hủy
+        /// </summary>
+        /// <returns></returns>
+        public List<DonHangKienHang> GetLichSuDonHangCurrentShipper()
+        {
+            if (nhanVienServices.GetNhanVienCurrentUser() != null)
+            {
+                List<DonHangKienHang> listDonHangKienHang = new List<DonHangKienHang>();
+                var res = _donhangRepository.GetAll()
+                .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien) &&
+                (p.TinhTrang == DonHangConstant.Huy || p.TinhTrang == DonHangConstant.GiaoThanhCong))
+                .ToList();
+                foreach (var item in res)
+                {
+                    DonHangKienHang donHangkienHang = new DonHangKienHang();
+                    var resKienHang = _kienhangRepository.GetAll().Where(p => p.MaDonHang == item.MaDonHang).ToList();
+                    if (resKienHang != null)
+                    {
+                        donHangkienHang.listKienHang = resKienHang;
+                    }                
+                    donHangkienHang.DonHang = item;
+                    listDonHangKienHang.Add(donHangkienHang);
+                }
+                return listDonHangKienHang;
+            }
+            return new List<DonHangKienHang>();
+        }
+        /// <summary>
+        /// Danh sách đơn hàng đang chờ
+        /// </summary>
+        /// <returns></returns>
         public List<DonHang> GetDonHangWaitting()// Nguoi giao hang muon xem danh sach don hang dang cho`
         {
             var res = _donhangRepository.GetAll()
@@ -147,12 +175,21 @@ namespace GiaoHangGiaRe.Module
             return res;
         }
 
+        /// <summary>
+        /// Danh sách các đơn hàng của user hiện tại
+        /// </summary>
+        /// <param name="tinhtrang"></param>
+        /// <returns></returns>
         public List<DonHang> GetDonHangCurrentuser(int tinhtrang = 0) //lay cac don hang cua user
         {
             var res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName && p.TinhTrang == tinhtrang);
             return res.ToList();
         }
-
+        /// <summary>
+        /// Đơn hàng tồn tại trả về true
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool IsExists(object id)
         {
             if (GetById(id) != null)
@@ -190,9 +227,26 @@ namespace GiaoHangGiaRe.Module
             });
             return donhang_tam.MaDonHang;
         }
+
+        /// <summary>
+        ///  Thay đổi tình trạng đơn hàng
+        /// </summary>
+        /// <param name="_input"></param>
         public void changeStatusDonHang(UpdateTrangThaiDonHang _input)
         {
             var donhang = _donhangRepository.SelectById(_input.MaDonHang);
+            if(_input.TinhTrang == DonHangConstant.GiaoThanhCong)
+            {
+                donhang.ThoiDiemHoanThanhDH = DateTime.Now;
+                _hoadonRepository.Insert(new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
+                {
+                    MaDonHang = donhang.MaDonHang,
+                    GhiChu = donhang.GhiChu,
+                    MaNhanVienGH = donhang.MaNhanVienGiao,
+                    ThanhTien = donhang.ThanhTien
+                    //MaKhachHang = donhang.TenTaiKhoan,
+                });
+            }
             donhang.TinhTrang = _input.TinhTrang;
             _donhangRepository.Update(donhang);
         }

@@ -17,7 +17,7 @@ angular.module('BlurAdmin', [
 ]);
 let host = 'http://localhost:8080/';
 let host2 = 'http://localhost:8195/';
-angular.module('BlurAdmin').constant('BASE', host2);
+angular.module('BlurAdmin').constant('BASE', host);
 
 /* Init global settings request run the app */
 angular.module("BlurAdmin").config(["BASE", function (BASE) {
@@ -33,21 +33,10 @@ angular.module("BlurAdmin").run(["BASE", "$rootScope", "$state", "$http", functi
     }
     else {
         $http.defaults.headers.common.Authorization = token.token_type + ' ' + token.access_token;
-        // $.signalR.ajaxDefaults.headers = { 'Authorization': token.token_type + ' ' + token.access_token };
-        // $.connection.hub.url = BASE + "signalr";
-        // $rootScope.maphub = $.connection.myHub;
-        // $rootScope.maphub.client.SoNguoiOnline = function (data) {
-        //     $rootScope.$apply(function () {
-        //         $rootScope.soNguoiOnline = data;
-        //     })
-        // }
     }
     $rootScope.logout = function () {
         localStorage.removeItem("token");
         window.location = "/auth.html";
     }
-
-    $rootScope.$on("$locationChangeStart", function (event, next, current) {
-    });
 }
 ]);

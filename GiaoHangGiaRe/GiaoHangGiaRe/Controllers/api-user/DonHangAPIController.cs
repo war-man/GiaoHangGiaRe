@@ -8,6 +8,7 @@ using Models.EntityModel;
 using GiaoHangGiaRe.Module;
 using Newtonsoft.Json.Linq;
 using GiaoHangGiaRe.Models;
+using System;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -79,6 +80,18 @@ namespace GiaoHangGiaRe.Controllers
                 page,
                 size,
                 total = _donHangServices.GetDonHangCurrentShipper().Count
+            });
+        }
+        [HttpGet]
+        [Route("get-lishsu-donhang-shipper")]
+        public IHttpActionResult GetLishSuDonHangsShipper(int? page = 0, int? size = 50, string user_name = null, string user_id = null, string nhanvien = null)
+        {
+            return Ok(new
+            {
+                list = _donHangServices.GetLichSuDonHangCurrentShipper(),
+                page,
+                size,
+                total = _donHangServices.GetLichSuDonHangCurrentShipper().Count
             });
         }
 
@@ -194,7 +207,8 @@ namespace GiaoHangGiaRe.Controllers
                         return ResponseMessage(Request.CreateErrorResponse
                                            (HttpStatusCode.InternalServerError, "Tài khoản không tồn tại trong danh sách nhân viên."));
                     }
-                    donHang.TinhTrang = 1;
+                    donHang.TinhTrang = DonHangConstant.DaTiepNhan;
+                    donHang.ThoiDiemTiepNhanDon = DateTime.Now;
                     _donHangServices.Update(donHang);
                     return Ok(1);
                 }

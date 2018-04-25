@@ -9,8 +9,7 @@
         var host = BASE + 'api/';
         //get-all NhanVien
         var no_get_all = function (params) {
-            var result = $http.get(host + 'no/get-all',{ params })
-                .success(function (data) {
+            var result = $http.get(host + 'no/get-all',{ params }).success(function (data) {
                 })
                 .error(function () {
                 });
@@ -20,8 +19,7 @@
         //craete No
         var no_create = function (input) {
             var url = host + 'no/create';
-            result = $http.post(url, input)
-                .success(function (data, status) {
+            result = $http.post(url, input).success(function (data, status) {
                 })
                 .error(function (data, status) {
                 });
@@ -31,8 +29,7 @@
         //delete No
         var no_delete = function (id) {
             var url = host + 'no/delete?id=' + id;
-            var result = $http.delete(url)
-                .success(function (data, status) {
+            var result = $http.delete(url).success(function (data, status) {
                 })
                 .error(function (data, status) {
                 });
@@ -42,8 +39,7 @@
         //Update No
         var no_update = function (input) {
             var url = host + 'no/update';
-            result = $http.put(url, input)
-                .success(function (data, status) {
+            result = $http.put(url, input).success(function (data, status) {
                 })
                 .error(function (data, status) {
                 });
@@ -52,8 +48,7 @@
 
         //get-by-id No
         var no_getby_id = function (id) {
-            var result = $http.get(host + 'no/get-by-id?id=' + id.id)
-                .success(function (data) {
+            var result = $http.get(host + 'no/get-by-id?id=' + id.id).success(function (data) {
                 })
                 .error(function () {
                 });

@@ -3,6 +3,8 @@
   
     angular.module('BlurAdmin.pages.nhanvien')
         .controller('nhanviencontroller', nhanviencontroller);
+        
+    /** @ngInject */
     function nhanviencontroller($scope,$state, $filter,GetNhanVienAPI,$stateParams,$uibModal
     ,baProgressModal,$timeout) {
 

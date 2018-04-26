@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModel\BangGia.cs" />
+    <Compile Include="EntityModel\Commune.cs" />
+    <Compile Include="EntityModel\District.cs" />
     <Compile Include="EntityModel\DonHang.cs" />
     <Compile Include="EntityModel\GiaoHangGiaReDbContext.cs" />
     <Compile Include="EntityModel\HanhTrinh.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="EntityModel\LoaiKhachHang.cs" />
     <Compile Include="EntityModel\NhanVien.cs" />
     <Compile Include="EntityModel\No.cs" />
+    <Compile Include="EntityModel\Province.cs" />
     <Compile Include="EntityModel\sysdiagram.cs" />
     <Compile Include="EntityModel\TinNhan.cs" />
     <Compile Include="EntityModel\UuDai.cs" />

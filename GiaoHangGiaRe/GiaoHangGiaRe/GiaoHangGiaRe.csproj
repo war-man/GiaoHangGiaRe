@@ -426,12 +426,16 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
     <Compile Include="Models\DonHangModel.cs" />
+    <Compile Include="Models\DonHang\DonHangKienHang.cs" />
+    <Compile Include="Models\DonHang\UpdateTrangThaiDonHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IdentityRepository.cs" />
     <Compile Include="Models\InterfaceRepository.cs" />
     <Compile Include="Models\KhachHangViewModel.cs" />
     <Compile Include="Models\KienHangModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NhanVien\NhanVienCreate.cs" />
+    <Compile Include="Models\TaiKhoan\TaiKhoanUpdate.cs" />
     <Compile Include="Module\Bang_Gia\BangGiaServices.cs" />
     <Compile Include="Module\Bang_Gia\IBangGiaServices.cs" />
     <Compile Include="Module\Constant.cs" />

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { AlertController, NavController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AlertController, NavController,ActionSheetController } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
 
 import { UserData } from '../../../providers/user-data';
 
@@ -12,7 +12,9 @@ import { UserData } from '../../../providers/user-data';
 })
 export class AccountPage {
   user: any;
+  base64Image: any;
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData,
+    public actionSheetCtrl: ActionSheetController,
     private camera: Camera) {
     this.userData.getUser().then(res =>{
       this.user = res;
@@ -22,31 +24,62 @@ export class AccountPage {
   ngAfterViewInit() {
     
   }
-
-  updatePicture() {
-    const options: CameraOptions = {
+  editAvatar() {
+    this.openCamera();
+  }
+  openCamera() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Chụp ảnh hoặc chọn ảnh',
+      buttons: [
+        {
+          text: 'Chụp ảnh',
+          handler: () => {
+            this.takePhoto(0);
+          }
+        },
+        {
+          text: 'Chọn ảnh trong máy',
+          handler: () => {
+            this.takePhoto(1);
+          }
+        },
+        {
+          text: 'Hủy bỏ',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+      ],
+    });
+    actionSheet.present();
+  }
+  takePhoto(check) {
+    var options = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      allowEdit: true,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 300,
+      targetHeight: 300,
+      saveToPhotoAlbum: false
+    };
+    if (check == 0) { // Take photo
+      options.sourceType = this.camera.PictureSourceType.CAMERA;
+    } else if (check == 1) { //Choose Photo
+      options.sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
     }
-    
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64:
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     console.log(base64Image);
+      this.base64Image = imageData;
     }, (err) => {
       console.log(err);
-     // Handle error
-    });
+    })
   }
+
   changeUsername(){
     
   }
-  // Present an alert with the current username populated
-  // clicking OK will update the username and display it
-  // clicking Cancel will close the alert and do nothing
 
   changePassword() {
     console.log('Clicked to change password');

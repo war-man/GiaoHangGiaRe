@@ -26,6 +26,9 @@ namespace Models.EntityModel
         public virtual DbSet<KhoChua> KhoChuas { get; set; }
         public virtual DbSet<No> Nos { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Commune> Communes { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

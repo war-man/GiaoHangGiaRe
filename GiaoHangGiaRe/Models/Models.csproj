@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201804110311241_sua_bang_db.Designer.cs">
       <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804261422083_themTinhHuyen.cs" />
+    <Compile Include="Migrations\201804261422083_themTinhHuyen.Designer.cs">
+      <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -272,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804110311241_sua_bang_db.resx">
       <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261422083_themTinhHuyen.resx">
+      <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

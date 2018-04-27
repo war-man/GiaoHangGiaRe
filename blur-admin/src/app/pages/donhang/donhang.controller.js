@@ -2,8 +2,8 @@
     'use strict';
     angular.module('BlurAdmin.pages.donhang')
         .controller('donhangcontroller', donhangcontroller);
-            /** @ngInject */
-    function donhangcontroller($scope, $filter, GetDonHangAPI, $state, $stateParams) {
+    /** @ngInject */
+    function donhangcontroller($scope, $filter, GetDonHangAPI, $state, $stateParams, $uibModal) {
         $scope.listDonHang = {};
         $scope.Size = 5;
 
@@ -54,6 +54,37 @@
                     $scope.listDonHang = res.data.list;
                 }
             })
+        }
+
+        //Lấy đon hàng vi phạm
+        $scope.getDonHangViPham = function () {
+            GetDonHangAPI.donhang_vipham().then((res) => {
+                if (res.status == '200') {
+                    $scope.listDonHangViPham = res.data.list;
+                    console.log($scope.listDonHangViPham);
+                }
+            })
+        }
+
+        //Them don hang moi
+        //Them kien hang
+        $scope.editRolesUser = function () {
+            var modal = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/addKienHangModal.html',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.title = '';
+                    $scope.ok = 'Đồng ý';
+                    $scope.roles = [];
+
+                },
+            }).result.then(function (data) {
+                let input = { userId: user.Id, roleId: data };
+                GetUserAPI.user_add_roles(input).success(function (res) {
+                    $state.go('donhang.list', {}, { reload: true });
+                })
+            }, function () {
+            });
         }
     };
 })();

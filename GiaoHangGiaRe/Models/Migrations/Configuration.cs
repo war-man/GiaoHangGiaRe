@@ -1,5 +1,6 @@
-namespace Models.Migrations
+﻿namespace Models.Migrations
 {
+    using EntityModel;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,23 @@ namespace Models.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Provinces.AddOrUpdate(
+                p => p.Province_Id,
+                    new Province { Province_Name = "Hà nội", Province_Code = "1"
+                });
+            context.Districts.AddOrUpdate(
+               p => p.District_Id,
+                   new District {
+                       District_Name = "Hoàng Mai",
+                       District_Code = "1"
+                   });
+            context.Communes.AddOrUpdate(
+                p => p.Commune_Id,
+               new Commune
+               {
+                   Commune_Name = "Định công",
+                   Commune_Code = "1"
+               });
         }
     }
 }

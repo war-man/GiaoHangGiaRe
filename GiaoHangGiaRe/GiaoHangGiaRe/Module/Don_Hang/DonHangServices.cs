@@ -91,7 +91,18 @@ namespace GiaoHangGiaRe.Module
             .Take(size.Value).ToList();
             return res;
         }
-
+        public List<DonHang> GetDonHangViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
+        {
+            if (user_name == null)
+            {
+                user_name = "";
+            }
+            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang == DonHangConstant.Huy)
+            .OrderBy(p => p.MaDonHang)
+            .Skip(size.Value * (page.Value))
+            .Take(size.Value).ToList();
+            return res;
+        }
         public DonHang GetById(object id) // lay don hang theo id
         {
             return _donhangRepository.SelectById(id);

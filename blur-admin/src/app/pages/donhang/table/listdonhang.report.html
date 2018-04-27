@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="getDonHangViPham()">
     <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
       <div class="form-inline">
         <div class="form-group">
@@ -36,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="donhang in listDonHang" class="editable-row">
+          <tr ng-repeat="donhang in listDonHangViPham" class="editable-row">
             <td>
               {{$index+1}}
             </td>
@@ -83,7 +83,7 @@
             <td class="action-button">
               <div class="buttons">
                 <!-- <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/donhang/edit/{{donhang.MaDonHang}}">Edit</a> -->
-                <button ng-if="donhang?.TinhTrang >= 0" class="btn btn-danger editable-table-button btn-xs" ng-click="deleteUser(donhang.MaDonHang)">Hủy đơn hàng</button>
+                <button class="btn btn-primary editable-table-button btn-xs" ng-click="deleteUser(donhang.MaDonHang)">Phục hồi</button>
               </div>
             </td>
           </tr>

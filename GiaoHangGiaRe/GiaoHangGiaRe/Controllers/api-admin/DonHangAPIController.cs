@@ -32,7 +32,18 @@ namespace GiaoHangGiaRe.Controllers
                 total = _donHangServices.count()
             } );
         }
-
+        [HttpGet]
+        [Route("get-donhang-vipham")]
+        public IHttpActionResult GetDonHangsViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = "", int? nhanvien = null, int? tinhtrang = null)
+        {
+            return Ok(new
+            {
+                list = _donHangServices.GetDonHangViPham(page, size, user_name, user_id, nhanvien, tinhtrang),
+                page = page,
+                size = size,
+                total = _donHangServices.count()
+            });
+        }
         // GET: api/DonHangAPI/5
         [HttpGet]
         [Route("get-by-username")]

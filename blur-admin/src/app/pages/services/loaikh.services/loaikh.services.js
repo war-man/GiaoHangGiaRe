@@ -21,7 +21,7 @@
         //craete loaikh
         var loaikh_create = function (input) {
             var url = host + 'loaikh/create';
-            var result = $http.post(url, data)
+            var result = $http.post(url, input)
                 .success(function (data, status) {
                 })
                 .error(function (data, status) {

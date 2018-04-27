@@ -17,6 +17,17 @@
             return result;
         }
 
+        //get-all DonHang vi pham
+        var donhang_vipham = function (params) {
+            var result = $http.get(host + 'donhang/get-donhang-vipham',{params})
+                .success(function (data) {
+                })
+                .error(function () {
+                    toastr.error('Error');
+                });
+            return result;
+        }
+
         //craete DonHang
         var donhang_create = function (input) {
             var url = host + 'donhang/create';
@@ -63,7 +74,8 @@
             donhang_create: donhang_create,
             donhang_delete: donhang_delete,
             donhang_update: donhang_update,
-            donhang_getby_id: donhang_getby_id
+            donhang_getby_id: donhang_getby_id,
+            donhang_vipham: donhang_vipham
         }
     }
 })();

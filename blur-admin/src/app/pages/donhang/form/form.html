@@ -1,1 +1,57 @@
-form donhang
+<style>
+    form {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div ba-panel ba-panel-title="Thêm mới User" ba-panel-class="with-scroll">
+    <!-- {{model}}
+{{$state.current.name}} -->
+    <div class="col-md-3"></div>
+    <form class="col-md-6">
+
+        <div class="form-group">
+            <label for="NguoiGui">Người gửi</label>
+            <input type="text" ng-model="model.NguoiGui" class="form-control" id="NguoiGui" placeholder="Người gửi">
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChiGui">Địa chỉ gửi</label>
+            <input type="text" ng-model="model.DiaChiGui" class="form-control" id="DiaChiGui" placeholder="Địa chỉ gửi">
+        </div>
+
+        <div class="form-group">
+            <label for="SoDienThoaiNguoiGui">Số điện thoại gửi</label>
+            <input type="text" ng-model="model.SoDienThoaiNguoiGui" class="form-control" id="SoDienThoaiNguoiGui" placeholder="Số điện thoại gửi">
+        </div>
+
+        <div class="form-group">
+            <label for="NguoiNhan">Người nhậnc</label>
+            <input type="text" ng-model="model.NguoiNhan" class="form-control" id="NguoiNhan" placeholder="Người nhận">
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChiNhan">Địa chỉ nhận</label>
+            <input type="text" ng-model="model.DiaChiNhan" class="form-control" id="DiaChiNhan" placeholder="Địa chỉ nhận">
+        </div>
+
+        <div class="form-group">
+            <label for="SoDienThoaiNguoiNhan">Số điện thoại nhận</label>
+            <input type="text" ng-model="model.SoDienThoaiNguoiNhan" class="form-control" id="SoDienThoaiNguoiNhan" placeholder="Số điện thoại nhận">
+        </div>
+
+        <div class="form-group">
+            <label for="GhiChu">Ghi chú</label>
+            <input type="text" ng-model="model.GhiChu" class="form-control" id="GhiChu" placeholder="Ghi chú">
+        </div>
+     
+    </form>
+    <div class="col-md-3"></div>
+    <div class="col-md-12 text-center">
+        <button ng-click="editRolesUser()" class="btn btn-warning">Thêm kiện hàng</button>
+        <br>
+        <br>
+        <button progress-button="progressFunction()" ng-click="addKhachHang(model)" pb-style="lateral-lines" class="btn btn-info">Xác nhận </button>
+    </div>
+</div>

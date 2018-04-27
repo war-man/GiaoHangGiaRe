@@ -6,6 +6,7 @@
 </style>
 
 <div ng-init="getById()" ba-panel ba-panel-title="Sửa bảng giá" ba-panel-class="with-scroll">
+    <div class="col-md-3"></div>
     <form class="col-md-6 ">
 
         <div class="form-group">
@@ -22,8 +23,9 @@
             <label for="BaoGia">Báo giá</label>
             <input type="text" ng-model="model.BaoGia" class="form-control" id="BaoGia" placeholder="Báo giá">
         </div>
-
-        <button progress-button="progressFunction()" ng-click="editBangGia(model)" pb-style="lateral-lines" class="btn btn-info">Cập nhật </button>
     </form>
-
+    <div class="col-md-3"></div>
+    <div class="col-md-12 text-center">
+        <button progress-button="progressFunction()" ng-click="editBangGia(model)" pb-style="lateral-lines" class="btn btn-info">Cập nhật </button>
+    </div>
 </div>

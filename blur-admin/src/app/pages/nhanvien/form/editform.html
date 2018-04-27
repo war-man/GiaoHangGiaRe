@@ -1,20 +1,16 @@
-
-<div ng-init="getById()" class="minh-form"
-ba-panel
-ba-panel-title="Sửa nhân viên"
-ba-panel-class="with-scroll">
-<!-- {{model}}
+<div ng-init="getById()" class="minh-form" ba-panel ba-panel-title="Sửa nhân viên" ba-panel-class="with-scroll">
+    <!-- {{model}}
 {{$state.current.name}} -->
-    <form class="col-md-8">
-
+    <div class="col-md-3"></div>
+    <form class="col-md-6">
         <div class="form-group">
-        <label for="Id">Họ tên</label>
-        <input type="text" ng-model="model.TenNhanVien" class="form-control" id="TenNhanVien" placeholder="Họ tên">
+            <label for="Id">Họ tên</label>
+            <input type="text" ng-model="model.TenNhanVien" class="form-control" id="TenNhanVien" placeholder="Họ tên">
         </div>
 
         <div class="form-group">
-        <label for="SoDienThoai">Số điện thoại</label>
-        <input type="text" ng-model="model.SoDienThoai" class="form-control" id="SoDienThoai" placeholder="Số điện thoại">
+            <label for="SoDienThoai">Số điện thoại</label>
+            <input type="text" ng-model="model.SoDienThoai" class="form-control" id="SoDienThoai" placeholder="Số điện thoại">
         </div>
 
         <div class="form-group">
@@ -26,9 +22,11 @@ ba-panel-class="with-scroll">
             <label for="DiaChi">Địa chỉ</label>
             <input type="text" ng-model="model.DiaChi" class="form-control" id="DiaChi" placeholder="Địa chỉ">
         </div>
-        <button progress-button="progressFunction()" ng-click="editNhanVien(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+
     </form>
-
-
+    <div class="col-md-3"></div>
+    <div class="col-md-12 text-center">
+        <button progress-button="progressFunction()" ng-click="editNhanVien(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+    </div>
 
 </div>

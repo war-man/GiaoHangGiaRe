@@ -5,6 +5,7 @@ using System.Web;
 using GiaoHangGiaRe.Models;
 using Models.EntityModel;
 using System.Web.Script.Serialization;
+using System.Net;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -17,6 +18,8 @@ namespace GiaoHangGiaRe.Module
         private KienHangServices kienHangServices;
         private IRepository<KienHang> _kienhangRepository;
         private IRepository<HoaDon> _hoadonRepository;
+        private IRepository<KhachHang> _khachhangRepository;
+        private IRepository<Report> _reportRepository;
         public DonHangServices()
         {
             _donhangRepository = new IRepository<DonHang>();
@@ -26,6 +29,8 @@ namespace GiaoHangGiaRe.Module
             kienHangServices = new KienHangServices();
             _hoadonRepository = new IRepository<HoaDon>();
             _kienhangRepository = new IRepository<KienHang>();
+            _khachhangRepository = new IRepository<KhachHang>();
+            _reportRepository = new IRepository<Report>();
         }
         public DonHangServices(IRepository<DonHang> donhangRepository)
         {
@@ -80,15 +85,19 @@ namespace GiaoHangGiaRe.Module
             {
                 user_name = "";
             }
-            //mac dinh tinh trang =0
-            if (tinhtrang == null)
-            {
-                tinhtrang = 0;
-            }
-            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0 && p.TenTaiKhoan.Contains(user_name) && p.TinhTrang==tinhtrang)
+
+            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0 && p.TenTaiKhoan.Contains(user_name))
             .OrderBy(p => p.MaDonHang)
             .Skip(size.Value * (page.Value))
             .Take(size.Value).ToList();
+
+            if(tinhtrang != null)
+            {
+                res = _donhangRepository.GetAll().Where(p => p.TinhTrang >= 0 && p.TenTaiKhoan.Contains(user_name) && p.TinhTrang == tinhtrang)
+                .OrderBy(p => p.MaDonHang)
+                .Skip(size.Value * (page.Value))
+                .Take(size.Value).ToList();
+            }
             return res;
         }
         public List<DonHang> GetDonHangViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
@@ -191,10 +200,19 @@ namespace GiaoHangGiaRe.Module
         /// </summary>
         /// <param name="tinhtrang"></param>
         /// <returns></returns>
-        public List<DonHang> GetDonHangCurrentuser(int tinhtrang = 0) //lay cac don hang cua user
+        public List<DonHang> GetDonHangCurrentuser(int? tinhtrang = null) //lay cac don hang cua user
         {
-            var res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName && p.TinhTrang == tinhtrang);
-            return res.ToList();
+            var res = new List<DonHang>();
+            if (tinhtrang != null)
+            {
+                res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName && p.TinhTrang == tinhtrang).ToList();
+            }
+            else
+            {
+                res = _donhangRepository.GetAll().Where(p => p.TenTaiKhoan == userServices.GetCurrentUser().UserName).ToList();
+            }
+            
+            return res;
         }
         /// <summary>
         /// Đơn hàng tồn tại trả về true
@@ -248,18 +266,41 @@ namespace GiaoHangGiaRe.Module
             var donhang = _donhangRepository.SelectById(_input.MaDonHang);
             if(_input.TinhTrang == DonHangConstant.GiaoThanhCong)
             {
-                donhang.ThoiDiemHoanThanhDH = DateTime.Now;
-                _hoadonRepository.Insert(new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
-                {
-                    MaDonHang = donhang.MaDonHang,
-                    GhiChu = donhang.GhiChu,
-                    MaNhanVienGH = donhang.MaNhanVienGiao,
-                    ThanhTien = donhang.ThanhTien
-                    //MaKhachHang = donhang.TenTaiKhoan,
-                });
+                if(_khachhangRepository.GetAll().Any(p => p.TenTaiKhoan == donhang.TenTaiKhoan)){
+
+                    var kh = _khachhangRepository.GetAll().Where(p => p.TenTaiKhoan == donhang.TenTaiKhoan).SingleOrDefault().MaKhachHang;
+                    donhang.ThoiDiemHoanThanhDH = DateTime.Now;
+                    if (donhang.ThanhTien == null)
+                    {
+                        donhang.ThanhTien = 0;
+                    }
+                    var dh = new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
+                    {
+                        MaDonHang = donhang.MaDonHang,
+                        GhiChu = donhang.GhiChu,
+                        MaNhanVienGH = donhang.MaNhanVienGiao,
+                        ThanhTien = donhang.ThanhTien,
+                        MaKhachHang = kh
+                    };
+                    _hoadonRepository.Insert(dh);
+                    
+                }             
             }
             donhang.TinhTrang = _input.TinhTrang;
             _donhangRepository.Update(donhang);
+        }
+        public void ReportDonHang(Report input)
+        {
+            if( _donhangRepository.GetAll().Any(p => p.MaDonHang == input.MaDonHang)){
+                changeStatusDonHang(new UpdateTrangThaiDonHang
+                {
+                    MaDonHang = input.MaDonHang,
+                    TinhTrang = DonHangConstant.Huy
+                });
+                input.MaNhanVien = nhanVienServices.GetNhanVienCurrentUser().MaNhanVien;
+                input.Report_Type = ReportTypeConstant.DonHang;
+                _reportRepository.Insert(input);
+            }
         }
         public bool donHangIsOfUser(int MaDonHang)
         {

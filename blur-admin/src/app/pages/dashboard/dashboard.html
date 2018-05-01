@@ -1,19 +1,34 @@
 <div class="row">
   <div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="row">
-      <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel ba-panel-title="Revenue" ba-panel-class="medium-panel">
+      <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel ba-panel-title="Đơn hàng" ba-panel-class="medium-panel">
         <!-- <dashboard-line-chart></dashboard-line-chart> -->
+        <div class=" col-lg-12 col-md-12 col-sm-7 col-xs-12 dashboard">
+          Đang trong kho {{dashboard.soDHVaoKho}}
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-7 col-xs-12 dashboard">
+          Đang lấy hàng {{dashboard.soDHLayHang}}
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-7 col-xs-12 dashboard">
+          Đang chờ {{dashboard.soDHCho}}
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-7 col-xs-12 dashboard">
+          Đang giao {{dashboard.soDHDangGiao}}
+        </div>
       </div>
       <div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12" ba-panel ba-panel-class="popular-app medium-panel">
-        <!-- <popular-app></popular-app> -->
+        <div class="col-xlg-12 col-lg-12 col-md-12 col-sm-7 col-xs-12 dashboard_nhanvien">
+         Số nhân viên đang hoạt động  {{dashboard.soNhanVien}}
+        </div>
       </div>
+
     </div>
   </div>
   <div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12" ba-panel ba-panel-title="Feed" ba-panel-class="large-panel with-scroll feed-panel">
 
     <div class="feed-messages-container" track-width="smallContainerWidth" min-width="360">
       <div class="feed-message" ng-repeat="message in feed" ng-click="expandMessage(message)">
-        <div class="message-icon" ng-if="message.type == 'text-message'">
+        <!-- <div class="message-icon" ng-if="message.type == 'text-message'">
           <img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}">
         </div>
         <div class="message-icon" ng-if="message.type != 'text-message'">
@@ -39,10 +54,10 @@
             <div class="ago-time">
               {{::message.ago}}
             </div>
-          </div>
-        </div>
+          </div> -->
       </div>
     </div>
-
   </div>
+
+</div>
 </div>

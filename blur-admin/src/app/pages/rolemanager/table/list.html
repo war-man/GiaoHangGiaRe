@@ -1,50 +1,48 @@
 <style>
-    td {
-      max-width: 100px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  </style>
-  <div class="row" ng-init="init()">
-          <div class="col-md-12">
-            <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
-              
-                  <!-- <div class="add-row-editable-table">
+</style>
+<div class="row" ng-init="init()">
+  <div class="col-md-12">
+    <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+
+      <!-- <div class="add-row-editable-table">
                           <button class="btn btn-primary" ng-click="gotoAddUser()">Thêm mới</button>
                         </div> -->
-                        <table class="table table-bordered table-hover table-condensed">
-                          <tr>
-                            <td>Thứ tự</td>
-                            <td>Role Id</td>
-                            <td>Role Name</td>
-                            <td>Thao tác</td>
-                          </tr>
-                          <tr ng-repeat="role in resdata" class="editable-row">
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                <span editable-text="role.Name" e-name="Name" e-form="rowform" e-required>
-                                  {{ role.Id || 'empty' }}
-                                </span>
-                            </td>
-                            <td>
-                              <span editable-text="role.Id" e-name="Id" e-form="rowform" e-required>
-                                {{ role.Name || 'empty' }}
-                              </span>
-                          </td>                    
-                            <td>       
-                              <div class="buttons" ng-show="!rowform.$visible">
-                                <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/rolemanager/edit/{{role.Id}}">Edit</a>
-                                <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteRole(role.Id)">Delete</button>
-                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="listUserOfRole($index)">Danh sách User</button>
-                              </div> 
-                            </td>
-                          </tr>
-                        </table>
-                        
-  
+      <table class="table table-bordered table-hover table-condensed">
+        <tr>
+          <td>Thứ tự</td>
+          <td>Role Id</td>
+          <td>Role Name</td>
+          <td>Thao tác</td>
+        </tr>
+        <tr ng-repeat="role in resdata" class="editable-row">
+          <td>
+            {{$index+1}}
+          </td>
+          <td>
+            <span editable-text="role.Name" e-name="Name" e-form="rowform" e-required>
+              {{ role.Id || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="role.Id" e-name="Id" e-form="rowform" e-required>
+              {{ role.Name || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/rolemanager/edit/{{role.Id}}">Edit</a>
+              <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteRole(role.Id)">Delete</button>
+              <button class="btn btn-primary editable-table-button btn-xs" ng-click="listUserOfRole(role.Id)">Danh sách</button>
             </div>
-          </div>
-        </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

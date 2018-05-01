@@ -95,4 +95,12 @@ namespace GiaoHangGiaRe.Module
         /// </summary>
         public static int StopActive = 0;
     }
+    public class ReportTypeConstant
+    {
+        /// <summary>
+        /// Báo cáo vi phạm liên quan đến đơn hàng
+        /// </summary>
+        public static string DonHang = "1";
+
+    }
 }

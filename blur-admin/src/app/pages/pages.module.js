@@ -24,7 +24,7 @@
     'BlurAdmin.pages.nhanvien','BlurAdmin.pages.hoadon','BlurAdmin.pages.bando',
     'BlurAdmin.pages.lichsu','BlurAdmin.pages.login',
     'BlurAdmin.pages.services','BlurAdmin.pages.signout','BlurAdmin.pages.banggia',
-    'BlurAdmin.pages.loaikh'
+    'BlurAdmin.pages.loaikh', 'BlurAdmin.pages.dashboard'
   ])
       .config(routeConfig);
 

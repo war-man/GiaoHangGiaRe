@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
-
+import {DANGCHO,DATIEPNHAN,GIAOTHANHCONG,GUIVAOKHO,DANGLAYHANG, DANGGIAO} from '../../constValue';
 import { App, NavController, ModalController, ViewController } from 'ionic-angular';
 
 @Component({
   template: `
     <ion-list>
-      <button ion-item (click)="close(0)">Chưa tiếp nhận</button>
-      <button ion-item (click)="close(1)">Đợi tiếp nhận</button>
-      <button ion-item (click)="close(2)">Đang giao</button>
-      <button ion-item (click)="close(3)">Hoàn thành</button>
+      <button ion-item (click)="close(DANGCHO)">Đang chờ</button>
+      <button ion-item (click)="close(DATIEPNHAN)">Đã tiếp nhận</button>
+      <button ion-item (click)="close(DANGLAYHANG)">Đang lấy hàng</button>
+      <button ion-item (click)="close(DANGGIAO)">Đang giao</button>
+      <button ion-item (click)="close(GUIVAOKHO)">Trong kho</button>
+      <button ion-item (click)="close(GIAOTHANHCONG)">Hoàn thành</button>
       <button ion-item (click)="close()">Tất cả</button>
     </ion-list>
   `
 })
 export class PopoverDonHangPage {
+  DANGCHO = DANGCHO;
+  DATIEPNHAN = DATIEPNHAN;
+  DANGLAYHANG = DANGLAYHANG;
+  DANGGIAO = DANGGIAO;
+  GIAOTHANHCONG= GIAOTHANHCONG;
+  GUIVAOKHO = GUIVAOKHO;
 
   constructor(
     public viewCtrl: ViewController,

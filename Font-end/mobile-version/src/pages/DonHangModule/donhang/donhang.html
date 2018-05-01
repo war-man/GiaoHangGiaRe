@@ -13,6 +13,11 @@
 </ion-header>
 
 <ion-content class="donhang-page">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="hide"
+        pullingIcon="arrow-round-down">
+        </ion-refresher-content>
+    </ion-refresher>
   <ion-list>
     <div *ngFor="let item of listDonHang" class="donhang-item">
       <button ion-item no-lines no-padding (tap)="gotoDetailsDonHang(item)">
@@ -30,4 +35,8 @@
     <button ion-fab color="light" (tap)="createDonHang()"><ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

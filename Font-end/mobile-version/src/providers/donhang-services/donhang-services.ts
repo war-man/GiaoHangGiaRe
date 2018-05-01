@@ -86,4 +86,13 @@ export class DonhangServicesProvider {
       })
     })
   }
+  reportDonHang(input) : any{
+    return new Promise((resolve, reject) => {
+      this.http_Service.post('user/api/donhang/report_donhang', input).subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
 }

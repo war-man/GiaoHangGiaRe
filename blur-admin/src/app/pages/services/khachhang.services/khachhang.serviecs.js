@@ -18,10 +18,10 @@
         //craete KhachHang
         var khachhang_create = function (input) {
             var url = host + 'khachhang/create';
-            result = $http.post(url, input)
-                .success(function (data, status) {
+            var result = $http.post(url, input)
+                .success(function (data) {
                 })
-                .error(function (data, status) {
+                .error(function (data) {
                 });
             return result;
         }
@@ -30,9 +30,9 @@
         var khachhang_delete = function (id) {
             var url = host + 'khachhang/delete?id=' + id;
             var result = $http.delete(url)
-                .success(function (data, status) {
+                .success(function (data) {
                 })
-                .error(function (data, status) {
+                .error(function (data) {
                 });
             return result;
         }
@@ -40,10 +40,10 @@
         //Update KhachHang
         var khachhang_update = function (input) {
             var url = host + 'khachhang/update';
-            var result = $http.put(url, data)
-                .success(function (data, status) {
+            var result = $http.put(url, input)
+                .success(function (data) {
                 })
-                .error(function (data, status) {
+                .error(function (data) {
                 });
             return result;
         };

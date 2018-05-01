@@ -7,7 +7,7 @@
 
   angular.module('BlurAdmin.pages.dashboard', [])
       .config(routeConfig);
-
+    var controller='dashboardcontroller';
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
@@ -15,6 +15,7 @@
           url: '/dashboard',
           templateUrl: 'app/pages/dashboard/dashboard.html',
           title: 'Dashboard',
+          controller: controller,
           sidebarMeta: {
             icon: 'ion-android-home',
             order: 0,

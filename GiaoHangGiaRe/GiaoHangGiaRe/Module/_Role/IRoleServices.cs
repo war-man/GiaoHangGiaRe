@@ -18,6 +18,7 @@ namespace GiaoHangGiaRe.Module
 
         IdentityRole Delete(string id);
 
+
         int Count();
 
         bool IsExit(string id);

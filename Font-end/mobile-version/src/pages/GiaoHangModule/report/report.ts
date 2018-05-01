@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DonhangServicesProvider } from '../../../providers/donhang-services/donhang-services';
 
 /**
  * Generated class for the ReportPage page.
@@ -18,12 +19,12 @@ export class ReportPage {
   reportForm: FormGroup;
   donHang: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public DonhangServices: DonhangServicesProvider,
     private formBuilder: FormBuilder,
     public ViewCtrl: ViewController) {
     this.donHang = this.navParams.get('DonHang');
     this.reportForm = this.formBuilder.group({
-      NoiDung: [''],
-      ChonNhanhNoiDung: ['', [Validators.required]]
+      Report_Content: ['',[Validators.required]]
     })
   }
 
@@ -31,7 +32,12 @@ export class ReportPage {
 
   }
   submitData() {
-    console.log(this.reportForm.value);
+    console.log();
+    if(this.reportForm.valid){
+      this.DonhangServices.reportDonHang(this.reportForm.value).then(res =>{
+        console.log(res);
+      })
+    }
   }
   closemodal() {
     this.ViewCtrl.dismiss();

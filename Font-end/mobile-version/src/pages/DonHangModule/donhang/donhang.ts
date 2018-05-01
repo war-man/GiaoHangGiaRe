@@ -19,14 +19,20 @@ export class DonHangPage {
   constructor(private donhang_Services: DonhangServicesProvider,
     public popoverCtrl: PopoverController,
   private navCtr: NavController) {
+    this.getData();
   }
-  ngOnInit() {
+  // ionViewCanEnter(){
+  //   this.getData();
+  // }
+  getData(){
     this.donhang_Services.getAllDonHang().then(res => {
       this.respostory = res.list;
       this.listDonHang = res.list;
     }, err => {
       console.log(err);
     })
+  }
+  ngOnInit() {
   }
   gotoDetailsDonHang(DonHang){
     this.navCtr.push(DonHangDetailPage, {DonHang: DonHang});
@@ -39,10 +45,10 @@ export class DonHangPage {
     this.popover.onDidDismiss(type =>{
       if(type != undefined){
         this.listDonHangFillter = [];
-        for( let i=0; i< this.listDonHang.length; i++)
+        for( let i=0; i< this.respostory.length; i++)
         {
-          if(this.listDonHang[i].TinhTrang == type){
-            this.listDonHangFillter.push(this.listDonHang[i]);
+          if(this.respostory[i].TinhTrang == type){
+            this.listDonHangFillter.push(this.respostory[i]);
           }
         }
         this.listDonHang = this.listDonHangFillter;
@@ -50,6 +56,18 @@ export class DonHangPage {
         this.listDonHang = this.respostory;
       }
     })
+  }
+  doRefresh(refresher) {
+    this.donhang_Services.getAllDonHang().then(res => {
+      this.respostory = res.list;
+      this.listDonHang = res.list;
+      refresher.complete();
+    }, err => {
+      console.log(err);
+    })
+  }
+  doInfinite(infiniteScroll) {
+    infiniteScroll.complete();
   }
   createDonHang(){
     this.navCtr.push(CreateDonHangPage);

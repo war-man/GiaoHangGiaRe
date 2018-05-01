@@ -15,8 +15,7 @@ angular.module('BlurAdmin', [
     'BlurAdmin.theme',
     'BlurAdmin.pages'
 ]);
-let host = 'http://localhost:8080/';
-let host2 = 'http://localhost:8195/';
+let host = localStorage.getItem("host");
 angular.module('BlurAdmin').constant('BASE', host);
 
 /* Init global settings request run the app */

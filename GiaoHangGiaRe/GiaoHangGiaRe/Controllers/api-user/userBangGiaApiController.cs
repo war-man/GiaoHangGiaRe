@@ -41,9 +41,9 @@ namespace GiaoHangGiaRe.Controllers
         }
         [HttpGet]
         [Route("get-calculate-price")]
-        public IHttpActionResult getCalculate(float ChieuDai, float ChieuRong, float KhoiLuong, int SoLuongKienHang)
+        public IHttpActionResult getCalculate(float ChieuDai, float ChieuRong, float KhoiLuong)
         {
-            return Ok(ChieuDai*ChieuRong);
+            return Ok(ChieuDai*ChieuRong*KhoiLuong*200);
         }
     }
 

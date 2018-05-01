@@ -20,7 +20,7 @@ namespace GiaoHangGiaRe.Controllers
         private KienHangServices _kienhangServices;
         private UserServices _userServices;
         private NhanVienServices _nhanvienServices;
-        userDonHangAPIController() {
+        public userDonHangAPIController() {
             _kienhangServices = new KienHangServices();
             _userServices = new UserServices();
             _nhanvienServices = new NhanVienServices();
@@ -30,7 +30,7 @@ namespace GiaoHangGiaRe.Controllers
         [Authorize]
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult GetDonHangs(int tinhtrang = 0)
+        public IHttpActionResult GetDonHangs(int? tinhtrang = null)
         {     
             return Ok(new
             {
@@ -45,11 +45,11 @@ namespace GiaoHangGiaRe.Controllers
         {
             statusDonHang _statusDonHang = new statusDonHang()
             {
-                Huy = _donHangServices.GetDonHangCurrentuser(-1).Count,
-                DangCho = _donHangServices.GetDonHangCurrentuser().Count,
-                DangGiaoHang = _donHangServices.GetDonHangCurrentuser(1).Count,
-                NhapKho = _donHangServices.GetDonHangCurrentuser(2).Count,
-                GiaoHangCong = _donHangServices.GetDonHangCurrentuser(3).Count
+                Huy = _donHangServices.GetDonHangCurrentuser(DonHangConstant.Huy).Count,
+                DangCho = _donHangServices.GetDonHangCurrentuser(DonHangConstant.DangCho).Count,
+                DangGiaoHang = _donHangServices.GetDonHangCurrentuser(DonHangConstant.DangGiao).Count,
+                NhapKho = _donHangServices.GetDonHangCurrentuser(DonHangConstant.GuiVaoKho).Count,
+                GiaoHangCong = _donHangServices.GetDonHangCurrentuser(DonHangConstant.GiaoThanhCong).Count
             };
             return Ok(new
             {
@@ -218,7 +218,23 @@ namespace GiaoHangGiaRe.Controllers
                 }
             }
         }
+        [ResponseType(typeof(void))]
+        [Route("report_donhang")]
+        [HttpPost]
+        public IHttpActionResult ReportDonHang(Report input)
+        {
+            if (_donHangServices.IsExists(input.MaDonHang))
+            {
+                _donHangServices.ReportDonHang(input);
+                return Ok(1);
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                                           (HttpStatusCode.InternalServerError, "Đơn hàng không tồn tại."));
+            }
 
+        }
         // POST: api/DonHangAPI
         [ResponseType(typeof(DonHang))]
         [Route("create")]

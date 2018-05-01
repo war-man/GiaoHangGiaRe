@@ -15,11 +15,13 @@ namespace GiaoHangGiaRe.Module
     class UserServices : IUserServices
     {
         private IdentityRepository<ApplicationUser> _userRepository;
+        private IdentityRepository<IdentityUserRole> _userRoleRepository;
         private LichSuServices lichSuServices;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ImageServices _imageServices;
         private IRepository<NhanViens> _nhanvienRepository;
+        private IRepository<KhachHang> _khachhangRepository;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -55,6 +57,8 @@ namespace GiaoHangGiaRe.Module
             lichSuServices = new LichSuServices();
             _imageServices = new ImageServices();
             _nhanvienRepository = new IRepository<NhanViens>();
+            _userRoleRepository = new IdentityRepository<IdentityUserRole>();
+            _khachhangRepository = new IRepository<KhachHang>();
             //UserManager = new ApplicationUserManager();
         }
         public IdentityResult Create(RegisterViewModel input)
@@ -68,6 +72,23 @@ namespace GiaoHangGiaRe.Module
                 var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
             }
 
+            var kh = new KhachHang{
+                TenTaiKhoan = input.TenTaiKhoan,
+                TenKhachHang = input.HoTen,
+                CongTy = input.CongTy,
+                DiaChi = input.DiaChi,
+                Email = input.Email,
+                SoDienThoai = input.SoDienThoai,
+                TrangThai = 1,
+                MaLoaiKH =1 ,
+                //NgaySinh = DateTime.Now,
+                //deleted = false
+            };
+            if (kh.CongTy == null)
+            {
+                kh.CongTy = "Cong ty";
+            }
+            _khachhangRepository.Insert(kh);
             return result;
         }
 
@@ -183,8 +204,17 @@ namespace GiaoHangGiaRe.Module
 
         public List<ApplicationUser> GetUserOfRole(string role)
         {
-            var userlist=_userRepository.GetAll().Where(p=>p.Roles.ToString() == role).ToList();
-            return userlist;
+            var userNameList=_userRoleRepository.GetAll().Where(p=>p.RoleId == role).ToList();
+            List<ApplicationUser> listAppUser = new List<ApplicationUser>();
+            if(userNameList != null)
+            {
+                foreach (var user in userNameList)
+                {
+                    listAppUser.Add(_userRepository.SelectById(user.UserId));
+                }
+            }
+
+            return listAppUser;
         }
 
         public List<Claim> Claims(string userId)

@@ -18,9 +18,11 @@
 
 <ion-content padding>
 <ion-row *ngFor="let item of listBangGia">
-  <ion-col>
+  <ion-col col-6>
       <span>{{item.NoiDung}}</span>
-      <span>{{item.BaoGia}}</span>
-  </ion-col>
+    </ion-col>
+    <ion-col col-6>
+        <span>{{item.BaoGia}}</span>
+    </ion-col>    
 </ion-row>
 </ion-content>

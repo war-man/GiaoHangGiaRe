@@ -52,9 +52,19 @@
         var role_delete = function (id) {
             var url = host + 'role/delete?id=' + id;
             var result = $http.delete(url)
-                .success(function (data, status) {
+                .success(function (data) {
                 })
-                .error(function (data, status) {
+                .error(function (data) {
+                });
+            return result;
+        }
+
+        var get_user_of_role = function (params) {
+            var url = host + 'taikhoan/get-user-of-role';
+            var result = $http.get(url, { params })
+                .success(function (data) {
+                })
+                .error(function (data) {
                 });
             return result;
         }
@@ -63,7 +73,8 @@
             role_create: role_create,
             role_getby_id: role_getby_id,
             role_update: role_update,
-            role_delete: role_delete
+            role_delete: role_delete,
+            get_user_of_role: get_user_of_role
         }
     }
 })();

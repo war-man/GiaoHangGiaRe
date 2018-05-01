@@ -198,6 +198,14 @@
     <Compile Include="Migrations\201804261422083_themTinhHuyen.Designer.cs">
       <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280547133_fixDonHang.cs" />
+    <Compile Include="Migrations\201804280547133_fixDonHang.Designer.cs">
+      <DependentUpon>201804280547133_fixDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804290336422_suaKhachHang.cs" />
+    <Compile Include="Migrations\201804290336422_suaKhachHang.Designer.cs">
+      <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -280,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804261422083_themTinhHuyen.resx">
       <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280547133_fixDonHang.resx">
+      <DependentUpon>201804280547133_fixDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804290336422_suaKhachHang.resx">
+      <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

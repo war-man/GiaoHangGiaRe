@@ -366,6 +366,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api-admin\BangGiaApiController.cs" />
+    <Compile Include="Controllers\api-admin\DashBoardController.cs" />
     <Compile Include="Controllers\api-admin\DonHangAPIController.cs" />
     <Compile Include="Controllers\api-admin\HoaDonApiController.cs" />
     <Compile Include="Controllers\api-admin\HomeController.cs" />
@@ -379,7 +380,7 @@
     <Compile Include="Controllers\api-admin\RoleManagerApiController.cs" />
     <Compile Include="Controllers\api-admin\TaiKhoanApiController.cs" />
     <Compile Include="Controllers\api-admin\UuDaiApiController.cs" />
-    <Compile Include="Controllers\api-user\DonHangAPIController.cs" />
+    <Compile Include="Controllers\api-user\userDonHangAPIController.cs" />
     <Compile Include="Controllers\api-user\NoUserApiController.cs" />
     <Compile Include="Controllers\api-user\userBangGiaApiController.cs" />
     <Compile Include="Controllers\api-user\userTaiKhoanApiController.cs" />
@@ -463,6 +464,8 @@
     <Compile Include="Module\Bang_Gia\BangGiaServices.cs" />
     <Compile Include="Module\Bang_Gia\IBangGiaServices.cs" />
     <Compile Include="Module\Constant.cs" />
+    <Compile Include="Module\DashBoard\DashBoardServices.cs" />
+    <Compile Include="Module\DashBoard\IDashBoardServices.cs" />
     <Compile Include="Module\Don_Hang\DonHangServices.cs" />
     <Compile Include="Module\Don_Hang\IDonHangServices.cs" />
     <Compile Include="Module\ftp_module.cs" />
@@ -482,6 +485,8 @@
     <Compile Include="Module\Loai_KhachHang\LoaiKHServices.cs" />
     <Compile Include="Module\Nhan_Vien\INhanVienServices.cs" />
     <Compile Include="Module\Nhan_Vien\NhanVienServices.cs" />
+    <Compile Include="Module\Report\IReportServices.cs" />
+    <Compile Include="Module\Report\ReportServices.cs" />
     <Compile Include="Module\Tin_Nhan\ITinNhanServices.cs" />
     <Compile Include="Module\Tin_Nhan\TinNhanServices.cs" />
     <Compile Include="Module\Uu_Dai\IUuDaiServices.cs" />

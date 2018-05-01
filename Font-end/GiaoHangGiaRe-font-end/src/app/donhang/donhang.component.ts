@@ -3,6 +3,7 @@ import { DonHangService } from '../../providers/donhang_service/donhang.service'
 import { Router, Route } from '@angular/router';
 import { DonHangDetailsComponent } from '../don-hang-details/don-hang-details.component';
 import { DataService } from '../../providers/data_services';
+import {GIAOTHANHCONG, GUIVAOKHO, DANGCHO, HUY, DANGGIAO} from '../constanValue';
 
 @Component({
   selector: 'app-donhang',
@@ -10,6 +11,11 @@ import { DataService } from '../../providers/data_services';
   styleUrls: ['./donhang.component.scss']
 })
 export class DonhangComponent implements OnInit {
+  HUY = HUY;
+  DANGGIAO = DANGGIAO;
+  GIAOTHANHCONG = GIAOTHANHCONG;
+  GUIVAOKHO = GUIVAOKHO;
+  DANGCHO = DANGCHO;
   listDonHang: any[];
   donHangStatus: any;
   active: boolean[];
@@ -38,31 +44,31 @@ export class DonhangComponent implements OnInit {
   }
   getHuy(event) {
     this.getActive(0);
-    this.donhang_Service.getDonHang(-1).then(res => {
+    this.donhang_Service.getDonHang(HUY).then(res => {
       this.listDonHang = res.list;
     })
   }
   getDangGiao() {
     this.getActive(2);
-    this.donhang_Service.getDonHang(1).then(res => {
+    this.donhang_Service.getDonHang(DANGGIAO).then(res => {
       this.listDonHang = res.list;
     })
   }
   getNhapKho() {
     this.getActive(3);
-    this.donhang_Service.getDonHang(2).then(res => {
+    this.donhang_Service.getDonHang(GUIVAOKHO).then(res => {
       this.listDonHang = res.list;
     })
   }
   getDangCho() {
     this.getActive(1);
-    this.donhang_Service.getDonHang(0).then(res => {
+    this.donhang_Service.getDonHang(DANGCHO).then(res => {
       this.listDonHang = res.list;
     })
   }
   getGiaoThanhCong() {
     this.getActive(4);
-    this.donhang_Service.getDonHang(3).then(res => {
+    this.donhang_Service.getDonHang(GIAOTHANHCONG).then(res => {
       this.listDonHang = res.list;
     })
   }

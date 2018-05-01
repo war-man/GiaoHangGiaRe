@@ -10,8 +10,6 @@
     public partial class HoaDon
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Mã hóa đơn")]
         public int MaHoaDon { get; set; }
 
         [Display(Name = "Mã đơn hàng")]

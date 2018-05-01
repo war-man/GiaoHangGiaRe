@@ -74,15 +74,16 @@
     var username = $("input[name='TaiKhoan']").val();
     var password = $("input[name='MatKhau']").val();
     var input = 'grant_type=password&username=' + username + '&password=' + password;
-    var host = "http://localhost:8195/token";
-    var host2 = "http://localhost:8080/token";
+    var host = "http://localhost:8195/";
+    var host2 = "http://localhost:8080/";
     $.ajax({
-      url: host2,
+      url: host2+'token',
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
       data: input
     }).done(function (data) {
+      localStorage.setItem('host', host2);
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
     }).fail(function (err) {

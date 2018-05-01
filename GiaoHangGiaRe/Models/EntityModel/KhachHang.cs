@@ -13,24 +13,17 @@
          [Display(Name = "Mã khách hàng")]
         public int MaKhachHang { get; set; }
 
-        [StringLength(50)]
-        [Display(Name = "Tên khách hàng")]
         public string TenKhachHang { get; set; }
 
-        [StringLength(50)]
-        [Display(Name = "Công ty")]
         public string CongTy { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Số điện thoại")]
         public string SoDienThoai { get; set; }
 
-        [StringLength(50)]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [StringLength(50)]
-        [Display(Name = "Địa chỉ")]
+
         public string DiaChi { get; set; }
 
         public int? MaLoaiKH { get; set; }

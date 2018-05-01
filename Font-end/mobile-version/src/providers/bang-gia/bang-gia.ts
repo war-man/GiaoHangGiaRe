@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http_services';
+import { HttpParams } from '@angular/common/http';
 
 /*
   Generated class for the BangGiaProvider provider.
@@ -16,6 +17,18 @@ export class BangGiaProvider {
   getBangGia(): any{
     return new Promise((resolve, reject) => {
       this.http_Service.get('user/api/banggia/get-all').subscribe(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+  getGia(params: HttpParams): any{
+    if(!params){
+      params = new HttpParams();
+    }
+    return new Promise((resolve, reject) => {
+      this.http_Service.get('user/api/banggia/get-calculate-price', params).subscribe(res => {
         resolve(res);
       }, err => {
         reject(err);

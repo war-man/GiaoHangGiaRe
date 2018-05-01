@@ -75,7 +75,7 @@
     </div>
     <div class="col-md-12" style="padding-top: 20px;  padding-bottom:100px;">
       <div class="col-md-4"> </div>
-      <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" (click)="editDonHang(DonHang.MaDonHang)"> Chỉnh sửa đơn hàng</div>
+      <div class="col-md-2 btn btn-warning" style="margin-left: 20px;margin-right:20px" *ngIf="DonHang.TinhTrang == 0" (click)="editDonHang(DonHang.MaDonHang)"> Chỉnh sửa đơn hàng</div>
       <div class="col-md-2 btn btn-info" style="margin-left: 20px; margin-right:20px" (click)="theoDoiDonHang(DonHang.MaDonHang)"> Theo dõi tình trạng</div>
       <div class="col-md-4"> </div>
     </div>

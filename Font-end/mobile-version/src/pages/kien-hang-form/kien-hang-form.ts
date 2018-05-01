@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import {BangGiaProvider} from '../../providers/bang-gia/bang-gia';
+import { HttpParams } from '@angular/common/http';
 
 /**
  * Generated class for the KienHangFormPage page.
@@ -19,6 +21,7 @@ export class KienHangFormPage {
   kienHang: any;
   index: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public bangGiaProvider: BangGiaProvider,
     private formBuilder: FormBuilder,
     private camera: Camera,
     public ViewCtrl: ViewController) {
@@ -64,7 +67,14 @@ export class KienHangFormPage {
   submitData() {
     if (this.kienhanggForm.valid) {
       this.kienhanggForm.value.index = this.index;
-      this.ViewCtrl.dismiss(this.kienhanggForm.value);
+      let params = new HttpParams();
+      params = params.append('ChieuDai',this.kienhanggForm.value.ChieuDai).append('ChieuRong',this.kienhanggForm.value.ChieuRong)
+      .append('KhoiLuong',this.kienhanggForm.value.TrongLuong);
+      this.bangGiaProvider.getGia(params).then(res=>{
+        console.log(res);
+        this.kienhanggForm.value.ThanhTien = res;
+        this.ViewCtrl.dismiss(this.kienhanggForm.value);
+      })
     }
   }
   closemodal() {

@@ -3,19 +3,19 @@
     <a class="btn btn-info them_donhang" [routerLink]="['/donhang-them']">Thêm đơn hàng mới</a>
     <ul class="nav nav-tabs">
       <li [ngClass]="{'active':active[0]}">
-        <a (click)="getHuy($event)" >Đã hủy ({{donHangStatus?.Huy}})</a>
+        <a (click)="getHuy()" >Đã hủy ({{donHangStatus?.Huy}})</a>
       </li>
       <li [ngClass]="{'active':active[1]}">
-        <a (click)="getDangCho($event)" >Đang chờ ({{donHangStatus?.DangCho}})</a>
+        <a (click)="getDangCho()" >Đang chờ ({{donHangStatus?.DangCho}})</a>
       </li>
       <li [ngClass]="{'active':active[2]}">
-        <a (click)="getDangGiao($event)">Đang giao hàng ({{donHangStatus?.DangGiaoHang}})</a>
+        <a (click)="getDangGiao()">Đang giao hàng ({{donHangStatus?.DangGiaoHang}})</a>
       </li>
       <li [ngClass]="{'active':active[3]}">
-        <a (click)="getNhapKho($event)">Nhập kho ({{donHangStatus?.NhapKho}})</a>
+        <a (click)="getNhapKho()">Nhập kho ({{donHangStatus?.NhapKho}})</a>
       </li>
       <li [ngClass]="{'active':active[4]}">
-        <a (click)="getGiaoThanhCong($event)">Giao thành công ({{donHangStatus?.GiaoHangCong}})</a>
+        <a (click)="getGiaoThanhCong()">Giao thành công ({{donHangStatus?.GiaoHangCong}})</a>
       </li>
     </ul>
 

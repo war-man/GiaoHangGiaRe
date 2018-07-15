@@ -42,7 +42,7 @@ export class DonhangComponent implements OnInit {
       }
     }
   }
-  getHuy(event) {
+  getHuy() {
     this.getActive(0);
     this.donhang_Service.getDonHang(HUY).then(res => {
       this.listDonHang = res.list;

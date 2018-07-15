@@ -26,8 +26,7 @@
   <!-- endinject -->
   <!-- endbuild -->
 </head>
-
-<body>
+<body ng-app="authApp" ng-controller="authCtrl">
   <main class="auth-main">
     <div class="auth-block">
       <h1>Đăng nhập vào hệ thống</h1>
@@ -48,46 +47,48 @@
         </div>
       </form>
       <div class="col-sm-offset-5 col-sm-7">
-        <button class="btn btn-default btn-auth" onClick="doLogin()">Đăng nhập</button>
+        <button ng-if="!loading" class="btn btn-default btn-auth" ng-click="doLogin()">Đăng nhập</button>
+        <button ng-if="loading" class="btn btn-default btn-auth">Loading ...</button>
         <a href class="forgot-pass">Quên mật khẩu?</a>
       </div>
     </div>
   </main>
 </body>
-
 </html>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script>
-  $(document).ready(function () {
-    $(".login-form").keypress(function (e) {
-      if (e.keyCode == 13) {
-        doLogin();
-      }
-    })
-    $('#clickmewow').click(function () {
-      $('#radio1003').attr('checked', 'checked');
-    });
-  })
+  var app = angular.module('authApp', []);
 
-  function doLogin(e) {
+  app.controller('authCtrl', function($scope) {
+    $scope.loading = false;
+
+  $scope.doLogin = function () {
+    $scope.loading = true;
     var username = $("input[name='TaiKhoan']").val();
     var password = $("input[name='MatKhau']").val();
     var input = 'grant_type=password&username=' + username + '&password=' + password;
-    var host = "http://127.0.0.1:8080//";
-    var host2 = "http://127.0.0.1:8080//";
+    var host = "http://127.0.0.1:8080/";
+    var host2 = "http://localhost:8195/";
+    var host3 = "http://giaohanggiare.gear.host/";
     $.ajax({
-      url: host2+'token',
+      url: host3+'token',
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
       data: input
     }).done(function (data) {
-      localStorage.setItem('host', host2);
+      localStorage.setItem('host', host3);
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
+      $scope.loading = false;
     }).fail(function (err) {
-      alert(JSON.parse(err.responseText).error_description);
+      $scope.loading = false;
+      alert('Đăng nhập thất bại');
     });
   }
+
+  });
+
 </script>

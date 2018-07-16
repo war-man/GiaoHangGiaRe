@@ -73,13 +73,13 @@
     var host2 = "http://localhost:8195/";
     var host3 = "http://giaohanggiare.gear.host/";
     $.ajax({
-      url: host3+'token',
+      url: host+'token',
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
       data: input
     }).done(function (data) {
-      localStorage.setItem('host', host3);
+      localStorage.setItem('host', host);
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
       $scope.loading = false;

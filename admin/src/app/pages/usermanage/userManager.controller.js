@@ -5,7 +5,7 @@
     angular.module('BlurAdmin.pages')
         .controller('usermanagercontroller', usermanagercontroller);
     /** @ngInject */
-    function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr) {
+    function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr,$timeout,baProgressModal) {
         $scope.Size = 50;
         $scope.listUser;
         $scope.tablePage = {};
@@ -19,6 +19,7 @@
             $state.go('usermanager.add');
         };
         innitTableParams($scope.Size, 0);
+
         Init();
         function Init() {
             GetUserAPI.user_get_all($scope.params).then((res) => {

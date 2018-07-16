@@ -4,10 +4,21 @@
         .factory('GetUserAPI', GetUserAPI);
 
     /** @ngInject */
-    function GetUserAPI($http, $rootScope, localStorage, BASE, toastr) {
+    function GetUserAPI($http, $rootScope, localStorage, BASE, toastr,baProgressModal,$timeout) {
         var host = BASE + 'api/';
         //get-all TaiKhKhoan
         var user_get_all = function (params) {
+            baProgressModal.open();
+            baProgressModal.setProgress(0);
+            (function user_get_all() {
+                if (baProgressModal.getProgress() >= 100) {
+                    //baProgressModal.close();
+                } else {
+                    baProgressModal.setProgress(baProgressModal.getProgress() + 10);
+                    $timeout(user_get_all, 50);
+                }
+            })();
+
             var result = $http.get(host + 'taikhoan/get-all', { params })
                 .success(function () {
                 }).error(function () {

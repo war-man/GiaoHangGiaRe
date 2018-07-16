@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using GiaoHangGiaRe.Models.TaiKhoan;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -227,24 +228,32 @@ namespace GiaoHangGiaRe.Module
         {
             return _userManager.FindByName(username.ToString());
         }
-
-        public List<ApplicationUser> GetAll(int? page=null, int? size =null, string user_name ="", string user_id = "", string name = "")
+        public List<ApplicationUser> GetAll()
         {
-            if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) size = Constant.DefaultSize;
-            if (user_name == null)
-                user_name = "";
-            if (user_id == null)
-                user_id = "";
-            if (name == null)
-                name = "";
-            List<ApplicationUser> users = _userRepository.GetAll().Where(p=>(p.UserName.Contains(user_name) || p.TenTaiKhoan.Contains(user_name)) && p.Id.Contains(user_id) && p.HoTen.Contains(name)
-            &&p.isDelete == false)
-                .OrderBy(p => p.Id)
-                .Skip(size.Value * page.Value)
-                .Take(size.Value)
-                .ToList();
-            return users;
+            var querys = _userRepository.GetAll().Where(p => p.isDelete == false);
+            return querys.ToList();
+        }
+        public List<ApplicationUser> GetAll(TaiKhoanSearchList taiKhoanSearchList)
+        {
+            if (!taiKhoanSearchList.page.HasValue) taiKhoanSearchList.page = Constant.DefaultPage;
+            if (!taiKhoanSearchList.size.HasValue) taiKhoanSearchList.size = Constant.DefaultSize;
+
+            var querys = _userRepository.GetAll().Where(p=>p.isDelete == false);
+            if(!string.IsNullOrEmpty(taiKhoanSearchList.user_name))
+            {
+                querys = querys.Where(p => (p.UserName.Contains(taiKhoanSearchList.user_name)));
+            }
+            if (!string.IsNullOrEmpty(taiKhoanSearchList.id))
+            {
+                querys = querys.Where(p => (p.Id.Contains(taiKhoanSearchList.id)));
+            }
+            if (!string.IsNullOrEmpty(taiKhoanSearchList.name))
+            {
+                querys = querys.Where(p => (p.HoTen.Contains(taiKhoanSearchList.name)));
+            }
+            querys = querys.Skip(taiKhoanSearchList.size.Value * taiKhoanSearchList.page.Value)
+                           .Take(taiKhoanSearchList.size.Value);
+                return querys.ToList();
         }
 
         public int Count()

@@ -1,4 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.TaiKhoan;
 using GiaoHangGiaRe.Module;
 using Microsoft.AspNet.Identity;
 using Models.EntityModel;
@@ -23,16 +24,14 @@ namespace GiaoHangGiaRe.Controllers
         [HttpGet]
         [Route("get-all")]
         [ResponseType(typeof(ApplicationUser))]
-        public IHttpActionResult Get(int? page =0, int? size = 50, string user_name = "", string user_id = "", string name = "")
-        {
-            //if (User.IsInRole("Administrators"))
-            //{
-            //};
+        public IHttpActionResult Get()
+        {    
+            TaiKhoanSearchList taiKhoanSearchList new TaiKhoanSearchList(0,0,"","","");
             return Ok(new {
-                data=_userServices.GetAll(page, size, user_name, user_id, name),
+                data=_userServices.GetAll(taiKhoanSearchList),
                 total=_userServices.Count(),
-                size,
-                page
+                taiKhoanSearchList.size,
+                taiKhoanSearchList.page
             });
         }
 
@@ -120,7 +119,7 @@ namespace GiaoHangGiaRe.Controllers
         {
             var user = _userServices.GetById(id);
             if (user == null)
-                return Ok("User khong ton tai!");
+                return Ok("User không tồn tại!");
             else
             {
                 if (IdentityResult.Failed() == _userServices.Delete(id))

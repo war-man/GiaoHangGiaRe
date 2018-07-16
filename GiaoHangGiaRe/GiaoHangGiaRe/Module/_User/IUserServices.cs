@@ -1,13 +1,9 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.TaiKhoan;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Models.EntityModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -15,7 +11,7 @@ namespace GiaoHangGiaRe.Module
     {
         //cho cac phuong thuc GET
         ApplicationUser GetById(string id);
-        List<ApplicationUser> GetAll(int?page,int?size, string user_name, string user_id, string name);
+        List<ApplicationUser> GetAll(TaiKhoanSearchList taiKhoanSearchList);
         List<ApplicationUser> GetUserOfRole(string role);
         List<string> GetRoleByUserId(string userid);
         List<Claim> Claims(string userId);

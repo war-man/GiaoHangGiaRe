@@ -116,6 +116,7 @@ namespace GiaoHangGiaRe.Module
         public ApplicationUser GetById(string id)
         {
             var user = UserManager.FindById(id);
+            user.Roles = this.GetRoleByUserId(id);
             return user;
         }
 

@@ -22,22 +22,27 @@
         });
         //GET BY ID
         $scope.getbyid = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+
             GetUserAPI.user_getby_id($stateParams)
                 .success(function (data) {
+                    $scope.modal.dismiss();
                     $scope.model = data;
                 }).error(function () {
+                    $scope.modal.dismiss();
                     $scope.errorMessage = "Không thể lấy dữ liệu có mã là " + $stateParams + "!";
                 });
         };
-
         //SEARCH
         $scope.search = function () {
             $scope.modal = $uibModal.open({
                 animation: false,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
             });
-            
-            console.log($scope.modal);
+
             var params = {};
             if($scope.params.page != null){
                 params.page = $scope.params.page;
@@ -69,12 +74,18 @@
 
         //EDIT USER
         $scope.editUser = function (model) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+
             GetUserAPI.user_update(model)
                 .success(function (data, status) {
+                    $scope.modal.dismiss();
                     $state.go('usermanager.list')
                 }).error(function (data, status) {
+                    $scope.modal.dismiss();
                     $scope.errorMessage = "Không thể update dữ liệu !";
-                    alert('Dường như đã có lỗi nào đó xảy ra!');
                 });
         };
 
@@ -90,6 +101,7 @@
                 },
             }).result.then(function (data) {
                 GetUserAPI.user_delete(id).success(function (data, status) {
+                    $scope.modal.dismiss();
                     $state.go('usermanager.list', {}, { reload: true });
                 })
             }, function () {
@@ -108,12 +120,18 @@
                     for(let i =0; i< user.Roles.length; i++){
                         $scope.roles.push(user.Roles[i].RoleId)
                     }
-                    console.log($scope.roles);
                     $scope.roleSelect = roleSelect;
                 },
             }).result.then(function (data) {
+
+                $scope.modal = $uibModal.open({
+                    animation: false,
+                    templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+                });
+                
                 let input = {userId: user.Id,roleId: data};
                 GetUserAPI.user_add_roles(input).success(function (res) {
+                    $scope.modal.dismiss();
                     $state.go('usermanager.list', {}, { reload: true });
                 })
             }, function () {
@@ -127,8 +145,15 @@
             }else{
                 model.Role = [];
             }
+
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+
             GetUserAPI.user_create(model)
                 .success(function (Response) {
+                    $scope.modal.dismiss();
                     if (!Response.Succeeded) {
                         $scope.errorMessage = Response.Errors;
                     }
@@ -136,6 +161,7 @@
                         $state.go('usermanager.list');
                     }
                 }).error(function (data, status) {
+                    $scope.modal.dismiss();
                     $scope.errorMessage = 'Dường như đã có lỗi nào đó xảy ra!';
                 });
         };

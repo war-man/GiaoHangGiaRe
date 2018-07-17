@@ -6,76 +6,64 @@
         .controller('usermanagercontroller', usermanagercontroller);
     /** @ngInject */
     function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr,$timeout,baProgressModal) {
-        $scope.Size = 50;
-        $scope.listUser;
         $scope.tablePage = {};
         $scope.model = {};
         $scope.currentstate = $state.current.name;
         $scope.errorMessage;
         $scope.roleSelect;
         $scope.filter = {};
-        $scope.params = { page: $scope.tablePage.currenPage, size: $scope.Size };
+        $scope.params = {};
         $scope.gotoAddUser = function () {
             $state.go('usermanager.add');
         };
-        innitTableParams($scope.Size, 0);
-
-        Init();
-        function Init() {
-            GetUserAPI.user_get_all($scope.params).then((res) => {
-                if (res.status == '200') {
-                    $scope.listUser = res.data.data;
-                    innitTableParams($scope.Size, 0, res.data.total);
-                }
-            })
-        }
-        $scope.gotoPage = function (page) {
-            $scope.params.page = page;
-            GetUserAPI.user_get_all($scope.params).then((res) => {
-                if (res.status == '200') {
-                    $scope.listUser = res.data.data;
-                    innitTableParams($scope.Size, page, res.data.total);
-                }
-            })
-        }
-        function innitTableParams(size, currenPage, totalRecord) {
-            $scope.tablePage.totalRecord = totalRecord;
-            $scope.tablePage.size = size;
-            $scope.tablePage.totalPage = totalRecord / size;
-            $scope.tablePage.currenPage = currenPage;
-            $scope.tablePage.arrayPage = [];
-            for (var i = 0; i < $scope.tablePage.totalPage; i++) {
-                $scope.tablePage.arrayPage.push(i);
-            }
-        }
 
         GetRoleAPI.role_get_all().then(function (res) { //Lấy danh sách Role       
             $scope.roleSelect = res.data.data;
         });
-
+        //GET BY ID
         $scope.getbyid = function () {
             GetUserAPI.user_getby_id($stateParams)
                 .success(function (data) {
                     $scope.model = data;
-                    console.log($scope.model);
                 }).error(function () {
                     $scope.errorMessage = "Không thể lấy dữ liệu có mã là " + $stateParams + "!";
-                    console.log($scope.errorMessage);
                 });
         };
 
         //SEARCH
         $scope.search = function () {
-            $scope.params.page = 0;
-            $scope.params.size = null;
-            $scope.params.user_name = $scope.filter.user_name ? $scope.filter.user_name : null;
-            $scope.params.user_id = $scope.filter.id ? $scope.filter.id : null;
-            $scope.params.name = $scope.filter.name ? $scope.filter.name : null;
-            GetUserAPI.user_get_all($scope.params).then((res) => {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            
+            console.log($scope.modal);
+            var params = {};
+            if($scope.params.page != null){
+                params.page = $scope.params.page;
+            }
+            if($scope.params.size != null){
+                params.size = $scope.params.size;
+            }
+            if($scope.filter.user_name != null){
+                params.user_name = $scope.filter.user_name;
+            }
+            if($scope.filter.name != null){
+                params.name = $scope.filter.name;
+            }
+            if($scope.filter.id != null){
+                params.id = $scope.filter.id;
+            }
+
+            GetUserAPI.user_get_all(params).then((res) => {
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
-                    innitTableParams(res.data.size, res.data.page, res.data.total);
+                    $scope.arrayPage = [];
+                    for (var i = 0; i < Math.round(res.data.total/res.data.size); i++) {
+                        $scope.arrayPage.push(i);
+                    }
                 }
+                $scope.modal.dismiss();
             })
         }
 
@@ -134,8 +122,11 @@
 
         //Add USER 
         $scope.addUser = function (model) {
-            model.Role = model.SelectRole.value.Name.Name; // Chuyển giá trị từ select role vào role
-            console.log(model);
+            if(model.SelectRole){
+                model.Role = model.SelectRole.value.Name.Name; // Chuyển giá trị từ select role vào role
+            }else{
+                model.Role = [];
+            }
             GetUserAPI.user_create(model)
                 .success(function (Response) {
                     if (!Response.Succeeded) {

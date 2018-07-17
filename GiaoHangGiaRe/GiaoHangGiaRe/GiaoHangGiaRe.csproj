@@ -503,6 +503,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\TaiKhoan\TaiKhoanSearchList.cs" />
+    <Compile Include="Models\TaiKhoan\TaiKhoanCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

@@ -21,12 +21,22 @@ namespace GiaoHangGiaRe.Controllers
             _nhanVienServices = new NhanVienServices();
         }
         // GET: api/TaiKhoanApi
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
         [ResponseType(typeof(ApplicationUser))]
-        public IHttpActionResult Get()
-        {    
-            TaiKhoanSearchList taiKhoanSearchList new TaiKhoanSearchList(0,0,"","","");
+        public IHttpActionResult Get(TaiKhoanSearchList _taiKhoanSearchList)
+        {
+            TaiKhoanSearchList taiKhoanSearchList;
+            if(_taiKhoanSearchList == null)
+            {
+                taiKhoanSearchList = new TaiKhoanSearchList();
+            }
+            else
+            {
+                taiKhoanSearchList = new TaiKhoanSearchList(_taiKhoanSearchList.page.Value, _taiKhoanSearchList.size.Value,
+                                                                           _taiKhoanSearchList.name, _taiKhoanSearchList.user_name, _taiKhoanSearchList.id);
+            }
+             
             return Ok(new {
                 data=_userServices.GetAll(taiKhoanSearchList),
                 total=_userServices.Count(),
@@ -67,7 +77,7 @@ namespace GiaoHangGiaRe.Controllers
         //[AllowAnonymous] // Tao 1 user - Khong tao tu dong KhachHang hoac NhanVien
         [HttpPost]
         [Route("create")]
-        public IHttpActionResult Create(RegisterViewModel input)
+        public IHttpActionResult Create(TaiKhoanCreate input)
         {
             input.Password = "123456"; // Mat khau mac dinh
             _userServices.Create(input);
@@ -88,7 +98,7 @@ namespace GiaoHangGiaRe.Controllers
 
         [HttpPost]
         [Route("register")]
-        public IHttpActionResult Resister(RegisterViewModel input)
+        public IHttpActionResult Resister(TaiKhoanCreate input)
         { 
             //input.Password = "123456"; Nguoi dung phai nhap Mat Khau de dang ky
             return Ok(_userServices.Create(input));

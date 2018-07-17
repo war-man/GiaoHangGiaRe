@@ -9,6 +9,7 @@ namespace GiaoHangGiaRe.Module
 {
     interface IUserServices
     {
+       
         //cho cac phuong thuc GET
         ApplicationUser GetById(string id);
         List<ApplicationUser> GetAll(TaiKhoanSearchList taiKhoanSearchList);
@@ -18,7 +19,7 @@ namespace GiaoHangGiaRe.Module
         ApplicationUser GetuserByUsername(object username);
 
         //cho cac phuong thuc POST
-        IdentityResult Create(RegisterViewModel input);
+        IdentityResult Create(TaiKhoanCreate input);
         List<string> AddToRole(string UserId, string[] RoleId);
 
         //cho cac phuong thuc PUT

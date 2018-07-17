@@ -1,4 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.TaiKhoan;
 using GiaoHangGiaRe.Module;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -27,7 +28,7 @@ namespace GiaoHangGiaRe.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
-        public IHttpActionResult Resister(RegisterViewModel input)
+        public IHttpActionResult Resister(TaiKhoanCreate input)
         { 
             return Ok(_userServices.Create(input));
         }

@@ -62,7 +62,7 @@ namespace GiaoHangGiaRe.Module
             _khachhangRepository = new IRepository<KhachHang>();
             //UserManager = new ApplicationUserManager();
         }
-        public IdentityResult Create(RegisterViewModel input)
+        public IdentityResult Create(TaiKhoanCreate input)
         {       
             var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi,
                 TenTaiKhoan = input.TenTaiKhoan };
@@ -251,14 +251,15 @@ namespace GiaoHangGiaRe.Module
             {
                 querys = querys.Where(p => (p.HoTen.Contains(taiKhoanSearchList.name)));
             }
+            this.countList = querys.Count();
             querys = querys.Skip(taiKhoanSearchList.size.Value * taiKhoanSearchList.page.Value)
                            .Take(taiKhoanSearchList.size.Value);
-                return querys.ToList();
+            return querys.ToList();
         }
-
+        public int countList { set; get; }
         public int Count()
         {
-            return _userRepository.GetAll().Count();
+            return this.countList;
         }
     }
 

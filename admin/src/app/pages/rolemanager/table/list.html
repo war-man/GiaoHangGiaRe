@@ -9,11 +9,7 @@
 <div class="row" ng-init="init()">
   <div class="col-md-12">
     <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
-
-      <!-- <div class="add-row-editable-table">
-                          <button class="btn btn-primary" ng-click="gotoAddUser()">Thêm mới</button>
-                        </div> -->
-      <table class="table table-bordered table-hover table-condensed">
+      <table  style="text-align: center" class="table table-bordered table-hover table-condensed">
         <tr>
           <td>Thứ tự</td>
           <td>Role Id</td>
@@ -36,9 +32,9 @@
           </td>
           <td>
             <div class="buttons" ng-show="!rowform.$visible">
-              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/rolemanager/edit/{{role.Id}}">Edit</a>
-              <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteRole(role.Id)">Delete</button>
-              <button class="btn btn-primary editable-table-button btn-xs" ng-click="listUserOfRole(role.Id)">Danh sách</button>
+              <!-- <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/rolemanager/edit/{{role.Id}}">Edit</a>
+              <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteRole(role.Id)">Delete</button> -->
+              <button class="btn btn-primary editable-table-button btn-xs" style="width:auto" ng-click="listUserOfRole(role.Id)">Danh sách user trong Role</button>
             </div>
           </td>
         </tr>

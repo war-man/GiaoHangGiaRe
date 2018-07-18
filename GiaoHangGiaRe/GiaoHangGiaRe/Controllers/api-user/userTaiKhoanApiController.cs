@@ -36,18 +36,10 @@ namespace GiaoHangGiaRe.Controllers
         // PUT: api/TaiKhoanApi/5
         [HttpPut]
         [Route("update")]
-        public IHttpActionResult Update(ApplicationUser input)
+        public IHttpActionResult Update(TaiKhoanUpdate input)
         {
-            UpdateAccountViewModel _input = new UpdateAccountViewModel
-            {
-                Id= input.Id,
-                DiaChi = input.DiaChi,
-                HoTen = input.HoTen,
-                SoDienThoai = input.PhoneNumber,
-
-            };
-            _userServices.Update(_input);
-            return Ok(_input);
+            _userServices.Update(input);
+            return Ok(input);
         }
 
         //GET

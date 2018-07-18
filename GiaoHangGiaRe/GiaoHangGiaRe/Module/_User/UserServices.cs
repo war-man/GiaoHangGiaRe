@@ -62,34 +62,43 @@ namespace GiaoHangGiaRe.Module
             _khachhangRepository = new IRepository<KhachHang>();
             //UserManager = new ApplicationUserManager();
         }
+
+        /// <summary>
+        /// Tạo tài khoản và khách hàng
+        /// </summary>
+        /// <returns>The create.</returns>
+        /// <param name="input">Input.</param>
         public IdentityResult Create(TaiKhoanCreate input)
         {       
-            var user = new ApplicationUser { UserName = input.TenTaiKhoan, PhoneNumber = input.SoDienThoai, Email = input.Email, HoTen = input.HoTen, DiaChi = input.DiaChi,
-                TenTaiKhoan = input.TenTaiKhoan };
-            var result = UserManager.Create(user, input.Password);
-            var currentUser = UserManager.FindByName(user.UserName);
-            if (input.Role != null) // Nếu có Role thì thêm không thì thôi
-            {
-                var roleresult = UserManager.AddToRole(currentUser.Id, input.Role);
-            }
-
-            var kh = new KhachHang{
-                TenTaiKhoan = input.TenTaiKhoan,
-                TenKhachHang = input.HoTen,
-                CongTy = input.CongTy,
+            var user = new ApplicationUser {
+                UserName = input.TenTaiKhoan, 
+                PhoneNumber = input.SoDienThoai, 
+                Email = input.Email, 
+                HoTen = input.HoTen, 
                 DiaChi = input.DiaChi,
-                Email = input.Email,
-                SoDienThoai = input.SoDienThoai,
-                TrangThai = 1,
-                MaLoaiKH =1 ,
-                //NgaySinh = DateTime.Now,
-                //deleted = false
+                TenTaiKhoan = input.TenTaiKhoan
             };
-            if (kh.CongTy == null)
-            {
-                kh.CongTy = "Cong ty";
+
+            var result = UserManager.Create(user, input.Password);
+            if(result.Succeeded == true){
+                var currentUser = UserManager.FindByName(user.UserName);
+                var kh = new KhachHang
+                {
+                    TenTaiKhoan = input.TenTaiKhoan,
+                    TenKhachHang = input.HoTen,
+                    CongTy = input.CongTy,
+                    DiaChi = input.DiaChi,
+                    Email = input.Email,
+                    SoDienThoai = input.SoDienThoai,
+                    TrangThai = 1,
+                    MaLoaiKH = 1,
+                };
+                if (kh.CongTy == null)
+                {
+                    kh.CongTy = "Cong ty";
+                }
+                _khachhangRepository.Insert(kh);
             }
-            _khachhangRepository.Insert(kh);
             return result;
         }
 
@@ -116,18 +125,26 @@ namespace GiaoHangGiaRe.Module
         public ApplicationUser GetById(string id)
         {
             var user = UserManager.FindById(id);
-            user.Roles = this.GetRoleByUserId(id);
             return user;
         }
 
-        public void Update(UpdateAccountViewModel input)
+        public void Update(TaiKhoanUpdate input)
         {
-            var user = GetById(input.Id);
-            user.HoTen = input.HoTen;
-            user.DiaChi = input.DiaChi;
-            user.PhoneNumber = input.SoDienThoai;
+            var curren_user = GetById(input.Id);
+            if (!string.IsNullOrEmpty(input.DiaChi))
+            {
+                curren_user.DiaChi = input.DiaChi;
+            }
+            if (!string.IsNullOrEmpty(input.HoTen))
+            {
+                curren_user.HoTen = input.HoTen;
+            }
+            if (!string.IsNullOrEmpty(input.PhoneNumber))
+            {
+                curren_user.PhoneNumber = input.PhoneNumber;
+            }
             //user.NgaySinh = input.NgaySinh; user chua co thuoc tinh NgaySinh
-            UserManager.Update(user);
+            UserManager.Update(curren_user);
 
             lichSuServices.Create(new LichSu
             {
@@ -254,7 +271,7 @@ namespace GiaoHangGiaRe.Module
             }
             this.countList = querys.Count();
             querys = querys.Skip(taiKhoanSearchList.size.Value * taiKhoanSearchList.page.Value)
-                           .Take(taiKhoanSearchList.size.Value);
+                           .Take(taiKhoanSearchList.size.Value).OrderBy(prop=>prop.Id);
             return querys.ToList();
         }
         public int countList { set; get; }

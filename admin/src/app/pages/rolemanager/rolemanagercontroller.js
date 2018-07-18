@@ -3,64 +3,89 @@
 
     angular.module('BlurAdmin.pages.rolemanager')
         .controller('rolemanagercontroller', rolemanagercontroller);
-    function rolemanagercontroller($scope, $rootScope, $stateParams, $state, GetRoleAPI, $uibModal) {
+    function rolemanagercontroller($scope, $stateParams, $state, GetRoleAPI, $uibModal) {
 
         $scope.resdata = {};
         $scope.model;
 
         $scope.init = function () {
-            GetRoleAPI.role_get_all(null, null).success(function (response) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            GetRoleAPI.role_get_all(null, 10).success(function (response) {
                 $scope.resdata = response.data;
+                $scope.modal.dismiss();
             });
         }
 
         //get Role By Role.Id (string)
         $scope.getById = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
             GetRoleAPI.role_getby_id($stateParams)
                 .success(function (data) {
                     $scope.model = data;
+                    $scope.modal.dismiss();
                 }).error(function () {
                     $scope.errorMessage = "Không thể lấy dữ liệu có mã là " + $stateParams + "!";
-                    console.log($scope.errorMessage);
+                    $scope.modal.dismiss();
                 });
 
         };
 
         $scope.addRole = function (model) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
             GetRoleAPI.role_create(model)
-                .success(function (data, status) {
+                .success(function () {
+                    $scope.modal.dismiss();
                     $state.go('rolemanager.list', {}, { reload: true });
-                }).error(function (data, status) {
-                    alert('Dường như đã có lỗi nào đó xảy ra!' + status + data.Message);
+                }).error(function () {
+                    $scope.modal.dismiss();
                 });
         };
 
 
         $scope.deleteRole = function (id) {
             GetRoleAPI.role_delete(id)
-                .success(function (data, status) {
+                .success(function () {
                     $state.go('rolemanager.list', {}, { reload: true });
-                }).error(function (data, status) {
+                }).error(function () {
                     alert('Dường như đã có lỗi nào đó xảy ra! Xóa Role thất bại');
                 });
         };
 
         $scope.updateRole = function (model) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
             GetRoleAPI.role_update(model)
-                .success(function (data, status) {
+                .success(function () {
+                    $scope.modal.dismiss();
                     $state.go('rolemanager.list', {}, { reload: true });
                 }).error(function (data, status) {
+                    $scope.modal.dismiss();
                     alert('Dường như đã có lỗi nào đó xảy ra!' + status + data.Message);
                 });
         };
         $scope.listUserOfRole = function (roleId) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
             GetRoleAPI.get_user_of_role({ role: roleId })
                 .success(function (data) {
-                    console.log(data);
-                    var modal = $uibModal.open({
+                    $scope.modal.dismiss();
+                    $uibModal.open({
                         animation: true,
                         templateUrl: 'app/pages/ui/modals/modalTemplates/roleOfUser.html',
-                        controller: function ($scope, $uibModalInstance) {
+                        controller: function ($scope) {
                             $scope.listUser = data;
                             $scope.role = roleId;
                         },
@@ -68,6 +93,7 @@
                     }, function () {
                     });
                 }).error(function (data) {
+                    $scope.modal.dismiss();
                     alert('Dường như đã có lỗi nào đó xảy ra!');
                 });
         }

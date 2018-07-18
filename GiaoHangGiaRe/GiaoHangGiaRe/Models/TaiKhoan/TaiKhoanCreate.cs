@@ -12,10 +12,6 @@ namespace GiaoHangGiaRe.Models.TaiKhoan
         [Required]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Mật khẩu phải trùng khớp.")]
-        public string ConfirmPassword { get; set; }
-
         [Required]
         [Display(Name = "Họ tên")]
         public string HoTen { set; get; }
@@ -31,10 +27,6 @@ namespace GiaoHangGiaRe.Models.TaiKhoan
 
         [StringLength(50)]
         public string CongTy { get; set; }
-
-        [StringLength(20)]
-        [Required]
-        public string Role { get; set; }
 
         [StringLength(20)]
         [Required]

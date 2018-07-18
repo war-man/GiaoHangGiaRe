@@ -3,7 +3,10 @@ using GiaoHangGiaRe.Models.TaiKhoan;
 using GiaoHangGiaRe.Module;
 using Microsoft.AspNet.Identity;
 using Models.EntityModel;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -80,20 +83,21 @@ namespace GiaoHangGiaRe.Controllers
         public IHttpActionResult Create(TaiKhoanCreate input)
         {
             input.Password = "123456"; // Mat khau mac dinh
-            _userServices.Create(input);
-            ApplicationUser new_user = new ApplicationUser();
-            new_user = _userServices.GetuserByUsername(input.TenTaiKhoan);
-            _nhanVienServices.Create(new NhanVienCreate
-            {
-                TenTaiKhoan = new_user.TenTaiKhoan,
-                Email = new_user.Email,
-                DiaChi = new_user.DiaChi,
-                NgayBatDau = DateTime.Now,
-                TrangThai = 1,
-                TenNhanVien = new_user.HoTen,
-                SoDienThoai = new_user.PhoneNumber
-            });
-            return Ok();
+            var resaut = _userServices.Create(input);
+            if(resaut.Succeeded == true){
+                _nhanVienServices.Create(new NhanVienCreate
+                {
+                    TenTaiKhoan = input.TenTaiKhoan,
+                    Email = input.Email,
+                    DiaChi = input.DiaChi,
+                    NgayBatDau = DateTime.Now,
+                    TrangThai = 1,
+                    TenNhanVien = input.HoTen,
+                    SoDienThoai = input.SoDienThoai
+                });
+            }
+   
+            return Ok(resaut);
         }
 
         [HttpPost]
@@ -107,18 +111,10 @@ namespace GiaoHangGiaRe.Controllers
         // PUT: api/TaiKhoanApi/5
         [HttpPut]
         [Route("update")]
-        public IHttpActionResult Update(ApplicationUser input)
+        public IHttpActionResult Update(TaiKhoanUpdate input)
         {
-            UpdateAccountViewModel _input = new UpdateAccountViewModel
-            {
-                Id= input.Id,
-                DiaChi = input.DiaChi,
-                HoTen = input.HoTen,
-                SoDienThoai = input.PhoneNumber,
-
-            };
-            _userServices.Update(_input);
-            return Ok(_input);
+            _userServices.Update(input);
+            return Ok(input);
         }
 
         // DELETE: api/TaiKhoanApi/5

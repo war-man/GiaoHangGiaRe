@@ -10,6 +10,5 @@ namespace GiaoHangGiaRe.Models
         public string DiaChi { set; get; }
         public string HoTen { set; get; }
         public string PhoneNumber { set; get; }
-        public string [] Roles { set; get; }
     }
 }

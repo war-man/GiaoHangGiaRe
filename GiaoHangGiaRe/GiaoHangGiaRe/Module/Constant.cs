@@ -9,7 +9,7 @@ namespace GiaoHangGiaRe.Module
     public class Constant
     {
         const int _DefaultPage = 0;
-        const int _DefaultSize = 10000;
+        const int _DefaultSize = 10;
         const string _DeleteAction = "Xóa";
         const string _UpdateAction = "Chỉnh sửa";
         const string _CreateAction = "Tạo mới";

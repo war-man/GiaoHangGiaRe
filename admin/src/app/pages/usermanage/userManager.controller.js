@@ -5,7 +5,7 @@
     angular.module('BlurAdmin.pages')
         .controller('usermanagercontroller', usermanagercontroller);
     /** @ngInject */
-    function usermanagercontroller($scope, $rootScope, $state, $stateParams, GetRoleAPI, GetUserAPI, $filter, $uibModal, toastr,$timeout,baProgressModal) {
+    function usermanagercontroller($scope, $state, $stateParams, GetRoleAPI, GetUserAPI, $uibModal) {
         $scope.tablePage = {};
         $scope.model = {};
         $scope.currentstate = $state.current.name;
@@ -44,19 +44,19 @@
             });
 
             var params = {};
-            if($scope.params.page != null){
+            if ($scope.params.page != null) {
                 params.page = $scope.params.page;
             }
-            if($scope.params.size != null){
+            if ($scope.params.size != null) {
                 params.size = $scope.params.size;
             }
-            if($scope.filter.user_name != null){
+            if ($scope.filter.user_name != null) {
                 params.user_name = $scope.filter.user_name;
             }
-            if($scope.filter.name != null){
+            if ($scope.filter.name != null) {
                 params.name = $scope.filter.name;
             }
-            if($scope.filter.id != null){
+            if ($scope.filter.id != null) {
                 params.id = $scope.filter.id;
             }
 
@@ -64,7 +64,7 @@
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
                     $scope.arrayPage = [];
-                    for (var i = 0; i < Math.round(res.data.total/res.data.size); i++) {
+                    for (var i = 0; i < Math.round(res.data.total / res.data.size); i++) {
                         $scope.arrayPage.push(i);
                     }
                 }
@@ -80,10 +80,10 @@
             });
 
             GetUserAPI.user_update(model)
-                .success(function (data, status) {
+                .success(function () {
                     $scope.modal.dismiss();
                     $state.go('usermanager.list')
-                }).error(function (data, status) {
+                }).error(function () {
                     $scope.modal.dismiss();
                     $scope.errorMessage = "Không thể update dữ liệu !";
                 });
@@ -91,16 +91,16 @@
 
         //DELETE USER
         $scope.deleteUser = function (id) {
-            var modal = $uibModal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/basicModal.html',
-                controller: function ($scope, $uibModalInstance) {
+                controller: function ($scope) {
                     $scope.message = 'Bạn có chắc muốn xóa người dùng ' + id + '?';
                     $scope.title = 'Xóa user ' + id;
                     $scope.ok = 'Đồng ý';
                 },
-            }).result.then(function (data) {
-                GetUserAPI.user_delete(id).success(function (data, status) {
+            }).result.then(function () {
+                GetUserAPI.user_delete(id).success(function () {
                     $scope.modal.dismiss();
                     $state.go('usermanager.list', {}, { reload: true });
                 })
@@ -109,18 +109,26 @@
         }
 
         //EDIT ROLES USER
-        $scope.editRolesUser = function (user ,roleSelect = $scope.roleSelect) {
-            var modal = $uibModal.open({
+        $scope.editRolesUser = function (user, roleSelect = $scope.roleSelect) {
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/editRolesUser.html',
-                controller: function ($scope, $uibModalInstance) {
+                controller: function ($scope) {
                     $scope.title = 'Sửa roles của user có id là:  ' + user.Id;
                     $scope.ok = 'Đồng ý';
                     $scope.roles = [];
-                    for(let i =0; i< user.Roles.length; i++){
+                    for (let i = 0; i < user.Roles.length; i++) {
                         $scope.roles.push(user.Roles[i].RoleId)
                     }
                     $scope.roleSelect = roleSelect;
+                    $scope.checkSelected = function (role) {
+                        for (let i = 0; i < user.Roles.length; i++) {
+                            if (role === user.Roles[i]) {
+                                return true
+                            }
+                        }
+                        return false;
+                    }
                 },
             }).result.then(function (data) {
 
@@ -128,41 +136,44 @@
                     animation: false,
                     templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
                 });
-                
-                let input = {userId: user.Id,roleId: data};
-                GetUserAPI.user_add_roles(input).success(function (res) {
+
+                let input = { userId: user.Id, roleId: data };
+                GetUserAPI.user_add_roles(input).success(function () {
                     $scope.modal.dismiss();
                     $state.go('usermanager.list', {}, { reload: true });
-                })
+                }).error(function () {
+                    $scope.modal.dismiss();
+                    $uibModal.open({
+                        animation: false,
+                        templateUrl: 'app/pages/ui/modals/modalTemplates/error.html'
+                    })
+                });
             }, function () {
             });
         }
 
         //Add USER 
         $scope.addUser = function (model) {
-            if(model.SelectRole){
-                model.Role = model.SelectRole.value.Name.Name; // Chuyển giá trị từ select role vào role
-            }else{
-                model.Role = [];
-            }
 
             $scope.modal = $uibModal.open({
                 animation: false,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
             });
-
+            $scope.email_already
             GetUserAPI.user_create(model)
-                .success(function (Response) {
-                    $scope.modal.dismiss();
-                    if (!Response.Succeeded) {
-                        $scope.errorMessage = Response.Errors;
-                    }
-                    else {
+                .success(function (res) {
+                    if(res.Succeeded == false){
+                        $scope.email_already = res.Errors[0];
+                    }else{
                         $state.go('usermanager.list');
                     }
-                }).error(function (data, status) {
                     $scope.modal.dismiss();
-                    $scope.errorMessage = 'Dường như đã có lỗi nào đó xảy ra!';
+                }).error(function () {
+                    $scope.modal.dismiss();
+                    $uibModal.open({
+                        animation: false,
+                        templateUrl: 'app/pages/ui/modals/modalTemplates/error.html'
+                    })
                 });
         };
     };

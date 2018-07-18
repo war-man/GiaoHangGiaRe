@@ -4,17 +4,13 @@
         .factory('GetUserAPI', GetUserAPI);
 
     /** @ngInject */
-    function GetUserAPI($http, $rootScope, localStorage, BASE, toastr,baProgressModal,$timeout) {
+    function GetUserAPI($http, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all TaiKhKhoan
         var user_get_all = function (params) {
-            var result = $http.post(host + 'taikhoan/get-all', params)
-                .success(function () {
-                }).error(function () {
-                    toastr.error('Error');
-                });
-            return result;
+            return $http.post(host + 'taikhoan/get-all', params);
         }
+        
         //get-current user TaiKhoan
         var user_current_user = function () {
             var result = $http.get(host + 'taikhoan/get-current-user').success(function () {

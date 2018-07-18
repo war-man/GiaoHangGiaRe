@@ -8,14 +8,8 @@
     function GetNhanVienAPI($http, $rootScope, localStorage, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all NhanVien
-        var nhanvien_get_all = function (page, size) {
-            var result = $http.get(host + 'nhanvien/get-all?page=' + page + '&size=' + size)
-                .success(function (data) {
-                })
-                .error(function () {
-                    toastr.error('Error');
-                });
-            return result;
+        var nhanvien_get_all = function (params) {
+            return $http.post(host + 'nhanvien/get-all', params);
         };
 
         //craete NhanVien

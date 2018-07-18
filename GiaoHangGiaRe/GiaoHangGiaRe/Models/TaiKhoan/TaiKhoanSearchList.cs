@@ -15,13 +15,28 @@ namespace GiaoHangGiaRe.Models.TaiKhoan
             this.page = Constant.DefaultPage;
             this.size = Constant.DefaultSize;
         }
-        public TaiKhoanSearchList(int _page, int _size, string _user_name, string _name, string _id)
+        public TaiKhoanSearchList(int? _page, int? _size, string _user_name, string _name, string _id)
         {
-            this.page = _page;
-            this.size = _size;
-            this.user_name = _user_name;
-            this.name = _name;
-            this.id = _id;
+            if (_page.HasValue)
+            {
+                this.page = _page;
+            }
+            if (_size.HasValue)
+            {
+                this.size = size;
+            }
+            if (!string.IsNullOrWhiteSpace(_user_name))
+            {
+                this.user_name = _user_name;
+            }
+            if (!string.IsNullOrWhiteSpace(_name))
+            {
+                this.name = _name;
+            }
+            if (!string.IsNullOrWhiteSpace(_id))
+            {
+                this.id = _id;
+            }
         }
     }
 }

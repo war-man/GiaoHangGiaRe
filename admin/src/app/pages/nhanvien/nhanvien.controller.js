@@ -1,117 +1,112 @@
 (function () {
     'use strict';
-  
+
     angular.module('BlurAdmin.pages.nhanvien')
         .controller('nhanviencontroller', nhanviencontroller);
-        
+
     /** @ngInject */
-    function nhanviencontroller($scope,$state, $filter,GetNhanVienAPI,$stateParams,$uibModal
-    ,baProgressModal,$timeout) {
+    function nhanviencontroller($scope, $state, GetNhanVienAPI, $stateParams, $uibModal, toastr) {
 
-        $scope.resdata={};
-        $scope.model={};
+        $scope.resdata = {};
+        $scope.model = {};
+        $scope.params = {};
 
-        $scope.init = function () {
-
-            GetNhanVienAPI.nhanvien_get_all(null,null).success(function(response) {
-                
-                $scope.resdata = response.data;                    
-                
+        $scope.search = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
             });
-
+            var params = {};
+            if ($scope.params.page != null) {
+                params.page = $scope.params.page;
+            }
+            if ($scope.params.size != null) {
+                params.size = $scope.params.size;
+            }
+            if ($scope.params.TenTaiKhoan != null) {
+                params.TenTaiKhoan = $scope.params.TenTaiKhoan;
+            }
+            if ($scope.params.ChucVu != null) {
+                params.ChucVu = $scope.params.ChucVu;
+            }
+            if ($scope.params.Email != null) {
+                params.Email = $scope.params.Email;
+            }
+            if ($scope.params.TenNhanVien != null) {
+                params.TenNhanVien = $scope.params.TenNhanVien;
+            }
+            GetNhanVienAPI.nhanvien_get_all(params)
+                .success(function (response) {
+                    $scope.resdata = response.data;
+                    $scope.modal.dismiss();
+                }).error(function () {
+                    $scope.modal.dismiss();
+                    toastr.error('Error');
+                });
         }
 
-        $scope.gotoAddNhanVien=function(){
+        $scope.gotoAddNhanVien = function () {
             $state.go('nhanvien.add');
         }
 
-        // add NhanVien
-        $scope.addNhanVien=function(model){
-
+        // ADD NhanVien
+        $scope.addNhanVien = function (model) {
             GetNhanVienAPI.nhanvien_create(model)
-
-            .success(function (data, status) {
-               
-                $state.go('nhanvien.list');
-                
-            }).error(function (data, status) {
-
-                
-
-            });
-            
+                .success(function () {
+                    $state.go('nhanvien.list');
+                }).error(function () {
+                });
         };
 
-        //get by id NhanVien
-        $scope.getById = function(){
+        //GET BY ID NhanVien
+        $scope.getById = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
             GetNhanVienAPI.nhanvien_getby_id($stateParams)
-            .success(function(data){
-                
-                $scope.model = data;
-
-            }).error(function(){
-                $scope.errorMessage="Không thể lấy dữ liệu có mã là "+ $stateParams + "!";
-                //console.log($scope.errorMessage);
-            });
+                .success(function (data) {
+                    $scope.model = data;
+                    $scope.modal.dismiss();
+                }).error(function () {
+                    $scope.modal.dismiss();
+                    toastr.error("Không thể lấy dữ liệu có mã là " + $stateParams + "!");
+                    $scope.errorMessage = "Không thể lấy dữ liệu có mã là " + $stateParams + "!";
+                });
         };
 
-        //edit NhanVien
-        $scope.editNhanVien=function(model){
-          
-            GetNhanVienAPI.nhanvien_update(model)         
-            .success(function (data, status) {
-                
-                $state.go('nhanvien.list');
-                
-            }).error(function (data, status) {
-
-                $scope.errorMessage="Không thể update dữ liệu !";
-
+        //EDIT NhanVien
+        $scope.editNhanVien = function (model) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
             });
-            
+            GetNhanVienAPI.nhanvien_update(model)
+                .success(function () {
+                    $scope.modal.dismiss();
+                    $state.go('nhanvien.list');
+                }).error(function () {
+                    $scope.modal.dismiss();
+                    $scope.errorMessage = "Không thể update dữ liệu !";
+                });
         };
 
-        //delete NhanVien
-        $scope.deleteNhanVien=function(id){
-            var modal = $uibModal.open({
+        //DELETE NhanVien
+        $scope.deleteNhanVien = function (id) {
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/basicModal.html',
-                controller: function ($scope, $uibModalInstance) {
+                controller: function ($scope) {
                     $scope.message = 'Bạn có chắc muốn xóa nhân viên ' + id + '?';
                     $scope.title = 'Xóa Nhân Viên ' + id;
                     $scope.ok = 'Đồng ý';
                 },
             }).result.then(function (data) {
-               GetNhanVienAPI.nhanvien_delete(id).success(function(data,status){          
+                GetNhanVienAPI.nhanvien_delete(id).success(function () {
                     $state.go('nhanvien.list', {}, { reload: true });
                 })
             }, function () {
-            });     
-        };
-
-        //Modal
-        $scope.open = function (page, size) {
-            $uibModal.open({
-              animation: true,
-              templateUrl: page,
-              size: size,
-              resolve: {
-                items: function () {
-                  return $scope.items;
-                }
-              }
             });
-          };
-        $scope.openProgressDialog = baProgressModal.open;
-        // baProgressModal.setProgress(0);
-        
-        // (function changeValue() {
-        //     if (baProgressModal.getProgress() >= 100) {
-        //         baProgressModal.close();
-        //     } else {
-        //         baProgressModal.setProgress(baProgressModal.getProgress() + 10);
-        //         $timeout(changeValue, 300);
-        //     }
-        // })();
-    }  
+        };
+    }
 })();

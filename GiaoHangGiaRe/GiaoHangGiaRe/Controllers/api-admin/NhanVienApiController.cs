@@ -1,4 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.NhanVien;
 using GiaoHangGiaRe.Module;
 using Models.EntityModel;
 using System;
@@ -21,15 +22,15 @@ namespace GiaoHangGiaRe.Controllers.api
         }
         // GET: api/get-all
         [AllowAnonymous]
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
-        public IHttpActionResult Get(int? page, int? size)
+        public IHttpActionResult Get(NhanVienSearchList nhanVienSearchList)
         {
             return Ok(new {
-                data = _nhanVienServices.GetAll(page, size),
-                size = size,
-                page = page,
-                total = _nhanVienServices.Count()
+                data = _nhanVienServices.GetAll(nhanVienSearchList),
+                size = nhanVienSearchList.size,
+                page = nhanVienSearchList.page,
+                total = _nhanVienServices.count_list
             });
         }
 

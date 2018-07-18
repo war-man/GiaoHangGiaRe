@@ -504,6 +504,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Models\TaiKhoan\TaiKhoanSearchList.cs" />
     <Compile Include="Models\TaiKhoan\TaiKhoanCreate.cs" />
+    <Compile Include="Models\NhanVien\NhanVienSearchList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

@@ -1,4 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.NhanVien;
 using Models.EntityModel;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace GiaoHangGiaRe.Module
     interface INhanVienServices
     {
         //Cac phuong thuc GET
-        List<NhanViens> GetAll(int? page, int? size);
+        List<NhanViens> GetAll(NhanVienSearchList nhanVienSearchList);
         NhanViens GetById(object id);
         NhanViens GetNhanVienByUser(object username);
         NhanViens GetNhanVienCurrentUser();

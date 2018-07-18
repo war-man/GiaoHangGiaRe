@@ -1,4 +1,5 @@
 ﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models.NhanVien;
 using Models.EntityModel;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -84,15 +85,36 @@ namespace GiaoHangGiaRe.Module
                 ViTriThaoTac = Constant.NhanVien
             });
         }
-
-        public List<NhanViens> GetAll(int? page, int? size)
+        public int count_list { set; get; }
+        public List<NhanViens> GetAll(NhanVienSearchList nhanVienSearchList)
         {
-            if (!page.HasValue) page = 1;
-            if (!size.HasValue) return _repositoryNhanVien.GetAll().OrderBy(p => p.MaNhanVien).ToList();
-            var res = _repositoryNhanVien.GetAll().OrderBy(p => p.MaNhanVien)
-                .Take(size.Value)
-                .Skip(size.Value * (page.Value - 1)).ToList();
-            return res;
+            if(!nhanVienSearchList.page.HasValue || nhanVienSearchList.page == null){
+                nhanVienSearchList.page = Constant.DefaultPage;
+            }
+            if (!nhanVienSearchList.size.HasValue|| nhanVienSearchList.size == null)
+            {
+                nhanVienSearchList.size = Constant.DefaultPage;
+            }
+            var query = _repositoryNhanVien.GetAll();
+            if(!string.IsNullOrWhiteSpace(nhanVienSearchList.TenTaiKhoan)){
+                query = query.Where(p => p.TenTaiKhoan.Contains(nhanVienSearchList.TenTaiKhoan));
+            }
+            if (!string.IsNullOrWhiteSpace(nhanVienSearchList.TenNhanVien))
+            {
+                query = query.Where(p => p.TenNhanVien.Contains(nhanVienSearchList.TenNhanVien));
+            }
+            if (!string.IsNullOrWhiteSpace(nhanVienSearchList.ChucVu))
+            {
+                query = query.Where(p => p.ChucVu.Contains(nhanVienSearchList.ChucVu));
+            }
+            if (!string.IsNullOrWhiteSpace(nhanVienSearchList.Email))
+            {
+                query = query.Where(p => p.Email.Contains(nhanVienSearchList.Email));
+            }
+            query = query.Take(nhanVienSearchList.size.Value)
+                         .Skip(nhanVienSearchList.size.Value * (nhanVienSearchList.page.Value - 1)).OrderBy(p => p.MaNhanVien);
+            this.count_list = query.Count();
+            return query.ToList();
         }
 
         public NhanViens GetById(object id)

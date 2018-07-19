@@ -1,0 +1,84 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Đăng ký tài khoản</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="login-page">
+
+	<div class="logo">
+		<img src="assets/img/appicon.svg" alt="">
+	</div>
+
+	<form [formGroup]="signupForm" (ngSubmit)="submitData()" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label stacked color="primary">Tên tài khoản</ion-label>
+				<ion-input formControlName="TenTaiKhoan" type="text" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Email</ion-label>
+				<ion-input formControlName="email" type="email" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Họ tên</ion-label>
+				<ion-input formControlName="HoTen" type="text" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+				
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Địa chỉ</ion-label>
+				<ion-input formControlName="DiaChi" type="text"  required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+				
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Nơi làm việc</ion-label>
+				<ion-input formControlName="CongTy"type="text"  required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Số điện thoại</ion-label>
+				<ion-input formControlName="SoDienThoai" type="number" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text color="danger" padding-left>
+				
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Password</ion-label>
+				<ion-input formControlName="Password" type="password" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text  color="danger" *ngFor="let err of signup_err" padding-left>
+				{{err}}
+			</p>
+		</ion-list>
+
+		<div padding>
+			<button ion-button type="submit" block>Đăng ký</button>
+		</div>
+	</form>
+
+</ion-content>

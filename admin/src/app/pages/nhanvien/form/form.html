@@ -1,0 +1,48 @@
+<div class="minh-form" ba-panel ba-panel-title="Thêm mới User" ba-panel-class="with-scroll">
+    <!-- {{model}}
+{{$state.current.name}} -->
+    <div class="col-md-3"></div>
+    <form class="col-md-6">
+        <div class="form-group">
+            <label for="Id">Tên tài khoản</label>
+            <input type="text" ng-model="model.TenTaiKhoan" class="form-control" id="TenTaiKhoan" placeholder="Tên tài khoản">
+        </div>
+
+        <div class="form-group">
+            <label for="TenNhanVien">Tên nhân viên</label>
+            <input type="text" ng-model="model.TenNhanVien" class="form-control" id="TenNhanVien" placeholder="Tên nhân viên">
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Chức vụ  </label>
+            <select ng-model="model.ChucVu">
+                <option value="Nhân viên">Nhân viên</option>
+                <option value="Giao hàng">Giao hàng</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChi">Địa chỉ</label>
+            <input type="text" ng-model="model.DiaChi" class="form-control" id="DiaChi" placeholder="Địa chỉ">
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" ng-model="model.Email" class="form-control" id="Email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <label for="SoDienThoai">Số điện thoại</label>
+            <input type="text" ng-model="model.SoDienThoai" class="form-control" id="SoDienThoai" placeholder="Số điện thoại">
+        </div>
+
+        <div class="form-group">
+            <label for="NgaySinh">Ngày sinh</label>
+            <input type="date" ng-model="model.NgaySinh" class="form-control" id="NgaySinh" placeholder="Ngày sinh">
+        </div>
+    </form>
+    <div class="col-md-3"></div>
+    <div class="col-md-12 text-center">
+        <button progress-button="openProgressDialog()" ng-click="addNhanVien(model)" pb-style="lateral-lines" class="btn btn-info success-button">Xác nhận </button>
+    </div>
+</div>

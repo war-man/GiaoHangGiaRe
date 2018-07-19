@@ -1,0 +1,36 @@
+<!--
+  Generated template for the DonHangKienHangPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+        <button ion-button icon-only (click)="viewCtrl.dismiss()" class="">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Chi tiết kiện hàng</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row *ngIf="arrayKienHang?.length < 1">
+    <ion-col text-center class="empty_data">
+      <span>Không có kiện hàng nào.</span>
+    </ion-col>  
+  </ion-row>
+  <ion-row *ngFor="let item of arrayKienHang">
+    <ion-item no-padding>
+      <h3>{{item.NoiDung}}</h3>
+      <span>{{item.SoLuong}}</span>
+    </ion-item>
+  </ion-row>
+</ion-content>
+<ion-footer *ngIf="arrayKienHang?.length > 0">
+    <button ion-button block (click)="tiepNhanDonHang(DonHang.MaDonHang)">Tiếp nhận đơn hàng</button>
+</ion-footer>

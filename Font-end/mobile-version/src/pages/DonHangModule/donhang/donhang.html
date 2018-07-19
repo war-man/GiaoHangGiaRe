@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Đơn hàng</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="donhang-page">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="hide"
+        pullingIcon="arrow-round-down">
+        </ion-refresher-content>
+    </ion-refresher>
+  <ion-list>
+    <div *ngFor="let item of listDonHang" class="donhang-item">
+      <button ion-item no-lines no-padding (tap)="gotoDetailsDonHang(item)">
+        <ion-avatar item-start>
+          <img src="{{DEFAULT_IMAGE}}">
+        </ion-avatar>
+        <h3>Người gửi: {{item.NguoiGui}}</h3>
+        <h2>Thành tiền: {{item.ThanhTien}}</h2>
+        <p>Địa chỉ gửi: {{item.DiaChiGui}}</p>
+        <span ion-button clear item-end>Chi tiết</span>
+      </button>
+    </div>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="light" (tap)="createDonHang()"><ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,67 @@
+<!--
+  Generated template for the KienHangFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Thêm kiện hàng</ion-title>
+    <ion-buttons start>
+      <button ion-button (tap)="closemodal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-buttons start>
+      <button ion-button (tap)="updatePicture()">Thêm ảnh</button>
+  </ion-buttons>
+<form [formGroup]="kienhanggForm" (ngSubmit)="submitData()" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label stacked color="primary">Nội dung </ion-label>
+				<ion-input formControlName="NoiDung" type="text" required></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label stacked color="primary">Mô tả</ion-label>
+				<ion-input formControlName="MoTa" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked color="primary">Ghi chú</ion-label>
+        <ion-input formControlName="GhiChu" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary">Trọng lượng</ion-label>
+        <ion-input formControlName="TrongLuong" type="tel" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary">Chiều rộng</ion-label>
+        <ion-input formControlName="ChieuRong" type="tel" required></ion-input>
+      </ion-item>
+
+      <ion-item>SoLuong
+        <ion-label stacked color="primary">Chiều dài</ion-label>
+        <ion-input formControlName="ChieuDai" type="tel" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary">Số lượng</ion-label>
+        <ion-input formControlName="SoLuong" type="tel" required></ion-input>
+      </ion-item>
+
+		</ion-list>
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button block>Tạo kiện hàng</button>
+			</ion-col>
+		</ion-row>
+	</form>
+</ion-content>

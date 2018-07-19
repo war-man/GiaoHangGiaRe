@@ -1,0 +1,14 @@
+.card {
+    padding-top: 50px;
+    text-align: center;
+    .container{
+        width: 40%;
+        background-color: azure;
+        border: 2px solid gainsboro;
+        border-radius: 10px;
+        line-height: 3;
+        .data{
+            border-bottom: gainsboro solid 1px;
+        }
+    }
+}

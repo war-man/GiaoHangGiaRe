@@ -1,0 +1,47 @@
+<div class="contact_page">
+  <div class="contact_corm ">
+    <div class="col-md-2"></div>
+    <form class="col-md-4" [formGroup]="contactForm" (ngSubmit)="submitData()">
+      <div class="form-group">
+        <label for="">Họ và tên</label>
+        <input type="text" formControlName="HoTen" class="form-control">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+      <div class="form-group">
+        <label for="">Địa chỉ mail</label>
+        <input type="email" formControlName="Email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">Nội dung</label>
+        <textarea type="text" formControlName="NoiDung" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn ">Gửi góp ý </button>
+    </form>
+    <div class="col-md-4 info_contact">
+      <h2>Liên hệ.</h2>
+      <div>
+        <h5 class="title">
+          Số điện thoại
+        </h5>
+        <span>
+          019239812093
+        </span>
+      </div>
+      <div>
+        <h5 class="title">
+          Hỗ trợ
+        </h5>
+        <span>
+          ngocminh2306@gmail.com
+        </span>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="container map col-md-12">
+    <div class="col-md-2"></div>
+    <agm-map class="col-md-10" [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
+</div>

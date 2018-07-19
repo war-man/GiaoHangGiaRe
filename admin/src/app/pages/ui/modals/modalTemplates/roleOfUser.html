@@ -1,0 +1,63 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">Danh sách user "{{role}}"</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered table-hover table-condensed text-center">
+      <thead>
+        <tr>
+          <td>STT</td>
+          <td>User name</td>
+          <td>Họ tên</td>
+          <td>Số điện thoại</td>
+          <td>Địa chỉ</td>
+          <td>Email</td>
+          <td>Image</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in listUser" class="editable-row">
+          <td>
+            {{$index+1}}
+          </td>
+          <td>
+            <span editable-text="user.UserName" e-name="UserName" e-form="rowform" e-required>
+              {{ user.UserName || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="user.HoTen" e-name="HoTen" e-form="rowform" e-required>
+              {{ user.HoTen || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="user.PhoneNumber" e-name="PhoneNumber" e-form="rowform" e-required>
+              {{ user.PhoneNumber || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="user.DiaChi" e-name="DiaChi" e-form="rowform" e-required>
+              {{ user.DiaChi || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="user.Email" e-name="Email" e-form="rowform" e-required>
+              {{ user.Email || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="user.ImageLink" e-name="ImageLink" e-form="rowform" e-required>
+              {{ user.ImageLink || 'empty' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$dismiss()">Đóng</button>
+  </div>
+</div>

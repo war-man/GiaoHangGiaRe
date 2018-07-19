@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta header( 'Content-type: application/json')>
+  <meta header( 'Access-Control-Allow-Origin: *')>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng nhập</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic'
+    rel='stylesheet' type='text/css'>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+<body ng-app="authApp" ng-controller="authCtrl">
+  <main class="auth-main">
+    <div class="auth-block">
+      <h1>Đăng nhập vào hệ thống</h1>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="TaiKhoan" class="col-sm-3 control-label">Tài khoản</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="MatKhau" class="col-sm-3 control-label">Mật khẩu</label>
+          <div class="col-sm-8">
+            <input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="">
+          </div>
+        </div>
+        <div class="form-group">
+        </div>
+      </form>
+      <div class="col-sm-offset-5 col-sm-7">
+        <button ng-if="!loading" class="btn btn-default btn-auth" ng-click="doLogin()">Đăng nhập</button>
+        <button ng-if="loading" class="btn btn-default btn-auth">Loading ...</button>
+        <a href class="forgot-pass">Quên mật khẩu?</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+  var app = angular.module('authApp', []);
+
+  app.controller('authCtrl', function($scope) {
+    $scope.loading = false;
+
+  $scope.doLogin = function () {
+    $scope.loading = true;
+    var username = $("input[name='TaiKhoan']").val();
+    var password = $("input[name='MatKhau']").val();
+    var input = 'grant_type=password&username=' + username + '&password=' + password;
+    var host = "http://127.0.0.1:8080/";
+    var host2 = "http://localhost:8195/";
+    var host3 = "http://giaohanggiare.gear.host/";
+    $.ajax({
+      url: host+'token',
+      type: "POST",
+      crossDomain: true,
+      contentType: "application/json; charset=utf-8",
+      data: input
+    }).done(function (data) {
+      localStorage.setItem('host', host);
+      localStorage.setItem('token', JSON.stringify(data));
+      window.location = "/";
+      $scope.loading = false;
+    }).fail(function (err) {
+      $scope.loading = false;
+      alert('Đăng nhập thất bại');
+    });
+  }
+
+  });
+
+</script>

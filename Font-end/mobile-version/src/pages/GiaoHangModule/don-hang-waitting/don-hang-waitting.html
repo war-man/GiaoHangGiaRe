@@ -1,0 +1,38 @@
+<!--
+  Generated template for the DonHanGiaoHangPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Đơn hàng chờ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <div *ngFor="let item of lishDonHangWaitting" class="donhang-item">
+      <button ion-item no-lines no-padding (tap)="gotoDetailsDonHang(item)">
+        <ion-thumbnail item-start>
+          <img src="{{DEFAULT_IMAGE}}">
+        </ion-thumbnail>
+        <h3>Người gửi: {{item.NguoiGui}}</h3>
+        <span>Thành tiền: {{item.ThanhTien}}</span>
+        <p>Địa chỉ gửi: {{item.DiaChiGui}}</p>
+        <span ion-button clear item-end>Chi tiết</span>
+      </button>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

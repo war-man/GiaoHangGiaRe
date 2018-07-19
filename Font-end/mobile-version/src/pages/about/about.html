@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Giới thiệu</ion-title>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="about-header">
+    <img src="assets/img/ship.png" alt="ionic logo">
+  </div>
+  <div padding class="about-info">
+    <h4>Giao hàng giá rẻ</h4>
+
+    <ion-list no-lines>
+      <ion-item>
+        <ion-icon name="calendar" item-start></ion-icon>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="conferenceDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin" item-start></ion-icon>
+        <ion-label>Location</ion-label>
+        <ion-select>
+          <ion-option value="madison" selected>Madison, WI</ion-option>
+          <ion-option value="austin">Austin, TX</ion-option>
+          <ion-option value="chicago">Chicago, IL</ion-option>
+          <ion-option value="seattle">Seattle, WA</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <p>
+        Tạo yêu cầu hỗ trợ đơn hàng Giải quyết tất cả những vấn đề của khách hàng Thời gian làm việc: Truy cập trang Langnghe.ghn.vn để tạo yêu cầu hỗ trợ. Thời gian làm việc: – Thứ hai – thứ bảy: 08h30 – 17h30 – Chủ nhật, ngày lễ: 09h00 – 16h00 Hỗ trợ qua Email Liên hệ bộ phận Chăm sóc khách hàng: chamsockhachhang@giaohangnhanh.vn Fanpage tuyển dụng www.facebook.com/tuyendunggiaohangnhanh Tải ứng dụng trên điện thoại Tải về cho IOS Tải về cho Android Số tài khoản Giaohangnhanh – Tên chủ tài khoản: Công ty Cổ phần Dịch vụ Giao Hàng Nhanh – Số tài khoản: 3333 1111 001 
+        – Tại Ngân hàng TMCP Tiên Phong, Chi nhánh Sài Gòn Hỗ trợ trên các kênh mạng xã hội Tìm vị trí của chúng tôi Tại Hồ Chí Minh Lầu 3, 70 Lữ Gia, Phường 15, Quận 11, Tp. Hồ Chí Minh. Tại Hà Nội Tầng 3A, Số 9A, ngõ 9, Hoàng Cầu, Đống Đa, Hà Nội. 151 Trường Chinh - Thanh Khê - Đà Nẵng Tại Đà Nẵng 151 Trường Chinh, Thanh Khê, TP. Đà Nẵng Công ty cổ phần dịch vụ Giao Hàng Nhanh Giấy CNĐKDN Số 0311 907 295 do Sở KH và ĐT TP.HCM cấp ngày 02/08/2012, cấp đổi lần 3 ngày 09/06/2014
+    </p>
+  </div>
+</ion-content>

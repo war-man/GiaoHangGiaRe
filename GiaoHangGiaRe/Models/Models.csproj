@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C57B3F04-9417-4236-B2B6-55E91CFEF721}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityModel\BangGia.cs" />
+    <Compile Include="EntityModel\Commune.cs" />
+    <Compile Include="EntityModel\District.cs" />
+    <Compile Include="EntityModel\DonHang.cs" />
+    <Compile Include="EntityModel\GiaoHangGiaReDbContext.cs" />
+    <Compile Include="EntityModel\HanhTrinh.cs" />
+    <Compile Include="EntityModel\HoaDon.cs" />
+    <Compile Include="EntityModel\Image.cs" />
+    <Compile Include="EntityModel\InterfaceRepository.cs" />
+    <Compile Include="EntityModel\IRepository.cs" />
+    <Compile Include="EntityModel\KhachHang.cs" />
+    <Compile Include="EntityModel\KhoChua.cs" />
+    <Compile Include="EntityModel\KienHang.cs" />
+    <Compile Include="EntityModel\LichSu.cs" />
+    <Compile Include="EntityModel\LoaiKhachHang.cs" />
+    <Compile Include="EntityModel\NhanVien.cs" />
+    <Compile Include="EntityModel\No.cs" />
+    <Compile Include="EntityModel\Province.cs" />
+    <Compile Include="EntityModel\Report.cs" />
+    <Compile Include="EntityModel\sysdiagram.cs" />
+    <Compile Include="EntityModel\TinNhan.cs" />
+    <Compile Include="EntityModel\UuDai.cs" />
+    <Compile Include="Migrations\201708220113472_updatecsdl1.0.cs" />
+    <Compile Include="Migrations\201708220113472_updatecsdl1.0.Designer.cs">
+      <DependentUpon>201708220113472_updatecsdl1.0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708222117165_SuaMaKhachHang.cs" />
+    <Compile Include="Migrations\201708222117165_SuaMaKhachHang.Designer.cs">
+      <DependentUpon>201708222117165_SuaMaKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708222146311_SuaNhanVienXoaTaiKhoan.cs" />
+    <Compile Include="Migrations\201708222146311_SuaNhanVienXoaTaiKhoan.Designer.cs">
+      <DependentUpon>201708222146311_SuaNhanVienXoaTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708222322437_SuaNhanVienSuaKhachHang.cs" />
+    <Compile Include="Migrations\201708222322437_SuaNhanVienSuaKhachHang.Designer.cs">
+      <DependentUpon>201708222322437_SuaNhanVienSuaKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708230000119_update1.0.cs" />
+    <Compile Include="Migrations\201708230000119_update1.0.Designer.cs">
+      <DependentUpon>201708230000119_update1.0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708232243148_update1.1.cs" />
+    <Compile Include="Migrations\201708232243148_update1.1.Designer.cs">
+      <DependentUpon>201708232243148_update1.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708240240001_update1.1.0.cs" />
+    <Compile Include="Migrations\201708240240001_update1.1.0.Designer.cs">
+      <DependentUpon>201708240240001_update1.1.0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708240310447_update1.2.cs" />
+    <Compile Include="Migrations\201708240310447_update1.2.Designer.cs">
+      <DependentUpon>201708240310447_update1.2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708242340006_update1.2.1.cs" />
+    <Compile Include="Migrations\201708242340006_update1.2.1.Designer.cs">
+      <DependentUpon>201708242340006_update1.2.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709052007519_update2.0.cs" />
+    <Compile Include="Migrations\201709052007519_update2.0.Designer.cs">
+      <DependentUpon>201709052007519_update2.0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709052012374_InitialBaseline.cs" />
+    <Compile Include="Migrations\201709052012374_InitialBaseline.Designer.cs">
+      <DependentUpon>201709052012374_InitialBaseline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709052014291_update2.1.cs" />
+    <Compile Include="Migrations\201709052014291_update2.1.Designer.cs">
+      <DependentUpon>201709052014291_update2.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111017274_them-bang-LichSu.cs" />
+    <Compile Include="Migrations\201710111017274_them-bang-LichSu.Designer.cs">
+      <DependentUpon>201710111017274_them-bang-LichSu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111031393_them-bangLichSu3.cs" />
+    <Compile Include="Migrations\201710111031393_them-bangLichSu3.Designer.cs">
+      <DependentUpon>201710111031393_them-bangLichSu3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160456393_themUuDai.cs" />
+    <Compile Include="Migrations\201710160456393_themUuDai.Designer.cs">
+      <DependentUpon>201710160456393_themUuDai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160459445_themUuDai2.cs" />
+    <Compile Include="Migrations\201710160459445_themUuDai2.Designer.cs">
+      <DependentUpon>201710160459445_themUuDai2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171015092_themNothemKhoChua.cs" />
+    <Compile Include="Migrations\201710171015092_themNothemKhoChua.Designer.cs">
+      <DependentUpon>201710171015092_themNothemKhoChua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710180928585_sualinhtinh.cs" />
+    <Compile Include="Migrations\201710180928585_sualinhtinh.Designer.cs">
+      <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803110925588_themimage.cs" />
+    <Compile Include="Migrations\201803110925588_themimage.Designer.cs">
+      <DependentUpon>201803110925588_themimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803110935189_themimage2.cs" />
+    <Compile Include="Migrations\201803110935189_themimage2.Designer.cs">
+      <DependentUpon>201803110935189_themimage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201722429_suaTinhTrang_donHang.cs" />
+    <Compile Include="Migrations\201803201722429_suaTinhTrang_donHang.Designer.cs">
+      <DependentUpon>201803201722429_suaTinhTrang_donHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803211407326_thaydoi8.cs" />
+    <Compile Include="Migrations\201803211407326_thaydoi8.Designer.cs">
+      <DependentUpon>201803211407326_thaydoi8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804051426413_sua_bang_no.cs" />
+    <Compile Include="Migrations\201804051426413_sua_bang_no.Designer.cs">
+      <DependentUpon>201804051426413_sua_bang_no.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804110311241_sua_bang_db.cs" />
+    <Compile Include="Migrations\201804110311241_sua_bang_db.Designer.cs">
+      <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261422083_themTinhHuyen.cs" />
+    <Compile Include="Migrations\201804261422083_themTinhHuyen.Designer.cs">
+      <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804280547133_fixDonHang.cs" />
+    <Compile Include="Migrations\201804280547133_fixDonHang.Designer.cs">
+      <DependentUpon>201804280547133_fixDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804290336422_suaKhachHang.cs" />
+    <Compile Include="Migrations\201804290336422_suaKhachHang.Designer.cs">
+      <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708220113472_updatecsdl1.0.resx">
+      <DependentUpon>201708220113472_updatecsdl1.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708222117165_SuaMaKhachHang.resx">
+      <DependentUpon>201708222117165_SuaMaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708222146311_SuaNhanVienXoaTaiKhoan.resx">
+      <DependentUpon>201708222146311_SuaNhanVienXoaTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708222322437_SuaNhanVienSuaKhachHang.resx">
+      <DependentUpon>201708222322437_SuaNhanVienSuaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708230000119_update1.0.resx">
+      <DependentUpon>201708230000119_update1.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708232243148_update1.1.resx">
+      <DependentUpon>201708232243148_update1.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708240240001_update1.1.0.resx">
+      <DependentUpon>201708240240001_update1.1.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708240310447_update1.2.resx">
+      <DependentUpon>201708240310447_update1.2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708242340006_update1.2.1.resx">
+      <DependentUpon>201708242340006_update1.2.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052007519_update2.0.resx">
+      <DependentUpon>201709052007519_update2.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052012374_InitialBaseline.resx">
+      <DependentUpon>201709052012374_InitialBaseline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052014291_update2.1.resx">
+      <DependentUpon>201709052014291_update2.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111017274_them-bang-LichSu.resx">
+      <DependentUpon>201710111017274_them-bang-LichSu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111031393_them-bangLichSu3.resx">
+      <DependentUpon>201710111031393_them-bangLichSu3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160456393_themUuDai.resx">
+      <DependentUpon>201710160456393_themUuDai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160459445_themUuDai2.resx">
+      <DependentUpon>201710160459445_themUuDai2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171015092_themNothemKhoChua.resx">
+      <DependentUpon>201710171015092_themNothemKhoChua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710180928585_sualinhtinh.resx">
+      <DependentUpon>201710180928585_sualinhtinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803110925588_themimage.resx">
+      <DependentUpon>201803110925588_themimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803110935189_themimage2.resx">
+      <DependentUpon>201803110935189_themimage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201722429_suaTinhTrang_donHang.resx">
+      <DependentUpon>201803201722429_suaTinhTrang_donHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803211407326_thaydoi8.resx">
+      <DependentUpon>201803211407326_thaydoi8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051426413_sua_bang_no.resx">
+      <DependentUpon>201804051426413_sua_bang_no.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804110311241_sua_bang_db.resx">
+      <DependentUpon>201804110311241_sua_bang_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261422083_themTinhHuyen.resx">
+      <DependentUpon>201804261422083_themTinhHuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280547133_fixDonHang.resx">
+      <DependentUpon>201804280547133_fixDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804290336422_suaKhachHang.resx">
+      <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

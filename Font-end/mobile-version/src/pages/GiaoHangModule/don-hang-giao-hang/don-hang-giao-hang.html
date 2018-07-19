@@ -1,0 +1,66 @@
+<!--
+  Generated template for the DonHanGiaoHangPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Đơn hàng đã tiếp nhận</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of listDonHangKienHang" (ionSwipe)="delete(item)">
+      <ion-item no-padding no-lines class="item_donhang">
+        <div item-start>
+          <ion-icon *ngIf ="item.DonHang.TinhTrang == DATIEPNHAN" name="ios-clock-outline" >
+            <span class="cho_lay_hang">Chờ lấy hàng</span>
+          </ion-icon>
+          <ion-icon *ngIf ="item.DonHang.TinhTrang == LAYTHANHCONG" name="ios-briefcase-outline" >
+            <span class="cho_giao_hang">Chờ giao hàng</span>
+          </ion-icon>
+          <ion-icon *ngIf ="item.DonHang.TinhTrang == DANGGIAO" name="ios-bicycle" >
+            <span class="dang_giao">Đang giao</span>
+          </ion-icon>
+          <h4>Đơn hàng: {{item.DonHang.MaDonHang}}</h4>
+          <h4>Kiện hàng x{{item.listKienHang.length}}</h4>
+        </div>
+        <ion-row>
+          <ion-col no-padding col-12>
+            <div>{{item.DonHang.NguoiGui}}</div>
+            <div>{{item.DonHang.DiaChiGui}}</div>
+            <div>{{item.DonHang.SoDienThoaiNguoiGui}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col no-padding col-12>
+            <div>{{item.DonHang.NguoiNhan}}</div>
+            <div>{{item.DonHang.DiaChiNhan}}</div>
+            <div>{{item.DonHang.SoDienThoaiNguoiNhan}}</div>
+          </ion-col>
+        </ion-row>
+        <div item-end>
+          <h5>{{item.DonHang.GhiChu}}</h5>
+        </div>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="primary" *ngIf = "item.DonHang.TinhTrang == DATIEPNHAN" (click)="todo_layHang(item.DonHang.MaDonHang)">Lấy hàng</button>
+        <button ion-button color="vimeo" *ngIf = "item.DonHang.TinhTrang == DANGLAYHANG" (click)="todo_doneLayHang(item.DonHang.MaDonHang)">Đã lấy hàng</button>
+        <button ion-button color="twitter" *ngIf = "item.DonHang.TinhTrang == LAYTHANHCONG ||
+         item.DonHang.TinhTrang == GUIVAOKHO" (click)="todo_giaoHang(item.DonHang.MaDonHang)">Giao hàng</button>
+        <button ion-button color="secondary" *ngIf = "item.DonHang.TinhTrang == DANGGIAO" (click)="todo_HoanThanh(item.DonHang.MaDonHang)">Hoàn thành</button>
+        <button ion-button color="danger" (click)="reportDonHang(item.DonHang)">
+          <ion-icon name="ios-warning-outline"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="DiaChi">Nhóm phân quyền</label>
+                <span style="    
+                    padding: 5px 5px 5px 5px;
+                    margin: 10px 10px 10px 10px;
+                    border-radius: 4px;
+                    background-color: #e5c649;" 
+                    ng-repeat="role in roles">
+                    {{role}}
+                </span>
+                <br>
+                <select name="singleSelect" ng-model="roles" multiple required>
+                    <option ng-repeat="role in roleSelect" value="{{role.Name}}"  ng-selected="checkSelected(role.Name)">{{role.Name}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$close(roles)">{{ok}}</button>
+    </div>
+</div>

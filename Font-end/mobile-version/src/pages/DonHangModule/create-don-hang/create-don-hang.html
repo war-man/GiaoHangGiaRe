@@ -1,0 +1,75 @@
+<!--
+  Generated template for the CreateDonHangPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tạo đơn hàng</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <form [formGroup]="donhangForm" (ngSubmit)="submitData()" novalidate>
+
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label stacked color="primary">Người gửi</ion-label>
+            <ion-input formControlName="NguoiGui" type="text" required></ion-input>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked color="primary">Địa chỉ gửi</ion-label>
+            <ion-input formControlName="DiaChiGui" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked color="primary">Số điện thoại người gửi</ion-label>
+            <ion-input formControlName="SoDienThoaiNguoiGui" type="tel" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked color="primary">Người nhận</ion-label>
+            <ion-input formControlName="NguoiNhan" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked color="primary">Địa chỉ nhận</ion-label>
+            <ion-input formControlName="DiaChiNhan" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label stacked color="primary">Số điện thoại người nhận</ion-label>
+              <ion-input formControlName="SoDienThoaiNguoiNhan" type="tel" required></ion-input>
+            </ion-item>
+
+          <ion-item>
+            <ion-label stacked color="primary">Ghi chú</ion-label>
+            <ion-input formControlName="GhiChu" type="text" required></ion-input>
+          </ion-item>
+      
+        </ion-list>
+      
+        <ion-row responsive-sm>
+          <ion-col>
+            <button ion-button block>Tạo đơn hàng</button>
+          </ion-col>
+        </ion-row>
+      </form>
+      <ion-list no-lines>
+        <button ion-item no-lines *ngFor="let item of kienHangArray , let i = index" (tap)="editKienHang(i)">
+          <h3>Nội dung: {{item.NoiDung}}</h3>
+          <h2>Mô tả: {{item.MoTa}}</h2>
+          <p>Số lượng: {{item.SoLuong}}</p>
+          <p item-end>Thành tiền: {{item.ThanhTien}}</p>
+        </button>
+      </ion-list>
+      <ion-fab right top>
+          <button ion-fab color="light" (tap)="createKienHang()"><ion-icon name="ios-albums-outline"></ion-icon>
+          </button>
+      </ion-fab>
+</ion-content>

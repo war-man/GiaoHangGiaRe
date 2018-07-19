@@ -34,7 +34,7 @@ namespace GiaoHangGiaRe.Controllers.api
                 data = _khachHangServices.GetAll(khachHangSearchList),
                 page = khachHangSearchList.page,
                 size = khachHangSearchList.size,
-                total = _khachHangServices.Count()
+                total = _khachHangServices.count_list
             });
         }
         //Get by id

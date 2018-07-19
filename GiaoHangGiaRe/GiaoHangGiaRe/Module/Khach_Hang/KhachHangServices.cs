@@ -10,10 +10,12 @@ namespace GiaoHangGiaRe.Module
     public class KhachHangServices : IKhachHangServices
     {
         private IRepository<KhachHang> _khachhangrepository;
+        private IRepository<LoaiKhachHang> _loaikhachhangrepository;
         private UserServices userServices;
         private LichSuServices lichSuServices;
         public KhachHangServices()
         {
+            _loaikhachhangrepository = new IRepository<LoaiKhachHang>();
             _khachhangrepository = new IRepository<KhachHang>();
             userServices = new UserServices();
             lichSuServices = new LichSuServices();
@@ -49,13 +51,41 @@ namespace GiaoHangGiaRe.Module
                 NoiDung = id.ToString()
             });
         }
-
+        public int count_list { set; get; }
         public List<KhachHang> GetAll(KhachHangSearchList khachHangSearchList)
         {
-            var query = _khachhangrepository.GetAll();
-            query = query.OrderBy(p => p.MaKhachHang).Take(khachHangSearchList.size.Value)
-                                       .Skip(khachHangSearchList.size.Value * (khachHangSearchList.page.Value - 1));
-            return query.ToList();
+            from khachhang in _khachhangrepository.GetAll()
+                                                  join loaikh in _loaikhachhangrepository.GetAll()
+                                                  on khachhang.MaLoaiKH equals loaikh.MaLoaiKH;
+            var query = _khachhangrepository.GetAll()
+                        .Join(_loaikhachhangrepository.GetAll(),khachhang => khachhang.MaLoaiKH, loaikh => loaikh.MaLoaiKH,
+                                                                        (khachhang,loaikh) => new {  KhachHang = khachhang ,LoaiKhachHang = loaikh}
+                                                          );
+            if(string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
+                query = query.Where(p => p.KhachHang.TenTaiKhoan.ToLower().Contains(khachHangSearchList.TaiKhoan.ToLower()));
+            }
+            if (string.IsNullOrWhiteSpace(khachHangSearchList.HoTen))
+            {
+                query = query.Where(p => p.KhachHang.TenKhachHang.ToLower().Contains(khachHangSearchList.HoTen.ToLower()));
+            }
+            if (string.IsNullOrWhiteSpace(khachHangSearchList.DiaChi))
+            {
+                query = query.Where(p => p.KhachHang.DiaChi.ToLower().Contains(khachHangSearchList.DiaChi.ToLower()));
+            }
+            if (string.IsNullOrWhiteSpace(khachHangSearchList.SoDienThoai))
+            {
+                query = query.Where(p => p.KhachHang.SoDienThoai.ToLower().Contains(khachHangSearchList.SoDienThoai.ToLower()));
+            }
+            if (string.IsNullOrWhiteSpace(khachHangSearchList.LoaiKH))
+            {
+                query = query.Where(p => p.LoaiKhachHang.TenLoaiKH.ToLower().Contains(khachHangSearchList.LoaiKH.ToLower()));
+            }
+
+            query = query.OrderBy(p => p.KhachHang.MaKhachHang).Take(khachHangSearchList.size.Value)
+                                       .Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value);
+            this.count_list = query.Count();
+  
+            return null;
         }
 
         public KhachHang GetById(int id)

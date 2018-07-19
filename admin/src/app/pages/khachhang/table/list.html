@@ -1,75 +1,83 @@
 <style>
-    td {
-      max-width: 60px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  td {
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  </style>
-  <div class="row" ng-init="init()">
-          <div class="col-md-12">
-            <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
-              
-                  <div class="add-row-editable-table">
-                          <button class="btn btn-primary" ng-click="gotoAddKhachHang()">Thêm mới</button>
-                        </div>
-                        <table class="table table-bordered table-hover table-condensed">
-                          <tr>
-                            <td></td>
-                            <td>Họ tên</td>
-                            <td>Số điện thoại</td>
-                            <td>Email</td>
-                            <td>Địa chỉ</td>
-                            <td>Loại khách hàng</td>
-                            <td>Tên tài khoản</td>
-                            <td>Thao tác</td>
-                          </tr>
-                          <tr ng-repeat="khachhang in resdata" class="editable-row">
-                            <td>
-                                {{$index}}
-                            </td>
-                            <td>
-                                <span editable-text="khachhang.TenKhachHang" e-name="TenKhachHang" e-form="rowform" e-required>
-                                  {{ khachhang.TenKhachHang || 'empty' }}
-                                </span>
-                            </td>
-                            <td>
-                              <span editable-text="khachhang.SoDienThoai" e-name="SoDienThoai" e-form="rowform" e-required>
-                                {{ khachhang.SoDienThoai || 'empty' }}
-                              </span>
-                            </td>
-                            <td>
-                                <span editable-text="khachhang.Email" e-name="Email" e-form="rowform" e-required>
-                                  {{ khachhang.Email || 'empty' }}
-                                </span>
-                              </td>
-                              <td>
-                                <span editable-text="khachhang.DiaChi" e-name="DiaChi" e-form="rowform" e-required>
-                                  {{ khachhang.DiaChi || 'empty' }}
-                                </span>
-                              </td>
-                              <td>
-                                <span editable-text="khachhang.LoaiKH" e-name="LoaiKH" e-form="rowform" e-required>
-                                  {{ khachhang.LoaiKH || 'empty' }}
-                                </span>
-                              </td>
-                              <td>
-                                <span editable-text="khachhang.TenTaiKhoan" e-name="TenTaiKhoan" e-form="rowform" e-required>
-                                  {{ khachhang.TenTaiKhoan || 'empty' }}
-                                </span>
-                              </td>
-                              
-                            <td>
-                              <div class="buttons" ng-show="!rowform.$visible">
-                                <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/khachhang/edit/{{khachhang.MaKhachHang}}">Edit</a >
-                                <!-- <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteKhachHang(khachhang.MaKhachHang)">Delete</button> -->
-                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="listUserOfRole($index)">Danh sách User</button>
-                              </div> 
-                            </td>
-                          </tr>
-                        </table>
-                        
-  
+</style>
+<div class="row" ng-init="sarch()">
+  <div class="col-md-12">
+    <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+
+      <div class="add-row-editable-table">
+        <button class="btn btn-primary" ng-click="gotoAddKhachHang()">Thêm mới</button>
+      </div>
+      <table class="table table-bordered table-hover table-condensed">
+        <tfoot valign="bottom">
+          <tr>
+            <td colspan="8" style="text-align: center">
+              <ul class="pagination">
+                <li ng-repeat="i in arrayPage">
+                  <a ng-click="search(params.page = $index)" ng-model="params.page">{{$index+1}}</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
+        <tr>
+          <td></td>
+          <td>Họ tên</td>
+          <td>Số điện thoại</td>
+          <td>Email</td>
+          <td>Địa chỉ</td>
+          <td>Loại khách hàng</td>
+          <td>Tên tài khoản</td>
+          <td>Thao tác</td>
+        </tr>
+        <tr ng-repeat="khachhang in resdata" class="editable-row">
+          <td>
+            {{$index}}
+          </td>
+          <td>
+            <span editable-text="khachhang.TenKhachHang" e-name="TenKhachHang" e-form="rowform" e-required>
+              {{ khachhang.TenKhachHang || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="khachhang.SoDienThoai" e-name="SoDienThoai" e-form="rowform" e-required>
+              {{ khachhang.SoDienThoai || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="khachhang.Email" e-name="Email" e-form="rowform" e-required>
+              {{ khachhang.Email || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="khachhang.DiaChi" e-name="DiaChi" e-form="rowform" e-required>
+              {{ khachhang.DiaChi || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="khachhang.LoaiKH" e-name="LoaiKH" e-form="rowform" e-required>
+              {{ khachhang.LoaiKH || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="khachhang.TenTaiKhoan" e-name="TenTaiKhoan" e-form="rowform" e-required>
+              {{ khachhang.TenTaiKhoan || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/khachhang/edit/{{khachhang.MaKhachHang}}">Edit</a>
+              <!-- <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteKhachHang(khachhang.MaKhachHang)">Delete</button> -->
+              <button class="btn btn-primary editable-table-button btn-xs" ng-click="listUserOfRole($index)">Danh sách User</button>
             </div>
-          </div>
-        </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

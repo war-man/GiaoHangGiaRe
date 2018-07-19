@@ -36,8 +36,12 @@
                 params.TenNhanVien = $scope.params.TenNhanVien;
             }
             GetNhanVienAPI.nhanvien_get_all(params)
-                .success(function (response) {
-                    $scope.resdata = response.data;
+                .success(function (res) {
+                    $scope.resdata = res.data;
+                    $scope.arrayPage = [];
+                    for (var i = 0; i < Math.round(res.total / res.size); i++) {
+                        $scope.arrayPage.push(i);
+                    }
                     $scope.modal.dismiss();
                 }).error(function () {
                     $scope.modal.dismiss();

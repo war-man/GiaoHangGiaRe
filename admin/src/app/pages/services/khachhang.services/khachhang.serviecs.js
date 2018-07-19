@@ -8,12 +8,8 @@
     function GetKhachHangAPI($http, $rootScope, localStorage, BASE) {
         var host = BASE + 'api/';
         //get-all KhachHang
-        var khachhang_get_all = function (page, size) {
-            var result = $http.get(host + 'khachhang/get-all?page=' + page + '&size=' + size)
-            .success(function (data) {
-            }).error(function () {
-            });
-            return result;
+        var khachhang_get_all = function (params) {
+            return $http.post(host + 'khachhang/get-all', params);
         };
         //craete KhachHang
         var khachhang_create = function (input) {

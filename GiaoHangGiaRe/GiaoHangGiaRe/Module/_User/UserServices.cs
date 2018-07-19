@@ -259,15 +259,15 @@ namespace GiaoHangGiaRe.Module
             var querys = _userRepository.GetAll().Where(p=>p.isDelete == false);
             if(!string.IsNullOrEmpty(taiKhoanSearchList.user_name))
             {
-                querys = querys.Where(p => (p.UserName.Contains(taiKhoanSearchList.user_name)));
+                querys = querys.Where(p => (p.UserName.ToLower().Contains(taiKhoanSearchList.user_name.ToLower())));
             }
             if (!string.IsNullOrEmpty(taiKhoanSearchList.id))
             {
-                querys = querys.Where(p => (p.Id.Contains(taiKhoanSearchList.id)));
+                querys = querys.Where(p => (p.Id.ToLower().Contains(taiKhoanSearchList.id.ToLower())));
             }
             if (!string.IsNullOrEmpty(taiKhoanSearchList.name))
             {
-                querys = querys.Where(p => (p.HoTen.Contains(taiKhoanSearchList.name)));
+                querys = querys.Where(p => (p.HoTen.ToLower().Contains(taiKhoanSearchList.name.ToLower())));
             }
             this.countList = querys.Count();
             querys = querys.Skip(taiKhoanSearchList.size.Value * taiKhoanSearchList.page.Value)

@@ -97,19 +97,19 @@ namespace GiaoHangGiaRe.Module
             }
             var query = _repositoryNhanVien.GetAll();
             if(!string.IsNullOrWhiteSpace(nhanVienSearchList.TenTaiKhoan)){
-                query = query.Where(p => p.TenTaiKhoan.Contains(nhanVienSearchList.TenTaiKhoan));
+                query = query.Where(p => p.TenTaiKhoan.ToLower().Contains(nhanVienSearchList.TenTaiKhoan.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(nhanVienSearchList.TenNhanVien))
             {
-                query = query.Where(p => p.TenNhanVien.Contains(nhanVienSearchList.TenNhanVien));
+                query = query.Where(p => p.TenNhanVien.ToLower().Contains(nhanVienSearchList.TenNhanVien.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(nhanVienSearchList.ChucVu))
             {
-                query = query.Where(p => p.ChucVu.Contains(nhanVienSearchList.ChucVu));
+                query = query.Where(p => p.ChucVu.ToLower().Contains(nhanVienSearchList.ChucVu.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(nhanVienSearchList.Email))
             {
-                query = query.Where(p => p.Email.Contains(nhanVienSearchList.Email));
+                query = query.Where(p => p.Email.ToLower().Contains(nhanVienSearchList.Email.ToLower()));
             }
             query = query.Take(nhanVienSearchList.size.Value)
                          .Skip(nhanVienSearchList.size.Value * (nhanVienSearchList.page.Value - 1)).OrderBy(p => p.MaNhanVien);
@@ -122,9 +122,25 @@ namespace GiaoHangGiaRe.Module
             return _repositoryNhanVien.SelectById(id);
         }
 
-        public void Update(NhanViens input)
+        public void Update(NhanVienUpdate input)
         {
-            _repositoryNhanVien.Update(input);
+            var nhanvien = this.GetById(input.MaNhanVien);
+            if(!string.IsNullOrWhiteSpace(input.TenNhanVien)){
+                nhanvien.TenNhanVien = input.TenNhanVien;
+            }
+            if (!string.IsNullOrWhiteSpace(input.Email))
+            {
+                nhanvien.Email = input.Email;
+            }
+            if (!string.IsNullOrWhiteSpace(input.DiaChi))
+            {
+                nhanvien.DiaChi = input.DiaChi;
+            }
+            if (!string.IsNullOrWhiteSpace(input.ChucVu))
+            {
+                nhanvien.ChucVu = input.ChucVu;
+            }
+            _repositoryNhanVien.Update(nhanvien);
             lichSuServices.Create(new LichSu
             {
                 HanhDong = Constant.UpdateAction,

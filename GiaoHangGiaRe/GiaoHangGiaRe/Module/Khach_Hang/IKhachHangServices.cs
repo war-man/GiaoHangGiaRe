@@ -1,4 +1,5 @@
-﻿using Models.EntityModel;
+﻿using GiaoHangGiaRe.Models.KhachHang;
+using Models.EntityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace GiaoHangGiaRe.Module
     interface IKhachHangServices
     {
         //su dung cho phuong thuc GET
-        List<KhachHang> GetAll(int?page,int?size);
+        List<KhachHang> GetAll(KhachHangSearchList khachHangSearchList);
         KhachHang GetById(int id);
         KhachHang GetCurrentKhacHang();
         KhachHang GetKhacHangOfUser(object username);

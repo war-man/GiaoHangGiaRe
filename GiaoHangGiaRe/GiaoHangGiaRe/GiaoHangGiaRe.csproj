@@ -505,6 +505,10 @@
     <Compile Include="Models\TaiKhoan\TaiKhoanSearchList.cs" />
     <Compile Include="Models\TaiKhoan\TaiKhoanCreate.cs" />
     <Compile Include="Models\NhanVien\NhanVienSearchList.cs" />
+    <Compile Include="Models\NhanVien\NhanVienUpdate.cs" />
+    <Compile Include="Models\KhachHang\KhachHangSearchList.cs" />
+    <Compile Include="Models\KhachHang\KhachHangUpdate.cs" />
+    <Compile Include="Models\KhachHang\KhachHangCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -604,6 +608,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Admin\" />
     <Folder Include="Content\maker\" />
+    <Folder Include="Models\KhachHang\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

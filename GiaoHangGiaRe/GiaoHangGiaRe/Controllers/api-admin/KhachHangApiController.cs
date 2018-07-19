@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
+using GiaoHangGiaRe.Models.KhachHang;
 
 namespace GiaoHangGiaRe.Controllers.api
 {
@@ -24,15 +25,15 @@ namespace GiaoHangGiaRe.Controllers.api
         }
 
         //Get
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
-        public IHttpActionResult GetAllkhachHang(int? page, int? size)
+        public IHttpActionResult GetAllkhachHang(KhachHangSearchList khachHangSearchList)
         {
             return Ok(new
             {
-                data = _khachHangServices.GetAll(page, size),
-                page = page,
-                size = size,
+                data = _khachHangServices.GetAll(khachHangSearchList),
+                page = khachHangSearchList.page,
+                size = khachHangSearchList.size,
                 total = _khachHangServices.Count()
             });
         }

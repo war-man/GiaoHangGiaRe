@@ -21,7 +21,7 @@ namespace GiaoHangGiaRe.Module
         void Create(NhanVienCreate input);
 
         //Cac phuong thuc PUT
-        void Update(NhanViens input);
+        void Update(NhanVienUpdate input);
 
         //Cac phuong thuc DELETE
         void Delete(object id);

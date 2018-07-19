@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GiaoHangGiaRe.Models.KhachHang;
 using Models.EntityModel;
 
 namespace GiaoHangGiaRe.Module
@@ -49,11 +50,12 @@ namespace GiaoHangGiaRe.Module
             });
         }
 
-        public List<KhachHang> GetAll(int? page, int? size)
+        public List<KhachHang> GetAll(KhachHangSearchList khachHangSearchList)
         {
-            if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) return _khachhangrepository.GetAll().ToList();
-            return _khachhangrepository.GetAll().OrderBy(p => p.MaKhachHang).Take(size.Value).Skip(size.Value * (page.Value - 1)).ToList();
+            var query = _khachhangrepository.GetAll();
+            query = query.OrderBy(p => p.MaKhachHang).Take(khachHangSearchList.size.Value)
+                                       .Skip(khachHangSearchList.size.Value * (khachHangSearchList.page.Value - 1));
+            return query.ToList();
         }
 
         public KhachHang GetById(int id)

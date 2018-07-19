@@ -57,14 +57,10 @@ namespace GiaoHangGiaRe.Controllers.api
         }
         [HttpPut]
         [Route("update")]
-        public IHttpActionResult Update(NhanViens input)
+        public IHttpActionResult Update(NhanVienUpdate input)
         {
             _nhanVienServices.Update(input);
-            return Ok(new
-            {
-                obj = input,
-                message = "success"
-            });
+            return Ok(input);
         }
 
         [HttpDelete]

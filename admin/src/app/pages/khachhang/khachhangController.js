@@ -8,7 +8,7 @@
         $scope.model = {};
         $scope.params = {};
 
-        $scope.sarch = function () {
+        $scope.search = function () {
             $scope.modal = $uibModal.open({
                 animation: false,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'

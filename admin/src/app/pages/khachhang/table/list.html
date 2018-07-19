@@ -6,12 +6,38 @@
     white-space: nowrap;
   }
 </style>
-<div class="row" ng-init="sarch()">
+<div class="row" ng-init="search()">
   <div class="col-md-12">
     <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+      <div class="form-inline">
+        <div class="form-group">
+          <input type="text" ng-model="params.HoTen" class="form-control" placeholder="Họ tên">
+        </div>
+        <div class="form-group">
+          <input type="text" ng-model="params.SoDienThoai" class="form-control" placeholder="Số điện thoại">
+        </div>
+        <div class="form-group">
+          <input type="text" ng-model="params.DiaChi" class="form-control" placeholder="Địa chỉ">
+        </div>
+        <div class="form-group">
+          <input type="text" ng-model="params.Email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <select ng-model="params.LoaiKH">
+            <option value="">Loại khách hàng</option>
+            <option value="">VIP</option>
+            <option value="">OLD</option>
+            <option value="">NEW</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" ng-model="params.TaiKhoan" class="form-control" placeholder="Tên tài khoản">
+        </div>
 
-      <div class="add-row-editable-table">
-        <button class="btn btn-primary" ng-click="gotoAddKhachHang()">Thêm mới</button>
+        <button type="" ng-click="search()" class="btn btn-primary mb-2">Tìm kiếm</button>
+        <div class="add-button">
+          <button class="btn btn-primary" ng-click="gotoAddKhachHang()">Thêm mới</button>
+        </div>
       </div>
       <table class="table table-bordered table-hover table-condensed">
         <tfoot valign="bottom">
@@ -26,7 +52,6 @@
           </tr>
         </tfoot>
         <tr>
-          <td></td>
           <td>Họ tên</td>
           <td>Số điện thoại</td>
           <td>Email</td>
@@ -36,9 +61,6 @@
           <td>Thao tác</td>
         </tr>
         <tr ng-repeat="khachhang in resdata" class="editable-row">
-          <td>
-            {{$index}}
-          </td>
           <td>
             <span editable-text="khachhang.TenKhachHang" e-name="TenKhachHang" e-form="rowform" e-required>
               {{ khachhang.TenKhachHang || 'empty' }}

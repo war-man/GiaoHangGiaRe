@@ -11,7 +11,7 @@ namespace GiaoHangGiaRe.Module
     interface IKhachHangServices
     {
         //su dung cho phuong thuc GET
-        List<KhachHang> GetAll(KhachHangSearchList khachHangSearchList);
+        List<KhachHangList> GetAll(KhachHangSearchList khachHangSearchList);
         KhachHang GetById(int id);
         KhachHang GetCurrentKhacHang();
         KhachHang GetKhacHangOfUser(object username);

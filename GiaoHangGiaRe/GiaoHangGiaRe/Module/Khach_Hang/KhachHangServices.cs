@@ -52,11 +52,11 @@ namespace GiaoHangGiaRe.Module
             });
         }
         public int count_list { set; get; }
-        public List<KhachHang> GetAll(KhachHangSearchList khachHangSearchList)
+        public List<KhachHangList> GetAll(KhachHangSearchList khachHangSearchList)
         {
-            from khachhang in _khachhangrepository.GetAll()
-                                                  join loaikh in _loaikhachhangrepository.GetAll()
-                                                  on khachhang.MaLoaiKH equals loaikh.MaLoaiKH;
+            //from khachhang in _khachhangrepository.GetAll()
+            //                                      join loaikh in _loaikhachhangrepository.GetAll()
+            //                                      on khachhang.MaLoaiKH equals loaikh.MaLoaiKH;
             var query = _khachhangrepository.GetAll()
                         .Join(_loaikhachhangrepository.GetAll(),khachhang => khachhang.MaLoaiKH, loaikh => loaikh.MaLoaiKH,
                                                                         (khachhang,loaikh) => new {  KhachHang = khachhang ,LoaiKhachHang = loaikh}
@@ -83,9 +83,22 @@ namespace GiaoHangGiaRe.Module
 
             query = query.OrderBy(p => p.KhachHang.MaKhachHang).Take(khachHangSearchList.size.Value)
                                        .Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value);
-            this.count_list = query.Count();
-  
-            return null;
+            //this.count_list = query.Count();
+            //query = query.SelectMany(); 
+            List<KhachHangList> listKhachHang = new List<KhachHangList>();
+            foreach(var i in query)
+            {
+                KhachHangList kh = new KhachHangList();
+                kh.TenKhachHang = i.KhachHang.TenKhachHang;
+                kh.SoDienThoai = i.KhachHang.SoDienThoai;
+                kh.DiaChi = i.KhachHang.DiaChi;
+                kh.Email = i.KhachHang.Email;
+                kh.LoaiKH = i.LoaiKhachHang.TenLoaiKH;
+                kh.TaiKhoan = i.KhachHang.TenTaiKhoan;
+
+                listKhachHang.Add(kh);
+            }
+            return listKhachHang;
         }
 
         public KhachHang GetById(int id)

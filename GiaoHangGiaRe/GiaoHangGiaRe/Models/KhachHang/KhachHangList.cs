@@ -8,12 +8,9 @@ namespace GiaoHangGiaRe.Models.KhachHang
         public string DiaChi { set; get; }
         public string Email { set; get; }
         public string LoaiKH { set; get; }
-        public string TaiKhoan { set; get; }
+        public string TenTaiKhoan { set; get; }
+        public string MaLoaiKH { set; get; }
         public KhachHangList (){
-        }
-        public KhachHangList(string TenKhachHang, string SoDienThoai, string DiaChi, string Email, string LoaiKH, string TaiKhoan)
-        {
-            
         }
     }
 }

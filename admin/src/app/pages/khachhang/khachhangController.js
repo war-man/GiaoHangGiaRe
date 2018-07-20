@@ -21,6 +21,8 @@
                     $scope.arrayPage.push(i);
                 }
                 $scope.modal.dismiss();
+            }).error(function () {
+                $scope.modal.dismiss();
             });
         }
 

@@ -54,47 +54,51 @@ namespace GiaoHangGiaRe.Module
         public int count_list { set; get; }
         public List<KhachHangList> GetAll(KhachHangSearchList khachHangSearchList)
         {
-            //from khachhang in _khachhangrepository.GetAll()
-            //                                      join loaikh in _loaikhachhangrepository.GetAll()
-            //                                      on khachhang.MaLoaiKH equals loaikh.MaLoaiKH;
-            var query = _khachhangrepository.GetAll()
-                        .Join(_loaikhachhangrepository.GetAll(),khachhang => khachhang.MaLoaiKH, loaikh => loaikh.MaLoaiKH,
-                                                                        (khachhang,loaikh) => new {  KhachHang = khachhang ,LoaiKhachHang = loaikh}
-                                                          );
-            if(string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
-                query = query.Where(p => p.KhachHang.TenTaiKhoan.ToLower().Contains(khachHangSearchList.TaiKhoan.ToLower()));
+            var query = from kh in _khachhangrepository.GetAll() join loaikh in _loaikhachhangrepository.GetAll() on kh.MaLoaiKH equals loaikh.MaLoaiKH
+                                                        select new {
+                MaKhachHang = kh.MaKhachHang,
+                TenLoaiKH = loaikh.TenLoaiKH,
+                TenKhachHang = kh.TenKhachHang,
+                SoDienThoai = kh.SoDienThoai,
+                DiaChi = kh.DiaChi,
+                Email = kh.Email,
+                TenTaiKhoan = kh.TenTaiKhoan,
+                MaLoaiKH = kh.MaLoaiKH
+            };
+            if(!string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
+                query = query.Where(p => p.TenTaiKhoan.ToLower().Contains(khachHangSearchList.TaiKhoan.ToLower()));
             }
-            if (string.IsNullOrWhiteSpace(khachHangSearchList.HoTen))
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.HoTen))
             {
-                query = query.Where(p => p.KhachHang.TenKhachHang.ToLower().Contains(khachHangSearchList.HoTen.ToLower()));
+                query = query.Where(p => p.TenKhachHang.ToLower().Contains(khachHangSearchList.HoTen.ToLower()));
             }
-            if (string.IsNullOrWhiteSpace(khachHangSearchList.DiaChi))
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.DiaChi))
             {
-                query = query.Where(p => p.KhachHang.DiaChi.ToLower().Contains(khachHangSearchList.DiaChi.ToLower()));
+                query = query.Where(p => p.DiaChi.ToLower().Contains(khachHangSearchList.DiaChi.ToLower()));
             }
-            if (string.IsNullOrWhiteSpace(khachHangSearchList.SoDienThoai))
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.SoDienThoai))
             {
-                query = query.Where(p => p.KhachHang.SoDienThoai.ToLower().Contains(khachHangSearchList.SoDienThoai.ToLower()));
+                query = query.Where(p => p.SoDienThoai.ToLower().Contains(khachHangSearchList.SoDienThoai.ToLower()));
             }
-            if (string.IsNullOrWhiteSpace(khachHangSearchList.LoaiKH))
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.LoaiKH))
             {
-                query = query.Where(p => p.LoaiKhachHang.TenLoaiKH.ToLower().Contains(khachHangSearchList.LoaiKH.ToLower()));
+                query = query.Where(p => p.TenLoaiKH.ToLower().Contains(khachHangSearchList.LoaiKH.ToLower()));
             }
-
-            query = query.OrderBy(p => p.KhachHang.MaKhachHang).Take(khachHangSearchList.size.Value)
+            this.count_list = query.Count();
+            query = query.OrderBy(p => p.MaKhachHang).Take(khachHangSearchList.size.Value)
                                        .Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value);
-            //this.count_list = query.Count();
-            //query = query.SelectMany(); 
+
             List<KhachHangList> listKhachHang = new List<KhachHangList>();
             foreach(var i in query)
             {
                 KhachHangList kh = new KhachHangList();
-                kh.TenKhachHang = i.KhachHang.TenKhachHang;
-                kh.SoDienThoai = i.KhachHang.SoDienThoai;
-                kh.DiaChi = i.KhachHang.DiaChi;
-                kh.Email = i.KhachHang.Email;
-                kh.LoaiKH = i.LoaiKhachHang.TenLoaiKH;
-                kh.TaiKhoan = i.KhachHang.TenTaiKhoan;
+                kh.TenKhachHang = i.TenKhachHang;
+                kh.SoDienThoai = i.SoDienThoai;
+                kh.DiaChi = i.DiaChi;
+                kh.Email = i.Email;
+                kh.LoaiKH = i.TenLoaiKH;
+                kh.TenTaiKhoan = i.TenTaiKhoan;
+                kh.MaLoaiKH = i.MaLoaiKH.ToString();
 
                 listKhachHang.Add(kh);
             }

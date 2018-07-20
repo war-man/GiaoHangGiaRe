@@ -34,26 +34,26 @@ namespace GiaoHangGiaRe.Models.KhachHang
             {
                 this.size = _size;
             }
-            if(string.IsNullOrWhiteSpace(HoTen)){
+            if(!string.IsNullOrWhiteSpace(HoTen)){
                 this.HoTen = HoTen;
             }
-            if (string.IsNullOrWhiteSpace(SoDienThoai))
+            if (!string.IsNullOrWhiteSpace(SoDienThoai))
             {
                 this.SoDienThoai = SoDienThoai;
             }
-            if (string.IsNullOrWhiteSpace(DiaChi))
+            if (!string.IsNullOrWhiteSpace(DiaChi))
             {
                 this.DiaChi = DiaChi;
             }
-            if (string.IsNullOrWhiteSpace(Email))
+            if (!string.IsNullOrWhiteSpace(Email))
             {
                 this.Email = Email;
             }
-            if (string.IsNullOrWhiteSpace(LoaiKH))
+            if (!string.IsNullOrWhiteSpace(LoaiKH))
             {
                 this.LoaiKH = LoaiKH;
             }
-            if (string.IsNullOrWhiteSpace(TaiKhoan))
+            if (!string.IsNullOrWhiteSpace(TaiKhoan))
             {
                 this.TaiKhoan = TaiKhoan;
             }

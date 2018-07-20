@@ -11,7 +11,7 @@ namespace GiaoHangGiaRe.Module
     {
         List<LoaiKhachHang> GetAll(int? page,int?size);
         LoaiKhachHang GetById(object id);
-
+        bool Valid(object MaLoaiKH);
         void Create(LoaiKhachHang input);
         void Update(LoaiKhachHang input);
         void Delete(object id);

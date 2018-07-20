@@ -21,7 +21,7 @@ namespace GiaoHangGiaRe.Module
         void Create(KhachHang input);
 
         //su dung cho phuong thuc UPDATE
-        void Update(KhachHang input);
+        void Update(KhachHangUpdate input);
         void Setlock_Unlock(object username);
 
         //su dung cho phuong thuc DELETE

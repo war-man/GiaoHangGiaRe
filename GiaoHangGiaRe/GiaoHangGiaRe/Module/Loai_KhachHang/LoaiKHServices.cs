@@ -47,5 +47,13 @@ namespace GiaoHangGiaRe.Module
         {
             _repositoryLoaiKH.Update(input);
         }
+
+        public bool Valid(object MaLoaiKH)
+        {
+            if(GetById(MaLoaiKH) != null){
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace GiaoHangGiaRe.Models.KhachHang
         public string Email { set; get; }
         public string LoaiKH { set; get; }
         public string TaiKhoan { set; get; }
+        public string TrangThai { set; get; }
 
         public KhachHangSearchList()
         {
@@ -24,7 +25,7 @@ namespace GiaoHangGiaRe.Models.KhachHang
                 this.size = Constant.DefaultSize;
             }
         }
-        public KhachHangSearchList(int? _page, int? _size, string HoTen, string SoDienThoai, string DiaChi, string Email, string LoaiKH, string TaiKhoan)
+        public KhachHangSearchList(int? _page, int? _size, string HoTen, string SoDienThoai, string DiaChi, string Email, string LoaiKH, string TaiKhoan, string TrangThai)
         {
             if (_page.HasValue)
             {
@@ -56,6 +57,10 @@ namespace GiaoHangGiaRe.Models.KhachHang
             if (!string.IsNullOrWhiteSpace(TaiKhoan))
             {
                 this.TaiKhoan = TaiKhoan;
+            }
+            if (!string.IsNullOrWhiteSpace(TrangThai))
+            {
+                this.TrangThai = TrangThai;
             }
 
         }

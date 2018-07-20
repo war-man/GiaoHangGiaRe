@@ -55,7 +55,7 @@ namespace GiaoHangGiaRe.Controllers.api
         //Put
         [ResponseType(typeof(void))]
         [Route("update")]
-        public IHttpActionResult PutKhachHang(KhachHang input)
+        public IHttpActionResult PutKhachHang(KhachHangUpdate input)
         {
             if (input.MaKhachHang <= 0)
             {

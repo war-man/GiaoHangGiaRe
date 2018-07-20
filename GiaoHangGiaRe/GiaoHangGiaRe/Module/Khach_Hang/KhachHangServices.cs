@@ -13,12 +13,14 @@ namespace GiaoHangGiaRe.Module
         private IRepository<LoaiKhachHang> _loaikhachhangrepository;
         private UserServices userServices;
         private LichSuServices lichSuServices;
+        private LoaiKHServices loaiKHServices;
         public KhachHangServices()
         {
             _loaikhachhangrepository = new IRepository<LoaiKhachHang>();
             _khachhangrepository = new IRepository<KhachHang>();
             userServices = new UserServices();
             lichSuServices = new LichSuServices();
+            loaiKHServices = new LoaiKHServices();
         }
         public int Count()
         {
@@ -54,8 +56,11 @@ namespace GiaoHangGiaRe.Module
         public int count_list { set; get; }
         public List<KhachHangList> GetAll(KhachHangSearchList khachHangSearchList)
         {
-            var query = from kh in _khachhangrepository.GetAll() join loaikh in _loaikhachhangrepository.GetAll() on kh.MaLoaiKH equals loaikh.MaLoaiKH
-                                                        select new {
+            var query = from kh in _khachhangrepository.GetAll()
+                        join loaikh in _loaikhachhangrepository.GetAll() on kh.MaLoaiKH equals loaikh.MaLoaiKH
+                        select new
+                        {
+                TrangThai = kh.TrangThai,
                 MaKhachHang = kh.MaKhachHang,
                 TenLoaiKH = loaikh.TenLoaiKH,
                 TenKhachHang = kh.TenKhachHang,
@@ -64,6 +69,7 @@ namespace GiaoHangGiaRe.Module
                 Email = kh.Email,
                 TenTaiKhoan = kh.TenTaiKhoan,
                 MaLoaiKH = kh.MaLoaiKH
+                             
             };
             if(!string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
                 query = query.Where(p => p.TenTaiKhoan.ToLower().Contains(khachHangSearchList.TaiKhoan.ToLower()));
@@ -84,6 +90,10 @@ namespace GiaoHangGiaRe.Module
             {
                 query = query.Where(p => p.TenLoaiKH.ToLower().Contains(khachHangSearchList.LoaiKH.ToLower()));
             }
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.TrangThai))
+            {
+                query = query.Where(p => p.TrangThai.ToString()==khachHangSearchList.TrangThai);
+            }
             this.count_list = query.Count();
             query = query.OrderBy(p => p.MaKhachHang).Take(khachHangSearchList.size.Value)
                                        .Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value);
@@ -92,6 +102,7 @@ namespace GiaoHangGiaRe.Module
             foreach(var i in query)
             {
                 KhachHangList kh = new KhachHangList();
+                kh.MaKhachHang = i.MaKhachHang;
                 kh.TenKhachHang = i.TenKhachHang;
                 kh.SoDienThoai = i.SoDienThoai;
                 kh.DiaChi = i.DiaChi;
@@ -133,9 +144,31 @@ namespace GiaoHangGiaRe.Module
                 kh.TrangThai = 0; //Lock
         }
 
-        public void Update(KhachHang input)
+        public void Update(KhachHangUpdate input)
         {
-            _khachhangrepository.Update(input);
+            var khach_hang = GetById(input.MaKhachHang);
+            if(khach_hang == null){
+                return;
+            }
+            if(!string.IsNullOrWhiteSpace(input.DiaChi)){
+                khach_hang.DiaChi = input.DiaChi;
+            }
+            if (!string.IsNullOrWhiteSpace(input.Email))
+            {
+                khach_hang.Email = input.Email;
+            }
+            if (!string.IsNullOrWhiteSpace(input.TenKhachHang))
+            {
+                khach_hang.TenKhachHang = input.TenKhachHang;
+            }
+            if (!string.IsNullOrWhiteSpace(input.SoDienThoai))
+            {
+                khach_hang.SoDienThoai = input.SoDienThoai;
+            }
+            if(loaiKHServices.Valid(int.Parse(input.MaLoaiKH))){
+                khach_hang.MaLoaiKH = int.Parse(input.MaLoaiKH);         
+            }
+            _khachhangrepository.Update(khach_hang);
 
             lichSuServices.Create(new LichSu
             {

@@ -3,6 +3,7 @@ namespace GiaoHangGiaRe.Models.KhachHang
 {
     public class KhachHangList
     {
+        public int MaKhachHang { set; get; }
         public string TenKhachHang { set; get; }
         public string SoDienThoai { set; get; }
         public string DiaChi { set; get; }

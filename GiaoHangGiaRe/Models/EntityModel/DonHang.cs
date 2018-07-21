@@ -61,6 +61,8 @@
         [Display(Name = "Tên tài khoản")]
         public string TenTaiKhoan { get; set; }
 
+        public int MaKhachHang { get; set; }
+
         [Display(Name = "Mã hành trình")]
         public int? MaHanhTrinh { get; set; }
     }

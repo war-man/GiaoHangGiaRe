@@ -6,7 +6,6 @@ using GiaoHangGiaRe.Models;
 using Models.EntityModel;
 using System.Web.Script.Serialization;
 using System.Net;
-using GiaoHangGiaRe.Models.DonHang;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -84,7 +83,8 @@ namespace GiaoHangGiaRe.Module
         {
             var query = from don_hang in _donhangRepository.GetAll() join nhan_vien in _nhanvienRepository.GetAll()
                                                            on don_hang.MaNhanVienGiao equals nhan_vien.MaNhanVien
-                                                           join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang;
+                                                           join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang
+                                                           select new { };
                                                          
 
             return null;

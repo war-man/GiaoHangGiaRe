@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201804290336422_suaKhachHang.Designer.cs">
       <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807211825520_sua_don_hang.cs" />
+    <Compile Include="Migrations\201807211825520_sua_don_hang.Designer.cs">
+      <DependentUpon>201807211825520_sua_don_hang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -294,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804290336422_suaKhachHang.resx">
       <DependentUpon>201804290336422_suaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211825520_sua_don_hang.resx">
+      <DependentUpon>201807211825520_sua_don_hang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.EntityModel;
 using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Models;
 
 namespace GiaoHangGiaRe.Module
 {
     interface IDonHangServices
     {
         //dung cho phuong  thuc GET
-        List<DonHang> GetAll(int? page, int? size, string user_name, string user_id, int? ma_nhanvien, int? tinhtrang);
+        List<DonHang> GetAll(DonHangSearchList donHangSearchList);
         List<DonHang> SearchByKey(int? page, int? size, string key);
         DonHang GetById(object id);
         List<DonHang> GetByUser(object username);

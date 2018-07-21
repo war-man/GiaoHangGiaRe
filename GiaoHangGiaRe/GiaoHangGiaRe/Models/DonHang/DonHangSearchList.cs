@@ -1,7 +1,7 @@
 ﻿using System;
 using GiaoHangGiaRe.Module;
 
-namespace GiaoHangGiaRe.Models.DonHang
+namespace GiaoHangGiaRe.Models
 {
     public class DonHangSearchList
     {

@@ -10,7 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
-using GiaoHangGiaRe.Models.DonHang;
+using GiaoHangGiaRe.Models;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -28,8 +28,8 @@ namespace GiaoHangGiaRe.Controllers
         { 
             return Ok(new {
                 list = _donHangServices.GetAll(donHangSearchList),
-                page = page,
-                size = size,
+                page = donHangSearchList.page,
+                size = donHangSearchList.size,
                 total = _donHangServices.count_list
             } );
         }

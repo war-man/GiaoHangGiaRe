@@ -6,6 +6,7 @@ using GiaoHangGiaRe.Models;
 using Models.EntityModel;
 using System.Web.Script.Serialization;
 using System.Net;
+using GiaoHangGiaRe.Models.DonHang;
 
 namespace GiaoHangGiaRe.Module
 {
@@ -19,6 +20,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<KienHang> _kienhangRepository;
         private IRepository<HoaDon> _hoadonRepository;
         private IRepository<KhachHang> _khachhangRepository;
+        private IRepository<NhanViens> _nhanvienRepository;
         private IRepository<Report> _reportRepository;
         public DonHangServices()
         {
@@ -31,6 +33,7 @@ namespace GiaoHangGiaRe.Module
             _kienhangRepository = new IRepository<KienHang>();
             _khachhangRepository = new IRepository<KhachHang>();
             _reportRepository = new IRepository<Report>();
+            _nhanvienRepository = new IRepository<NhanViens>();
         }
         public DonHangServices(IRepository<DonHang> donhangRepository)
         {
@@ -77,29 +80,16 @@ namespace GiaoHangGiaRe.Module
             _donhangRepository.Delete(id);
         }
 
-        public List<DonHang> GetAll(int? page = 0, int? size= 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
+        public List<DonHang> GetAll(DonHangSearchList donHangSearchList)
         {
-            if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) size = _donhangRepository.GetAll().Count(); 
-            if (user_name == null)
-            {
-                user_name = "";
-            }
+            var query = from don_hang in _donhangRepository.GetAll() join nhan_vien in _nhanvienRepository.GetAll()
+                                                           on don_hang.MaNhanVienGiao equals nhan_vien.MaNhanVien
+                                                           join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang;
+                                                         
 
-            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang>= 0 && p.TenTaiKhoan.Contains(user_name))
-            .OrderBy(p => p.MaDonHang)
-            .Skip(size.Value * (page.Value))
-            .Take(size.Value).ToList();
-
-            if(tinhtrang != null)
-            {
-                res = _donhangRepository.GetAll().Where(p => p.TinhTrang >= 0 && p.TenTaiKhoan.Contains(user_name) && p.TinhTrang == tinhtrang)
-                .OrderBy(p => p.MaDonHang)
-                .Skip(size.Value * (page.Value))
-                .Take(size.Value).ToList();
-            }
-            return res;
+            return null;
         }
+        public int count_list { set; get; }
         public List<DonHang> GetDonHangViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
         {
             if (user_name == null)

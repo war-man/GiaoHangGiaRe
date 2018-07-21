@@ -68,23 +68,21 @@
 
         //Them don hang moi
         //Them kien hang
-        $scope.editRolesUser = function () {
-            var modal = $uibModal.open({
+        $scope.addKienHang = function () {
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/addKienHangModal.html',
-                controller: function ($scope, $uibModalInstance) {
-                    $scope.title = '';
+                controller: function ($scope) {
                     $scope.ok = 'Đồng ý';
-                    $scope.roles = [];
-
                 },
-            }).result.then(function (data) {
-                let input = { userId: user.Id, roleId: data };
-                GetUserAPI.user_add_roles(input).success(function (res) {
-                    $state.go('donhang.list', {}, { reload: true });
-                })
-            }, function () {
+            }).result.then(function () {
+            }, function (data) {
+                $scope.addKienHangCache(data);
             });
+        }
+        $scope.listKienHang = [];
+        $scope.addKienHangCache = function(data) {
+            $scope.listKienHang.push(data);
         }
     };
 })();

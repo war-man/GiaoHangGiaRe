@@ -5,9 +5,8 @@
     }
 </style>
 
-<div ba-panel ba-panel-title="Thêm mới User" ba-panel-class="with-scroll">
-    <!-- {{model}}
-{{$state.current.name}} -->
+<div ba-panel ba-panel-title="Thêm mới đơn hàng" ba-panel-class="with-scroll">
+
     <div class="col-md-3"></div>
     <form class="col-md-6">
 
@@ -27,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <label for="NguoiNhan">Người nhậnc</label>
+            <label for="NguoiNhan">Người nhận</label>
             <input type="text" ng-model="model.NguoiNhan" class="form-control" id="NguoiNhan" placeholder="Người nhận">
         </div>
 
@@ -45,13 +44,23 @@
             <label for="GhiChu">Ghi chú</label>
             <input type="text" ng-model="model.GhiChu" class="form-control" id="GhiChu" placeholder="Ghi chú">
         </div>
-     
+
     </form>
     <div class="col-md-3"></div>
     <div class="col-md-12 text-center">
-        <button ng-click="editRolesUser()" class="btn btn-warning">Thêm kiện hàng</button>
+        <button ng-click="addKienHang()" class="btn btn-warning">Thêm kiện hàng</button>
         <br>
         <br>
-        <button progress-button="progressFunction()" ng-click="addKhachHang(model)" pb-style="lateral-lines" class="btn btn-info">Xác nhận </button>
+        <button progress-button="progressFunction()" ng-click="addDonHang(model)" pb-style="lateral-lines" class="btn btn-info">Xác nhận </button>
     </div>
+
+    <div class="col-md-12" ng-repeat="kien_hang in listKienHang">
+        <div>Nội dung {{kien_hang.NoiDung}}</div>
+        <div>Mô tả{{kien_hang.MoTa}}</div>
+        <div>Trọng lượng {{kien_hang.TrongLuong}}</div>
+        <div>Chiều rộng {{kien_hang.ChieuRong}}</div>
+        <div>Chiều dài {{kien_hang.ChieuDai}}</div>
+        <div>Số lượng {{kien_hang.SoLuong}}</div>
+    </div>
+
 </div>

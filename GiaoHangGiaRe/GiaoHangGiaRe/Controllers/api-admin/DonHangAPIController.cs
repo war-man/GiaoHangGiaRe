@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
+using GiaoHangGiaRe.Models.DonHang;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -23,13 +24,13 @@ namespace GiaoHangGiaRe.Controllers
         //[Authorize(Roles ="manager")] 
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult GetDonHangs(int? page = 0,int? size = 50, string user_name = "", string user_id =  "", int? nhanvien= null, int? tinhtrang = null)
+        public IHttpActionResult GetDonHangs(DonHangSearchList donHangSearchList)
         { 
             return Ok(new {
-                list = _donHangServices.GetAll(page, size, user_name, user_id,  nhanvien, tinhtrang),
+                list = _donHangServices.GetAll(donHangSearchList),
                 page = page,
                 size = size,
-                total = _donHangServices.count()
+                total = _donHangServices.count_list
             } );
         }
         [HttpGet]

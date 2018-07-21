@@ -3,7 +3,7 @@
 
     angular.module('BlurAdmin.pages.khachhang')
         .controller('khachhangcontroller', khachhangcontroller);
-    function khachhangcontroller($scope, $uibModal, $state, $stateParams, GetKhachHangAPI) {
+    function khachhangcontroller($scope, $uibModal, $state, $stateParams, GetKhachHangAPI, GetLoaiKHAPI) {
         $scope.resdata = {};
         $scope.model = {};
         $scope.params = {};
@@ -47,8 +47,14 @@
                 });
         };
 
+        //get all loai khach hang
+        GetLoaiKHAPI.loaikh_get_all(null, null).success(function (res) {
+            $scope.list_loaiKH = res.data;
+        });
+
         //get by id KhachHang
         $scope.getById = function () {
+
             $scope.modal = $uibModal.open({
                 animation: false,
                 templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
@@ -79,7 +85,20 @@
                     alert('Dường như đã có lỗi nào đó xảy ra!');
                 });
         };
-
+        //LOCK KHACH HANG
+        $scope.lockKhachHang = function (id) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            GetKhachHangAPI.khachhang_lock(id)
+                .success(function () {
+                    $scope.modal.dismiss();
+                    $state.go('khachhang.list', {}, { reload: true });
+                }).error(function () {
+                    $scope.modal.dismiss();
+                });
+        };
         //delete KhachHang
         $scope.deleteKhachHang = function (id) {
             $scope.modal = $uibModal.open({

@@ -9,55 +9,29 @@
         var host = BASE+'api/';
         //get-all LoaiKH
         var loaikh_get_all = function (page, size) {
-            var result = null;
-            result = $http.get(host + 'loaikh/get-all?page=' + page + '&size=' + size)
-            .success(function (data) {
-            })
-            .error(function () {
-            });
-            return result;
+            return $http.get(host + 'loaikh/get-all?page=' + page + '&size=' + size);
         };
 
         //craete loaikh
         var loaikh_create = function (input) {
             var url = host + 'loaikh/create';
-            var result = $http.post(url, input)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
+            var result = $http.post(url, input);
             return result;
         }
 
         //delete loaikh
         var loaikh_delete = function (id) {
-            var url = host + 'loaikh/delete?id=' + id;
-            var result = $http.delete(url)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.delete(host + 'loaikh/delete?id=' + id);
         }
 
         //Update loaikh
         var loaikh_update = function (input) {
-            var url = host + 'loaikh/update';
-            result = $http.put(url, input)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.put(host + 'loaikh/update', input);
         };
 
         //get-by-id loaikh
         var loaikh_getby_id = function (id) {
-            var result = $http.get(host + 'loaikh/get-by-id?id=' + id.id)
-            .success(function (data) {
-            }).error(function () {
-            });
-            return result;;
+            return $http.get(host + 'loaikh/get-by-id?id=' + id.id);;
         };
         return {
             loaikh_get_all: loaikh_get_all,

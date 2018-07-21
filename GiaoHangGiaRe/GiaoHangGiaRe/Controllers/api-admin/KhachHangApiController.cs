@@ -65,6 +65,20 @@ namespace GiaoHangGiaRe.Controllers.api
             return Ok(1);
         }
 
+        //Put
+        [HttpPut]
+        [ResponseType(typeof(void))]
+        [Route("set-lock-unlock")]
+        public IHttpActionResult SetLockUnlock(int MaKhachHang)
+        {
+            if (MaKhachHang <= 0)
+            {
+                return BadRequest();
+            }
+            _khachHangServices.Setlock_Unlock(MaKhachHang);
+            return Ok(1);
+        }
+
         // POST: api/khachhang/create
         [ResponseType(typeof(KienHang))]
         [Route("create")]

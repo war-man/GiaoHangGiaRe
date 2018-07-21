@@ -14,9 +14,11 @@ namespace GiaoHangGiaRe.Controllers
     public class LoaiKhachHangApiController : ApiController
     {
         private LoaiKHServices _loaiKHServices;
+        private KhachHangServices khachHangServices;
         public LoaiKhachHangApiController()
         {
             _loaiKHServices = new LoaiKHServices();
+            khachHangServices = new KhachHangServices();
         }
         // GET: api/get-all
         [HttpGet]
@@ -72,6 +74,10 @@ namespace GiaoHangGiaRe.Controllers
             string message = ""; var no = _loaiKHServices.GetById(id);
             if (no == null) message = "Id khong hop le!";
             var obj = no;
+            if(khachHangServices.GetByLoaiKH(id).Count != 0){
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Không thể xoá loại khách hàng đang sử dụng!"));
+            }
             _loaiKHServices.Delete(id);
             message = "Delete Success !";
             return Ok(new
@@ -79,6 +85,7 @@ namespace GiaoHangGiaRe.Controllers
                 obj,
                 Message = message
             });
+
         }
     }
 }

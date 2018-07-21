@@ -88,7 +88,7 @@ namespace GiaoHangGiaRe.Module
             }
             if (!string.IsNullOrWhiteSpace(khachHangSearchList.LoaiKH))
             {
-                query = query.Where(p => p.TenLoaiKH.ToLower().Contains(khachHangSearchList.LoaiKH.ToLower()));
+                query = query.Where(p => p.MaLoaiKH.ToString().Contains(khachHangSearchList.LoaiKH));
             }
             if (!string.IsNullOrWhiteSpace(khachHangSearchList.TrangThai))
             {
@@ -135,10 +135,10 @@ namespace GiaoHangGiaRe.Module
             return res;
         }
 
-        public void Setlock_Unlock(object username)
+        public void Setlock_Unlock(int MaKhachHang)
         {
-            var kh = GetKhacHangOfUser(username);
-            if(kh.TrangThai== 0)
+            var kh = GetById(MaKhachHang);
+            if(kh.TrangThai== 0 )
                 kh.TrangThai = 1; // Unlock
             if (kh.TrangThai == 1)
                 kh.TrangThai = 0; //Lock
@@ -177,6 +177,11 @@ namespace GiaoHangGiaRe.Module
                 ViTriThaoTac = Constant.KhachHang,
                 NoiDung = Constant.CvtToString(input)
             });
+        }
+
+        public List<KhachHang> GetByLoaiKH(int MaLoaiKH)
+        {
+            return _khachhangrepository.GetAll().Where(prop => prop.MaLoaiKH == MaLoaiKH).ToList();
         }
     }
     enum TrangThaiKhachHang

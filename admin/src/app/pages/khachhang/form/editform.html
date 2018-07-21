@@ -30,6 +30,12 @@
             <label for="DiaChi">Địa chỉ</label>
             <input type="text" ng-model="model.DiaChi" class="form-control" id="DiaChi" placeholder="Địa chỉ">
         </div>
+        <div class="form-group">
+            <label>Loại khách hang: </label>
+            <select name="singleSelect" ng-model="model.MaLoaiKH" required>
+                <option ng-repeat="loai_kh in list_loaiKH" value="{{loai_kh.MaLoaiKH}}" ng-selected="checkSelected(loai_kh.MaLoaiKH)">{{loai_kh.TenLoaiKH}}</option>
+            </select>
+        </div>
     </form>
     <div class="col-md-3"></div>
 

@@ -35,24 +35,20 @@
 
         //Update KhachHang
         var khachhang_update = function (input) {
-            var url = host + 'khachhang/update';
-            var result = $http.put(url, input)
-                .success(function (data) {
-                })
-                .error(function (data) {
-                });
-            return result;
+            return $http.put(host + 'khachhang/update', input);
         };
 
         //get-by-id KhachHang
         var khachhang_getby_id = function (id) {
-            var result = $http.get(host + 'khachhang/get-by-id?id=' + id.id)
-            .success(function (data) {
-            }).error(function () {
-            });
-            return result;;
+            return $http.get(host + 'khachhang/get-by-id?id=' + id.id);
         };
+        
+        var khachhang_lock = function(id){
+            return $http.put(host + 'khachhang/set-lock-unlock?MaKhachHang=' + id );
+        }
+
         return {
+            khachhang_lock: khachhang_lock,
             khachhang_get_all: khachhang_get_all,
             khachhang_create: khachhang_create,
             khachhang_delete: khachhang_delete,

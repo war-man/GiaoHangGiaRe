@@ -15,8 +15,8 @@
       </div>
           <table class="table table-bordered table-hover table-condensed">
             <tr>                         
-              <td>Mã đơn hàng</td>
-              <td>Thành tiền</td>      
+              <td>Tên loại khách hàng</td>
+              <td>Mô tả</td>      
               <td>Thao tác</td>
             </tr>
             <tr ng-repeat="loaikh in resdata" class="editable-row">
@@ -32,7 +32,7 @@
                 </span>
               </td>                          
                 
-              <td>
+              <td style="text-align: center">
                 <div class="buttons" ng-show="!rowform.$visible">
                   <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/loaikh/edit/{{loaikh.MaLoaiKH}}">Edit</a >
                   <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteLoaiKH(loaikh.MaLoaiKH)">Delete</button>

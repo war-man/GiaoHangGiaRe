@@ -16,13 +16,14 @@ namespace GiaoHangGiaRe.Module
         KhachHang GetCurrentKhacHang();
         KhachHang GetKhacHangOfUser(object username);
 
+        List<KhachHang> GetByLoaiKH(int MaLoaiKH);
 
         //su dung cho phuong thuc CREATE
         void Create(KhachHang input);
 
         //su dung cho phuong thuc UPDATE
         void Update(KhachHangUpdate input);
-        void Setlock_Unlock(object username);
+        void Setlock_Unlock(int MaKhachHang);
 
         //su dung cho phuong thuc DELETE
         void Delete(int id);

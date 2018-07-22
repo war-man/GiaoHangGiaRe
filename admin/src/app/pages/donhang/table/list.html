@@ -1,12 +1,12 @@
 <div class="row">
-  <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+  <div ba-panel ba-panel-title="" ng-init="search()" ba-panel-class="with-scroll">
     <div class="form-inline">
       <div class="form-group">
-        <input type="text" ng-model="filter.user_name" class="form-control" placeholder="Tên tài khoản...">
+        <input type="text" ng-model="params.user_name" class="form-control" placeholder="Tên tài khoản...">
       </div>
       <div class="form-group">
         <label for="id_select"> Tình trạng </label>
-        <select ng-model="filter.TinhTrang" ng-change="SelectChange(tinhtrang)">
+        <select ng-model="params.TinhTrang">
           <option value="">Tất cả</option>
           <option value="-1">Hủy</option>
           <option value="0">Đang chờ</option>
@@ -88,13 +88,17 @@
             </span>
           </td>
           <td>
-            <span editable-text="donhang.TinhTrang" e-name="TinhTrang" e-form="rowform" e-required>
-              {{ donhang.TinhTrang || 'empty' }}
+            <span style="padding: 5px;
+            background-color: darkgrey;
+            border-radius: 4px;" editable-text="donhang.TinhTrang" ng-if="donhang.TinhTrang == 0" e-name="TinhTrang" e-form="rowform"
+              e-required>
+              Chờ xác nhận
             </span>
           </td>
           <td class="action-button">
             <div class="buttons">
-              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/donhang/edit/{{donhang.MaDonHang}}">Edit</a>
+              <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/donhang/details/{{donhang.MaDonHang}}">Chi tiết</a>
+              <a class="btn btn-warning btn-xs" ng-if="donhang.TinhTrang == 0" ng-click="xac_nhan_donhang(donhang.MaDonHang)">Xác nhận</a>
               <!-- <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteUser(donhang.MaDonHang)">Delete</button> -->
             </div>
           </td>

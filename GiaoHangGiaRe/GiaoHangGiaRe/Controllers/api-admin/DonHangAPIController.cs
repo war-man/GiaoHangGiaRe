@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
 using GiaoHangGiaRe.Models;
+using Newtonsoft.Json.Linq;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -18,11 +19,12 @@ namespace GiaoHangGiaRe.Controllers
     [Authorize]
     public class DonHangAPIController : ApiController
     {
-       // private GiaoHangGiaReDbContext db = new GiaoHangGiaReDbContext();
+        private UserServices _userServices = new UserServices();
+        private KienHangServices _kienhangServices = new KienHangServices();
         private DonHangServices _donHangServices = new DonHangServices();
         // GET: api/DonHangAPI
         //[Authorize(Roles ="manager")] 
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
         public IHttpActionResult GetDonHangs(DonHangSearchList donHangSearchList)
         { 
@@ -65,22 +67,15 @@ namespace GiaoHangGiaRe.Controllers
                 return ResponseMessage(Request.CreateErrorResponse
                     (HttpStatusCode.InternalServerError, "id không hợp lệ!"));
             }
-            else 
-                return Ok(_donHangServices.GetById(id));
-        }
-
-        [HttpGet]
-        [Route("sort-by")]
-        public IHttpActionResult GetDonHangSortBy(string key)
-        {
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("search-by-key")]
-        public IHttpActionResult GetDonHangByKey(int? page ,int? size, string key)
-        {
-            return Ok(_donHangServices.SearchByKey(page,size,key));
+            else
+            {
+                var donhang = _donHangServices.GetById(id);
+                return Ok(new
+                {
+                    donhang = donhang,
+                    kienhang = _kienhangServices.GetByMaDonHang(donhang.MaDonHang)
+                });
+            }
         }
 
         // PUT: api/DonHangAPI/5
@@ -104,17 +99,41 @@ namespace GiaoHangGiaRe.Controllers
         // POST: api/DonHangAPI
         [ResponseType(typeof(DonHang))]
         [Route("create")]
-        public IHttpActionResult PostDonHang(DonHang donHang)
+        public IHttpActionResult PostDonHang([FromBody] JObject data)
         {
+            DonHang donHang = data["donHang"].ToObject<DonHang>();
+            KienHang[] kienHang = data["kienHang"].ToObject<KienHang[]>();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (!_donHangServices.IsExists(donHang.MaDonHang))
-                _donHangServices.Create(donHang);
+            if (!_donHangServices.IsExists(donHang.MaDonHang) && kienHang != null)
+            {
+                donHang.TenTaiKhoan = _userServices.GetCurrentUser().TenTaiKhoan;
+                int MaDH = _donHangServices.Create(donHang);
+                for (int i = 0; i < kienHang.Length; i++)
+                {
+                    kienHang[i].MaDonHang = MaDH;
+                    _kienhangServices.Create(kienHang[i]);
+                }
+            }
             else
                 return BadRequest();
 
+            return Ok(1);
+        }
+
+        //Xac nhan đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("xac-nhan-don-hang")]
+        public IHttpActionResult XacNhanDonHang(int MaDonHang)
+        {
+            if (MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.XacNhanDonHang(MaDonHang);
             return Ok(1);
         }
 
@@ -128,13 +147,5 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(donhang);
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }

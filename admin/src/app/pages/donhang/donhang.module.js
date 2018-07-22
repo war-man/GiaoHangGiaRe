@@ -23,6 +23,11 @@
               icon: 'ion-drag',
               order: 110,
             },
+          }).state('donhang.details', {
+            url: '/details/:id',
+            templateUrl: baseurl+'table/details.html',
+            controller: controller,
+            title: 'Chi tiết đơn hàng'
           }).state('donhang.list', {
             url: '/list',
             templateUrl: baseurl+'table/list.html',

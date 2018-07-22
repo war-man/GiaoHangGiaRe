@@ -5,55 +5,45 @@
     /** @ngInject */
     function donhangcontroller($scope, $filter, GetDonHangAPI, $state, $stateParams, $uibModal) {
         $scope.listDonHang = {};
-        $scope.Size = 5;
 
-        $scope.tablePage = {};
         $scope.model = {};
         $scope.currentstate = $state.current.name;
         $scope.errorMessage;
-        $scope.filter = {};
-        $scope.params = { page: $scope.tablePage.currenPage, size: $scope.Size };
+        $scope.params = {};
+
         $scope.gotoAddDonHang = function () {
             $state.go('donhang.add');
         };
-        innitTableParams($scope.Size, 0);
-        GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
-            if (res.status == '200') {
-                $scope.listDonHang = res.data.list;
-                innitTableParams($scope.Size, 0, res.data.total);
-            }
-        })
-        $scope.gotoPage = function (page) {
-            GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
-                if (res.status == '200') {
-                    $scope.listDonHang = res.data.list;
-                    innitTableParams($scope.Size, page, res.data.total);
-                }
-            })
-        }
-        function innitTableParams(size, currenPage, totalRecord) {
-            $scope.tablePage.totalRecord = totalRecord;
-            $scope.tablePage.size = size;
-            $scope.tablePage.totalPage = totalRecord / size;
-            $scope.tablePage.currenPage = currenPage;
-            $scope.tablePage.arrayPage = [];
-            for (var i = 0; i < $scope.tablePage.totalPage; i++) {
-                $scope.tablePage.arrayPage.push(i);
-            }
-        }
-        //SEARCH
-        $scope.SelectChange = function (tinhtrang) {
-            $scope.params.tinhtrang = $scope.filter.TinhTrang;
-            $scope.search();
-        }
-        $scope.search = function () {
-            $scope.params.user_name = $scope.filter.user_name;
 
-            GetDonHangAPI.donhang_get_all($scope.params).then((res) => {
-                if (res.status == '200') {
-                    $scope.listDonHang = res.data.list;
-                }
-            })
+        //SEARCH
+        $scope.search = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            GetDonHangAPI.donhang_get_all($scope.params)
+            .success(res => {
+                $scope.listDonHang = res.list;
+                $scope.modal.dismiss();                
+            }).error(function () {
+                $scope.modal.dismiss();
+            });
+        }
+
+        //Detail don hang
+        $scope.details_don_hang = function () {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            GetDonHangAPI.donhang_getby_id($stateParams)
+            .success(res => {
+                $scope.donhang = res.donhang;
+                $scope.kienhang = res.kienhang;
+                $scope.modal.dismiss();                
+            }).error(function () {
+                $scope.modal.dismiss();
+            });
         }
 
         //Lấy đon hàng vi phạm
@@ -66,7 +56,6 @@
             })
         }
 
-        //Them don hang moi
         //Them kien hang
         $scope.addKienHang = function () {
             $uibModal.open({
@@ -81,8 +70,41 @@
             });
         }
         $scope.listKienHang = [];
-        $scope.addKienHangCache = function(data) {
+        $scope.addKienHangCache = function (data) {
             $scope.listKienHang.push(data);
+        }
+
+        //Create Them Don Hang
+        $scope.addDonHang = function () {
+            let input = {};
+            input.kienHang = $scope.listKienHang;
+            input.donHang = $scope.model;
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+            GetDonHangAPI.donhang_create(input)
+                .success(function () {
+                    $scope.modal.dismiss();
+                }).error(function () {
+                    $scope.modal.dismiss();
+                });
+        }
+
+        //Xac nhan don hang
+        $scope.xac_nhan_donhang = function (MaDonHang) {
+            $scope.modal = $uibModal.open({
+                animation: false,
+                templateUrl: 'app/pages/ui/modals/modalTemplates/loading.html'
+            });
+
+            GetDonHangAPI.xac_nhan_donhang(MaDonHang)
+                .success(function () {
+                    $scope.modal.dismiss();
+                    $state.go('donhang.list', {}, { reload: true });
+                }).error(function () {
+                    $scope.modal.dismiss();
+                });
         }
     };
 })();

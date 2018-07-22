@@ -511,6 +511,7 @@
     <Compile Include="Models\KhachHang\KhachHangCreate.cs" />
     <Compile Include="Models\KhachHang\KhachHangList.cs" />
     <Compile Include="Models\DonHang\DonHangSearchList.cs" />
+    <Compile Include="Models\DonHang\DonHangList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

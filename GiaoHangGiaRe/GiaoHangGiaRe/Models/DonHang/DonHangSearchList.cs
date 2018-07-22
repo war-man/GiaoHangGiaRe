@@ -12,12 +12,12 @@ namespace GiaoHangGiaRe.Models
         public int? MaKhachHang { set; get; }
         public int? TinhTrang { set; get; }
 
-        public DonHangSearchList(int? page, int? size)
+        public DonHangSearchList()
         {
-            if(!page.HasValue){
+            if(!this.page.HasValue){
                 this.page = Constant.DefaultPage;
             }
-            if (!size.HasValue)
+            if (!this.size.HasValue)
             {
                 this.size = Constant.DefaultSize;
             }

@@ -5,15 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.EntityModel;
 using GiaoHangGiaRe.Models;
-using GiaoHangGiaRe.Models;
 
 namespace GiaoHangGiaRe.Module
 {
     interface IDonHangServices
     {
         //dung cho phuong  thuc GET
-        List<DonHang> GetAll(DonHangSearchList donHangSearchList);
-        List<DonHang> SearchByKey(int? page, int? size, string key);
+        List<DonHangList> GetAll(DonHangSearchList donHangSearchList);
         DonHang GetById(object id);
         List<DonHang> GetByUser(object username);
         List<DonHang> GetDonHangCurrentuser(int? tinhtrang);
@@ -27,6 +25,9 @@ namespace GiaoHangGiaRe.Module
 
         //dung cho phuong  thuc PUT
         int Update(DonHang input);
+
+        //dung cho phuong  thuc PUT
+        int XacNhanDonHang(int MaDonHang);
 
         //dung cho phuong  thuc DELETE
         void Delete(object id);

@@ -4,72 +4,44 @@
     angular.module('BlurAdmin.pages')
         .factory('GetDonHangAPI', GetBangGiaAPI);
     /** @ngInject */
-    function GetBangGiaAPI($http, $rootScope, localStorage, BASE, toastr) {
+    function GetBangGiaAPI($http, BASE, toastr) {
         var host = BASE + 'api/';
         //get-all DonHang
         var donhang_get_all = function (params) {
-            var result = $http.get(host + 'donhang/get-all',{params})
-                .success(function (data) {
-                })
-                .error(function () {
-                    toastr.error('Error');
-                });
-            return result;
+            return $http.post(host + 'donhang/get-all',{params});
         }
 
         //get-all DonHang vi pham
         var donhang_vipham = function (params) {
-            var result = $http.get(host + 'donhang/get-donhang-vipham',{params})
-                .success(function (data) {
-                })
-                .error(function () {
-                    toastr.error('Error');
-                });
-            return result;
+            return $http.get(host + 'donhang/get-donhang-vipham',{params});
         }
 
         //craete DonHang
         var donhang_create = function (input) {
-            var url = host + 'donhang/create';
-            var result = $http.post(url, input)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.post(host + 'donhang/create', input);
         }
 
         //delete DonHang
         var donhang_delete = function (id) {
-            var url = host + 'donhang/delete?id=' + id;
-            var result = $http.delete(url)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.delete(host + 'donhang/delete?id=' + id);
         }
 
         //Update DonHang
         var donhang_update = function (input) {
-            var url = host + 'donhang/update';
-            var result = $http.put(url, data)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.put(host + 'donhang/update', input);
+        }
+        
+        //PUT xac nhan
+        var xac_nhan_donhang = function(MaDonHang) {
+            return $http.put(host + 'donhang/xac-nhan-don-hang?MaDonHang=' + MaDonHang);
         }
 
         //get-by-id DonHang
         var donhang_getby_id = function (id) {
-            var result = $http.get(host + 'donhang/get-by-id?id=' + id.id)
-                .success(function (data) {
-                }).error(function () {
-                });
-            return result;
+            return $http.get(host + 'donhang/get-by-id?id=' + id.id);
         }
         return {
+            xac_nhan_donhang: xac_nhan_donhang,
             donhang_get_all: donhang_get_all,
             donhang_create: donhang_create,
             donhang_delete: donhang_delete,

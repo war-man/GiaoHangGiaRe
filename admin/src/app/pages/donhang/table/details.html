@@ -1,0 +1,81 @@
+<div class="row">
+  <div ba-panel ba-panel-title="" ng-init="details_don_hang()" ba-panel-class="with-scroll">
+    <div class="panel-group">
+      <div class="panel panel-default bootstrap-panel">
+        <div class="panel-heading">
+          <span>Mã đơn hàng:
+            <code>{{donhang.MaDonHang}}</code>
+          </span>
+          <span>Thời điểm đặt hàng: {{donhang.ThoiDiemDatDonHang}}</span>
+          <span>Tình trạng: <span style="background-color: lightgrey; padding: 5px;">{{donhang.TinhTrang}}</span></span>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-12" style=" border-bottom: 1px solid lightgray; margin-bottom: 15px;">
+            <p>Tên tài khoản
+              <code>{{donhang.TenTaiKhoan}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Người gửi
+              <code>{{donhang.NguoiGui}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Người nhận
+              <code>{{donhang.NguoiNhan}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Địa chỉ gửi
+              <code>{{donhang.DiaChiGui}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Địa chỉ nhận
+              <code>{{donhang.DiaChiNhan}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Số điên thoại người gửi
+              <code>{{donhang.SoDienThoaiNguoiGui}}</code>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>Số điện thoại người nhận
+              <code>{{donhang.SoDienThoaiNguoiNhan}}</code>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel-info col-md-4" ng-repeat="kien_hang in kienhang" >
+      <div class="panel panel-info bootstrap-panel">
+        <div class="panel-heading">{{kien_hang.NoiDung}}</div>
+        <div class="panel-body">
+          <div>
+              <code>{{kien_hang.ChieuDai}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.ChieuRong}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.SoLuong}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.TinhTrang}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.TrongLuong}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.GhiChu}}</code> 
+          </div>
+          <div>
+              <code>{{kien_hang.MoTa}}</code> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

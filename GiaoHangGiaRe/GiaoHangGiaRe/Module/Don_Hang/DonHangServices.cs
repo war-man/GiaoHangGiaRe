@@ -41,7 +41,7 @@ namespace GiaoHangGiaRe.Module
 
         public int count()
         {
-            return _donhangRepository.GetAll().Count();
+            return this.count_list;
         }
 
         public int Create(DonHang input)
@@ -79,15 +79,66 @@ namespace GiaoHangGiaRe.Module
             _donhangRepository.Delete(id);
         }
 
-        public List<DonHang> GetAll(DonHangSearchList donHangSearchList)
+        public List<DonHangList> GetAll(DonHangSearchList donHangSearchList)
         {
-            var query = from don_hang in _donhangRepository.GetAll() join nhan_vien in _nhanvienRepository.GetAll()
-                                                           on don_hang.MaNhanVienGiao equals nhan_vien.MaNhanVien
-                                                           join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang
-                                                           select new { };
-                                                         
-
-            return null;
+            var query = from don_hang in _donhangRepository.GetAll()
+              //          join nhan_vien in _nhanvienRepository.GetAll()
+              //on don_hang.MaNhanVienGiao equals nhan_vien.MaNhanVien
+                        //join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang
+                        select new
+                        {
+                            MaKhachHang = don_hang.MaKhachHang,
+                            TenTaiKhoan = don_hang.TenTaiKhoan,
+                            NguoiGui = don_hang.NguoiGui,
+                            MaDonHang = don_hang.MaDonHang,
+                            DiaChiGui = don_hang.DiaChiGui,
+                            SoDienThoaiNguoiGui = don_hang.SoDienThoaiNguoiGui,
+                            NguoiNhan = don_hang.NguoiNhan,
+                            DiaChiNhan = don_hang.DiaChiNhan,
+                            SoDienThoaiNguoiNhan = don_hang.SoDienThoaiNguoiNhan,
+                            MaNhanVienGiao = don_hang.MaNhanVienGiao,
+                            GhiChu = don_hang.GhiChu,
+                            TinhTrang = don_hang.TinhTrang,
+                            ThoiDiemDatDonHang = don_hang.ThoiDiemDatDonHang,
+                            ThoiDiemTiepNhanDon = don_hang.ThoiDiemTiepNhanDon,
+                            ThoiDiemHoanThanhDH = don_hang.ThoiDiemHoanThanhDH,
+                            ThanhTien = don_hang.ThanhTien,
+                            MaHanhTrinh = don_hang.MaHanhTrinh
+                        };
+            if(!string.IsNullOrWhiteSpace(donHangSearchList.TenTaiKhoan)){
+                query = query.Where(prop => prop.TenTaiKhoan.ToLower().Contains(donHangSearchList.TenTaiKhoan.ToLower()));
+            }
+            if (donHangSearchList.MaKhachHang.HasValue)
+            {
+                query = query.Where(prop => prop.MaKhachHang == donHangSearchList.MaKhachHang.Value);
+            }
+            if (donHangSearchList.MaNhanVien.HasValue)
+            {
+                query = query.Where(prop => prop.MaNhanVienGiao == donHangSearchList.MaNhanVien.Value);
+            }
+            List<DonHangList> donHangLists = new List<DonHangList>();
+            DonHangList listdonhang;
+            foreach(var dh in query){
+                listdonhang = new DonHangList();
+                listdonhang.MaKhachHang = dh.MaKhachHang;
+                listdonhang.TenTaiKhoan = dh.TenTaiKhoan;
+                listdonhang.MaDonHang = dh.MaDonHang;
+                listdonhang.DiaChiGui = dh.DiaChiGui;
+                listdonhang.SoDienThoaiNguoiGui = dh.SoDienThoaiNguoiGui;
+                listdonhang.NguoiNhan = dh.NguoiNhan;
+                listdonhang.DiaChiNhan = dh.DiaChiNhan;
+                listdonhang.SoDienThoaiNguoiNhan = dh.SoDienThoaiNguoiNhan;
+                listdonhang.MaNhanVienGiao = dh.MaNhanVienGiao;
+                listdonhang.GhiChu = dh.GhiChu;
+                listdonhang.TinhTrang = dh.TinhTrang;
+                listdonhang.ThoiDiemDatDonHang = dh.ThoiDiemDatDonHang;
+                listdonhang.ThoiDiemTiepNhanDon = dh.ThoiDiemTiepNhanDon;
+                listdonhang.ThoiDiemHoanThanhDH = dh.ThoiDiemHoanThanhDH;
+                listdonhang.ThanhTien = dh.ThanhTien;
+                listdonhang.MaHanhTrinh = dh.MaHanhTrinh;
+                donHangLists.Add(listdonhang);
+            }
+            return donHangLists;
         }
         public int count_list { set; get; }
         public List<DonHang> GetDonHangViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
@@ -216,14 +267,6 @@ namespace GiaoHangGiaRe.Module
             return false;
         }
 
-        public List<DonHang> SearchByKey(int? page, int? size, string key)
-        {
-            if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) size = Constant.DefaultSize;
-            var res = _donhangRepository.GetAll().Where(p=>p.TenTaiKhoan.Contains(key)).OrderBy(p => p.TinhTrang).Take(size.Value).Skip((page.Value - 1) * page.Value).ToList();
-            return res;
-        }
-
         public int Update(DonHang input)
         {
             DonHang donhang_tam = _donhangRepository.SelectById(input.MaDonHang);
@@ -246,7 +289,16 @@ namespace GiaoHangGiaRe.Module
             });
             return donhang_tam.MaDonHang;
         }
-
+        /// <summary>
+        /// xác nhận đơn hàng 
+        /// </summary>
+        public int XacNhanDonHang(int MaDonHang)
+        {
+            var dh = _donhangRepository.SelectById(MaDonHang);
+            dh.TinhTrang = DonHangConstant.XacNhan;
+            Update(dh);
+            return dh.MaDonHang;
+        }
         /// <summary>
         ///  Thay đổi tình trạng đơn hàng
         /// </summary>

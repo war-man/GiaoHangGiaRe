@@ -35,10 +35,11 @@ namespace GiaoHangGiaRe.Module
 
         public List<LichSu> GetAll(LichSuSearchList lichSuSearchList)
         {
-            var res = _lichsurepository.GetAll().OrderBy(p => p.ThoiGianThucHien)
-                                       .Skip(lichSuSearchList.size.Value * lichSuSearchList.page.Value).Take(lichSuSearchList.size.Value);
-            this.count_list = res.Count();
-                                             return res.ToList();
+            var query = _lichsurepository.GetAll();
+         this.count_list = query.Count();
+             query = query.OrderBy(p => p.ThoiGianThucHien)
+                       .Skip(lichSuSearchList.size.Value * lichSuSearchList.page.Value).Take(lichSuSearchList.size.Value);          
+            return query.ToList();
         }
         public int count_list { set; get; }
         public LichSu GetById(int id)

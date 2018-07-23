@@ -9,9 +9,20 @@
 </style>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" ng-init="search()">
     <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
       <table class="table table-bordered table-hover table-condensed">
+        <tfoot valign="bottom">
+          <tr>
+            <td colspan="8" style="text-align: center">
+              <ul class="pagination">
+                <li ng-repeat="i in arrayPage">
+                  <a ng-click="search(params.page = $index)" ng-model="params.page">{{$index+1}}</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
         <tr>
           <td></td>
           <td>Tác động</td>
@@ -22,7 +33,7 @@
         </tr>
         <tr ng-repeat="lichsu in resdata" class="editable-row">
           <td>
-            {{$index}}
+            {{$index+1 + params.page *params.size}}
           </td>
           <td>
             <span editable-text="lichsu.HanhDong" e-name="HanhDong" e-form="rowform" e-required>

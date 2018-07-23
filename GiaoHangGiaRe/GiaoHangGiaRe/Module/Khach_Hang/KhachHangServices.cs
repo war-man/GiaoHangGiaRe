@@ -95,8 +95,8 @@ namespace GiaoHangGiaRe.Module
                 query = query.Where(p => p.TrangThai.ToString()==khachHangSearchList.TrangThai);
             }
             this.count_list = query.Count();
-            query = query.OrderBy(p => p.MaKhachHang).Take(khachHangSearchList.size.Value)
-                                       .Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value);
+            query = query.OrderBy(p => p.MaKhachHang).Skip(khachHangSearchList.size.Value * khachHangSearchList.page.Value)
+                         .Take(khachHangSearchList.size.Value).OrderByDescending(prop => prop.MaKhachHang);
 
             List<KhachHangList> listKhachHang = new List<KhachHangList>();
             foreach(var i in query)

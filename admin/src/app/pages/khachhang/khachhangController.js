@@ -18,7 +18,7 @@
                 $scope.resdata = res.data;
                 $scope.curren_page = res.page;
                 $scope.arrayPage = [];
-                for (var i = 0; i < Math.round(res.total / res.size); i++) {
+                for (var i = 0; i < Math.ceil(res.total / res.size); i++) {
                     $scope.arrayPage.push(i);
                 }
                 $scope.modal.dismiss();

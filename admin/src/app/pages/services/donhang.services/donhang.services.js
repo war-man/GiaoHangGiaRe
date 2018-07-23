@@ -8,7 +8,7 @@
         var host = BASE + 'api/';
         //get-all DonHang
         var donhang_get_all = function (params) {
-            return $http.post(host + 'donhang/get-all',{params});
+            return $http.post(host + 'donhang/get-all',params);
         }
 
         //get-all DonHang vi pham
@@ -36,11 +36,17 @@
             return $http.put(host + 'donhang/xac-nhan-don-hang?MaDonHang=' + MaDonHang);
         }
 
+        //PUT HUY Don Hang
+        var huy_donhang = function(MaDonHang) {
+            return $http.put(host + 'donhang/huy-don-hang?MaDonHang=' + MaDonHang);
+        }
+
         //get-by-id DonHang
         var donhang_getby_id = function (id) {
             return $http.get(host + 'donhang/get-by-id?id=' + id.id);
         }
         return {
+            huy_donhang: huy_donhang,
             xac_nhan_donhang: xac_nhan_donhang,
             donhang_get_all: donhang_get_all,
             donhang_create: donhang_create,

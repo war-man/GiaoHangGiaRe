@@ -9,10 +9,14 @@
         <select ng-model="params.TinhTrang">
           <option value="">Tất cả</option>
           <option value="-1">Hủy</option>
-          <option value="0">Đang chờ</option>
+          <option value="-2">Không thể lấy hàng</option>
+          <option value="7">Chờ tiếp nhận</option>
+          <option value="0">Chờ xác nhận</option>
           <option value="1">Đã tiếp nhận</option>
-          <option value="2">Đang giao hàng</option>
-          <option value="3">Nhập kho</option>
+          <option value="2">Đang lấy hàng</option>
+          <option value="3">Lấy thành công</option>
+          <option value="4">Đang giao</option>
+          <option value="4">Trong kho</option>
           <option value="6">Hoàn thành</option>
         </select>
       </div>
@@ -25,10 +29,10 @@
     <table class="table table-bordered table-hover table-condensed text-center">
       <tfoot valign="bottom">
         <tr>
-          <td colspan="12">
+          <td colspan="12" style="text-align: center">
             <ul class="pagination">
-              <li ng-repeat="i in tablePage.arrayPage">
-                <a ng-click="gotoPage($index)">{{$index+1}}</a>
+              <li ng-repeat="i in arrayPage">
+                <a ng-click="search(params.page = $index)" ng-model="params.page">{{$index+1}}</a>
               </li>
             </ul>
           </td>
@@ -88,18 +92,19 @@
             </span>
           </td>
           <td>
-            <span style="padding: 5px;
+            <!-- <span style="padding: 5px;
             background-color: darkgrey;
-            border-radius: 4px;" editable-text="donhang.TinhTrang" ng-if="donhang.TinhTrang == 0" e-name="TinhTrang" e-form="rowform"
+            border-radius: 4px;" editable-text="donhang.TinhTrang" e-name="TinhTrang" e-form="rowform"
               e-required>
               Chờ xác nhận
-            </span>
+            </span> -->
+            {{donhang.TinhTrang}}
           </td>
           <td class="action-button">
             <div class="buttons">
               <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/donhang/details/{{donhang.MaDonHang}}">Chi tiết</a>
               <a class="btn btn-warning btn-xs" ng-if="donhang.TinhTrang == 0" ng-click="xac_nhan_donhang(donhang.MaDonHang)">Xác nhận</a>
-              <!-- <button class="btn btn-danger editable-table-button btn-xs" ng-click="deleteUser(donhang.MaDonHang)">Delete</button> -->
+              <button class="btn btn-danger editable-table-button btn-xs" ng-if="donhang.TinhTrang == 0" ng-click="huy_donhang(donhang.MaDonHang)">Huỷ</button>
             </div>
           </td>
         </tr>

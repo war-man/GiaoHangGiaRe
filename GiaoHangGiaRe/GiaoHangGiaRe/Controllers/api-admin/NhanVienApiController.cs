@@ -63,11 +63,11 @@ namespace GiaoHangGiaRe.Controllers.api
             return Ok(input);
         }
 
-        [HttpDelete]
-        [Route("delete")]
+        [HttpPut]
+        [Route("change_tinh_trang")]
         public IHttpActionResult Delete(int id)
         {
-            _nhanVienServices.Delete(id);
+            _nhanVienServices.Change_TinhTrang(id);
             return Ok();
         }
     }

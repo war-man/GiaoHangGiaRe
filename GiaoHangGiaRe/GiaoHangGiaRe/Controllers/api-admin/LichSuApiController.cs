@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Models.EntityModel;
 using GiaoHangGiaRe.Module;
+using GiaoHangGiaRe.Models;
 
 namespace GiaoHangGiaRe.Controllers
 {
@@ -23,15 +24,15 @@ namespace GiaoHangGiaRe.Controllers
             _lichSuServices = new LichSuServices();
         }
         // GET: api/LichSuApi
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
-        public IHttpActionResult GetLichSus(int? page = null,int? size = null)
+        public IHttpActionResult GetLichSus(LichSuSearchList lichSuSearchList)
         {
             return Ok(new {
-                data = _lichSuServices.GetAll(page, size),
+                data = _lichSuServices.GetAll(lichSuSearchList),
                 total = _lichSuServices.Count(),
-                size,
-                page
+                lichSuSearchList.size,
+                lichSuSearchList.page
                 });
         }
 

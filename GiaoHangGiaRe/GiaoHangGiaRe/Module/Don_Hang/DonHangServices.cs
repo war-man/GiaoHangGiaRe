@@ -108,18 +108,26 @@ namespace GiaoHangGiaRe.Module
             if(!string.IsNullOrWhiteSpace(donHangSearchList.TenTaiKhoan)){
                 query = query.Where(prop => prop.TenTaiKhoan.ToLower().Contains(donHangSearchList.TenTaiKhoan.ToLower()));
             }
-            if (donHangSearchList.MaKhachHang.HasValue)
+            if (!string.IsNullOrWhiteSpace(donHangSearchList.MaKhachHang))
             {
-                query = query.Where(prop => prop.MaKhachHang == donHangSearchList.MaKhachHang.Value);
+                query = query.Where(prop => prop.MaKhachHang.ToString() == donHangSearchList.MaKhachHang);
             }
             if (donHangSearchList.MaNhanVien.HasValue)
             {
                 query = query.Where(prop => prop.MaNhanVienGiao == donHangSearchList.MaNhanVien.Value);
             }
+            if (!string.IsNullOrWhiteSpace(donHangSearchList.TinhTrang))
+            {
+                query = query.Where(prop => prop.TinhTrang.ToString() == donHangSearchList.TinhTrang);
+            }
+            this.count_list = query.Count();
+            query = query.Skip(donHangSearchList.page.Value * donHangSearchList.size.Value).Take(donHangSearchList.size.Value);
+
             List<DonHangList> donHangLists = new List<DonHangList>();
             DonHangList listdonhang;
             foreach(var dh in query){
                 listdonhang = new DonHangList();
+                listdonhang.NguoiGui = dh.NguoiGui;
                 listdonhang.MaKhachHang = dh.MaKhachHang;
                 listdonhang.TenTaiKhoan = dh.TenTaiKhoan;
                 listdonhang.MaDonHang = dh.MaDonHang;
@@ -141,18 +149,7 @@ namespace GiaoHangGiaRe.Module
             return donHangLists;
         }
         public int count_list { set; get; }
-        public List<DonHang> GetDonHangViPham(int? page = 0, int? size = 50, string user_name = "", string user_id = null, int? ma_nhanvien = null, int? tinhtrang = null)
-        {
-            if (user_name == null)
-            {
-                user_name = "";
-            }
-            List<DonHang> res = _donhangRepository.GetAll().Where(p => p.TinhTrang == DonHangConstant.Huy)
-            .OrderBy(p => p.MaDonHang)
-            .Skip(size.Value * (page.Value))
-            .Take(size.Value).ToList();
-            return res;
-        }
+
         public DonHang GetById(object id) // lay don hang theo id
         {
             return _donhangRepository.SelectById(id);
@@ -295,8 +292,21 @@ namespace GiaoHangGiaRe.Module
         public int XacNhanDonHang(int MaDonHang)
         {
             var dh = _donhangRepository.SelectById(MaDonHang);
-            dh.TinhTrang = DonHangConstant.XacNhan;
-            Update(dh);
+            if (dh.TinhTrang == 0 )
+            {
+                dh.TinhTrang = DonHangConstant.XacNhan;
+            }
+            _donhangRepository.Update(dh);
+            return dh.MaDonHang;
+        }
+        /// <summary>
+        /// Huỷ đơn hàng 
+        /// </summary>
+        public int HuyDonHang(int MaDonHang)
+        {
+            var dh = _donhangRepository.SelectById(MaDonHang);
+            dh.TinhTrang = DonHangConstant.Huy;
+            _donhangRepository.Update(dh);
             return dh.MaDonHang;
         }
         /// <summary>

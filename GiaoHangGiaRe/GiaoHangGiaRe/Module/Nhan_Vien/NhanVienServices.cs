@@ -74,12 +74,21 @@ namespace GiaoHangGiaRe.Module
             };
             _repositoryNhanVien.Insert(nhanvien);
         }
-        public void Delete(object id)
+        public void Change_TinhTrang(object id)
         {
-            _repositoryNhanVien.Delete(id);
+            var nhan_vien = _repositoryNhanVien.SelectById(id);
+            if(nhan_vien.TrangThai == NhanVienConstant.Active)
+            {
+                nhan_vien.TrangThai = NhanVienConstant.StopActive;
+            }
+            else
+            {
+                nhan_vien.TrangThai = NhanVienConstant.Active;
+            }
+            _repositoryNhanVien.Update(nhan_vien);
             lichSuServices.Create(new LichSu
             {
-                HanhDong = Constant.DeleteAction,
+                HanhDong = Constant.UpdateAction,
                 TenTaiKhoan = userServices.GetCurrentUser().UserName,
                 NoiDung = id.ToString(),
                 ViTriThaoTac = Constant.NhanVien
@@ -111,8 +120,12 @@ namespace GiaoHangGiaRe.Module
             {
                 query = query.Where(p => p.Email.ToLower().Contains(nhanVienSearchList.Email.ToLower()));
             }
+            if (nhanVienSearchList.TrangThai.HasValue)
+            {
+                query = query.Where(p => p.TrangThai == nhanVienSearchList.TrangThai.Value);
+            }
             query = query.Take(nhanVienSearchList.size.Value)
-                         .Skip(nhanVienSearchList.size.Value * (nhanVienSearchList.page.Value - 1)).OrderBy(p => p.MaNhanVien);
+                         .Skip(nhanVienSearchList.size.Value * (nhanVienSearchList.page.Value)).OrderBy(p => p.MaNhanVien);
             this.count_list = query.Count();
             return query.ToList();
         }

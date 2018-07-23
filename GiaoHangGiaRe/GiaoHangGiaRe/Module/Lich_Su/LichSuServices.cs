@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GiaoHangGiaRe.Models;
 using Models.EntityModel;
 
 namespace GiaoHangGiaRe.Module
@@ -16,7 +17,7 @@ namespace GiaoHangGiaRe.Module
         }
         public int Count()
         {
-            return _lichsurepository.GetAll().Count();
+            return this.count_list;
         }
         /// <summary>
         /// Tạo lịch sử lưu lại thay đổi
@@ -31,19 +32,15 @@ namespace GiaoHangGiaRe.Module
         /// <summary>
         /// Lấy tất cả thay đổi
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        public List<LichSu> GetAll(int? page, int? size)
+
+        public List<LichSu> GetAll(LichSuSearchList lichSuSearchList)
         {
-            if (!page.HasValue) page = page = Constant.DefaultPage;
-            if (!size.HasValue) return _lichsurepository.GetAll().ToList();
-            var res = _lichsurepository.GetAll().OrderBy(p => p.ThoiGianThucHien).Take(size.Value)
-                .Skip(size.Value * (page.Value - 1)).ToList();
-
-            return res;
+            var res = _lichsurepository.GetAll().OrderBy(p => p.ThoiGianThucHien)
+                                       .Skip(lichSuSearchList.size.Value * lichSuSearchList.page.Value).Take(lichSuSearchList.size.Value);
+            this.count_list = res.Count();
+                                             return res.ToList();
         }
-
+        public int count_list { set; get; }
         public LichSu GetById(int id)
         {
             return _lichsurepository.SelectById(id);

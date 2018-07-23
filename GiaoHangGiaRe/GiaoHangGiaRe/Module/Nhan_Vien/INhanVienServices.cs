@@ -23,8 +23,8 @@ namespace GiaoHangGiaRe.Module
         //Cac phuong thuc PUT
         void Update(NhanVienUpdate input);
 
-        //Cac phuong thuc DELETE
-        void Delete(object id);
+        //Cac phuong thuc UPDAte
+        void Change_TinhTrang(object id);
 
 
         //Khac

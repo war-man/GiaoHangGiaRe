@@ -6,7 +6,7 @@
     white-space: nowrap;
   }
 </style>
-<div class="row" ng-init="search()">
+<div class="row" ng-init="search_nhanvien_dung()">
   <div class="col-md-12">
     <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
       <div class="form-inline">
@@ -22,11 +22,7 @@
         <div class="form-group">
           <input type="text" ng-model="params.Email" class="form-control" placeholder="Email">
         </div>
-
-        <button type="" ng-click="search()" class="btn btn-primary mb-2">Tìm kiếm</button>
-        <div class="add-button">
-          <button class="btn btn-primary" ng-click="gotoAddNhanVien()">Thêm mới</button>
-        </div>
+        <button type="" ng-click="search_nhanvien_dung()" class="btn btn-primary mb-2">Tìm kiếm</button>
       </div>
 
       <table class="table table-bordered table-hover table-condensed">
@@ -35,7 +31,7 @@
             <td colspan="8" style="text-align: center">
               <ul class="pagination">
                 <li ng-repeat="i in arrayPage">
-                  <a ng-click="search(params.page = $index)" ng-model="params.page">{{$index+1}}</a>
+                  <a ng-click="search_nhanvien_dung(params.page = $index)" ng-model="params.page">{{$index+1}}</a>
                 </li>
               </ul>
             </td>
@@ -84,7 +80,7 @@
           <td>
             <div class="buttons" ng-show="!rowform.$visible">
               <a class="btn btn-primary editable-table-button btn-xs" ng-click="" href="#/nhanvien/edit/{{nhanvien.MaNhanVien}}">Edit</a>
-              <button  ng-if="nhanvien.TrangThai==1" class="btn btn-danger editable-table-button btn-xs" ng-click="stopActiveNhanVien(nhanvien)">Dừng</button>
+              <button ng-if="nhanvien.TrangThai==1" class="btn btn-danger editable-table-button btn-xs" ng-click="stopActiveNhanVien(nhanvien)">Dừng</button>
               <button ng-if="nhanvien.TrangThai==0" class="btn btn-info editable-table-button btn-xs" ng-click="stopActiveNhanVien(nhanvien)">Phục hồi</button>
             </div>
           </td>

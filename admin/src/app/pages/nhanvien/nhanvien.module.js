@@ -31,11 +31,11 @@
             sidebarMeta: {
               order: 0,
             },
-          }).state('nhanvien.add', {
-            url: '/add',
-            templateUrl: baseurl+'form/form.html',
+          }).state('nhanvien.dung', {
+            url: '/nhanvien_dung',
+            templateUrl: baseurl+'table/list_nhan_vien_dung.html',
             controller: controller,
-            title: 'Thêm nhân viên',
+            title: 'Nhân viên dừng hoạt động',
             sidebarMeta: {
               order: 100,
             },

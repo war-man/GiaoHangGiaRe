@@ -4,45 +4,45 @@
       <div class="panel panel-default bootstrap-panel">
         <div class="panel-heading">
           <span>Mã đơn hàng:
-            <code>{{donhang.MaDonHang}}</code>
+            <code>{{donhang.MaDonHang|| 'empty'}}</code>
           </span>
-          <span>Thời điểm đặt hàng: {{donhang.ThoiDiemDatDonHang}}</span>
-          <span>Tình trạng: <span style="background-color: lightgrey; padding: 5px;">{{donhang.TinhTrang}}</span></span>
+          <span>Thời điểm đặt hàng: {{donhang.ThoiDiemDatDonHang|| 'empty'}}</span>
+          <span>Tình trạng: <span style="background-color: lightgrey; padding: 5px;">{{donhang.TinhTrang|| 'empty'}}</span></span>
         </div>
         <div class="panel-body">
           <div class="col-md-12" style=" border-bottom: 1px solid lightgray; margin-bottom: 15px;">
             <p>Tên tài khoản
-              <code>{{donhang.TenTaiKhoan}}</code>
+              <code>{{donhang.TenTaiKhoan|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Người gửi
-              <code>{{donhang.NguoiGui}}</code>
+              <code>{{donhang.NguoiGui|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Người nhận
-              <code>{{donhang.NguoiNhan}}</code>
+              <code>{{donhang.NguoiNhan|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Địa chỉ gửi
-              <code>{{donhang.DiaChiGui}}</code>
+              <code>{{donhang.DiaChiGui|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Địa chỉ nhận
-              <code>{{donhang.DiaChiNhan}}</code>
+              <code>{{donhang.DiaChiNhan|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Số điên thoại người gửi
-              <code>{{donhang.SoDienThoaiNguoiGui}}</code>
+              <code>{{donhang.SoDienThoaiNguoiGui|| 'empty'}}</code>
             </p>
           </div>
           <div class="col-md-6">
             <p>Số điện thoại người nhận
-              <code>{{donhang.SoDienThoaiNguoiNhan}}</code>
+              <code>{{donhang.SoDienThoaiNguoiNhan|| 'empty'}}</code>
             </p>
           </div>
 
@@ -76,6 +76,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+      <a class="btn btn-warning btn-lg" ng-if="donhang.TinhTrang == 0" ng-click="xac_nhan_donhang(donhang.MaDonHang)">Xác nhận</a>
     </div>
   </div>
 </div>

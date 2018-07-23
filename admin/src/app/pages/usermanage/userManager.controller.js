@@ -64,7 +64,7 @@
                 if (res.status == '200') {
                     $scope.listUser = res.data.data;
                     $scope.arrayPage = [];
-                    for (var i = 0; i < Math.round(res.data.total / res.data.size); i++) {
+                    for (var i = 0; i < Math.ceil(res.data.total / res.data.size); i++) {
                         $scope.arrayPage.push(i);
                     }
                 }

@@ -512,6 +512,7 @@
     <Compile Include="Models\KhachHang\KhachHangList.cs" />
     <Compile Include="Models\DonHang\DonHangSearchList.cs" />
     <Compile Include="Models\DonHang\DonHangList.cs" />
+    <Compile Include="Models\LichSu\LichSuSearchList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -611,6 +612,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Admin\" />
     <Folder Include="Content\maker\" />
+    <Folder Include="Models\LichSu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -6,38 +6,39 @@
         <h4 class="modal-title">Thêm kiện hàng</h4>
     </div>
     <div class="modal-body">
-        <form>
+        <form ng-submit="$dismiss(model)">
 
             <div class="form-group">
                 <label for="NguoiGui">Nội dung</label>
-                <input type="text" ng-model="model.NoiDung" class="form-control" id="NoiDung" placeholder="Nội dung">
+                <input type="text" ng-model="model.NoiDung" required class="form-control" id="NoiDung" placeholder="Nội dung">
             </div>
 
             <div class="form-group">
                 <label for="DiaChiGui">Mô tả</label>
-                <input type="text" ng-model="model.MoTa" class="form-control" id="MoTa" placeholder="Mô tả">
+                <input type="text" ng-model="model.MoTa" required class="form-control" id="MoTa" placeholder="Mô tả">
             </div>
 
             <div class="form-group">
                 <label for="SoDienThoaiNguoiGui">Trọng lượng</label>
-                <input type="number" ng-model="model.TrongLuong" class="form-control" id="TrongLuong" placeholder="Trọng lượng">
+                <input type="number" ng-model="model.TrongLuong" required class="form-control" id="TrongLuong" placeholder="Trọng lượng">
             </div>
 
             <div class="form-group">
                 <label for="NguoiNhan">Chiều rộng</label>
-                <input type="number" ng-model="model.ChieuRong" class="form-control" id="ChieuRong" placeholder="Chiều rộng">
+                <input type="number" ng-model="model.ChieuRong" required class="form-control" id="ChieuRong" placeholder="Chiều rộng">
             </div>
             <div class="form-group">
                 <label for="NguoiNhan">Chiều dài</label>
-                <input type="number" ng-model="model.ChieuDai" class="form-control" id="ChieuDai" placeholder="Chiều dài">
+                <input type="number" ng-model="model.ChieuDai" required class="form-control" id="ChieuDai" placeholder="Chiều dài">
             </div>
             <div class="form-group">
                 <label for="NguoiNhan">Số lượng</label>
-                <input type="number" ng-model="model.SoLuong" class="form-control" id="SoLuong" placeholder="Số lượng">
+                <input type="number" ng-model="model.SoLuong" required class="form-control" id="SoLuong" placeholder="Số lượng">
+            </div>
+            <div  style="text-align: center" class="modal-footer">
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="$dismiss(model)">Xác nhận</button>
-    </div>
+
 </div>

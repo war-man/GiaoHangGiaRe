@@ -11,12 +11,13 @@ namespace GiaoHangGiaRe.Models.NhanVien
         public string ChucVu { set; get; }
         public string Email { get; set; }
         public string TenNhanVien { get; set; }
+        public int? TrangThai { set; get; }
         public NhanVienSearchList()
         {
             this.page = Constant.DefaultPage;
             this.size = Constant.DefaultSize;
         }
-        public NhanVienSearchList(int? _page,int? _size, string _TenTaiKhoan, string _ChucVu, string _Email, string _TenNhanVien)
+        public NhanVienSearchList(int? _page,int? _size, string _TenTaiKhoan, string _ChucVu, string _Email, string _TenNhanVien, int? TrangThai)
         {
             if(_page.HasValue){
                 this.page = _page;
@@ -24,6 +25,10 @@ namespace GiaoHangGiaRe.Models.NhanVien
             if (_size.HasValue)
             {
                 this.size = size;
+            }
+            if(TrangThai.HasValue)
+            {
+                this.TrangThai = TrangThai.Value;
             }
             if(!string.IsNullOrWhiteSpace(_TenTaiKhoan)){
                 this.TenTaiKhoan = _TenTaiKhoan;

@@ -5,7 +5,7 @@
         .factory('GetNhanVienAPI', GetNhanVienAPI);
     /** @ngInject */
 
-    function GetNhanVienAPI($http, $rootScope, localStorage, BASE, toastr) {
+    function GetNhanVienAPI($http, BASE) {
         var host = BASE + 'api/';
         //get-all NhanVien
         var nhanvien_get_all = function (params) {
@@ -14,50 +14,27 @@
 
         //craete NhanVien
         var nhanvien_create = function (input) {
-            var url = host + 'nhanvien/create';
-            var result = $http.post(url, input).success(function (data, status) {
-            })
-                .error(function (data, status) {
-                });
-            return result;
+            return $http.post(host + 'nhanvien/create', input);
         }
 
         //delete NhanVien
-        var nhanvien_delete = function (id) {
-            var url = host + 'nhanvien/delete?id=' + id;
-            var result = $http.delete(url)
-                .success(function (data, status) {
-                    toastr.success('Đã xóa thành công!');
-                })
-                .error(function (data, status) {
-                    toastr.error('Error');
-                });
-            return result
+        var stop_active_nhanvien = function (id) {
+            return $http.put(host + 'nhanvien/change_tinh_trang?id=' + id)
         }
 
         //Update NhanVien
         var nhanvien_update = function (input) {
-            var url = host + 'nhanvien/update';
-            return $http.put(url, input)
-                .success(function (data, status) {
-                })
-                .error(function (data, status) {
-                });
+            return $http.put(host + 'nhanvien/update', input)
         };
 
         //get-by-id NhanVien
         var nhanvien_getby_id = function (id) {
-            var result = $http.get(host + 'nhanvien/get-by-id?id=' + id.id)
-                .success(function (data) {
-                })
-                .error(function () {
-                });
-            return result;;
+            return $http.get(host + 'nhanvien/get-by-id?id=' + id.id)
         };
         return {
             nhanvien_get_all: nhanvien_get_all,
             nhanvien_create: nhanvien_create,
-            nhanvien_delete: nhanvien_delete,
+            stop_active_nhanvien: stop_active_nhanvien,
             nhanvien_update: nhanvien_update,
             nhanvien_getby_id: nhanvien_getby_id
         };

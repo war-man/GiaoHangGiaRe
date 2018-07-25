@@ -1,8 +1,10 @@
-﻿using GiaoHangGiaRe.Module;
+﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Module;
 using Microsoft.AspNetCore.Http;
 using Models.EntityModel;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Web.Http;
 
 namespace GiaoHangGiaRe.Controllers
@@ -10,34 +12,27 @@ namespace GiaoHangGiaRe.Controllers
     [RoutePrefix("api/image")]
     public class ImageAPIController : ApiController
     {
+        private ftp_module ftp_Module;
         private ImageServices _imageServices;
         private UserServices _userServices;
         ImageAPIController()
         {
             _imageServices = new ImageServices();
             _userServices = new UserServices();
+            ftp_Module = new ftp_module();
         }
+
         [Route("upload")]
         [HttpPost]
-        public IHttpActionResult upload([FromBody] string Base64)
+        public IHttpActionResult upload(ImageForm imgForm)
         {
-            Image img = new Image();
-            img = new Image
-            {
-                RoleId = "",
-                title = "",
-                create_by = _userServices.GetCurrentUser().TenTaiKhoan,
-                create_at = DateTime.Now,
-                ImageContent = Base64
-            };
-            if (_imageServices.Create(img))
-            {
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return Ok(ftp_Module.UploadImage(Convert.FromBase64String(imgForm.base64)));
+        }
+        [Route("get_image")]
+        [HttpGet]
+        public IHttpActionResult getImage()
+        {
+            return Ok(ftp_Module.GetImage());
         }
     }
 }

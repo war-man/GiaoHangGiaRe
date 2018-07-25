@@ -333,6 +333,9 @@
     <Reference Include="System.Web.Http.Owin">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.6\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Imgur.API">
+      <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ApplicationInsights">
@@ -513,6 +516,7 @@
     <Compile Include="Models\DonHang\DonHangSearchList.cs" />
     <Compile Include="Models\DonHang\DonHangList.cs" />
     <Compile Include="Models\LichSu\LichSuSearchList.cs" />
+    <Compile Include="Models\ImageForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

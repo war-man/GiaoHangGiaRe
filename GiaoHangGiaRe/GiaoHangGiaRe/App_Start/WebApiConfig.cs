@@ -27,7 +27,7 @@ namespace GiaoHangGiaRe.App_Start
             );
             //Uri format config
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
         }
       
     }

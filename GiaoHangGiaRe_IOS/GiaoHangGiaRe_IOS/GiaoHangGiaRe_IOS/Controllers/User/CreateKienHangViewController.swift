@@ -10,6 +10,7 @@ import UIKit
 
 class CreateKienHangViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var imgViewKienHang: UIImageView!
     @IBOutlet weak var btnChoseImage: UIButton!
     
@@ -52,6 +53,10 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func btnBackClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

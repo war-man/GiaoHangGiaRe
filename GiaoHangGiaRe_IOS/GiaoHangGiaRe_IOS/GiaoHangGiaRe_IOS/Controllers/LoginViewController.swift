@@ -8,9 +8,11 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var tfTenTaiKhoan: UITextField!
     @IBOutlet weak var tfMatKhau: UITextField!
@@ -29,9 +31,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tfTenTaiKhoanChanged(_ sender: Any) {
-        if tfTenTaiKhoan.text!.count < 6{
-            lblError.text = "Tên tài khoản tối thiểu 6 ký tự."
-        }
+//        if tfTenTaiKhoan.text!.count < 6{
+//            lblError.text = "Tên tài khoản tối thiểu 6 ký tự."
+//        }
     }
     func validate()->Bool {
         if tfTenTaiKhoan.text!.count == 0 {
@@ -45,46 +47,48 @@ class LoginViewController: UIViewController {
         }
         return true;
     }
+    var user: User?
     @IBAction func btnDangNhap_Clicked(_ sender: Any) {
         if validate() {
             let host = "http://127.0.0.1:8080/"
-//            let params :[String: AnyObject] = [
-//                "user_name" : "abc" as AnyObject,
-//                "passwork" : "123" as AnyObject,
-//            ]
-
+            loadingSpinner.startAnimating()
             let params = [
                 "grant_type": "password",
                 "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
-
-            Alamofire.request(host+"token", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+            
+            Alamofire.request(host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+   
                 switch(response.result) {
-
+                    
                 case .success(_):
                     if response.result.value != nil{
-                        print(response.result)
+                        self.loadingSpinner.stopAnimating()
                         let statusCode = (response.response?.statusCode)!
-                        print("...HTTP code: \(statusCode)")
-                        print(response)
+                        let res = response.result.value! as! NSDictionary
+                        
+                        let access_token = res.object(forKey: "access_token")
+                        let token_type = res.object(forKey: "token_type")
+                        if (access_token != nil){
+                            UserDefaults.standard.setValue("\(token_type) \(access_token)", forKey: "access_token")
+                            
+                            self.performSegue(withIdentifier: "gotoUserMainView", sender: nil)
+                        }else{
+                            self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
+                        }
+
+                    }else{
+                        self.loadingSpinner.stopAnimating()
+                         self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
                     }
-                    
                     break
 
                 case .failure(_):
-                    print(response.result)
+                    self.loadingSpinner.stopAnimating()
+                    self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                     break
-
                 }
             }
-            
-            var request = URLRequest(url: URL(string: host+"token")!)
-            request.httpMethod = HTTPMethod.post.rawValue
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let pjson = attendences.toJSONString(prettyPrint: false)
-            let data = (pjson?.data(using: .utf8))! as Data
-            
-            request.httpBody = data
+        
 //            let number = 1
 //            if number > 0{
 //                   self.performSegue(withIdentifier: "gotoUserMainView", sender: nil)

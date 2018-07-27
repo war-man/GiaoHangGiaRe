@@ -13,8 +13,12 @@
 		840F10BD21090F98004383A0 /* UserInforViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10BC21090F98004383A0 /* UserInforViewController.swift */; };
 		840F10BF210911AD004383A0 /* WaittingOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10BE210911AD004383A0 /* WaittingOrderViewController.swift */; };
 		840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10C02109127F004383A0 /* CreateOrderViewController.swift */; };
+		8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72B210B580A0049A917 /* UIImageViewExtension.swift */; };
+		8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72D210B70140049A917 /* UIViewControllerExtension.swift */; };
+		8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72F210B721C0049A917 /* RegisterViewController.swift */; };
 		841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B50210757980085DDC4 /* SqlLiteViewController.swift */; };
 		841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B52210758410085DDC4 /* LoginViewController.swift */; };
+		84386675210B4C5000F7919F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84386674210B4C5000F7919F /* User.swift */; };
 		84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B42AAC21074D80008467DA /* AppDelegate.swift */; };
 		84B42AB221074D80008467DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB021074D80008467DA /* Main.storyboard */; };
 		84B42AB421074D81008467DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB321074D81008467DA /* Assets.xcassets */; };
@@ -33,8 +37,12 @@
 		840F10BC21090F98004383A0 /* UserInforViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInforViewController.swift; sourceTree = "<group>"; };
 		840F10BE210911AD004383A0 /* WaittingOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaittingOrderViewController.swift; sourceTree = "<group>"; };
 		840F10C02109127F004383A0 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
+		8414F72B210B580A0049A917 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		8414F72D210B70140049A917 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		8414F72F210B721C0049A917 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841A9B50210757980085DDC4 /* SqlLiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlLiteViewController.swift; sourceTree = "<group>"; };
 		841A9B52210758410085DDC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84386674210B4C5000F7919F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84659EEAB5F3161F310B1AFA /* Pods-GiaoHangGiaRe_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		84B42AA921074D80008467DA /* GiaoHangGiaRe_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiaoHangGiaRe_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B42AAC21074D80008467DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +78,8 @@
 		840C0A172107882400BDAB27 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8414F72B210B580A0049A917 /* UIImageViewExtension.swift */,
+				8414F72D210B70140049A917 /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -90,8 +100,25 @@
 				841A9B50210757980085DDC4 /* SqlLiteViewController.swift */,
 				841A9B52210758410085DDC4 /* LoginViewController.swift */,
 				840F10BC21090F98004383A0 /* UserInforViewController.swift */,
+				8414F72F210B721C0049A917 /* RegisterViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		84386673210B4C2B00F7919F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84386676210B4C6000F7919F /* User */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84386676210B4C6000F7919F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84386674210B4C5000F7919F /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		84B42AA021074D80008467DA = {
@@ -115,6 +142,7 @@
 		84B42AAB21074D80008467DA /* GiaoHangGiaRe_IOS */ = {
 			isa = PBXGroup;
 			children = (
+				84386673210B4C2B00F7919F /* Models */,
 				840C0A1A210796FA00BDAB27 /* ApiManager */,
 				840C0A172107882400BDAB27 /* Extension */,
 				841A9B4F210757730085DDC4 /* Controllers */,
@@ -233,11 +261,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -275,10 +305,14 @@
 				840F10BF210911AD004383A0 /* WaittingOrderViewController.swift in Sources */,
 				840F10B92108D3DE004383A0 /* UserMainViewController.swift in Sources */,
 				840C0A1C210799FC00BDAB27 /* TaiKhoanApi.swift in Sources */,
+				8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */,
 				841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */,
 				84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */,
+				84386675210B4C5000F7919F /* User.swift in Sources */,
 				840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */,
 				84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */,
+				8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */,
+				8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */,
 				840F10BD21090F98004383A0 /* UserInforViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

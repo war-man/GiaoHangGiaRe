@@ -52,30 +52,45 @@ class LoginViewController: UIViewController {
 //                "user_name" : "abc" as AnyObject,
 //                "passwork" : "123" as AnyObject,
 //            ]
-//            let params = ["username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
-//            Alamofire.request(host+"token", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
-//                switch(response.result) {
-//
-//                case .success(_):
-//                    if response.result.value != nil{
-//                        print(response.result)
-//                        let statusCode = (response.response?.statusCode)!
-//                        print("...HTTP code: \(statusCode)")
-//                    }
-//                    break
-//
-//                case .failure(_):
-//                    print(response.result)
-//                    break
-//
-//                }
-//            }
-            let number = 0
-            if number > 0{
-                   self.performSegue(withIdentifier: "gotoUserMainView", sender: nil)
-            }else{
-                self.performSegue(withIdentifier: "gotoShipperViewMain", sender: nil)
+
+            let params = [
+                "grant_type": "password",
+                "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
+
+            Alamofire.request(host+"token", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+                switch(response.result) {
+
+                case .success(_):
+                    if response.result.value != nil{
+                        print(response.result)
+                        let statusCode = (response.response?.statusCode)!
+                        print("...HTTP code: \(statusCode)")
+                        print(response)
+                    }
+                    
+                    break
+
+                case .failure(_):
+                    print(response.result)
+                    break
+
+                }
             }
+            
+            var request = URLRequest(url: URL(string: host+"token")!)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let pjson = attendences.toJSONString(prettyPrint: false)
+            let data = (pjson?.data(using: .utf8))! as Data
+            
+            request.httpBody = data
+//            let number = 1
+//            if number > 0{
+//                   self.performSegue(withIdentifier: "gotoUserMainView", sender: nil)
+//            }else{
+//                self.performSegue(withIdentifier: "gotoShipperViewMain", sender: nil)
+//            }
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

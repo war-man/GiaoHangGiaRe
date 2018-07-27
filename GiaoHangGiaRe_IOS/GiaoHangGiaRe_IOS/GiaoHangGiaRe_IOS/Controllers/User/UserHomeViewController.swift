@@ -1,5 +1,5 @@
 //
-//  CreateOrderViewController.swift
+//  UserHomeViewController.swift
 //  GiaoHangGiaRe_IOS
 //
 //  Created by admin on 7/26/18.
@@ -8,9 +8,8 @@
 
 import UIKit
 
-class CreateOrderViewController: UIViewController {
+class UserHomeViewController: UIViewController {
 
-    @IBOutlet weak var btnTaoKienHang: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,8 +22,6 @@ class CreateOrderViewController: UIViewController {
     }
     
 
-    @IBAction func btnTaoKienHang_Clicked(_ sender: Any) {
-    }
     /*
     // MARK: - Navigation
 

@@ -78,7 +78,9 @@ namespace GiaoHangGiaRe.Module
                 DiaChi = input.DiaChi,
                 TenTaiKhoan = input.TenTaiKhoan
             };
-
+            user.UserName = input.TenTaiKhoan;
+            user.ImageLink = input.ImageLink;
+            user.Email = input.Email;
             var result = UserManager.Create(user, input.Password);
             if(result.Succeeded == true){
                 var currentUser = UserManager.FindByName(user.UserName);

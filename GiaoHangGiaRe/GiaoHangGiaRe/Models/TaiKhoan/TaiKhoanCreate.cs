@@ -16,7 +16,7 @@ namespace GiaoHangGiaRe.Models.TaiKhoan
         [Display(Name = "Họ tên")]
         public string HoTen { set; get; }
 
-        public string Base64 { set; get; }
+        public string ImageLink { set; get; }
 
         [Required]
         [Display(Name = "Địa chỉ")]

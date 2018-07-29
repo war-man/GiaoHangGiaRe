@@ -19,6 +19,9 @@
 		841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B50210757980085DDC4 /* SqlLiteViewController.swift */; };
 		841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B52210758410085DDC4 /* LoginViewController.swift */; };
 		84386675210B4C5000F7919F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84386674210B4C5000F7919F /* User.swift */; };
+		8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446CDA9210C64C8003BFC7B /* UserRegister.swift */; };
+		8489D073210DE00D0040DDF9 /* ListDonHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489D072210DE00D0040DDF9 /* ListDonHang.swift */; };
+		8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489D074210DE0260040DDF9 /* ListBangGia.swift */; };
 		84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B42AAC21074D80008467DA /* AppDelegate.swift */; };
 		84B42AB221074D80008467DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB021074D80008467DA /* Main.storyboard */; };
 		84B42AB421074D81008467DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB321074D81008467DA /* Assets.xcassets */; };
@@ -43,7 +46,10 @@
 		841A9B50210757980085DDC4 /* SqlLiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlLiteViewController.swift; sourceTree = "<group>"; };
 		841A9B52210758410085DDC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84386674210B4C5000F7919F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8446CDA9210C64C8003BFC7B /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		84659EEAB5F3161F310B1AFA /* Pods-GiaoHangGiaRe_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8489D072210DE00D0040DDF9 /* ListDonHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDonHang.swift; sourceTree = "<group>"; };
+		8489D074210DE0260040DDF9 /* ListBangGia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBangGia.swift; sourceTree = "<group>"; };
 		84B42AA921074D80008467DA /* GiaoHangGiaRe_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiaoHangGiaRe_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B42AAC21074D80008467DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84B42AB121074D80008467DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,7 +114,9 @@
 		84386673210B4C2B00F7919F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8489D071210DDFF30040DDF9 /* DonHang */,
 				84386676210B4C6000F7919F /* User */,
+				8489D074210DE0260040DDF9 /* ListBangGia.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,8 +125,17 @@
 			isa = PBXGroup;
 			children = (
 				84386674210B4C5000F7919F /* User.swift */,
+				8446CDA9210C64C8003BFC7B /* UserRegister.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		8489D071210DDFF30040DDF9 /* DonHang */ = {
+			isa = PBXGroup;
+			children = (
+				8489D072210DE00D0040DDF9 /* ListDonHang.swift */,
+			);
+			path = DonHang;
 			sourceTree = "<group>";
 		};
 		84B42AA021074D80008467DA = {
@@ -300,11 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */,
+				8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */,
 				840F10BB2108D400004383A0 /* ShipperMainViewController.swift in Sources */,
 				84E0D5E12109F5FA00DB9728 /* CreateKienHangViewController.swift in Sources */,
 				840F10BF210911AD004383A0 /* WaittingOrderViewController.swift in Sources */,
 				840F10B92108D3DE004383A0 /* UserMainViewController.swift in Sources */,
 				840C0A1C210799FC00BDAB27 /* TaiKhoanApi.swift in Sources */,
+				8489D073210DE00D0040DDF9 /* ListDonHang.swift in Sources */,
 				8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */,
 				841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */,
 				84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */,
@@ -312,6 +331,7 @@
 				840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */,
 				84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */,
 				8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */,
+				8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */,
 				8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */,
 				840F10BD21090F98004383A0 /* UserInforViewController.swift in Sources */,
 			);

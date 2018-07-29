@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserInforViewController: UIViewController {
     
     @IBOutlet weak var LoadingSpinner: UIActivityIndicatorView!
+    var userInfo: User?
     override func viewDidLoad() {
         super.viewDidLoad()
         LoadingSpinner.startAnimating()
+        getUserInfo()
         self.LoadingSpinner.hidesWhenStopped = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.LoadingSpinner.stopAnimating()
@@ -27,7 +30,22 @@ class UserInforViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func getUserInfo() {
+        let host = "http://127.0.0.1:8080/"
+        let token = UserDefaults.standard.object(forKey: "access_token")
+        let header: HTTPHeaders = ["Authorization":token as! String]
+        Alamofire.request(host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { response in
+            switch response.result {
+            case .success:
+                if response.result.value != nil{
+                    print(response.result.value!)
+                }
+                break
+            case .failure(let error):
+                break
+            }
+        }
+    }
     /*
      // MARK: - Navigation
      

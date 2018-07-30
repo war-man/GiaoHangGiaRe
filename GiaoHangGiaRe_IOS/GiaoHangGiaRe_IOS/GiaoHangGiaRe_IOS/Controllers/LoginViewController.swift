@@ -58,6 +58,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         if validate() {
             let host = "http://127.0.0.1:8080/"
             loadingSpinner.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
             let params = [
                 "grant_type": "password",
                 "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
@@ -67,6 +68,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
                 case .success(_):
                     if response.result.value != nil{
                         self.loadingSpinner.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
                         _ = (response.response?.statusCode)!
                         let res = response.result.value! as! NSDictionary
                         let access_token = res.object(forKey: "access_token")
@@ -89,12 +91,14 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
                         }
                     }else{
                         self.loadingSpinner.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
                         self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
                     }
                     break
                     
                 case .failure(_):
                     self.loadingSpinner.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                     self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                     break
                 }

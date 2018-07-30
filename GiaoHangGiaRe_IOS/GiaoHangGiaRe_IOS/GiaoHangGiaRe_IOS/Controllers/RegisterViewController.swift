@@ -118,6 +118,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func btnDangKyClicked(_ sender: Any) {
         loadingSpinner.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         if validationEmpty() == true{
             let host = "http://127.0.0.1:8080/"
             var pic :NSData = UIImageJPEGRepresentation((btnAvatar.imageView?.image)!, 0.5) as! NSData
@@ -142,7 +143,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                             if succeeded as! Int == 1{
                                 self.showToast(message: "Đăng ký thành công")
                                 self.delegate?.regiterSucecss(TenTaiKhoan: self.tfTenTaiKhoan.text!)
-                                self.loadingSpinner.startAnimating()
+                                self.loadingSpinner.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
                                 self.navigationController?.popViewController(animated: true)
                             }else{
                                 print(res)
@@ -151,7 +153,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                             
                         case .failure(_):
                             self.loadingSpinner.stopAnimating()
-                            print(response)
+                            UIApplication.shared.endIgnoringInteractionEvents()
                             self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                             break
                         }
@@ -159,8 +161,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     break
                     
                 case .failure(_):
-                    print(response)
                     self.loadingSpinner.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                     self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                     break
                 }

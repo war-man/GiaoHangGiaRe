@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewContent.layer.cornerRadius = 5
+        checkLogined()
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +43,13 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
             }
         }
         return true;
+    }
+    func checkLogined() {
+        guard  let token = UserDefaults.standard.object(forKey: "access_token") else {
+            return
+        }
+        print(token)
+        alertMessager(title: "Đăng nhập đã quá hạn", message: "Hãy đăng nhập lại")
     }
     func convertToArray(str: String) -> [String]? {
         let data = str.data(using: .utf8)
@@ -108,7 +116,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoRegister"{
             let des = segue.destination as? RegisterViewController
-            des?.delegate = self as! RegisterViewControlleDelegete
+            des?.delegate = self as RegisterViewControlleDelegete
         }
     }
     @IBAction func btnDangKy_Clicked(_ sender: Any) {

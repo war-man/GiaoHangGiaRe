@@ -9,4 +9,5 @@ target 'GiaoHangGiaRe_IOS' do
 	pod 'FMDB'
     pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'TPKeyboardAvoiding'
 end

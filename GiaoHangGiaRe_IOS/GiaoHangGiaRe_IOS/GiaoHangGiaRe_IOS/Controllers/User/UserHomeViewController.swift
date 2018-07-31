@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
-class UserHomeViewController: UIViewController {
+class UserHomeViewController: UIViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDonHang()
 
         // Do any additional setup after loading the view.
     }
@@ -20,16 +23,23 @@ class UserHomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func getDonHang() {
+        let host = "http://127.0.0.1:8080/"
+        let params = [
+            "grant_type": "password"]
+        Alamofire.request(host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            switch(response.result) {
+            case .success(_):
+                if response.result.value != nil{
+                        
+                    }else{
+                        self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
+                    }
+            case .failure(_):
+                break
+            }
+        }
     }
-    */
-
 }
+
+

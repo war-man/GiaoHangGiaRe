@@ -15,7 +15,7 @@ protocol RegisterViewControlleDelegete {
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var delegate: RegisterViewControlleDelegete? = nil
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
-    //  @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnAvatar: UIButton!
     @IBOutlet weak var btnDangKy: UIButton!
     
@@ -122,7 +122,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         if validationEmpty() == true{
             let host = "http://127.0.0.1:8080/"
             var pic :NSData = UIImageJPEGRepresentation((btnAvatar.imageView?.image)!, 0.5) as! NSData
-            //let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
             let strBase64 = pic.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             let params2 = ["base64": strBase64] as [String : Any]
             Alamofire.request(host+"api/image/upload", method: .post, parameters: params2, encoding: URLEncoding.httpBody).responseJSON { response in
@@ -171,17 +170,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             loadingSpinner.startAnimating()
         }
     }
-    //    @IBAction func btnBackClicked(_ sender: Any) {
-    //        self.navigationController?.popViewController(animated: true)
-    //    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    @IBAction func btnBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
 }

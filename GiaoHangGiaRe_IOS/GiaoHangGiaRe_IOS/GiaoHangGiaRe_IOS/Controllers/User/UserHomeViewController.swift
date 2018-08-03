@@ -9,14 +9,30 @@
 import UIKit
 import Alamofire
 
-class UserHomeViewController: UIViewController, UISearchBarDelegate {
-
+class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserMainCell", for: indexPath) as! UserMainTableViewCell
+        cell.lblTitle.text = listTask[indexPath.row]
+        return cell
+    }
+    
+    
+    var listTask:[String] = ["Đơn hàng đang giao","Đơn hàng đang chờ","Đơn hàng hoàn thành","Đơn hàng bị huỷ"]
+    
+    @IBOutlet weak var tableViewUserMain: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
         getDonHang()
         searchBar.delegate = self
         self.searchBar.delegate = self
+        
+        tableViewUserMain.delegate = self
+        tableViewUserMain.dataSource = self
         // Do any additional setup after loading the view.
     }
 

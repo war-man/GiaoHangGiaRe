@@ -11,17 +11,26 @@ import Alamofire
 
 class UserInforViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return listTask.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserViewCell", for: indexPath) as! UITableViewCell
-        cell.textLabel?.text = "test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserViewCell", for: indexPath) as! UserViewTableViewCell
+        cell.lblTitle?.text = listTask[indexPath.row]
+//        cell.btnNext.addTarget(self, action: #selector(self.btnNext(sender:)), for: UIControlEvents.touchUpInside)
+//        cell.btnNext.tag = indexPath.row
         return cell
     }
-    
-    
-    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.row == (listTask.count-1 ){
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        return indexPath
+    }
+//    @objc func btnNext (sender: UIButton){
+//        alertMessager(title: "\(sender.tag)", message: "2")
+//    }
+    var listTask = ["User infor", "Đăng xuất"]
     @IBOutlet weak var tableUserView: UITableView!
     @IBOutlet weak var LoadingSpinner: UIActivityIndicatorView!
     var userInfo: User?
@@ -29,6 +38,8 @@ class UserInforViewController: UIViewController,UITableViewDelegate, UITableView
         super.viewDidLoad()
         LoadingSpinner.startAnimating()
         getUserInfo()
+        tableUserView.delegate = self
+        tableUserView.dataSource = self
         self.LoadingSpinner.hidesWhenStopped = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.LoadingSpinner.stopAnimating()

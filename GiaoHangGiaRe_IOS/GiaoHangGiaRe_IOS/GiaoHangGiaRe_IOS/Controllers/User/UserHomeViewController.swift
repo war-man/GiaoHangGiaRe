@@ -15,7 +15,8 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDonHang()
-
+        searchBar.delegate = self
+        self.searchBar.delegate = self
         // Do any additional setup after loading the view.
     }
 

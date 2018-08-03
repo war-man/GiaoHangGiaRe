@@ -17,12 +17,16 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangChoCell", for: indexPath) as! DonHangCellCustomTableViewCell
-        print(indexPath.row)
+        cell.btnChiTiet.addTarget(self, action: #selector(self.btnChiTiet(sender:)), for: UIControlEvents.touchUpInside)
+        cell.btnChiTiet.tag = indexPath.row
         cell.lblDiaChiDen.text = listDonHang[indexPath.row].diaChiNhan
         return cell
     }
-    
-    @IBOutlet weak var btnBack: UIButton!
+    @objc func btnChiTiet (sender: UIButton){
+        //alertMessager(title: "\(sender.tag)", message: "2")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        self.navigationController?.pushViewController( vc , animated: true)
+    }
     @IBOutlet weak var tableDonHangCho: UITableView!
     var listDonHang : [DonHangList] = []
     override func viewDidLoad() {
@@ -37,9 +41,12 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func btnClick_Clicked(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "registerSegue"{
+            let des = segue.destination as? DonHangDetailsViewController
+//            des?.delegate = self
+        }
+        
     }
     private func getDonHang() {
         let token = UserDefaults.standard.object(forKey: "access_token")

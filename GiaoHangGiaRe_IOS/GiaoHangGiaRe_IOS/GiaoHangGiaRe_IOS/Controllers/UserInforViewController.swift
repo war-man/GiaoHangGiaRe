@@ -9,8 +9,20 @@
 import UIKit
 import Alamofire
 
-class UserInforViewController: UIViewController {
+class UserInforViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserViewCell", for: indexPath) as! UITableViewCell
+        cell.textLabel?.text = "test"
+        return cell
+    }
+    
+    
+    
+    @IBOutlet weak var tableUserView: UITableView!
     @IBOutlet weak var LoadingSpinner: UIActivityIndicatorView!
     var userInfo: User?
     override func viewDidLoad() {

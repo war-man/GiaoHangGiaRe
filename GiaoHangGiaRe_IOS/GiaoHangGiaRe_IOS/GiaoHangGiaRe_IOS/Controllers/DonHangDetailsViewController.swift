@@ -10,6 +10,8 @@ import UIKit
 
 class DonHangDetailsViewController: UIViewController {
 
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +24,9 @@ class DonHangDetailsViewController: UIViewController {
     }
     
 
+    @IBAction func btnBack_Clicked(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 

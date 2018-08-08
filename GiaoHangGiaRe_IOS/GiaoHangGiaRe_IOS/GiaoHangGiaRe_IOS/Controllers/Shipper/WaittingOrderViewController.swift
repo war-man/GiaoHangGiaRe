@@ -25,6 +25,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
     @objc func btnChiTiet (sender: UIButton){
         //alertMessager(title: "\(sender.tag)", message: "2")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        vc.MaDonHang = sender.tag
         self.navigationController?.pushViewController( vc , animated: true)
     }
     @IBOutlet weak var tableDonHangCho: UITableView!

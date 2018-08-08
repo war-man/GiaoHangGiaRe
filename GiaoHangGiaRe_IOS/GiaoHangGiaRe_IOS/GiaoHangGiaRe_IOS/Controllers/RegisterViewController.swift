@@ -34,7 +34,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         initUI()
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,7 +81,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     //MASK: validation email
     func isValidEmail(email:String?) -> Bool {
-        
         guard email != nil else { return false }
         
         let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"

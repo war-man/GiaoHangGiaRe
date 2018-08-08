@@ -25,6 +25,7 @@
 		842DD3C72114600500F2AC25 /* UserViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DD3C62114600500F2AC25 /* UserViewTableViewCell.swift */; };
 		84386675210B4C5000F7919F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84386674210B4C5000F7919F /* User.swift */; };
 		8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446CDA9210C64C8003BFC7B /* UserRegister.swift */; };
+		844CA8E32119E100009E6D12 /* DetailDHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */; };
 		8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489D074210DE0260040DDF9 /* ListBangGia.swift */; };
 		84B0A30C211041CA00ED6F89 /* DonHangDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */; };
 		84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B42AAC21074D80008467DA /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 		842DD3C62114600500F2AC25 /* UserViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTableViewCell.swift; sourceTree = "<group>"; };
 		84386674210B4C5000F7919F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8446CDA9210C64C8003BFC7B /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDHCollectionViewCell.swift; sourceTree = "<group>"; };
 		84659EEAB5F3161F310B1AFA /* Pods-GiaoHangGiaRe_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8489D074210DE0260040DDF9 /* ListBangGia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBangGia.swift; sourceTree = "<group>"; };
 		84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonHangDetailsViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateKienHangViewController.swift; sourceTree = "<group>"; };
 		84FA573B2113069B00DB5458 /* GHButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHButton.swift; sourceTree = "<group>"; };
+		84FDFB3B2116F505002ACE66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 				84FA573B2113069B00DB5458 /* GHButton.swift */,
 				842DD3C62114600500F2AC25 /* UserViewTableViewCell.swift */,
 				8406ECDB2114B8FB001DBAEB /* UserMainTableViewCell.swift */,
+				844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */,
 			);
 			path = ViewCustom;
 			sourceTree = "<group>";
@@ -368,6 +372,7 @@
 				841FBB51211090D000F054E7 /* DonHang.swift in Sources */,
 				8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */,
 				840F10BD21090F98004383A0 /* UserInforViewController.swift in Sources */,
+				844CA8E32119E100009E6D12 /* DetailDHCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +383,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				84B42AB121074D80008467DA /* Base */,
+				84FDFB3B2116F505002ACE66 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

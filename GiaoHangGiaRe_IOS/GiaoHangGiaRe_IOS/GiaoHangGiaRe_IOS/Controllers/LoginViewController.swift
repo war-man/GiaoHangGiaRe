@@ -30,6 +30,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func tfTenTaiKhoanChanged(_ sender: Any) {
     }
     func validate()->Bool {

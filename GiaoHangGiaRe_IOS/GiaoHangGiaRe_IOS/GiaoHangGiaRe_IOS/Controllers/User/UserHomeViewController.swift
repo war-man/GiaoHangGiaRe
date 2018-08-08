@@ -10,36 +10,58 @@ import UIKit
 import Alamofire
 
 class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserMainCell", for: indexPath) as! UserMainTableViewCell
-        cell.lblTitle.text = listTask[indexPath.row]
-        return cell
-    }
-    
     
     var listTask:[String] = ["Đơn hàng đang giao","Đơn hàng đang chờ","Đơn hàng hoàn thành","Đơn hàng bị huỷ"]
+    var searchResult : [String] = []
     
     @IBOutlet weak var tableViewUserMain: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDonHang()
-        searchBar.delegate = self
         self.searchBar.delegate = self
         
         tableViewUserMain.delegate = self
         tableViewUserMain.dataSource = self
         // Do any additional setup after loading the view.
+        searchResult = listTask
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        
+        if searchText == "" {
+            searchResult = listTask
+        } else {
+            
+            searchResult.removeAll()
+            for taks in listTask {
+                if taks.lowercased().contains(searchText.lowercased()) {
+                    searchResult.append(taks)
+                }
+            }
+        }
+        
+        tableViewUserMain.reloadData()
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResult.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserMainCell", for: indexPath) as! UserMainTableViewCell
+        cell.lblTitle.text = searchResult[indexPath.row]
+        return cell
+    }
+    
+    
+    
     func getDonHang() {
         let host = "http://127.0.0.1:8080/"
         let params = [

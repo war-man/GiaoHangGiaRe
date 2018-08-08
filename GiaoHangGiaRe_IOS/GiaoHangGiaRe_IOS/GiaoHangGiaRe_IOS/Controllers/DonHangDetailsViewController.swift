@@ -8,33 +8,46 @@
 
 import UIKit
 
-class DonHangDetailsViewController: UIViewController {
-
+class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    var MaDonHang: Int?
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
+    
+    
+    @IBOutlet weak var lblNoiDung: UILabel!
+    @IBOutlet weak var lblMaDonHang: UILabel!
+    @IBOutlet weak var collectionDonHangDetails: UICollectionView!
+    
     override func viewDidLoad() {
+        collectionDonHangDetails.delegate = self
+        collectionDonHangDetails.dataSource = self
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        lblMaDonHang.text = "\(MaDonHang!)"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
     @IBAction func btnBack_Clicked(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsCollectionViewCell", for: indexPath) as! DetailDHCollectionViewCell
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.orange.cgColor
+        cell.lblTenNguoiGui.text = "nguoi gui"
+        cell.lblSDTNguoiGui.text = "sdt"
+        cell.lblDiaChiGui.text = "dia chi"
+        return cell
+    }
+    
+    //api goi
 }

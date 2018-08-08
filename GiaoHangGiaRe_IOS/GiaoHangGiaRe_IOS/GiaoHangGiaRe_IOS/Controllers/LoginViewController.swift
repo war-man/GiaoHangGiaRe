@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         guard  let token = UserDefaults.standard.object(forKey: "access_token") else {
             return
         }
-        print(token)
+//        print(token)
         alertMessager(title: "Đăng nhập đã quá hạn", message: "Hãy đăng nhập lại")
     }
     func convertToArray(str: String) -> [String]? {
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
                             let roles = res["roles"] as? String
                             let rolesArray = self.convertToArray(str: roles!)
                             for role in rolesArray!{
-                                print(role)
+//                                print(role)
                                 if role == "shipper"{
                                     self.performSegue(withIdentifier: "gotoShipperViewMain", sender: nil)
                                     return
@@ -127,15 +127,5 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         print(TenTaiKhoan)
         self.tfTenTaiKhoan.text = TenTaiKhoan
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -24,6 +25,9 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         collectionDonHangDetails.dataSource = self
         super.viewDidLoad()
         lblMaDonHang.text = "\(MaDonHang!)"
+        if MaDonHang != nil{
+            getDonHangDetail()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +45,7 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsCollectionViewCell", for: indexPath) as! DetailDHCollectionViewCell
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.orange.cgColor
         cell.lblTenNguoiGui.text = "nguoi gui"
         cell.lblSDTNguoiGui.text = "sdt"
@@ -50,4 +54,23 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     //api goi
+    private func getDonHangDetail() {
+        let token = UserDefaults.standard.object(forKey: "access_token")
+        let host = "http://127.0.0.1:8080/"
+        let params = [
+            "id": self.MaDonHang!]
+        let header: HTTPHeaders = ["Authorization":token as! String]
+        Alamofire.request(host+"api/donhang/get-by-id", method: .get, parameters: params, encoding: URLEncoding.queryString, headers: header).responseData { (response) in
+            response.result.ifSuccess {
+                print(response.result)
+                if let data = response.result.value {
+                    print(data)
+                }
+            }
+            response.result.ifFailure {
+                print(response.result.error ?? "0")
+            }
+
+        }
+    }
 }

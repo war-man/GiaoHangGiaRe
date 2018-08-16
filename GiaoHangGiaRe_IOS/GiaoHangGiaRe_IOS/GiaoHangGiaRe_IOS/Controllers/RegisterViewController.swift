@@ -124,7 +124,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         loadingSpinner.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         if validationEmpty() == true{
-            let host = "http://127.0.0.1:8080/"
+            let host = "http://giaohanggiare.gearhostpreview.com/"
             var pic :NSData = UIImageJPEGRepresentation((btnAvatar.imageView?.image)!, 0.5) as! NSData
             let strBase64 = pic.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             let params2 = ["base64": strBase64] as [String : Any]

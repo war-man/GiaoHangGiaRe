@@ -7,13 +7,24 @@
 //
 
 import UIKit
-
+protocol TaoKienHangDelegate {
+    func TaoKienHang(kienhang: KienHang)
+}
 class CreateKienHangViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var imgViewKienHang: UIImageView!
     @IBOutlet weak var btnChoseImage: UIButton!
+    @IBOutlet weak var btnTaoKienHang: UIButton!
     
+    @IBOutlet weak var tfNoiDung: UITextField!
+    @IBOutlet weak var tfChieuDai: UITextField!
+    @IBOutlet weak var tfChieuRong: UITextField!
+    @IBOutlet weak var tfTrongLuong: UITextField!
+    @IBOutlet weak var tfSoLuong: UITextField!
+    @IBOutlet weak var tfMoTa: UITextField!
+    
+    var ourDelegate: TaoKienHangDelegate? = nil
     var imagePickerCtrl: UIImagePickerController?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,17 +66,43 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
         picker.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func btnTaoKienHangClicked(_ sender: Any) {
+        if validation() == true{
+            
+            let kh: KienHang = KienHang(NoiDung: tfNoiDung.text!, ChieuDai: Float(tfChieuDai.text!)!, ChieuRong: Float(tfChieuRong.text!)!, MoTa: tfMoTa.text!, TrongLuong: Float(tfTrongLuong.text!)!, SoLuong: Int(tfSoLuong.text!)!)
+          
+            self.ourDelegate?.TaoKienHang(kienhang: kh)
+        }else{
+            
+        }
+        self.dismiss(animated: true, completion: {
+            
+        })
+    }
     @IBAction func btnBackClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            
+        })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func validation()->Bool{
+        if tfNoiDung.text == nil{
+             return false
+        }
+        if tfChieuDai.text == nil{
+             return false
+        }
+        if tfChieuRong.text == nil{
+             return false
+        }
+        if tfTrongLuong.text == nil{
+             return false
+        }
+        if tfSoLuong.text == nil{
+             return false
+        }
+        if tfMoTa.text == nil{
+             return false
+        }
+        return true
     }
-    */
-
 }

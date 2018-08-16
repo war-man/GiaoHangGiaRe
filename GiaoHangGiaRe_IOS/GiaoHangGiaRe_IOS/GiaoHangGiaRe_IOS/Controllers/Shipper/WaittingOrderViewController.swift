@@ -51,7 +51,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
     }
     private func getDonHang() {
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://127.0.0.1:8080/"
+        let host = "http://giaohanggiare.gearhostpreview.com/"
         let params = [
             "size": 15]
         let header: HTTPHeaders = ["Authorization":token as! String]

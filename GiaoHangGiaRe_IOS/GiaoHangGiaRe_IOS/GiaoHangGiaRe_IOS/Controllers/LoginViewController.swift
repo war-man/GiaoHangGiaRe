@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class LoginViewController: UIViewController, RegisterViewControlleDelegete {
+class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITextFieldDelegate {
     
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var viewContent: UIView!
@@ -61,11 +61,17 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         }
         return nil
     }
-    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     var user: User?
     @IBAction func btnDangNhap_Clicked(_ sender: Any) {
         if validate() {
-            let host = "http://127.0.0.1:8080/"
+            let host = "http://giaohanggiare.gearhostpreview.com/"
             loadingSpinner.startAnimating()
             UIApplication.shared.beginIgnoringInteractionEvents()
             let params = [
@@ -87,7 +93,6 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
                             let roles = res["roles"] as? String
                             let rolesArray = self.convertToArray(str: roles!)
                             for role in rolesArray!{
-//                                print(role)
                                 if role == "shipper"{
                                     self.performSegue(withIdentifier: "gotoShipperViewMain", sender: nil)
                                     return
@@ -124,8 +129,13 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete {
         
     }
     func regiterSucecss(TenTaiKhoan: String) {
-        print(TenTaiKhoan)
         self.tfTenTaiKhoan.text = TenTaiKhoan
     }
     
+    // MARK:
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("event raise")
+        self.view.endEditing(true)
+        return true
+    }
 }

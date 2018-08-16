@@ -25,6 +25,10 @@ class UserInforViewController: UIViewController,UITableViewDelegate, UITableView
         if indexPath.row == (listTask.count-1 ){
             self.navigationController?.popToRootViewController(animated: true)
         }
+        if indexPath.row == 0{ //Trang thong tin user
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailsView") as! UserDetailsViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return indexPath
     }
 //    @objc func btnNext (sender: UIButton){
@@ -54,7 +58,7 @@ class UserInforViewController: UIViewController,UITableViewDelegate, UITableView
     }
     
     func getUserInfo() {
-        let host = "http://127.0.0.1:8080/"
+        let host = "http://giaohanggiare.gearhostpreview.com/"
         let token = UserDefaults.standard.object(forKey: "access_token")
         let header: HTTPHeaders = ["Authorization":token as! String]
         Alamofire.request(host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { response in

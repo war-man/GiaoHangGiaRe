@@ -57,24 +57,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/User/CreateKienHangViewController.swift"
-            timestampString = "555341241.126092"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "btnBackClicked(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GiaoHangGiaRe_IOS/Controllers/RegisterViewController.swift"
-            timestampString = "555341803.097626"
+            timestampString = "556114756.54749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -90,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GiaoHangGiaRe_IOS/Controllers/RegisterViewController.swift"
-            timestampString = "555341803.097717"
+            timestampString = "556114756.547587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GiaoHangGiaRe_IOS/Controllers/RegisterViewController.swift"
-            timestampString = "555341803.097795"
+            timestampString = "556114756.547664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -121,13 +105,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/DonHangDetailsViewController.swift"
-            timestampString = "555416253.1695091"
+            filePath = "GiaoHangGiaRe_IOS/Controllers/User/CreateKienHangViewController.swift"
+            timestampString = "555586599.130216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "getDonHangDetail()"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "btnTaoKienHangClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GiaoHangGiaRe_IOS/Controllers/User/CreateOrderViewController.swift"
+            timestampString = "556107520.969519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GiaoHangGiaRe_IOS/Controllers/User/CreateKienHangViewController.swift"
+            timestampString = "555586599.131057"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "btnTaoKienHangClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

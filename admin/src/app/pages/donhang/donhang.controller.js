@@ -15,7 +15,7 @@
 
 		$scope.model = {};
 		$scope.errorMessage;
-		$scope.params = {};
+		$scope.params = {page:0 , size: 10};
 
 		$scope.gotoAddDonHang = function() {
 			$state.go("donhang.add");
@@ -31,6 +31,7 @@
 				.success(function(res) {
 					$scope.listDonHang = res.list;
 					$scope.arrayPage = [];
+					$scope.params.page = res.page;
 					for (var i = 0; i < Math.ceil(res.total / res.size); i++) {
 						$scope.arrayPage.push(i);
 					}

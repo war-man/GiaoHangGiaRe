@@ -20,7 +20,7 @@
 		$scope.errorMessage;
 		$scope.roleSelect;
 		$scope.filter = {};
-		$scope.params = {};
+		$scope.params = {page: 0, size: 10};
 		$scope.gotoAddUser = function() {
 			$state.go("usermanager.add");
 		};
@@ -74,6 +74,7 @@
 			GetUserAPI.user_get_all(params).then(function(res) {
 				if (res.status == "200") {
 					$scope.listUser = res.data.data;
+					$scope.params.page = res.page;
 					$scope.arrayPage = [];
 					for (var i = 0; i < Math.ceil(res.data.total / res.data.size); i++) {
 						$scope.arrayPage.push(i);

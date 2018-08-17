@@ -54,7 +54,7 @@
       <tbody>
         <tr ng-repeat="donhang in listDonHang" class="editable-row">
           <td>
-            {{$index+1}}
+            {{$index+1 + params.page *params.size}}
           </td>
           <td>
             <span editable-text="donhang.NguoiGui" e-name="NguoiGui" e-form="rowform" e-required>

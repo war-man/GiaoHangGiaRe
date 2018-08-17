@@ -6,7 +6,7 @@
     function khachhangcontroller($scope, $uibModal, $state, $stateParams, GetKhachHangAPI, GetLoaiKHAPI) {
         $scope.resdata = {};
         $scope.model = {};
-        $scope.params = {};
+        $scope.params = {page: 0, size: 10};
 
         $scope.search = function () {
             $scope.modal = $uibModal.open({

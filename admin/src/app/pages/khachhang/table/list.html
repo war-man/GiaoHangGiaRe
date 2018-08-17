@@ -50,6 +50,7 @@
           </tr>
         </tfoot>
         <tr>
+          <td>STT</td>
           <td>Họ tên</td>
           <td>Số điện thoại</td>
           <td>Email</td>
@@ -59,6 +60,11 @@
           <td>Thao tác</td>
         </tr>
         <tr ng-repeat="khachhang in resdata" class="editable-row">
+          <td>
+            <span editable-text="khachhang.TenKhachHang" e-name="TenKhachHang" e-form="rowform" e-required>
+              {{$index+1 + params.page *params.size}}
+            </span>
+          </td>
           <td>
             <span editable-text="khachhang.TenKhachHang" e-name="TenKhachHang" e-form="rowform" e-required>
               {{ khachhang.TenKhachHang || 'empty' }}

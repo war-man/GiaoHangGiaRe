@@ -43,7 +43,7 @@
       <tbody>
         <tr ng-repeat="user in listUser" class="editable-row">
           <td>
-            {{$index+1}}
+            {{$index+1 + params.page * params.size}}
           </td>
           <td>
             <span editable-text="user.UserName" e-name="UserName" e-form="rowform" e-required>

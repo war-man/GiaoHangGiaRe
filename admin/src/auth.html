@@ -71,15 +71,15 @@
     var input = 'grant_type=password&username=' + username + '&password=' + password;
     var host = "http://127.0.0.1:8080/";
     var host2 = "http://localhost:8195/";
-    var host3 = "http://giaohanggiare.gear.host/";
+    var host3 = "http://giaohanggiare.gearhostpreview.com/";
     $.ajax({
-      url: host+'token',
+      url: host3+'token',
       type: "POST",
       crossDomain: true,
       contentType: "application/json; charset=utf-8",
       data: input
     }).done(function (data) {
-      localStorage.setItem('host', host);
+      localStorage.setItem('host', host3);
       localStorage.setItem('token', JSON.stringify(data));
       window.location = "/";
       $scope.loading = false;

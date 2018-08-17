@@ -28,7 +28,7 @@
 				templateUrl: "app/pages/ui/modals/modalTemplates/loading.html"
 			});
 			GetDonHangAPI.donhang_get_all($scope.params)
-				.success(res => {
+				.success(function(res) {
 					$scope.listDonHang = res.list;
 					$scope.arrayPage = [];
 					for (var i = 0; i < Math.ceil(res.total / res.size); i++) {
@@ -48,7 +48,7 @@
 				templateUrl: "app/pages/ui/modals/modalTemplates/loading.html"
 			});
 			GetDonHangAPI.donhang_getby_id($stateParams)
-				.success(res => {
+				.success(function(res) {
 					$scope.donhang = res.donhang;
 					$scope.kienhang = res.kienhang;
 					$scope.modal.dismiss();
@@ -66,7 +66,7 @@
 			});
 			$scope.params.TinhTrang = -1;
 			GetDonHangAPI.donhang_get_all($scope.params)
-				.success(res => {
+				.success(function(res) {
 					$scope.listDonHang = res.list;
 					$scope.arrayPage = [];
 					for (var i = 0; i < Math.ceil(res.total / res.size); i++) {

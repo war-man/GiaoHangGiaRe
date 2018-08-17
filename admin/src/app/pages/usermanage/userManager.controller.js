@@ -71,7 +71,7 @@
 				params.id = $scope.filter.id;
 			}
 
-			GetUserAPI.user_get_all(params).then(res => {
+			GetUserAPI.user_get_all(params).then(function(res) {
 				if (res.status == "200") {
 					$scope.listUser = res.data.data;
 					$scope.arrayPage = [];
@@ -125,7 +125,8 @@
 		};
 
 		//EDIT ROLES USER
-		$scope.editRolesUser = function(user, roleSelect = $scope.roleSelect) {
+		$scope.editRolesUser = function(user, roleSelect) {
+			roleSelect = $scope.roleSelect
 			$uibModal
 				.open({
 					animation: true,

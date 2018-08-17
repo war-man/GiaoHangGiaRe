@@ -47,7 +47,7 @@
             }else{
                 $scope.params.kyhieu = null;
             }
-            GetNoAPI.no_get_all($scope.params).then((res) => {
+            GetNoAPI.no_get_all($scope.params).then(function(res) {
                 if (res.status == '200') {
                     $scope.listNo = res.data.data;
                 }

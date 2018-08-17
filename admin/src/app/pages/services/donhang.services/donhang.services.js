@@ -13,7 +13,7 @@
 
         //get-all DonHang vi pham
         var donhang_vipham = function (params) {
-            return $http.get(host + 'donhang/get-donhang-vipham',{params});
+            return $http.get(host + 'donhang/get-donhang-vipham',params);
         }
 
         //craete DonHang

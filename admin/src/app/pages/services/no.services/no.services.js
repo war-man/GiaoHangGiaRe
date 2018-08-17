@@ -9,7 +9,7 @@
         var host = BASE + 'api/';
         //get-all NhanVien
         var no_get_all = function (params) {
-            var result = $http.get(host + 'no/get-all',{ params }).success(function (data) {
+            var result = $http.get(host + 'no/get-all', params ).success(function (data) {
                 })
                 .error(function () {
                 });

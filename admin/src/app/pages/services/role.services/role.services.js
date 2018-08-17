@@ -61,7 +61,7 @@
 
         var get_user_of_role = function (params) {
             var url = host + 'taikhoan/get-user-of-role';
-            var result = $http.get(url, { params })
+            var result = $http.get(url, params )
                 .success(function (data) {
                 })
                 .error(function (data) {

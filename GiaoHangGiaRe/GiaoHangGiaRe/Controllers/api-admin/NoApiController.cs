@@ -16,7 +16,7 @@ namespace GiaoHangGiaRe.Controllers
             _noServices = new NoServices();
         }
         // GET: api/get-all
-        [HttpGet]
+        [HttpPost]
         [Route("get-all")]
         public IHttpActionResult Get(NoSearchList noSearchList)
         {

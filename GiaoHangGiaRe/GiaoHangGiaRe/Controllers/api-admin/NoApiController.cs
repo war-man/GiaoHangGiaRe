@@ -1,10 +1,6 @@
-﻿using GiaoHangGiaRe.Module;
+﻿using GiaoHangGiaRe.Models;
+using GiaoHangGiaRe.Module;
 using Models.EntityModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GiaoHangGiaRe.Controllers
@@ -22,14 +18,14 @@ namespace GiaoHangGiaRe.Controllers
         // GET: api/get-all
         [HttpGet]
         [Route("get-all")]
-        public IHttpActionResult Get(int? page, int? size, string kyhieu="")
+        public IHttpActionResult Get(NoSearchList noSearchList)
         {
             return Ok(new {
-                data = _noServices.GetAll(page, size, kyhieu),
+                data = _noServices.GetAll(noSearchList),
                 total = _noServices.Count(),
-                page,
-                size
-                }
+                noSearchList.page,
+                noSearchList.size
+            }
             );
         }
 
@@ -64,22 +60,5 @@ namespace GiaoHangGiaRe.Controllers
                 message = "success"
             });
         }
-
-        [HttpDelete]
-        [Route("delete")]
-        public IHttpActionResult Delete(int id)
-        {
-            string message = "";var no = _noServices.GetById(id);
-            if (no==null) message = "Id khong hop le!";
-            var obj = no;
-            _noServices.Delete(id);
-            message = "Delete Success !";
-            return Ok(new
-            {
-                obj,
-                Message = message
-            });
-        }
-
     }
 }

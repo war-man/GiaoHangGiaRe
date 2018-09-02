@@ -462,6 +462,7 @@
     <Compile Include="Models\KienHangModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NhanVien\NhanVienCreate.cs" />
+    <Compile Include="Models\No\NoSearchList.cs" />
     <Compile Include="Models\TaiKhoan\TaiKhoanUpdate.cs" />
     <Compile Include="Module\Bang_Gia\BangGiaServices.cs" />
     <Compile Include="Module\Bang_Gia\IBangGiaServices.cs" />

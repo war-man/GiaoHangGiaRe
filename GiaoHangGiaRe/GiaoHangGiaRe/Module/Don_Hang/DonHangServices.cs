@@ -284,7 +284,7 @@ namespace GiaoHangGiaRe.Module
             return donhang_tam.MaDonHang;
         }
         /// <summary>
-        /// xác nhận đơn hàng 
+        /// Xác nhận đơn hàng 
         /// </summary>
         public int XacNhanDonHang(int MaDonHang)
         {
@@ -333,9 +333,16 @@ namespace GiaoHangGiaRe.Module
                     };
                     _hoadonRepository.Insert(dh);
                     
-                }             
+                }
             }
-            donhang.TinhTrang = _input.TinhTrang;
+            else
+            {
+                if(_input.TinhTrang == DonHangConstant.DaTiepNhan) //Chuyển trạng thái đơn hàng đang chờ thành giao hàng
+                {
+                    donhang.MaNhanVienGiao = nhanVienServices.GetNhanVienCurrentUser().MaNhanVien;
+                }
+                donhang.TinhTrang = _input.TinhTrang;// Cập nhật tình trạng
+            }
             _donhangRepository.Update(donhang);
         }
         public void ReportDonHang(Report input)

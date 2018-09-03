@@ -68,10 +68,10 @@ namespace GiaoHangGiaRe.Module
                 DiaChi = kh.DiaChi,
                 Email = kh.Email,
                 TenTaiKhoan = kh.TenTaiKhoan,
-                MaLoaiKH = kh.MaLoaiKH
-                             
+                MaLoaiKH = kh.MaLoaiKH 
             };
-            if(!string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
+            query = query.Where(p => p.TrangThai == 1);
+            if (!string.IsNullOrWhiteSpace(khachHangSearchList.TaiKhoan)){
                 query = query.Where(p => p.TenTaiKhoan.ToLower().Contains(khachHangSearchList.TaiKhoan.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(khachHangSearchList.HoTen))
@@ -110,7 +110,7 @@ namespace GiaoHangGiaRe.Module
                 kh.LoaiKH = i.TenLoaiKH;
                 kh.TenTaiKhoan = i.TenTaiKhoan;
                 kh.MaLoaiKH = i.MaLoaiKH.ToString();
-
+                kh.TrangThai = i.TrangThai;
                 listKhachHang.Add(kh);
             }
             return listKhachHang;
@@ -142,6 +142,7 @@ namespace GiaoHangGiaRe.Module
                 kh.TrangThai = 1; // Unlock
             if (kh.TrangThai == 1)
                 kh.TrangThai = 0; //Lock
+            _khachhangrepository.Update(kh);
         }
 
         public void Update(KhachHangUpdate input)

@@ -11,6 +11,7 @@ namespace GiaoHangGiaRe.Models.KhachHang
         public string LoaiKH { set; get; }
         public string TenTaiKhoan { set; get; }
         public string MaLoaiKH { set; get; }
+        public int TrangThai { set; get; }
         public KhachHangList (){
         }
     }

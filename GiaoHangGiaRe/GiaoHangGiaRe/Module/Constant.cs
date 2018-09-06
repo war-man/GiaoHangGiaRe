@@ -57,6 +57,11 @@ namespace GiaoHangGiaRe.Module
         /// <summary>
         /// Đơn hàng mới tạo sẽ thuộc đon hàng chờ
         /// </summary>
+        public static int XacNhan = 7;
+
+        /// <summary>
+        /// Đơn hàng mới tạo sẽ thuộc đon hàng chờ
+        /// </summary>
         public static int DangCho = 0;
 
         /// <summary>
@@ -92,10 +97,6 @@ namespace GiaoHangGiaRe.Module
         //Giao hangfg thành công
         public static int GiaoThanhCong = 6;
 
-        /// <summary>
-        /// Đơn hàng mới tạo sẽ thuộc đon hàng chờ
-        /// </summary>
-        public static int XacNhan = 7;
     }
     public class NhanVienConstant
     {

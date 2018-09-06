@@ -122,10 +122,10 @@ namespace GiaoHangGiaRe.Controllers
             updateTrangThaiDonHang.MaDonHang = MaDonHang;
             updateTrangThaiDonHang.TinhTrang = DonHangConstant.DaTiepNhan;
             var donhang = _donHangServices.GetById(MaDonHang);
-            if(donhang.TinhTrang != DonHangConstant.DangCho)
+            if(donhang.TinhTrang != DonHangConstant.XacNhan)
             {
                 return ResponseMessage(Request.CreateErrorResponse
-                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Đang chờ\"!"));
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Xác nhận\"!"));
             }
             if (updateTrangThaiDonHang.MaDonHang <= 0)
             {

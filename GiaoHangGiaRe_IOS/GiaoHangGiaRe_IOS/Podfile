@@ -10,4 +10,5 @@ target 'GiaoHangGiaRe_IOS' do
     pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 4.0'
     pod 'TPKeyboardAvoiding'
+    pod 'NVActivityIndicatorView'
 end

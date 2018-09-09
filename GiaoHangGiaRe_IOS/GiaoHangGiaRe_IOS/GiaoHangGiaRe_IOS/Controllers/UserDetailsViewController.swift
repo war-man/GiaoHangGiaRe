@@ -24,7 +24,6 @@ class UserDetailsViewController: UIViewController, UITableViewDelegate,UITableVi
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     func setvaule() {
         guard let imgUrl = user?.imageLink else {
@@ -46,8 +45,7 @@ class UserDetailsViewController: UIViewController, UITableViewDelegate,UITableVi
                     return;
                 }
                 self.user = try! JSONDecoder().decode(UserDetails_Base.self, from: res)
-               
-                let roles = self.user?.roles
+                _ = self.user?.roles
                 self.setvaule()
                 self.tableViewUserDetails.reloadData()
                 

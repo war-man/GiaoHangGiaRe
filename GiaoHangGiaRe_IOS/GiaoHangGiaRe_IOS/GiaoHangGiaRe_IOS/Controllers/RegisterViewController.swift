@@ -102,7 +102,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             }else{
                 
             }
-            
         }))
         actionSheet.addAction(UIAlertAction(title: "Chọn từ album ảnh", style: .default, handler: { (acion: UIAlertAction) in
             self.imagePickerCtrl?.sourceType = .photoLibrary

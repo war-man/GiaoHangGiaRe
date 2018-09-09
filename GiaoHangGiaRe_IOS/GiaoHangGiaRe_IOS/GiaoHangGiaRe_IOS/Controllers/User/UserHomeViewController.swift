@@ -30,16 +30,12 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        
         if searchText == "" {
             searchResult = listTask
         } else {
-            
             searchResult.removeAll()
             for taks in listTask {
                 if taks.lowercased().contains(searchText.lowercased()) {
@@ -59,11 +55,9 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
         cell.lblTitle.text = searchResult[indexPath.row]
         return cell
     }
-    
-    
-    
+
     func getDonHang() {
-        let host = "http://127.0.0.1:8080/"
+        let host = "http://giaohanggiare.gearhostpreview.com/"
         let params = [
             "grant_type": "password"]
         Alamofire.request(host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in

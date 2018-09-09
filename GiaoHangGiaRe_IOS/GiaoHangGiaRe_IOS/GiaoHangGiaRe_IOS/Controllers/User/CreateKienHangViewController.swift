@@ -16,7 +16,6 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     @IBOutlet weak var imgViewKienHang: UIImageView!
     @IBOutlet weak var btnChoseImage: UIButton!
     @IBOutlet weak var btnTaoKienHang: UIButton!
-    
     @IBOutlet weak var tfNoiDung: UITextField!
     @IBOutlet weak var tfChieuDai: UITextField!
     @IBOutlet weak var tfChieuRong: UITextField!
@@ -28,13 +27,10 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     var imagePickerCtrl: UIImagePickerController?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func btnChoseImage_Clicked(_ sender: Any) {

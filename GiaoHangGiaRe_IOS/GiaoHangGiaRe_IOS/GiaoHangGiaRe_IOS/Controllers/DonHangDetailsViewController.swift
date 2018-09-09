@@ -10,17 +10,12 @@ import UIKit
 import Alamofire
 
 class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
-    
     var MaDonHang: Int?
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
-    
-    
     @IBOutlet weak var lblNoiDung: UILabel!
     @IBOutlet weak var lblMaDonHang: UILabel!
     @IBOutlet weak var collectionDonHangDetails: UICollectionView!
-    
-    
     var DonHangDetails: Donhang? = nil;
     var listKienHang: [Kienhang] = [];
     
@@ -33,16 +28,12 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             getDonHangDetail()
         }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-
     @IBAction func btnBack_Clicked(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
@@ -72,13 +63,12 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         let header: HTTPHeaders = ["Authorization":token as! String]
         Alamofire.request(host+"api/donhang/get-by-id", method: .get, parameters: params, encoding: URLEncoding.queryString, headers: header).responseData { (response) in
             response.result.ifSuccess {
-                print(response.result)
                 if let data = response.result.value {
                     let jsbase = try? JSONDecoder().decode(DonHangDetais_Base.self, from: data)
-                    guard let dh = jsbase!.donhang else{
+                    guard let dh = jsbase?.donhang else{
                         return;
                     }
-                    guard let kh = jsbase!.kienhang else {
+                    guard let kh = jsbase?.kienhang else {
                         return;
                     }
                     self.listKienHang = kh

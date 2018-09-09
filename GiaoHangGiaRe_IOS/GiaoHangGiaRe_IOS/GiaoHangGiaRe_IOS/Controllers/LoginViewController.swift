@@ -23,14 +23,10 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         super.viewDidLoad()
         viewContent.layer.cornerRadius = 5
         checkLogined()
-        // Do any additional setup after loading the view.
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
     @IBAction func tfTenTaiKhoanChanged(_ sender: Any) {
     }
     func validate()->Bool {
@@ -46,10 +42,9 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         return true;
     }
     func checkLogined() {
-        guard  let token = UserDefaults.standard.object(forKey: "access_token") else {
+        guard  UserDefaults.standard.object(forKey: "access_token") != nil else {
             return
         }
-//        print(token)
         alertMessager(title: "Đăng nhập đã quá hạn", message: "Hãy đăng nhập lại")
     }
     func convertToArray(str: String) -> [String]? {
@@ -89,11 +84,12 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
                         let access_token = res.object(forKey: "access_token")
                         let token_type = res.object(forKey: "token_type")
                         if (access_token != nil){
-                            UserDefaults.standard.setValue("\(String(describing: token_type!)) \(String(describing: access_token!))", forKey: "access_token")
+                            UserDefaults.standard.setValue("\(String(describing: token_type!)) \(String(describing: access_token!))", forKey: "access_token") 
                             let roles = res["roles"] as? String
                             let rolesArray = self.convertToArray(str: roles!)
                             for role in rolesArray!{
                                 if role == "shipper"{
+                                    UserDefaults.standard.setValue("shipper", forKey: "role")
                                     self.performSegue(withIdentifier: "gotoShipperViewMain", sender: nil)
                                     return
                                 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GiaoHangGiaRe.Models;
 using Models.EntityModel;
 
 namespace GiaoHangGiaRe.Module
@@ -47,12 +48,15 @@ namespace GiaoHangGiaRe.Module
             });
         }
 
-        public List<No> GetAll(int? page, int? size, string KyHieu = "")
+        public List<No> GetAll(NoSearchList noSearchList)
         {
-            if (!page.HasValue) page = Constant.DefaultPage;
-            if (!size.HasValue) return _noRepository.GetAll().ToList();
-            return _noRepository.GetAll().OrderBy(p => p.Ma).Where(p=> p.KyHieu.Contains(KyHieu))
-                    .Take(size.Value).Skip(size.Value * (page.Value - 1)).ToList();
+            var query = _noRepository.GetAll();
+            if (!string.IsNullOrWhiteSpace(noSearchList.KyHieu))
+            {
+                query = query.Where(p => p.KyHieu.Contains(noSearchList.KyHieu));
+            }
+            return query.OrderBy(p => p.Ma)
+                    .Take(noSearchList.size.Value).Skip(noSearchList.size.Value * (noSearchList.page.Value - 1)).ToList();
         }
         public List<No> GetNoCurrentUser(int? page, int? size, string KyHieu = "")
         {

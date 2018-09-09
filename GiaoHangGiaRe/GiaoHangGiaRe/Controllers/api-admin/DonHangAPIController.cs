@@ -112,6 +112,29 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(1);
         }
 
+        //Shipper tiep nhan đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("tiep-nhan-don-hang")]
+        public IHttpActionResult TiepNhanDonHang(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.DaTiepNhan;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if(donhang.TinhTrang != DonHangConstant.XacNhan)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Xác nhận\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
+
         //Xac nhan đơn hàng 
         //PUT
         [HttpPut]

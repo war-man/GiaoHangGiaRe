@@ -82,9 +82,6 @@ namespace GiaoHangGiaRe.Module
         public List<DonHangList> GetAll(DonHangSearchList donHangSearchList)
         {
             var query = from don_hang in _donhangRepository.GetAll()
-              //          join nhan_vien in _nhanvienRepository.GetAll()
-              //on don_hang.MaNhanVienGiao equals nhan_vien.MaNhanVien
-                        //join khach_hang in _khachhangRepository.GetAll() on don_hang.MaKhachHang equals khach_hang.MaKhachHang
                         select new
                         {
                             MaKhachHang = don_hang.MaKhachHang,
@@ -287,7 +284,7 @@ namespace GiaoHangGiaRe.Module
             return donhang_tam.MaDonHang;
         }
         /// <summary>
-        /// xác nhận đơn hàng 
+        /// Xác nhận đơn hàng 
         /// </summary>
         public int XacNhanDonHang(int MaDonHang)
         {
@@ -336,9 +333,16 @@ namespace GiaoHangGiaRe.Module
                     };
                     _hoadonRepository.Insert(dh);
                     
-                }             
+                }
             }
-            donhang.TinhTrang = _input.TinhTrang;
+            else
+            {
+                if(_input.TinhTrang == DonHangConstant.DaTiepNhan) //Chuyển trạng thái đơn hàng đang chờ thành giao hàng
+                {
+                    donhang.MaNhanVienGiao = nhanVienServices.GetNhanVienCurrentUser().MaNhanVien;
+                }
+                donhang.TinhTrang = _input.TinhTrang;// Cập nhật tình trạng
+            }
             _donhangRepository.Update(donhang);
         }
         public void ReportDonHang(Report input)

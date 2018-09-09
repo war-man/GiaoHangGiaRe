@@ -1,16 +1,13 @@
-﻿using Models.EntityModel;
-using System;
+﻿using GiaoHangGiaRe.Models;
+using Models.EntityModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GiaoHangGiaRe.Module
 {
     interface INoServices
     {
         //Cho phuong thuc GET
-        List<No> GetAll(int? page, int? size , string KyHieu);
+        List<No> GetAll(NoSearchList noSearchList);
         List<No> GetNoCurrentUser(int? page, int? size, string KyHieu);
         
         No GetById(int Id);

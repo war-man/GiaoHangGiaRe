@@ -38,6 +38,38 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         overlay?.alpha = 0.3
         self.view.addSubview(activityIndicatorView)
     }
+    func changeTrangThaiDonHang(TrangThai: Int, MaDonHang: Int){
+        //Start Loading
+        activityIndicatorView.startAnimating()
+        view.addSubview(overlay!)
+        let token = UserDefaults.standard.object(forKey: "access_token")
+        let host = "http://giaohanggiare.gearhostpreview.com/"
+        let params = [
+            "MaDonHang": MaDonHang]
+        let header: HTTPHeaders = ["Authorization":token as! String]
+        var url=""
+        if TrangThai == 2{
+            url = host+"api/donhang/lay-hang"
+        }
+        if TrangThai == 3{
+            url = host+"api/donhang/lay-thanh-cong"
+        }
+        if TrangThai == -2{
+            url = host+"api/donhang/khong-the-lay-hang"
+        }
+        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseJSON{ (response) in
+            switch(response.result) {
+            case .success(_):
+                //Stop Loading
+                self.activityIndicatorView.stopAnimating()
+                self.overlay?.removeFromSuperview()
+                DispatchQueue.main.async { self.tableViewShipperOrder.reloadData() }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
     func getDonHangTiepNhan(){
         //Start Loading
         activityIndicatorView.startAnimating()
@@ -64,17 +96,25 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     }
     @objc func btnChuyenTrangThai (sender: UIButton){
         if donhangList[sender.tag].donHang?.tinhTrang == 1{
+            self.changeTrangThaiDonHang(TrangThai: 2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 2 đang lấy hàng
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG LẤY HÀNG\"")
-            tableViewShipperOrder.reloadData()
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 2{
+            self.changeTrangThaiDonHang(TrangThai: 3,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 3 lấy hàng thành công
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG GIAO\"")
-            tableViewShipperOrder.reloadData()
         }
     }
     @objc func btnHuyDonHang (sender: UIButton){
-        self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
-        tableViewShipperOrder.reloadData()
+        if donhangList[sender.tag].donHang?.tinhTrang == 1{
+            //chuyen trang thai sang 4
+            self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
+            tableViewShipperOrder.reloadData()
+        }
+        if donhangList[sender.tag].donHang?.tinhTrang == 2 {
+            self.changeTrangThaiDonHang(TrangThai: -2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = -2 khong the lay hang
+            self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"KHÔNG THỂ LẤY HÀNG\"")
+        }
+       
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return donhangList.count
@@ -93,7 +133,20 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             cell.btnChuyenTrangThai.setTitle("Lấy hàng", for: .normal) // Đơn hàng đã tiếp nhận. Hiển thị btn lấy hàng
         }
         if donhangList[indexPath.row].donHang?.tinhTrang == 2{
-            cell.btnChuyenTrangThai.setTitle("Giao", for: .normal) // Trạng thái: Nhân viên đi lấy hàng
+            cell.btnChuyenTrangThai.setBackgroundImage(#imageLiteral(resourceName: "ok"), for: .normal) // Trạng thái: Nhân viên đi lấy hàng
+            cell.btnChuyenTrangThai.setTitle("", for: .normal)
+            cell.btnChuyenTrangThai.backgroundColor = UIColor.clear
+            cell.btnChuyenTrangThai.frame = CGRect(x: cell.btnChuyenTrangThai.frame.minX, y: cell.btnChuyenTrangThai.frame.minY, width: 40, height: 40)
+            
+            cell.btnHuyDonHang.setTitle("", for: .normal)
+            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+            cell.btnHuyDonHang.backgroundColor = UIColor.clear
+            cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
+        }
+        if donhangList[indexPath.row].donHang?.tinhTrang == -2{
+            cell.btnChuyenTrangThai.isHidden = true
+            cell.btnHuyDonHang.isHidden = true
+            cell.backgroundColor = UIColor.gray
         }
         return cell
     }

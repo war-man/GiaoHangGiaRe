@@ -201,7 +201,7 @@ namespace GiaoHangGiaRe.Module
                 List<DonHangKienHang> listDonHangKienHang = new List<DonHangKienHang>();
                 var res = _donhangRepository.GetAll()
                 .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien) &&
-                (p.TinhTrang == DonHangConstant.Huy || p.TinhTrang == DonHangConstant.GiaoThanhCong))
+                (p.TinhTrang == DonHangConstant.Huy || p.TinhTrang == DonHangConstant.GiaoThanhCong || p.TinhTrang == DonHangConstant.KhongTheLayHang))
                 .ToList();
                 foreach (var item in res)
                 {

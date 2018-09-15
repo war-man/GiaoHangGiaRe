@@ -230,6 +230,50 @@ namespace GiaoHangGiaRe.Controllers
             _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
             return Ok(1);
         }
+        //Shipper dang giao đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("giao-hang")]
+        public IHttpActionResult GiaoHang(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.DangGiao;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.LayThanhCong)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Lấy hàng thành công\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
+        //Shipper giao hàng thành công
+        //PUT
+        [HttpPut]
+        [Route("giao-hang-thanh-cong")]
+        public IHttpActionResult GiaoHangThanhCong(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.GiaoThanhCong;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.DangGiao)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Đang giao hàng\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
         //Huy đơn hàng 
         //PUT
         [HttpPut]

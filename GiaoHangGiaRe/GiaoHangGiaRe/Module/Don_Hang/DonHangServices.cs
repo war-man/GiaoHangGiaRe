@@ -191,7 +191,7 @@ namespace GiaoHangGiaRe.Module
             return new List<DonHangKienHang>();
         }
         /// <summary>
-        /// Lấy danh sách đơn hàng của shiper đã hoàn thành hoặc đã hủy
+        /// Lấy danh sách đơn hàng của shiper đã hoàn thành hoặc đã hủy`
         /// </summary>
         /// <returns></returns>
         public List<DonHangKienHang> GetLichSuDonHangCurrentShipper()
@@ -340,6 +340,7 @@ namespace GiaoHangGiaRe.Module
                 if(_input.TinhTrang == DonHangConstant.DaTiepNhan) //Chuyển trạng thái đơn hàng đang chờ thành giao hàng
                 {
                     donhang.MaNhanVienGiao = nhanVienServices.GetNhanVienCurrentUser().MaNhanVien;
+                    donhang.ThoiDiemTiepNhanDon = DateTime.Now;
                 }
                 donhang.TinhTrang = _input.TinhTrang;// Cập nhật tình trạng
             }

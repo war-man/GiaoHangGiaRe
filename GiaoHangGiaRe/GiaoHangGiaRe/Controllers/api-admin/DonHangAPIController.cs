@@ -44,6 +44,23 @@ namespace GiaoHangGiaRe.Controllers
         {           
             return Ok(_donHangServices.GetByUser(username));
         }
+        
+        // GET: 
+        [HttpGet]
+        [Route("get-history-shipper")]
+        [ResponseType(typeof(DonHang))]
+        public IHttpActionResult GetLichSuDonHangCurrentShipper()
+        {
+            return Ok(_donHangServices.GetLichSuDonHangCurrentShipper());
+        }
+        // GET: 
+        [HttpGet]
+        [Route("get-current-shipper")]
+        [ResponseType(typeof(DonHang))]
+        public IHttpActionResult getDonHangCurrentShipper()
+        {
+            return Ok(_donHangServices.GetDonHangCurrentShipper());
+        }
 
         // GET: api/DonHangAPI/5
         [HttpGet]
@@ -134,7 +151,28 @@ namespace GiaoHangGiaRe.Controllers
             _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
             return Ok(1);
         }
-
+        //Shipper lay hang đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("lay-hang")]
+        public IHttpActionResult LayDonHang(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.DangLayHang;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.DaTiepNhan)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Đã tiếp nhận\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
         //Xac nhan đơn hàng 
         //PUT
         [HttpPut]
@@ -148,7 +186,50 @@ namespace GiaoHangGiaRe.Controllers
             _donHangServices.XacNhanDonHang(MaDonHang);
             return Ok(1);
         }
-
+        //Shipper lay hang đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("lay-thanh-cong")]
+        public IHttpActionResult LayThanhCong(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.LayThanhCong;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.DangLayHang)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Đang lấy hàng\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
+        //Shipper lay hang đơn hàng 
+        //PUT
+        [HttpPut]
+        [Route("khong-the-lay-hang")]
+        public IHttpActionResult KhongTheLayHang(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.KhongTheLayHang;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.DangLayHang)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Đang lấy hàng\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
         //Huy đơn hàng 
         //PUT
         [HttpPut]

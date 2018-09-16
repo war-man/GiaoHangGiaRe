@@ -44,7 +44,16 @@ namespace GiaoHangGiaRe.Controllers
         {           
             return Ok(_donHangServices.GetByUser(username));
         }
-        
+
+        // GET: api/DonHangAPI/5
+        [HttpGet]
+        [Route("get-donhang-curent-user")]
+        [ResponseType(typeof(DonHang))]
+        public IHttpActionResult GetDonHangCurrentUser(int TinhTrang)
+        {
+            return Ok(_donHangServices.GetDonHangCurrentuser(TinhTrang));
+        }
+
         // GET: 
         [HttpGet]
         [Route("get-history-shipper")]

@@ -49,7 +49,7 @@ namespace GiaoHangGiaRe.Controllers
         [HttpGet]
         [Route("get-donhang-curent-user")]
         [ResponseType(typeof(DonHang))]
-        public IHttpActionResult GetDonHangCurrentUser(int TinhTrang)
+        public IHttpActionResult GetDonHangCurrentUser(int? TinhTrang)
         {
             return Ok(_donHangServices.GetDonHangCurrentuser(TinhTrang));
         }

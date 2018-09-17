@@ -27,6 +27,7 @@
 		8415C70E210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415C70D210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift */; };
 		841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B50210757980085DDC4 /* SqlLiteViewController.swift */; };
 		841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B52210758410085DDC4 /* LoginViewController.swift */; };
+		841CC8D7214E433E00C6C49F /* OrderUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CC8D6214E433E00C6C49F /* OrderUser.swift */; };
 		841FBB50211090D000F054E7 /* DonHangList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FBB4E211090D000F054E7 /* DonHangList.swift */; };
 		841FBB51211090D000F054E7 /* DonHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FBB4F211090D000F054E7 /* DonHang.swift */; };
 		842DD3C72114600500F2AC25 /* UserViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DD3C62114600500F2AC25 /* UserViewTableViewCell.swift */; };
@@ -44,12 +45,14 @@
 		8496E9F7211D7DF000D14609 /* KienHangViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E9F6211D7DF000D14609 /* KienHangViewCell.swift */; };
 		8496E9FA211D7FA400D14609 /* KienHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E9F9211D7FA400D14609 /* KienHang.swift */; };
 		84B0A30C211041CA00ED6F89 /* DonHangDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */; };
+		84B16F3A214E50E100606F9D /* UserOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */; };
 		84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B42AAC21074D80008467DA /* AppDelegate.swift */; };
 		84B42AB221074D80008467DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB021074D80008467DA /* Main.storyboard */; };
 		84B42AB421074D81008467DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB321074D81008467DA /* Assets.xcassets */; };
 		84B42AB721074D81008467DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB521074D81008467DA /* LaunchScreen.storyboard */; };
 		84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */; };
 		84E0D5E12109F5FA00DB9728 /* CreateKienHangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */; };
+		84E87BD0214D0B4A00849EB7 /* UserOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */; };
 		84FA573C2113069B00DB5458 /* GHButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA573B2113069B00DB5458 /* GHButton.swift */; };
 		F696D621341ED7AF1CA3C969 /* Pods_GiaoHangGiaRe_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5EDCEB7C84B4E4CA8B0901 /* Pods_GiaoHangGiaRe_IOS.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +80,7 @@
 		8415C70D210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonHangCellCustomTableViewCell.swift; sourceTree = "<group>"; };
 		841A9B50210757980085DDC4 /* SqlLiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlLiteViewController.swift; sourceTree = "<group>"; };
 		841A9B52210758410085DDC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		841CC8D6214E433E00C6C49F /* OrderUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderUser.swift; sourceTree = "<group>"; };
 		841FBB4E211090D000F054E7 /* DonHangList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonHangList.swift; sourceTree = "<group>"; };
 		841FBB4F211090D000F054E7 /* DonHang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonHang.swift; sourceTree = "<group>"; };
 		842DD3C62114600500F2AC25 /* UserViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		8496E9F6211D7DF000D14609 /* KienHangViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KienHangViewCell.swift; sourceTree = "<group>"; };
 		8496E9F9211D7FA400D14609 /* KienHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KienHang.swift; sourceTree = "<group>"; };
 		84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonHangDetailsViewController.swift; sourceTree = "<group>"; };
+		84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderTableViewCell.swift; sourceTree = "<group>"; };
 		84B42AA921074D80008467DA /* GiaoHangGiaRe_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiaoHangGiaRe_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B42AAC21074D80008467DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84B42AB121074D80008467DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 		84B42AB821074D81008467DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateKienHangViewController.swift; sourceTree = "<group>"; };
+		84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewController.swift; sourceTree = "<group>"; };
 		84FA573B2113069B00DB5458 /* GHButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHButton.swift; sourceTree = "<group>"; };
 		84FDFB3B2116F505002ACE66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +181,7 @@
 		8415C70C210F1E9B008A26CF /* ViewCustom */ = {
 			isa = PBXGroup;
 			children = (
+				84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */,
 				8496E9F5211D7DB900D14609 /* KienHangCell */,
 				84006143211C834700116E0A /* UserDetailsCell */,
 				8415C70D210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift */,
@@ -229,6 +236,7 @@
 		84386676210B4C6000F7919F /* User */ = {
 			isa = PBXGroup;
 			children = (
+				841CC8D6214E433E00C6C49F /* OrderUser.swift */,
 				84386674210B4C5000F7919F /* User.swift */,
 				8446CDA9210C64C8003BFC7B /* UserRegister.swift */,
 			);
@@ -302,6 +310,7 @@
 				840F10C02109127F004383A0 /* CreateOrderViewController.swift */,
 				84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */,
 				84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */,
+				84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -451,6 +460,7 @@
 				8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */,
 				8415C70E210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift in Sources */,
 				840F10BB2108D400004383A0 /* ShipperMainViewController.swift in Sources */,
+				841CC8D7214E433E00C6C49F /* OrderUser.swift in Sources */,
 				84318C762143CBF80094E983 /* ListKienHang.swift in Sources */,
 				845321AF2142DBBE00C748D9 /* ShipperOrderViewController.swift in Sources */,
 				84FA573C2113069B00DB5458 /* GHButton.swift in Sources */,
@@ -477,7 +487,9 @@
 				8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */,
 				84006140211C7BDF00116E0A /* UserDetails_Base.swift in Sources */,
 				8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */,
+				84B16F3A214E50E100606F9D /* UserOrderTableViewCell.swift in Sources */,
 				841FBB51211090D000F054E7 /* DonHang.swift in Sources */,
+				84E87BD0214D0B4A00849EB7 /* UserOrderViewController.swift in Sources */,
 				8473E2CB21450F93003EAAE3 /* HistoryOrderViewController.swift in Sources */,
 				84318C742143CBF80094E983 /* Json4Swift_Base.swift in Sources */,
 				8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */,

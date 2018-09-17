@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Screenshot 2018-07-29 03.13.49.png",
+      "filename" : "order_outline.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "order_outline-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "order_outline-2.png",
       "scale" : "3x"
     }
   ],

@@ -13,12 +13,15 @@ import NVActivityIndicatorView
 class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var activityIndicatorView : NVActivityIndicatorView!
     var overlay : UIView?
+    
     @IBOutlet weak var tableViewShipperOrder: UITableView!
     var donhangList: [Json4Swift_Base] = []
+    var refreshControl: UIRefreshControl?
     override func viewDidLoad() {
         tableViewShipperOrder.delegate = self
         tableViewShipperOrder.dataSource = self
         initLoadingUI()
+        addUIRefreshControl()
         super.viewDidLoad()
         getDonHangTiepNhan()
     }
@@ -37,6 +40,12 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         overlay?.backgroundColor = UIColor.black
         overlay?.alpha = 0.3
         self.view.addSubview(activityIndicatorView)
+    }
+    func addUIRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.orange
+        refreshControl?.addTarget(self, action: #selector(getDonHangTiepNhan), for: .valueChanged)
+        tableViewShipperOrder.addSubview(refreshControl!)
     }
     func changeTrangThaiDonHang(TrangThai: Int, MaDonHang: Int){
         //Start Loading
@@ -63,14 +72,14 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
                 //Stop Loading
                 self.activityIndicatorView.stopAnimating()
                 self.overlay?.removeFromSuperview()
-                DispatchQueue.main.async { self.tableViewShipperOrder.reloadData() }
+                DispatchQueue.main.async { self.getDonHangTiepNhan() }
                 break
             case .failure(_):
                 break
             }
         }
     }
-    func getDonHangTiepNhan(){
+    @objc func getDonHangTiepNhan(){
         //Start Loading
         activityIndicatorView.startAnimating()
         view.addSubview(overlay!)
@@ -86,10 +95,15 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()
                     self.overlay?.removeFromSuperview()
-                    
+                    self.refreshControl?.endRefreshing()
                     DispatchQueue.main.async {
                         self.tableViewShipperOrder.reloadData()
                     }
+                }else{
+                    //Stop Loading
+                    self.activityIndicatorView.stopAnimating()
+                    self.overlay?.removeFromSuperview()
+                    self.refreshControl?.endRefreshing()
                 }
             }
         }
@@ -103,18 +117,17 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             self.changeTrangThaiDonHang(TrangThai: 3,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 3 lấy hàng thành công
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG GIAO\"")
         }
+        if donhangList[sender.tag].donHang?.tinhTrang == 3{
+             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO HÀNG\"")
+        }
     }
     @objc func btnHuyDonHang (sender: UIButton){
-        if donhangList[sender.tag].donHang?.tinhTrang == 1{
-            //chuyen trang thai sang 4
-            self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
-            tableViewShipperOrder.reloadData()
-        }
         if donhangList[sender.tag].donHang?.tinhTrang == 2 {
             self.changeTrangThaiDonHang(TrangThai: -2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = -2 khong the lay hang
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"KHÔNG THỂ LẤY HÀNG\"")
+        }else{
+            self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
         }
-       
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return donhangList.count
@@ -122,10 +135,13 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangTiepNhanCell", for: indexPath) as! ShipperOrderCell
+        cell.DonHangImage.image = UIImage(named: "box")
         cell.lblDiaChiGui.text = donhangList[indexPath.row].donHang?.diaChiGui
         cell.lblDiaChiNhan.text = donhangList[indexPath.row].donHang?.diaChiNhan
-         cell.btnChuyenTrangThai.tag = indexPath.row
+        cell.btnChuyenTrangThai.tag = indexPath.row
+        cell.btnChuyenTrangThai.layer.cornerRadius = 10
         cell.btnHuyDonHang.tag = indexPath.row
+        cell.btnHuyDonHang.layer.cornerRadius = 10
         cell.btnThoiDiemNhanDonHang.text = donhangList[indexPath.row].donHang?.thoiDiemTiepNhanDon
         cell.btnChuyenTrangThai.addTarget(self, action: #selector(self.btnChuyenTrangThai(sender:)), for: UIControlEvents.touchUpInside)
         cell.btnHuyDonHang.addTarget(self, action: #selector(self.btnHuyDonHang(sender:)), for: UIControlEvents.touchUpInside)
@@ -139,7 +155,7 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             cell.btnChuyenTrangThai.frame = CGRect(x: cell.btnChuyenTrangThai.frame.minX, y: cell.btnChuyenTrangThai.frame.minY, width: 40, height: 40)
             
             cell.btnHuyDonHang.setTitle("", for: .normal)
-            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "warning"), for: .normal)
             cell.btnHuyDonHang.backgroundColor = UIColor.clear
             cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
         }
@@ -147,6 +163,17 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             cell.btnChuyenTrangThai.isHidden = true
             cell.btnHuyDonHang.isHidden = true
             cell.backgroundColor = UIColor.gray
+        }
+        if donhangList[indexPath.row].donHang?.tinhTrang == 3 {
+            cell.btnChuyenTrangThai.setBackgroundImage(#imageLiteral(resourceName: "giao"), for: .normal) // Đi giao
+            cell.btnChuyenTrangThai.setTitle("", for: .normal)
+            cell.btnChuyenTrangThai.backgroundColor = UIColor.clear
+            cell.btnChuyenTrangThai.frame = CGRect(x: cell.btnChuyenTrangThai.frame.minX, y: cell.btnChuyenTrangThai.frame.minY, width: 40, height: 40)
+            
+            cell.btnHuyDonHang.setTitle("", for: .normal)   // HUỶ
+            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+            cell.btnHuyDonHang.backgroundColor = UIColor.clear
+            cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
         }
         return cell
     }

@@ -9,10 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITextFieldDelegate {
+    var activityIndicatorView : NVActivityIndicatorView!
+    var overlay : UIView?
     
-    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var tfTenTaiKhoan: UITextField!
     @IBOutlet weak var tfMatKhau: UITextField!
@@ -20,6 +22,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     @IBOutlet weak var btnDangKy: UIButton!
     @IBOutlet weak var lblError: UILabel!
     override func viewDidLoad() {
+        initLoadingUI()
         super.viewDidLoad()
         viewContent.layer.cornerRadius = 5
         checkLogined()
@@ -56,6 +59,18 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         }
         return nil
     }
+    func initLoadingUI() {
+        let xAxis = self.view.center.x
+        let yAxis = self.view.center.y
+        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame)
+        activityIndicatorView.type = . ballClipRotate // add your type
+        activityIndicatorView.color = UIColor.orange // add your color
+        overlay = UIView(frame: view.frame)
+        overlay?.backgroundColor = UIColor.black
+        overlay?.alpha = 0.3
+        self.view.addSubview(activityIndicatorView)
+    }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -66,9 +81,11 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     var user: User?
     @IBAction func btnDangNhap_Clicked(_ sender: Any) {
         if validate() {
+            //Start Loading
+            activityIndicatorView.startAnimating()
+            view.addSubview(overlay!)
             let host = "http://giaohanggiare.gearhostpreview.com/"
-            loadingSpinner.startAnimating()
-            UIApplication.shared.beginIgnoringInteractionEvents()
+
             let params = [
                 "grant_type": "password",
                 "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
@@ -77,8 +94,10 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
                 switch(response.result) {
                 case .success(_):
                     if response.result.value != nil{
-                        self.loadingSpinner.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
+                        //Stop Loading
+                        self.activityIndicatorView.stopAnimating()
+                        self.overlay?.removeFromSuperview()
+
                         _ = (response.response?.statusCode)!
                         let res = response.result.value! as! NSDictionary
                         let access_token = res.object(forKey: "access_token")
@@ -100,15 +119,19 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
                             self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
                         }
                     }else{
-                        self.loadingSpinner.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
+                        //Stop Loading
+                        self.activityIndicatorView.stopAnimating()
+                        self.overlay?.removeFromSuperview()
+
                         self.alertMessager(title: "Không thể đăng nhập", message: "Tài khoản hoặc mật khẩu sai, hãy thử lại")
                     }
                     break
                     
                 case .failure(_):
-                    self.loadingSpinner.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    //Stop Loading
+                    self.activityIndicatorView.stopAnimating()
+                    self.overlay?.removeFromSuperview()
+                    
                     self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                     break
                 }

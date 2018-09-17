@@ -11,7 +11,7 @@ import Alamofire
 
 class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate {
     
-    var listTask:[String] = ["Đơn hàng đang giao","Đơn hàng đang chờ","Đơn hàng hoàn thành","Đơn hàng bị huỷ"]
+    var listTask:[String] = ["Đơn hàng đang giao","Đơn hàng đang chờ","Đơn hàng hoàn thành","Đơn hàng bị huỷ","Tất cả"]
     var searchResult : [String] = []
     
     @IBOutlet weak var tableViewUserMain: UITableView!
@@ -43,7 +43,6 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
                 }
             }
         }
-        
         tableViewUserMain.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +53,38 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserMainCell", for: indexPath) as! UserMainTableViewCell
         cell.lblTitle.text = searchResult[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            vc.TinhTrang = 4 //DangGiao = 4
+            vc.title2 = "Đơn hàng đang giao"
+            self.navigationController?.pushViewController( vc , animated: true)
+        }
+        if indexPath.row == 1{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            vc.TinhTrang = 0 //DangGiao = 4
+            vc.title2 = "Đơn hàng đang chờ"
+            self.navigationController?.pushViewController( vc , animated: true)
+        }
+        if indexPath.row == 2{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            vc.TinhTrang = 6 //DangGiao = 4
+            vc.title2 = "Đơn hàng hoàn thành"
+            self.navigationController?.pushViewController( vc , animated: true)
+        }
+        if indexPath.row == 3{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            vc.TinhTrang = -1 //Huy =. 1
+            vc.title2 = "Đơn hàng bị huỷ"
+            self.navigationController?.pushViewController( vc , animated: true)
+        }
+        if indexPath.row == 4{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            vc.TinhTrang = nil
+            vc.title2 = "Tất cả"
+            self.navigationController?.pushViewController( vc , animated: true)
+        }
     }
 
     func getDonHang() {

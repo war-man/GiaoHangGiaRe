@@ -323,6 +323,7 @@ namespace GiaoHangGiaRe.Module
                     {
                         donhang.ThanhTien = 0;
                     }
+                    donhang.TinhTrang = DonHangConstant.GiaoThanhCong;
                     var dh = new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
                     {
                         MaDonHang = donhang.MaDonHang,
@@ -331,8 +332,7 @@ namespace GiaoHangGiaRe.Module
                         ThanhTien = donhang.ThanhTien,
                         MaKhachHang = kh
                     };
-                    _hoadonRepository.Insert(dh);
-                    
+                    _hoadonRepository.Insert(dh);                   
                 }
             }
             else

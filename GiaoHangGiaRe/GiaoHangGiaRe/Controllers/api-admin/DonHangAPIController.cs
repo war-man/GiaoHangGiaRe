@@ -264,6 +264,28 @@ namespace GiaoHangGiaRe.Controllers
         //Shipper giao hàng thành công
         //PUT
         [HttpPut]
+        [Route("dang-giao-hang")]
+        public IHttpActionResult DangGiaoHang(int MaDonHang)
+        {
+            UpdateTrangThaiDonHang updateTrangThaiDonHang = new UpdateTrangThaiDonHang();
+            updateTrangThaiDonHang.MaDonHang = MaDonHang;
+            updateTrangThaiDonHang.TinhTrang = DonHangConstant.DangGiao;
+            var donhang = _donHangServices.GetById(MaDonHang);
+            if (donhang.TinhTrang != DonHangConstant.LayThanhCong)
+            {
+                return ResponseMessage(Request.CreateErrorResponse
+                    (HttpStatusCode.InternalServerError, "Trạng thái đơn hàng phải là \"Lay hang thanh cong\"!"));
+            }
+            if (updateTrangThaiDonHang.MaDonHang <= 0)
+            {
+                return BadRequest();
+            }
+            _donHangServices.changeStatusDonHang(updateTrangThaiDonHang);
+            return Ok(1);
+        }
+        //Shipper giao hàng thành công
+        //PUT
+        [HttpPut]
         [Route("giao-hang-thanh-cong")]
         public IHttpActionResult GiaoHangThanhCong(int MaDonHang)
         {

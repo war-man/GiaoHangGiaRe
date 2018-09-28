@@ -10,21 +10,30 @@ import UIKit
 import Alamofire
 import NVActivityIndicatorView
 
-class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class DonHangDetailsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
     var MaDonHang: Int?
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var lblNoiDung: UILabel!
     @IBOutlet weak var lblMaDonHang: UILabel!
-    @IBOutlet weak var collectionDonHangDetails: UICollectionView!
+    @IBOutlet weak var lblNguoiGui: UILabel!
+    @IBOutlet weak var lblsdtGui: UILabel!
+    @IBOutlet weak var lblDiaChiNguoiGui: UILabel!
+    @IBOutlet weak var lblNguoiNhan: UILabel!
+    @IBOutlet weak var lblSoDienThoaiNhan: UILabel!
+    @IBOutlet weak var lblDiaChiNhan: UILabel!
+    
+    @IBOutlet weak var lblSoKienHang: UILabel!
+    @IBOutlet weak var tableViewDonHangDetail: UITableView!
     var DonHangDetails: Donhang? = nil;
     var listKienHang: [Kienhang] = [];
     var overlay : UIView?
     var activityIndicatorView : NVActivityIndicatorView!
     
     override func viewDidLoad() {
-        collectionDonHangDetails.delegate = self
-        collectionDonHangDetails.dataSource = self
+        tableViewDonHangDetail.delegate = self
+        tableViewDonHangDetail.dataSource = self
         initLoadingUI()
         super.viewDidLoad()
         lblMaDonHang.text = "\(MaDonHang!)"
@@ -50,23 +59,18 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
         overlay?.alpha = 0.3
         self.view.addSubview(activityIndicatorView)
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsCollectionViewCell", for: indexPath) as! DetailDHCollectionViewCell
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.orange.cgColor
+    //set data
+    func setData() {
+        lblNguoiGui.text = DonHangDetails?.nguoiGui
+        lblsdtGui.text = DonHangDetails?.soDienThoaiNguoiGui
+        lblDiaChiNguoiGui.text = DonHangDetails?.diaChiGui
         
-        cell.lblTenNguoiGui.text = DonHangDetails?.nguoiGui
-        
-        cell.lblSDTNguoiGui.text = DonHangDetails?.soDienThoaiNguoiGui
-        cell.lblDiaChiGui.text = DonHangDetails?.diaChiGui
-       
-        return cell
+        lblNguoiNhan.text = DonHangDetails?.nguoiNhan
+        lblDiaChiNhan.text = DonHangDetails?.diaChiNhan
+        lblSoDienThoaiNhan.text = DonHangDetails?.soDienThoaiNguoiNhan
+        lblSoKienHang.text = "\(listKienHang.count)"
+        tableViewDonHangDetail.reloadData()
     }
-    
     //api goi
     private func getDonHangDetail() {
         //Start loading
@@ -85,29 +89,20 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
                     self.overlay?.removeFromSuperview()
                     
                     let jsbase = try? JSONDecoder().decode(DonHangDetais_Base.self, from: data)
-//                    guard let dh = jsbase?.donhang else{
-//                        return;
-//                    }
-//                    guard let kh = jsbase?.kienhang else {
-//                        return;
-//                    }
-                    let dh = jsbase?.donhang
-                    let kh = jsbase?.kienhang
-                    if kh == nil {
-                        self.listKienHang = []
-                    }else{
-                                            self.listKienHang = kh!
+                    guard let dh = jsbase?.donhang else{
+                        self.alertMessager(title: "Thông báo", message: "Dữ liệu đơn hàng bị thiếu")
+                        return;
                     }
-                    if dh == nil{
-                        self.DonHangDetails = nil
-                    }else{
-                                            self.DonHangDetails = dh
+                    guard let kh = jsbase?.kienhang else {
+                        self.alertMessager(title: "Thông báo", message: "Dữ liệu kiện hàng bị thiếu")
+                        return;
                     }
+                    self.listKienHang = kh
+                    self.DonHangDetails = dh
 
-
-                    self.lblNoiDung.text = dh?.ghiChu
+                    self.lblNoiDung.text = dh.ghiChu
                     DispatchQueue.main.async {
-                        self.collectionDonHangDetails.reloadData()
+                        self.setData()
                     }
 
                 }else{
@@ -118,8 +113,21 @@ class DonHangDetailsViewController: UIViewController,UICollectionViewDelegate,UI
             }
             response.result.ifFailure {
                 print(response.result.error ?? "0")
-            }
-            
+                 self.alertMessager(title: "Thông báo", message: "Kết nối thất bại")
+            }            
         }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listKienHang.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangDetailsCell", for: indexPath) as! KienHangDetailsCell
+        cell.lblNoiDung.text = listKienHang[indexPath.row].noiDung
+        cell.lblDai.text = "\(listKienHang[indexPath.row].chieuDai!)"
+        cell.lblRong.text = "\(listKienHang[indexPath.row].chieuRong!)"
+        cell.lblKhoiLuong.text = "\(listKienHang[indexPath.row].trongLuong!)"
+        cell.lblSoLuong.text = "\(listKienHang[indexPath.row].soLuong!)"
+        return cell
     }
 }

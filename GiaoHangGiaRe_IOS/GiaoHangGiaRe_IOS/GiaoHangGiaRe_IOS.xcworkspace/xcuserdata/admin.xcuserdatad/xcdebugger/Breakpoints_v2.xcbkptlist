@@ -201,61 +201,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/DonHangDetailsViewController.swift"
-            timestampString = "558852132.379823"
+            filePath = "GiaoHangGiaRe_IOS/Controllers/Shipper/ShipperOrderViewController.swift"
+            timestampString = "559414164.958344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/DonHangDetailsViewController.swift"
-            timestampString = "558852132.380139"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "getDonHangDetail()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/DonHangDetailsViewController.swift"
-            timestampString = "558852132.380334"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "getDonHangDetail()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GiaoHangGiaRe_IOS/Controllers/DonHangDetailsViewController.swift"
-            timestampString = "558852132.380543"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "getDonHangDetail()"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "changeTrangThaiDonHang(TrangThai:MaDonHang:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

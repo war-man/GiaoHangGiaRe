@@ -63,6 +63,12 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         if TrangThai == 3{
             url = host+"api/donhang/lay-thanh-cong"
         }
+        if TrangThai == 4{
+            url = host+"api/donhang/dang-giao-hang"
+        }
+        if TrangThai == 6{
+            url = host+"api/donhang/giao-hang-thanh-cong"
+        }
         if TrangThai == -2{
             url = host+"api/donhang/khong-the-lay-hang"
         }
@@ -119,6 +125,11 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 3{
              self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO HÀNG\"")
+            self.changeTrangThaiDonHang(TrangThai: 4,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
+        }
+        if donhangList[sender.tag].donHang?.tinhTrang == 4{//đang giao chuyển sang giao thành công
+            self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO THÀNH CÔNG\"")
+            self.changeTrangThaiDonHang(TrangThai: 6,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
         }
     }
     @objc func btnHuyDonHang (sender: UIButton){
@@ -126,7 +137,11 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             self.changeTrangThaiDonHang(TrangThai: -2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = -2 khong the lay hang
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"KHÔNG THỂ LẤY HÀNG\"")
         }else{
-            self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
+            if donhangList[sender.tag].donHang?.tinhTrang == 4 {
+                //will go to orther page
+            }else{
+                self.alertMessager(title: "Huỷ đơn hàng", message: "Đơn hàng sẽ được huỷ !")
+            }
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -172,6 +187,17 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             
             cell.btnHuyDonHang.setTitle("", for: .normal)   // HUỶ
             cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+            cell.btnHuyDonHang.backgroundColor = UIColor.clear
+            cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
+        }
+        if donhangList[indexPath.row].donHang?.tinhTrang == 4 {
+            cell.btnChuyenTrangThai.setBackgroundImage(#imageLiteral(resourceName: "ok"), for: .normal) // Done
+            cell.btnChuyenTrangThai.setTitle("", for: .normal)
+            cell.btnChuyenTrangThai.backgroundColor = UIColor.clear
+            cell.btnChuyenTrangThai.frame = CGRect(x: cell.btnChuyenTrangThai.frame.minX, y: cell.btnChuyenTrangThai.frame.minY, width: 40, height: 40)
+            
+            cell.btnHuyDonHang.setTitle("", for: .normal)   // HUỶ
+            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "more"), for: .normal)
             cell.btnHuyDonHang.backgroundColor = UIColor.clear
             cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
         }

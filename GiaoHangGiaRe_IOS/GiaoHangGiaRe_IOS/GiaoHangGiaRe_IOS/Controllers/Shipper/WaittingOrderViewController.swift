@@ -115,7 +115,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangChoCell", for: indexPath) as! DonHangCellCustomTableViewCell
         cell.btnChiTiet.addTarget(self, action: #selector(self.btnChiTiet(sender:)), for: UIControlEvents.touchUpInside)
         cell.btnTiepNhan.addTarget(self, action: #selector(self.btnTiepNhanDonHang(sender:)), for: UIControlEvents.touchUpInside)
-        cell.btnChiTiet.tag = indexPath.row
+        cell.btnChiTiet.tag = listDonHang[indexPath.row].maDonHang!
         cell.btnTiepNhan.tag = listDonHang[indexPath.row].maDonHang!
         cell.lblDiaChiDen.text = listDonHang[indexPath.row].diaChiNhan
         return cell

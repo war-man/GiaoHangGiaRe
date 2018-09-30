@@ -65,5 +65,8 @@
 
         [Display(Name = "Mã hành trình")]
         public int? MaHanhTrinh { get; set; }
+
+        [Display(Name = "COD Thu ho")]
+        public int? cod { get; set; }
     }
 }

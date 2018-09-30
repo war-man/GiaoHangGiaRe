@@ -14,6 +14,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<DonHang> _donhangRepository;
         private UserServices userServices;
         private NhanVienServices nhanVienServices;
+        private NoServices noServices;
         private LichSuServices lichSuServices;
         private HoaDonServices _hoaDonServices;
         private KienHangServices kienHangServices;
@@ -24,6 +25,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<Report> _reportRepository;
         public DonHangServices()
         {
+            NoServices noServices = new NoServices();
             _hoaDonServices = new HoaDonServices();
             _donhangRepository = new IRepository<DonHang>();
             userServices = new UserServices();
@@ -325,7 +327,7 @@ namespace GiaoHangGiaRe.Module
                     {
                         donhang.ThanhTien = 0;
                     }
-                
+                    
                     var hoadon = new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
                     {
                         MaHoaDon = 12,
@@ -340,6 +342,22 @@ namespace GiaoHangGiaRe.Module
                     hoadon.MaKhachHang = kh.MaKhachHang;
                     }
                 _hoaDonServices.Create(hoadon);
+                if (donhang.cod.HasValue)
+                {
+                    string code = "COD_";
+                    Random rd = new Random();
+                    Random rd2 = new Random();
+
+                    noServices.Create(new No
+                    {
+                        KyHieu = code + rd.Next(10, 1000).ToString() + rd2.Next(10, 1000).ToString(),
+                        MoTa = donhang.GhiChu,
+                        MaKhachHang = donhang.MaKhachHang.ToString(),
+                        ThoiGian = DateTime.Now,
+                        TrangThai = 0
+                    });
+                    //Will create No (cod)
+                }
                 donhang.TinhTrang = DonHangConstant.GiaoThanhCong;
                 // }
             }

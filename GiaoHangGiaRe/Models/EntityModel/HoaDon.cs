@@ -9,11 +9,12 @@
     [Table("HoaDon")]
     public partial class HoaDon
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int MaHoaDon { get; set; }
 
         [Display(Name = "Mã đơn hàng")]
-        public int? MaDonHang { get; set; }
+        public int MaDonHang { get; set; }
 
         [Column(TypeName = "money")]
         [Display(Name = "Thành tiền")]

@@ -15,6 +15,7 @@ namespace GiaoHangGiaRe.Module
         private UserServices userServices;
         private NhanVienServices nhanVienServices;
         private LichSuServices lichSuServices;
+        private HoaDonServices _hoaDonServices;
         private KienHangServices kienHangServices;
         private IRepository<KienHang> _kienhangRepository;
         private IRepository<HoaDon> _hoadonRepository;
@@ -23,6 +24,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<Report> _reportRepository;
         public DonHangServices()
         {
+            _hoaDonServices = new HoaDonServices();
             _donhangRepository = new IRepository<DonHang>();
             userServices = new UserServices();
             nhanVienServices = new NhanVienServices();
@@ -315,25 +317,31 @@ namespace GiaoHangGiaRe.Module
             var donhang = _donhangRepository.SelectById(_input.MaDonHang);
             if(_input.TinhTrang == DonHangConstant.GiaoThanhCong)
             {
-                if(_khachhangRepository.GetAll().Any(p => p.TenTaiKhoan == donhang.TenTaiKhoan)){
-
-                    var kh = _khachhangRepository.GetAll().Where(p => p.TenTaiKhoan == donhang.TenTaiKhoan).SingleOrDefault().MaKhachHang;
+               // if(_khachhangRepository.GetAll().Any(p => p.TenTaiKhoan == donhang.TenTaiKhoan)){
+                    
+                    var kh = _khachhangRepository.GetAll().Where(p => p.TenTaiKhoan == donhang.TenTaiKhoan).SingleOrDefault();
                     donhang.ThoiDiemHoanThanhDH = DateTime.Now;
                     if (donhang.ThanhTien == null)
                     {
                         donhang.ThanhTien = 0;
                     }
-                    donhang.TinhTrang = DonHangConstant.GiaoThanhCong;
-                    var dh = new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
+                
+                    var hoadon = new HoaDon //Tạo hóa đơn cho đơn hàng hoàn thành
                     {
+                        MaHoaDon = 12,
                         MaDonHang = donhang.MaDonHang,
                         GhiChu = donhang.GhiChu,
                         MaNhanVienGH = donhang.MaNhanVienGiao,
                         ThanhTien = donhang.ThanhTien,
-                        MaKhachHang = kh
+                       
                     };
-                    _hoadonRepository.Insert(dh);                   
-                }
+                    if (kh != null)
+                    {
+                    hoadon.MaKhachHang = kh.MaKhachHang;
+                    }
+                _hoaDonServices.Create(hoadon);
+                donhang.TinhTrang = DonHangConstant.GiaoThanhCong;
+                // }
             }
             else
             {

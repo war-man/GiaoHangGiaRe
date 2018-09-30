@@ -22,7 +22,7 @@ namespace GiaoHangGiaRe.Models
 
         public int MaKhachHang { get; set; }
         public int? MaHanhTrinh { get; set; }
-
+        public int? cod { get; set; }
         public DonHangList()
         {
         }

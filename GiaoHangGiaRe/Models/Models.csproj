@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201809241538599_sua hoa don.Designer.cs">
       <DependentUpon>201809241538599_sua hoa don.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809300954484_updateCOD.cs" />
+    <Compile Include="Migrations\201809300954484_updateCOD.Designer.cs">
+      <DependentUpon>201809300954484_updateCOD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809241538599_sua hoa don.resx">
       <DependentUpon>201809241538599_sua hoa don.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809300954484_updateCOD.resx">
+      <DependentUpon>201809300954484_updateCOD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

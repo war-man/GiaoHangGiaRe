@@ -23,6 +23,7 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
     @IBOutlet weak var tfDiaChiNhan: UITextField!
     @IBOutlet weak var tfGhiChu: UITextField!
     
+    @IBOutlet weak var tfCod: UITextField!
     @IBOutlet weak var btnSubmit: UIButton!
     var listKienHang: [KienHang] = []
     var activityIndicatorView : NVActivityIndicatorView!

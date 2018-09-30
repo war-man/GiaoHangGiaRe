@@ -202,12 +202,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GiaoHangGiaRe_IOS/Controllers/Shipper/ShipperOrderViewController.swift"
-            timestampString = "559414164.958344"
+            timestampString = "560026180.540211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "changeTrangThaiDonHang(TrangThai:MaDonHang:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GiaoHangGiaRe_IOS/Controllers/Shipper/WaittingOrderViewController.swift"
+            timestampString = "560027393.668258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getDonHang()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

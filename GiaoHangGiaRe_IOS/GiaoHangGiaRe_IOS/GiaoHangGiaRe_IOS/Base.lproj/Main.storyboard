@@ -638,6 +638,13 @@
                                                     <action selector="btnSubmitClicked:" destination="Jax-AJ-Wgv" eventType="touchUpInside" id="grL-Ou-PZM"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thu hộ (COD)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wdx-B5-FeU">
+                                                <rect key="frame" x="36" y="424" width="311" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -699,6 +706,7 @@
                         <outlet property="btnTaoKienHang" destination="VwZ-MP-llK" id="Iho-0p-3Z8"/>
                         <outlet property="lblSoKienHang" destination="FP0-qE-Lrj" id="jwi-A5-YfS"/>
                         <outlet property="tableKienHang" destination="Lwb-CA-POg" id="6n3-hO-Dgx"/>
+                        <outlet property="tfCod" destination="Wdx-B5-FeU" id="6Jq-6Q-9hL"/>
                         <outlet property="tfDiaChiGui" destination="iH0-O7-siU" id="IZy-A8-hQL"/>
                         <outlet property="tfDiaChiNhan" destination="oBw-mj-JC8" id="uC9-43-j1h"/>
                         <outlet property="tfGhiChu" destination="Kv3-et-kwz" id="6MQ-aw-M1M"/>
@@ -710,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHH-5p-P8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3070" y="-506"/>
+            <point key="canvasLocation" x="3069.5999999999999" y="-506.44677661169419"/>
         </scene>
         <!--Create Kien Hang View Controller-->
         <scene sceneID="sjA-Hn-CnT">

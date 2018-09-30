@@ -64,14 +64,19 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
         let header: HTTPHeaders = ["Authorization":token as! String]
         
         Alamofire.request(host+"api/donhang/get-all", method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
-            
+            //Stop loading
+            self.activityIndicatorView.stopAnimating()
+            self.overlay?.removeFromSuperview()
+            self.refreshControl?.endRefreshing()
             if let data = response.result.value {
-                let list = try? JSONDecoder().decode(DonHang.self, from: data)
-                self.listDonHang = (list?.list)!
-                //Stop loading
-                self.activityIndicatorView.stopAnimating()
-                self.overlay?.removeFromSuperview()
-                self.refreshControl?.endRefreshing()
+                guard let list = try? JSONDecoder().decode(DonHang.self, from: data)
+                    else{
+                        self.alertMessager(title: "Thông báo", message: "Không có dữ liệu đơn hàng")
+                        return
+                }
+                
+                self.listDonHang = list.list!
+               
                 DispatchQueue.main.async {
                     self.tableDonHangCho.reloadData()
                 }

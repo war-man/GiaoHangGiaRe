@@ -63,12 +63,17 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
         Alamofire.request(host+"api/donhang/get-history-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
             if response.result.isSuccess{
                 if let data = response.result.value {
-                    let base = try? JSONDecoder().decode([Json4Swift_Base].self, from: data)
-                    self.donhangList = base!;
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()
                     self.overlay?.removeFromSuperview()
                     self.refreshControl?.endRefreshing()
+                    
+                    guard let base = try? JSONDecoder().decode([Json4Swift_Base].self, from: data)
+                    else{
+                        self.alertMessager(title: "Thông báo", message: "Dữ liệu bị lỗi")
+                        return
+                    }
+                    self.donhangList = base;
                     
                     DispatchQueue.main.async {
                         self.tableViewHistoryOrder.reloadData()

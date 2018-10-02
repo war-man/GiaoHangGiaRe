@@ -28,6 +28,8 @@
 		841834B8215619920080B1EB /* KienHangDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841834B7215619920080B1EB /* KienHangDetailsCell.swift */; };
 		841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B50210757980085DDC4 /* SqlLiteViewController.swift */; };
 		841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A9B52210758410085DDC4 /* LoginViewController.swift */; };
+		841BB6A221626D880088A46F /* CreateDonHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BB6A121626D880088A46F /* CreateDonHang.swift */; };
+		841BB6A421627AA40088A46F /* DonHangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BB6A321627AA40088A46F /* DonHangModel.swift */; };
 		841CC8D7214E433E00C6C49F /* OrderUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CC8D6214E433E00C6C49F /* OrderUser.swift */; };
 		841FBB50211090D000F054E7 /* DonHangList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FBB4E211090D000F054E7 /* DonHangList.swift */; };
 		841FBB51211090D000F054E7 /* DonHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841FBB4F211090D000F054E7 /* DonHang.swift */; };
@@ -82,6 +84,8 @@
 		841834B7215619920080B1EB /* KienHangDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KienHangDetailsCell.swift; sourceTree = "<group>"; };
 		841A9B50210757980085DDC4 /* SqlLiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlLiteViewController.swift; sourceTree = "<group>"; };
 		841A9B52210758410085DDC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		841BB6A121626D880088A46F /* CreateDonHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDonHang.swift; sourceTree = "<group>"; };
+		841BB6A321627AA40088A46F /* DonHangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonHangModel.swift; sourceTree = "<group>"; };
 		841CC8D6214E433E00C6C49F /* OrderUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderUser.swift; sourceTree = "<group>"; };
 		841FBB4E211090D000F054E7 /* DonHangList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonHangList.swift; sourceTree = "<group>"; };
 		841FBB4F211090D000F054E7 /* DonHang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonHang.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 			children = (
 				841FBB4F211090D000F054E7 /* DonHang.swift */,
 				841FBB4E211090D000F054E7 /* DonHangList.swift */,
+				841BB6A121626D880088A46F /* CreateDonHang.swift */,
+				841BB6A321627AA40088A46F /* DonHangModel.swift */,
 			);
 			path = DonHang;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				84318C762143CBF80094E983 /* ListKienHang.swift in Sources */,
 				845321AF2142DBBE00C748D9 /* ShipperOrderViewController.swift in Sources */,
 				84FA573C2113069B00DB5458 /* GHButton.swift in Sources */,
+				841BB6A421627AA40088A46F /* DonHangModel.swift in Sources */,
 				84006139211C602800116E0A /* Donhang.swift in Sources */,
 				84318C692143ACCF0094E983 /* ShipperOrderCell.swift in Sources */,
 				8406ECDC2114B8FB001DBAEB /* UserMainTableViewCell.swift in Sources */,
@@ -487,6 +494,7 @@
 				840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */,
 				84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */,
 				8400613A211C602800116E0A /* DonHangDetails_Base.swift in Sources */,
+				841BB6A221626D880088A46F /* CreateDonHang.swift in Sources */,
 				8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */,
 				84006140211C7BDF00116E0A /* UserDetails_Base.swift in Sources */,
 				8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */,

@@ -75,19 +75,38 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             //Start Loading
             activityIndicatorView.startAnimating()
             view.addSubview(overlay!)
+            
+            var donhang: DonHangModel = DonHangModel(NguoiGui: tfNguoiGui.text!, SoDienThoaiGui: tfSoDienThoaiGui.text!, DiaChiGui: tfDiaChiGui.text!, NguoiNhan: tfNguoiNhan.text!, SoDienThoaiNhan: tfSoDienThoaiNhan.text!, DiaChiNhan: tfDiaChiNhan.text!, GhiChu: tfGhiChu.text!, cod: Int(tfCod.text!)!)
+            var create_donhang:CreateDonHang = CreateDonHang(kienHang:listKienHang, donHang: donhang)
+            
             let host = "http://giaohanggiare.gearhostpreview.com/"
             let token = UserDefaults.standard.object(forKey: "access_token")
             let header: HTTPHeaders = ["Authorization":token as! String]
-            Alamofire.request(host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseData { (response) in
-                if response.result.isSuccess{
+            let params = ["donHang" : donhang, "kienHang":listKienHang
+                ] as [String : Any]
+            Alamofire.request(host+"user/api/donhang/create", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+                switch(response.result) {
+                case .success(_):
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()
                     self.overlay?.removeFromSuperview()
-                }else{
+                    
+                    let res = response.result.value! as! NSDictionary
+                    let succeeded = res.object(forKey:"Succeeded")
+                    if succeeded as! Int == 1{
+                    }else{
+                        print(res)
+                    }
+                    break
+                    
+                case .failure(_):
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()
-                    self.overlay?.removeFromSuperview()}
+                    self.overlay?.removeFromSuperview()
+                    self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
+                    break
                 }
+            }
         }
     }
     

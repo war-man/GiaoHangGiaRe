@@ -19,6 +19,7 @@ struct DonHang2 : Codable {
 	let tenTaiKhoan : String?
 	let maKhachHang : Int?
 	let maHanhTrinh : String?
+    let cod : String?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -40,6 +41,7 @@ struct DonHang2 : Codable {
 		case tenTaiKhoan = "TenTaiKhoan"
 		case maKhachHang = "MaKhachHang"
 		case maHanhTrinh = "MaHanhTrinh"
+        case cod = "cod"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -62,6 +64,7 @@ struct DonHang2 : Codable {
         tenTaiKhoan = try values.decodeIfPresent(String.self, forKey: .tenTaiKhoan)
         maKhachHang = try values.decodeIfPresent(Int.self, forKey: .maKhachHang)
         maHanhTrinh = try values.decodeIfPresent(String.self, forKey: .maHanhTrinh)
+        cod = try values.decodeIfPresent(String.self, forKey: .cod)
 	}
 
 }

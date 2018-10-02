@@ -1,23 +1,24 @@
 import Foundation
 struct Donhang : Codable {
-	let maDonHang : Int?
-	let nguoiGui : String?
-	let diaChiGui : String?
-	let soDienThoaiNguoiGui : String?
-	let nguoiNhan : String?
-	let diaChiNhan : String?
-	let soDienThoaiNguoiNhan : String?
-	let maNhanVienGiao : String?
-	let ghiChu : String?
-	let tinhTrang : Int?
-	let thoiDiemDatDonHang : String?
-	let thoiDiemTiepNhanDon : String?
-	let thoiDiemHoanThanhDH : String?
-	let thanhTien : String?
-	let deleted : String?
-	let tenTaiKhoan : String?
-	let maKhachHang : Int?
-	let maHanhTrinh : String?
+    let maDonHang : Int?
+    let nguoiGui : String?
+    let diaChiGui : String?
+    let soDienThoaiNguoiGui : String?
+    let nguoiNhan : String?
+    let diaChiNhan : String?
+    let soDienThoaiNguoiNhan : String?
+    let maNhanVienGiao : Int?
+    let ghiChu : String?
+    let tinhTrang : Int?
+    let thoiDiemDatDonHang : String?
+    let thoiDiemTiepNhanDon : String?
+    let thoiDiemHoanThanhDH : String?
+    let thanhTien : String?
+    let deleted : String?
+    let tenTaiKhoan : String?
+    let maKhachHang : Int?
+    let maHanhTrinh : String?
+    let cod : String?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -39,6 +40,7 @@ struct Donhang : Codable {
 		case tenTaiKhoan = "TenTaiKhoan"
 		case maKhachHang = "MaKhachHang"
 		case maHanhTrinh = "MaHanhTrinh"
+        case cod = "cod"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -50,17 +52,18 @@ struct Donhang : Codable {
         nguoiNhan = try values.decodeIfPresent(String.self, forKey: .nguoiNhan)
         diaChiNhan = try values.decodeIfPresent(String.self, forKey: .diaChiNhan)
         soDienThoaiNguoiNhan = try values.decodeIfPresent(String.self, forKey: .soDienThoaiNguoiNhan)
-        maNhanVienGiao = try values.decodeIfPresent(String.self, forKey: .maNhanVienGiao)
+        maNhanVienGiao = try values.decodeIfPresent(Int.self, forKey: .maNhanVienGiao)
         ghiChu = try values.decodeIfPresent(String.self, forKey: .ghiChu)
         tinhTrang = try values.decodeIfPresent(Int.self, forKey: .tinhTrang)
         thoiDiemDatDonHang = try values.decodeIfPresent(String.self, forKey: .thoiDiemDatDonHang)
         thoiDiemTiepNhanDon = try values.decodeIfPresent(String.self, forKey: .thoiDiemTiepNhanDon)
         thoiDiemHoanThanhDH = try values.decodeIfPresent(String.self, forKey: .thoiDiemHoanThanhDH)
         thanhTien = try values.decodeIfPresent(String.self, forKey: .thanhTien)
-		deleted = try values.decodeIfPresent(String.self, forKey: .deleted)
+        deleted = try values.decodeIfPresent(String.self, forKey: .deleted)
         tenTaiKhoan = try values.decodeIfPresent(String.self, forKey: .tenTaiKhoan)
         maKhachHang = try values.decodeIfPresent(Int.self, forKey: .maKhachHang)
         maHanhTrinh = try values.decodeIfPresent(String.self, forKey: .maHanhTrinh)
+        cod = try values.decodeIfPresent(String.self, forKey: .cod)
 	}
 
 }

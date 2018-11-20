@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Donhang : Codable {
+struct DonHangWait_List : Codable {
 	let maDonHang : Int?
 	let nguoiGui : String?
 	let diaChiGui : String?
@@ -27,11 +27,10 @@ struct Donhang : Codable {
 	let thoiDiemTiepNhanDon : String?
 	let thoiDiemHoanThanhDH : String?
 	let thanhTien : Int?
-	let deleted : Bool?
 	let tenTaiKhoan : String?
 	let maKhachHang : Int?
 	let maHanhTrinh : Int?
-	let cod : Int?
+	let cod : String?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -49,7 +48,6 @@ struct Donhang : Codable {
 		case thoiDiemTiepNhanDon = "ThoiDiemTiepNhanDon"
 		case thoiDiemHoanThanhDH = "ThoiDiemHoanThanhDH"
 		case thanhTien = "ThanhTien"
-		case deleted = "deleted"
 		case tenTaiKhoan = "TenTaiKhoan"
 		case maKhachHang = "MaKhachHang"
 		case maHanhTrinh = "MaHanhTrinh"
@@ -68,15 +66,14 @@ struct Donhang : Codable {
         maNhanVienGiao = try values.decodeIfPresent(Int.self, forKey: .maNhanVienGiao)
         ghiChu = try values.decodeIfPresent(String.self, forKey: .ghiChu)
         tinhTrang = try values.decodeIfPresent(Int.self, forKey: .tinhTrang)
-        thoiDiemDatDonHang = try values.decodeIfPresent(String.self, forKey: .thoiDiemDatDonHang)
-        thoiDiemTiepNhanDon = try values.decodeIfPresent(String.self, forKey: .thoiDiemTiepNhanDon)
-        thoiDiemHoanThanhDH = try values.decodeIfPresent(String.self, forKey: .thoiDiemHoanThanhDH)
-        thanhTien = try values.decodeIfPresent(Int.self, forKey: .thanhTien)
-		deleted = try values.decodeIfPresent(Bool.self, forKey: .deleted)
-        tenTaiKhoan = try values.decodeIfPresent(String.self, forKey: .tenTaiKhoan)
-        maKhachHang = try values.decodeIfPresent(Int.self, forKey: .maKhachHang)
-        maHanhTrinh = try values.decodeIfPresent(Int.self, forKey: .maHanhTrinh)
-		cod = try values.decodeIfPresent(Int.self, forKey: .cod)
+		thoiDiemDatDonHang = try values.decodeIfPresent(String.self, forKey: .thoiDiemDatDonHang)
+		thoiDiemTiepNhanDon = try values.decodeIfPresent(String.self, forKey: .thoiDiemTiepNhanDon)
+		thoiDiemHoanThanhDH = try values.decodeIfPresent(String.self, forKey: .thoiDiemHoanThanhDH)
+		thanhTien = try values.decodeIfPresent(Int.self, forKey: .thanhTien)
+		tenTaiKhoan = try values.decodeIfPresent(String.self, forKey: .tenTaiKhoan)
+		maKhachHang = try values.decodeIfPresent(Int.self, forKey: .maKhachHang)
+		maHanhTrinh = try values.decodeIfPresent(Int.self, forKey: .maHanhTrinh)
+		cod = try values.decodeIfPresent(String.self, forKey: .cod)
 	}
 
 }

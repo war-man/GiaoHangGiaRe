@@ -15,7 +15,7 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     var overlay : UIView?
     
     @IBOutlet weak var tableViewShipperOrder: UITableView!
-    var donhangList: [Json4Swift_Base] = []
+    var donhangList: [DonHangShip_Base] = []
     var refreshControl: UIRefreshControl?
     override func viewDidLoad() {
         tableViewShipperOrder.delegate = self
@@ -96,7 +96,7 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         Alamofire.request(host+"api/donhang/get-current-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
             if response.result.isSuccess{
                 if let data = response.result.value {
-                    let base = try? JSONDecoder().decode([Json4Swift_Base].self, from: data)
+                    let base = try? JSONDecoder().decode([DonHangShip_Base].self, from: data)
                     self.donhangList = base!;
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()

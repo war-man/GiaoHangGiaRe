@@ -13,7 +13,7 @@ import NVActivityIndicatorView
 class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     @IBOutlet weak var tableDonHangCho: UITableView!
-    var listDonHang : [DonHangList] = []
+    var listDonHang : [DonHangWait_List] = []
     var overlay : UIView?
     var activityIndicatorView : NVActivityIndicatorView!
     var refreshControl: UIRefreshControl?
@@ -69,7 +69,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
             self.overlay?.removeFromSuperview()
             self.refreshControl?.endRefreshing()
             if let data = response.result.value {
-                guard let list = try? JSONDecoder().decode(DonHang.self, from: data)
+                guard let list = try? JSONDecoder().decode(DonHangWait_Base.self, from: data)
                     else{
                         self.alertMessager(title: "Thông báo", message: "Không có dữ liệu đơn hàng")
                         return

@@ -15,7 +15,7 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
     var overlay : UIView?
     
     @IBOutlet weak var btnBack: UIButton!
-    var donhangList: [Json4Swift_Base] = []
+    var donhangList: [DonHangShip_Base] = []
     @IBOutlet weak var tableViewHistoryOrder: UITableView!
     var refreshControl: UIRefreshControl?
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
                     self.overlay?.removeFromSuperview()
                     self.refreshControl?.endRefreshing()
                     
-                    guard let base = try? JSONDecoder().decode([Json4Swift_Base].self, from: data)
+                    guard let base = try? JSONDecoder().decode([DonHangShip_Base].self, from: data)
                     else{
                         self.alertMessager(title: "Thông báo", message: "Dữ liệu bị lỗi")
                         return

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIViewController{
+extension UIViewController {
     func alertMessager(title: String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -32,4 +32,10 @@ extension UIViewController{
             toastLabel.removeFromSuperview()
         })
     }
+}
+extension String {
+    func replaceEmptyJsonWithNull() -> String {
+        return replacingOccurrences(of: "", with: "null")
+    }
+    
 }

@@ -54,6 +54,21 @@ namespace GiaoHangGiaRe.Module
             time = DateTime.Now;
             input.ThoiDiemDatDonHang = time;
             input.TinhTrang = 0;
+            input.MaNhanVienGiao = 0; //Dèault
+            input.deleted = false; //Dèault
+            if (input.ThanhTien == null)
+            {
+                input.ThanhTien = 0;
+            }
+            if(input.cod == null)
+            {
+                input.cod = 0;
+            }
+            if (input.MaHanhTrinh == null)
+            {
+                input.MaHanhTrinh = 0;
+            }
+
             input.TenTaiKhoan = userServices.GetCurrentUser().TenTaiKhoan == null? userServices.GetCurrentUser().UserName: userServices.GetCurrentUser().TenTaiKhoan;
             _donhangRepository.Insert(input);
             DonHang input2 = new DonHang();

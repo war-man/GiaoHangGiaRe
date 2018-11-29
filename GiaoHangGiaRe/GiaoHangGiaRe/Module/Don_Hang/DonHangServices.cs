@@ -365,7 +365,7 @@ namespace GiaoHangGiaRe.Module
 
                     noServices.Create(new No
                     {
-                        KyHieu = code + rd.Next(10, 1000).ToString() + rd2.Next(10, 1000).ToString(),
+                        KyHieu = code + DateTime.Now.ToLongTimeString() + rd.Next(10, 1000).ToString() + rd2.Next(10, 1000).ToString(),
                         MoTa = donhang.GhiChu,
                         MaKhachHang = donhang.MaKhachHang.ToString(),
                         ThoiGian = DateTime.Now,
@@ -373,7 +373,7 @@ namespace GiaoHangGiaRe.Module
                     });
                     //Will create No (cod)
                 }
-                donhang.TinhTrang = DonHangConstant.GiaoThanhCong;
+                donhang.TinhTrang = _input.TinhTrang;// Cập nhật tình trạng
                 // }
             }
             else

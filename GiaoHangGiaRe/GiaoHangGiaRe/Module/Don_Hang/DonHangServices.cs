@@ -14,7 +14,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<DonHang> _donhangRepository;
         private UserServices userServices;
         private NhanVienServices nhanVienServices;
-        private NoServices noServices;
+        private NoServices _noServices;
         private LichSuServices lichSuServices;
         private HoaDonServices _hoaDonServices;
         private KienHangServices kienHangServices;
@@ -25,7 +25,7 @@ namespace GiaoHangGiaRe.Module
         private IRepository<Report> _reportRepository;
         public DonHangServices()
         {
-            NoServices noServices = new NoServices();
+            _noServices = new NoServices();
             _hoaDonServices = new HoaDonServices();
             _donhangRepository = new IRepository<DonHang>();
             userServices = new UserServices();
@@ -220,8 +220,8 @@ namespace GiaoHangGiaRe.Module
                 List<DonHangKienHang> listDonHangKienHang = new List<DonHangKienHang>();
                 var res = _donhangRepository.GetAll()
                 .Where(p => p.MaNhanVienGiao == (nhanVienServices.GetNhanVienCurrentUser().MaNhanVien) &&
-                (p.TinhTrang == DonHangConstant.Huy || p.TinhTrang == DonHangConstant.GiaoThanhCong || p.TinhTrang == DonHangConstant.KhongTheLayHang))
-                .ToList();
+                (p.TinhTrang == DonHangConstant.Huy || p.TinhTrang == DonHangConstant.GiaoThanhCong || p.TinhTrang == DonHangConstant.KhongTheLayHang ||
+                p.TinhTrang == DonHangConstant.Huy)).ToList();
                 foreach (var item in res)
                 {
                     DonHangKienHang donHangkienHang = new DonHangKienHang();
@@ -363,7 +363,7 @@ namespace GiaoHangGiaRe.Module
                     Random rd = new Random();
                     Random rd2 = new Random();
 
-                    noServices.Create(new No
+                    _noServices.Create(new No
                     {
                         KyHieu = code + DateTime.Now.ToLongTimeString() + rd.Next(10, 1000).ToString() + rd2.Next(10, 1000).ToString(),
                         MoTa = donhang.GhiChu,

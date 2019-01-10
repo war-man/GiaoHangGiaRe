@@ -15,4 +15,16 @@ struct KienHang {
     public var MoTa: String
     public var TrongLuong: Float
     public var SoLuong: Int
+    
+    func toJSON() -> [String: Any] {
+        return [
+            "NoiDung": NoiDung as Any,
+            "ChieuDai": ChieuDai as Any,
+            "ChieuRong": ChieuRong as Any,
+            
+            "MoTa": MoTa as Any,
+            "TrongLuong": TrongLuong as Any,
+            "SoLuong": SoLuong as Any,
+        ]
+    }
 }

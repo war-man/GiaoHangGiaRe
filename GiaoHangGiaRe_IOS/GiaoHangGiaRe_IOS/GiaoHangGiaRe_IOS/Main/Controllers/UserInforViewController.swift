@@ -44,10 +44,9 @@ class UserInforViewController: UIViewController,UITableViewDelegate, UITableView
         //Start Loading
         activityIndicatorView.startAnimating()
         view.addSubview(overlay!)
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let token = UserDefaults.standard.object(forKey: "access_token")
         let header: HTTPHeaders = ["Authorization":token as! String]
-        Alamofire.request(host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { response in
+        Alamofire.request(root_host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { response in
             switch response.result {
             case .success:
                 if response.result.value != nil{

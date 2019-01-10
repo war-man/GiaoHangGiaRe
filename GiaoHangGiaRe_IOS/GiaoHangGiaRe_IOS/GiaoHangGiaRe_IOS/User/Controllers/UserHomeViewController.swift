@@ -55,43 +55,40 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+        switch indexPath.row {
+        case 0:
             vc.TinhTrang = 4 //DangGiao = 4
             vc.title2 = "Đơn hàng đang giao"
-            self.navigationController?.pushViewController( vc , animated: true)
-        }
-        if indexPath.row == 1{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            break
+        case 1:
             vc.TinhTrang = 0 //DangGiao = 4
             vc.title2 = "Đơn hàng đang chờ"
-            self.navigationController?.pushViewController( vc , animated: true)
-        }
-        if indexPath.row == 2{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            break
+        case 2:
             vc.TinhTrang = 6 //DangGiao = 4
             vc.title2 = "Đơn hàng hoàn thành"
-            self.navigationController?.pushViewController( vc , animated: true)
-        }
-        if indexPath.row == 3{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            break
+        case 3:
             vc.TinhTrang = -1 //Huy =. 1
             vc.title2 = "Đơn hàng bị huỷ"
-            self.navigationController?.pushViewController( vc , animated: true)
-        }
-        if indexPath.row == 4{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserOrderViewController") as! UserOrderViewController
+            break
+        case 4:
             vc.TinhTrang = nil
             vc.title2 = "Tất cả"
-            self.navigationController?.pushViewController( vc , animated: true)
+            break
+        default:
+            vc.TinhTrang = nil
+            vc.title2 = "Tất cả"
+            break
         }
+        self.navigationController?.pushViewController( vc , animated: true)
     }
 
     func getDonHang() {
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let params = [
             "grant_type": "password"]
-        Alamofire.request(host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(root_host + "token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
             switch(response.result) {
             case .success(_):
                 if response.result.value != nil{

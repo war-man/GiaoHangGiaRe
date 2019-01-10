@@ -30,6 +30,15 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
     var overlay : UIView?
     
     override func viewDidLoad() {
+        tfNguoiGui.text = "qwe"
+        tfSoDienThoaiGui.text = "12132"
+        tfDiaChiGui.text = "qwe1"
+        tfNguoiNhan.text = "qwe"
+        tfSoDienThoaiNhan.text = "21321312"
+        tfDiaChiNhan.text = "qwe"
+        tfGhiChu.text = "qwe"
+        tfCod.text = "12"
+        
         btnTaoKienHang.layer.cornerRadius = btnTaoKienHang.frame.size.width / 2
         btnTaoKienHang.layer.masksToBounds = true
         tableKienHang.delegate = self
@@ -41,18 +50,7 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    func initLoadingUI() {
-        let xAxis = self.view.center.x
-        let yAxis = self.view.center.y
-        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
-        activityIndicatorView = NVActivityIndicatorView(frame: frame)
-        activityIndicatorView.type = . ballClipRotate // add your type
-        activityIndicatorView.color = UIColor.orange // add your color
-        overlay = UIView(frame: view.frame)
-        overlay?.backgroundColor = UIColor.black
-        overlay?.alpha = 0.3
-        self.view.addSubview(activityIndicatorView)
-    }
+
     @IBAction func btnTaoKienHang_Clicked(_ sender: Any) {
         
     }
@@ -76,33 +74,46 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             activityIndicatorView.startAnimating()
             view.addSubview(overlay!)
             
-            var donhang: DonHangModel = DonHangModel(NguoiGui: tfNguoiGui.text!, SoDienThoaiGui: tfSoDienThoaiGui.text!, DiaChiGui: tfDiaChiGui.text!, NguoiNhan: tfNguoiNhan.text!, SoDienThoaiNhan: tfSoDienThoaiNhan.text!, DiaChiNhan: tfDiaChiNhan.text!, GhiChu: tfGhiChu.text!, cod: Int(tfCod.text!)!)
-            var create_donhang:CreateDonHang = CreateDonHang(kienHang:listKienHang, donHang: donhang)
+            let donhang: DonHangModel = DonHangModel(NguoiGui: tfNguoiGui.text!, SoDienThoaiNguoiGui: tfSoDienThoaiGui.text!, DiaChiGui: tfDiaChiGui.text!, NguoiNhan: tfNguoiNhan.text!, SoDienThoaiNguoiNhan: tfSoDienThoaiNhan.text!, DiaChiNhan: tfDiaChiNhan.text!, GhiChu: tfGhiChu.text!, cod: Int(tfCod.text!)!)
+//            donhang.NguoiGui = tfNguoiGui.text!
+//            donhang.SoDienThoaiGui = tfSoDienThoaiGui.text!
+//            donhang.DiaChiGui = tfDiaChiGui.text!
+//            donhang.NguoiNhan = tfNguoiNhan.text!
+//            donhang.SoDienThoaiNhan = tfSoDienThoaiNhan.text!
+//            donhang.DiaChiNhan = tfDiaChiNhan.text!
+//            donhang.GhiChu = tfGhiChu.text!
+//            donhang.cod = Int(tfCod.text!)!
+            var _:CreateDonHang = CreateDonHang(kienHang:listKienHang, donHang: donhang)
             
-            let host = "http://giaohanggiare.gearhostpreview.com/"
             let token = UserDefaults.standard.object(forKey: "access_token")
-            let header: HTTPHeaders = ["Authorization":token as! String]
-            let params = ["donHang" : donhang, "kienHang":listKienHang
+            let headers: HTTPHeaders = ["Authorization":token as! String]
+            var kienHangData: [[String: Any]] = []
+            for item in listKienHang {
+                kienHangData.append(item.toJSON()) 
+            }
+            print(kienHangData)
+            let params = ["donHang" : donhang.toJSON(), "kienHang":kienHangData
                 ] as [String : Any]
-            Alamofire.request(host+"user/api/donhang/create", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+            Alamofire.request(root_host + "api/donhang/create", method: .post, parameters: params, headers:headers).responseJSON { response in
                 switch(response.result) {
                 case .success(_):
-                    //Stop Loading
-                    self.activityIndicatorView.stopAnimating()
-                    self.overlay?.removeFromSuperview()
-                    
-                    let res = response.result.value! as! NSDictionary
-                    let succeeded = res.object(forKey:"Succeeded")
-                    if succeeded as! Int == 1{
-                    }else{
-                        print(res)
+                    self.stopLoading()
+                    print(response.result.value)
+                    guard let respon = response.result.value else{
+                        self.stopLoading()
+                        return
                     }
+//                    let res = respon as! NSDictionary
+//
+//                    let succeeded = res.object(forKey:"Succeeded")
+//                    if succeeded as! Int == 1{
+//                    }else{
+//                        print(res)
+//                    }
                     break
-                    
+
                 case .failure(_):
-                    //Stop Loading
-                    self.activityIndicatorView.stopAnimating()
-                    self.overlay?.removeFromSuperview()
+                    self.stopLoading()
                     self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
                     break
                 }
@@ -125,5 +136,24 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
         listKienHang.append(kienhang)
         lblSoKienHang.text = "\(listKienHang.count)"
         tableKienHang.reloadData()
+    }
+}
+extension CreateOrderViewController{
+    func stopLoading() {
+        //Stop Loading
+        self.activityIndicatorView.stopAnimating()
+        self.overlay?.removeFromSuperview()
+    }
+    func initLoadingUI() {
+        let xAxis = self.view.center.x
+        let yAxis = self.view.center.y
+        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame)
+        activityIndicatorView.type = . ballClipRotate // add your type
+        activityIndicatorView.color = UIColor.orange // add your color
+        overlay = UIView(frame: view.frame)
+        overlay?.backgroundColor = UIColor.black
+        overlay?.alpha = 0.3
+        self.view.addSubview(activityIndicatorView)
     }
 }

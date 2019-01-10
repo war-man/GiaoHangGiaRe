@@ -19,6 +19,7 @@
 		840F10BD21090F98004383A0 /* UserInforViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10BC21090F98004383A0 /* UserInforViewController.swift */; };
 		840F10BF210911AD004383A0 /* WaittingOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10BE210911AD004383A0 /* WaittingOrderViewController.swift */; };
 		840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F10C02109127F004383A0 /* CreateOrderViewController.swift */; };
+		84142C2421E6A93E001F5D98 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84142C2321E6A93E001F5D98 /* ViewControllerExtension.swift */; };
 		8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72B210B580A0049A917 /* UIImageViewExtension.swift */; };
 		8414F72E210B70140049A917 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72D210B70140049A917 /* UIViewControllerExtension.swift */; };
 		8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414F72F210B721C0049A917 /* RegisterViewController.swift */; };
@@ -44,17 +45,21 @@
 		8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446CDA9210C64C8003BFC7B /* UserRegister.swift */; };
 		844CA8E32119E100009E6D12 /* DetailDHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */; };
 		845321AF2142DBBE00C748D9 /* ShipperOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845321AE2142DBBE00C748D9 /* ShipperOrderViewController.swift */; };
+		8470B5F421DF56EA008DAA22 /* Shipper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8470B5F321DF56EA008DAA22 /* Shipper.storyboard */; };
 		8473E2CB21450F93003EAAE3 /* HistoryOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473E2CA21450F93003EAAE3 /* HistoryOrderViewController.swift */; };
 		8473E2CD2145B39B003EAAE3 /* ReportOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473E2CC2145B39B003EAAE3 /* ReportOrderViewController.swift */; };
 		8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489D074210DE0260040DDF9 /* ListBangGia.swift */; };
 		8496E9F7211D7DF000D14609 /* KienHangViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E9F6211D7DF000D14609 /* KienHangViewCell.swift */; };
 		8496E9FA211D7FA400D14609 /* KienHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496E9F9211D7FA400D14609 /* KienHang.swift */; };
+		849986D321E7562700BC3ECA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849986D221E7562700BC3ECA /* Common.swift */; };
+		849986D621E75F0B00BC3ECA /* CreateDonHangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849986D521E75F0B00BC3ECA /* CreateDonHangModel.swift */; };
 		84B0A30C211041CA00ED6F89 /* DonHangDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */; };
 		84B16F3A214E50E100606F9D /* UserOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */; };
 		84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B42AAC21074D80008467DA /* AppDelegate.swift */; };
 		84B42AB221074D80008467DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB021074D80008467DA /* Main.storyboard */; };
 		84B42AB421074D81008467DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB321074D81008467DA /* Assets.xcassets */; };
 		84B42AB721074D81008467DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB521074D81008467DA /* LaunchScreen.storyboard */; };
+		84D092FD21DF590B0060E87F /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D092FC21DF590B0060E87F /* User.storyboard */; };
 		84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */; };
 		84E0D5E12109F5FA00DB9728 /* CreateKienHangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */; };
 		84E87BD0214D0B4A00849EB7 /* UserOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */; };
@@ -77,6 +82,7 @@
 		840F10BC21090F98004383A0 /* UserInforViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInforViewController.swift; sourceTree = "<group>"; };
 		840F10BE210911AD004383A0 /* WaittingOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaittingOrderViewController.swift; sourceTree = "<group>"; };
 		840F10C02109127F004383A0 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
+		84142C2321E6A93E001F5D98 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		8414F72B210B580A0049A917 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		8414F72D210B70140049A917 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8414F72F210B721C0049A917 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -103,11 +109,14 @@
 		844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDHCollectionViewCell.swift; sourceTree = "<group>"; };
 		845321AE2142DBBE00C748D9 /* ShipperOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipperOrderViewController.swift; sourceTree = "<group>"; };
 		84659EEAB5F3161F310B1AFA /* Pods-GiaoHangGiaRe_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8470B5F321DF56EA008DAA22 /* Shipper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shipper.storyboard; sourceTree = "<group>"; };
 		8473E2CA21450F93003EAAE3 /* HistoryOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderViewController.swift; sourceTree = "<group>"; };
 		8473E2CC2145B39B003EAAE3 /* ReportOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOrderViewController.swift; sourceTree = "<group>"; };
 		8489D074210DE0260040DDF9 /* ListBangGia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBangGia.swift; sourceTree = "<group>"; };
 		8496E9F6211D7DF000D14609 /* KienHangViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KienHangViewCell.swift; sourceTree = "<group>"; };
 		8496E9F9211D7FA400D14609 /* KienHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KienHang.swift; sourceTree = "<group>"; };
+		849986D221E7562700BC3ECA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		849986D521E75F0B00BC3ECA /* CreateDonHangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDonHangModel.swift; sourceTree = "<group>"; };
 		84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonHangDetailsViewController.swift; sourceTree = "<group>"; };
 		84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderTableViewCell.swift; sourceTree = "<group>"; };
 		84B42AA921074D80008467DA /* GiaoHangGiaRe_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiaoHangGiaRe_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +125,7 @@
 		84B42AB321074D81008467DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84B42AB621074D81008467DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B42AB821074D81008467DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D092FC21DF590B0060E87F /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateKienHangViewController.swift; sourceTree = "<group>"; };
 		84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +186,7 @@
 			children = (
 				8414F72B210B580A0049A917 /* UIImageViewExtension.swift */,
 				8414F72D210B70140049A917 /* UIViewControllerExtension.swift */,
+				84142C2321E6A93E001F5D98 /* ViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -207,10 +218,8 @@
 		841A9B4F210757730085DDC4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84C054AF2108879C008310FC /* Shipper */,
-				84C054AE2108878E008310FC /* User */,
-				841A9B50210757980085DDC4 /* SqlLiteViewController.swift */,
 				841A9B52210758410085DDC4 /* LoginViewController.swift */,
+				841A9B50210757980085DDC4 /* SqlLiteViewController.swift */,
 				840F10BC21090F98004383A0 /* UserInforViewController.swift */,
 				8414F72F210B721C0049A917 /* RegisterViewController.swift */,
 				84B0A30B211041CA00ED6F89 /* DonHangDetailsViewController.swift */,
@@ -242,12 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				843484B621A39CFA001D0377 /* DonHangWait */,
-				84318C6A2143B9D90094E983 /* ShipperOrder */,
 				8496E9F8211D7F8700D14609 /* KienHangModel */,
 				8400613E211C7BCF00116E0A /* UserDetails */,
 				84006135211C600000116E0A /* DonHangDetails */,
 				8489D071210DDFF30040DDF9 /* DonHang */,
-				84386676210B4C6000F7919F /* User */,
 				8489D074210DE0260040DDF9 /* ListBangGia.swift */,
 			);
 			path = Models;
@@ -258,9 +265,30 @@
 			children = (
 				841CC8D6214E433E00C6C49F /* OrderUser.swift */,
 				84386674210B4C5000F7919F /* User.swift */,
-				8446CDA9210C64C8003BFC7B /* UserRegister.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		8470B5F021DF552F008DAA22 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				849986D221E7562700BC3ECA /* Common.swift */,
+				84B42AB021074D80008467DA /* Main.storyboard */,
+				849986D921E762EF00BC3ECA /* Tools */,
+				841A9B4F210757730085DDC4 /* Controllers */,
+				849986D721E7627400BC3ECA /* Models */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8470B5F221DF55C1008DAA22 /* ShipperOrder */ = {
+			isa = PBXGroup;
+			children = (
+				8470B5F321DF56EA008DAA22 /* Shipper.storyboard */,
+				84C054AF2108879C008310FC /* Controllers */,
+				849986D821E762CE00BC3ECA /* Models */,
+			);
+			path = ShipperOrder;
 			sourceTree = "<group>";
 		};
 		8489D071210DDFF30040DDF9 /* DonHang */ = {
@@ -268,7 +296,6 @@
 			children = (
 				841FBB4F211090D000F054E7 /* DonHang.swift */,
 				841FBB4E211090D000F054E7 /* DonHangList.swift */,
-				841BB6A121626D880088A46F /* CreateDonHang.swift */,
 				841BB6A321627AA40088A46F /* DonHangModel.swift */,
 			);
 			path = DonHang;
@@ -289,6 +316,40 @@
 				8496E9F9211D7FA400D14609 /* KienHang.swift */,
 			);
 			path = KienHangModel;
+			sourceTree = "<group>";
+		};
+		849986D421E75EEC00BC3ECA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				849986D521E75F0B00BC3ECA /* CreateDonHangModel.swift */,
+				841BB6A121626D880088A46F /* CreateDonHang.swift */,
+				84386676210B4C6000F7919F /* User */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		849986D721E7627400BC3ECA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8446CDA9210C64C8003BFC7B /* UserRegister.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		849986D821E762CE00BC3ECA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84318C6A2143B9D90094E983 /* ShipperOrder */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		849986D921E762EF00BC3ECA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				840C0A1A210796FA00BDAB27 /* ApiManager */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		84B42AA021074D80008467DA = {
@@ -312,13 +373,13 @@
 		84B42AAB21074D80008467DA /* GiaoHangGiaRe_IOS */ = {
 			isa = PBXGroup;
 			children = (
+				8470B5F021DF552F008DAA22 /* Main */,
+				84D092FB21DF58F60060E87F /* User */,
+				8470B5F221DF55C1008DAA22 /* ShipperOrder */,
 				8415C70C210F1E9B008A26CF /* ViewCustom */,
 				84386673210B4C2B00F7919F /* Models */,
-				840C0A1A210796FA00BDAB27 /* ApiManager */,
 				840C0A172107882400BDAB27 /* Extension */,
-				841A9B4F210757730085DDC4 /* Controllers */,
 				84B42AAC21074D80008467DA /* AppDelegate.swift */,
-				84B42AB021074D80008467DA /* Main.storyboard */,
 				84B42AB321074D81008467DA /* Assets.xcassets */,
 				84B42AB521074D81008467DA /* LaunchScreen.storyboard */,
 				84B42AB821074D81008467DA /* Info.plist */,
@@ -326,7 +387,7 @@
 			path = GiaoHangGiaRe_IOS;
 			sourceTree = "<group>";
 		};
-		84C054AE2108878E008310FC /* User */ = {
+		84C054AE2108878E008310FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				840F10B82108D3DE004383A0 /* UserMainViewController.swift */,
@@ -335,10 +396,10 @@
 				84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */,
 				84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */,
 			);
-			path = User;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		84C054AF2108879C008310FC /* Shipper */ = {
+		84C054AF2108879C008310FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				840F10BA2108D400004383A0 /* ShipperMainViewController.swift */,
@@ -347,7 +408,17 @@
 				8473E2CA21450F93003EAAE3 /* HistoryOrderViewController.swift */,
 				8473E2CC2145B39B003EAAE3 /* ReportOrderViewController.swift */,
 			);
-			path = Shipper;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		84D092FB21DF58F60060E87F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84D092FC21DF590B0060E87F /* User.storyboard */,
+				84C054AE2108878E008310FC /* Controllers */,
+				849986D421E75EEC00BC3ECA /* Model */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		DECB12C269A22C5BB5BE2AF2 /* Frameworks */ = {
@@ -418,6 +489,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8470B5F421DF56EA008DAA22 /* Shipper.storyboard in Resources */,
+				84D092FD21DF590B0060E87F /* User.storyboard in Resources */,
 				84B42AB721074D81008467DA /* LaunchScreen.storyboard in Resources */,
 				84B42AB421074D81008467DA /* Assets.xcassets in Resources */,
 				84B42AB221074D80008467DA /* Main.storyboard in Resources */,
@@ -503,14 +576,17 @@
 				8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */,
 				8400613D211C726700116E0A /* UserDetailsViewController.swift in Sources */,
 				841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */,
+				84142C2421E6A93E001F5D98 /* ViewControllerExtension.swift in Sources */,
 				84B42AAD21074D80008467DA /* AppDelegate.swift in Sources */,
 				84386675210B4C5000F7919F /* User.swift in Sources */,
 				841FBB50211090D000F054E7 /* DonHangList.swift in Sources */,
 				84006145211C836F00116E0A /* UserDetailsViewCell.swift in Sources */,
 				840F10C12109127F004383A0 /* CreateOrderViewController.swift in Sources */,
+				849986D621E75F0B00BC3ECA /* CreateDonHangModel.swift in Sources */,
 				84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */,
 				8400613A211C602800116E0A /* DonHangDetails_Base.swift in Sources */,
 				841BB6A221626D880088A46F /* CreateDonHang.swift in Sources */,
+				849986D321E7562700BC3ECA /* Common.swift in Sources */,
 				8414F72C210B580A0049A917 /* UIImageViewExtension.swift in Sources */,
 				84006140211C7BDF00116E0A /* UserDetails_Base.swift in Sources */,
 				8489D075210DE0260040DDF9 /* ListBangGia.swift in Sources */,

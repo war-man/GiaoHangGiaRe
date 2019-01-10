@@ -57,13 +57,12 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
         view.addSubview(overlay!)
         
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let params = [
             "TinhTrang": 7,
             "size": 15]
         let header: HTTPHeaders = ["Authorization":token as! String]
         
-        Alamofire.request(host+"api/donhang/get-all", method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
+        Alamofire.request(root_host + "api/donhang/get-all", method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
             //Stop loading
             self.activityIndicatorView.stopAnimating()
             self.overlay?.removeFromSuperview()

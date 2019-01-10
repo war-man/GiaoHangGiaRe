@@ -8,6 +8,6 @@
 
 import Foundation
 struct CreateDonHang {
-    let kienHang: [KienHang]
-    let donHang: DonHangModel
+    public let kienHang: [KienHang]
+    public let donHang: DonHangModel
 }

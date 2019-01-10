@@ -123,11 +123,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         loadingSpinner.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         if validationEmpty() == true{
-            let host = "http://giaohanggiare.gearhostpreview.com/"
-            var pic :NSData = UIImageJPEGRepresentation((btnAvatar.imageView?.image)!, 0.5) as! NSData
+            let pic :NSData = UIImageJPEGRepresentation((btnAvatar.imageView?.image)!, 0.5)! as NSData
             let strBase64 = pic.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             let params2 = ["base64": strBase64] as [String : Any]
-            Alamofire.request(host+"api/image/upload", method: .post, parameters: params2, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(root_host+"api/image/upload", method: .post, parameters: params2, encoding: URLEncoding.httpBody).responseJSON { response in
                 switch(response.result) {
                 case .success(_):
                     let imagelink = response.result.value!
@@ -137,7 +136,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                   "TenTaiKhoan": self.tfTenTaiKhoan.text!, "Password": self.tfMatKhau.text!,
                                   "ImageLink": imagelink
                         ] as [String : Any]
-                    Alamofire.request(host+"user/api/taikhoan/register", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+                    Alamofire.request(root_host+"user/api/taikhoan/register", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
                         switch(response.result) {
                         case .success(_):
                             let res = response.result.value! as! NSDictionary

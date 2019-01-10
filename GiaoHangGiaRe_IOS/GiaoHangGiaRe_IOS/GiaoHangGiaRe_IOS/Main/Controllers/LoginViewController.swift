@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     @IBOutlet weak var btnDangKy: UIButton!
     @IBOutlet weak var lblError: UILabel!
     override func viewDidLoad() {
-        initLoadingUI()
+        borderButton()
         super.viewDidLoad()
         viewContent.layer.cornerRadius = 5
         checkLogined()
@@ -32,6 +32,8 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     }
     @IBAction func tfTenTaiKhoanChanged(_ sender: Any) {
     }
+    
+    //Check nhap mat khau
     func validate()->Bool {
         if tfTenTaiKhoan.text!.count == 0 {
             lblError.text = "Tên tài khoản tối thiểu 6 ký tự."
@@ -44,6 +46,8 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         }
         return true;
     }
+
+    //MASK: Kiem tra da dang nhap chua
     func checkLogined() {
         guard  UserDefaults.standard.object(forKey: "access_token") != nil else {
             return
@@ -59,18 +63,7 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         }
         return nil
     }
-    func initLoadingUI() {
-        let xAxis = self.view.center.x
-        let yAxis = self.view.center.y
-        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
-        activityIndicatorView = NVActivityIndicatorView(frame: frame)
-        activityIndicatorView.type = . ballClipRotate // add your type
-        activityIndicatorView.color = UIColor.orange // add your color
-        overlay = UIView(frame: view.frame)
-        overlay?.backgroundColor = UIColor.black
-        overlay?.alpha = 0.3
-        self.view.addSubview(activityIndicatorView)
-    }
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -79,18 +72,18 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
         return true
     }
     var user: User?
+//MASK: BTN Dang Nhap
     @IBAction func btnDangNhap_Clicked(_ sender: Any) {
         if validate() {
             //Start Loading
             activityIndicatorView.startAnimating()
             view.addSubview(overlay!)
-            let host = "http://giaohanggiare.gearhostpreview.com/"
 
             let params = [
                 "grant_type": "password",
                 "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
             
-            Alamofire.request(host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(root_host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 switch(response.result) {
                 case .success(_):
                     if response.result.value != nil{
@@ -147,11 +140,30 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     @IBAction func btnDangKy_Clicked(_ sender: Any) {
         
     }
+ 
+}
+
+//MARK: Setup UI
+extension LoginViewController{
+    func borderButton() {
+        btnDangKy.layer.cornerRadius = 5
+        btnDangNhap.layer.cornerRadius = 5
+        
+        let xAxis = self.view.center.x
+        let yAxis = self.view.center.y
+        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame)
+        activityIndicatorView.type = . ballClipRotate // add your type
+        activityIndicatorView.color = UIColor.orange // add your color
+        overlay = UIView(frame: view.frame)
+        overlay?.backgroundColor = UIColor.black
+        overlay?.alpha = 0.3
+        self.view.addSubview(activityIndicatorView)
+    }
     func regiterSucecss(TenTaiKhoan: String) {
         self.tfTenTaiKhoan.text = TenTaiKhoan
     }
     
-    // MARK:
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("event raise")
         self.view.endEditing(true)

@@ -21,7 +21,7 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         tableViewHistoryOrder.delegate = self
         tableViewHistoryOrder.dataSource = self
-        initLoadingUI()
+        setupUI()
         addUIRefreshControl()
         getHistoryOrder()
         super.viewDidLoad()
@@ -30,7 +30,35 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    func initLoadingUI() {
+
+    @IBAction func btnBackAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    @objc func getHistoryOrder() {
+        //Start Loading
+        activityIndicatorView.startAnimating()
+        view.addSubview(overlay!)
+        
+        //Gọi API
+       getData()
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return donhangList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderCell", for: indexPath) as! ShipperOrderCell
+        cell.lblDiaChiGui.text = donhangList[indexPath.row].donHang?.diaChiGui
+        cell.lblDiaChiNhan.text = donhangList[indexPath.row].donHang?.diaChiNhan
+        cell.lblHistoryOrderThoiDiemDatHang.text = donhangList[indexPath.row].donHang?.thoiDiemDatDonHang
+        return cell
+    }
+}
+
+// MARK: --
+extension HistoryOrderViewController{
+    func setupUI() {
+        //Thêm loading
         let xAxis = self.view.center.x // or use (view.frame.size.width / 2) // or use (faqWebView.frame.size.width / 2)
         let yAxis = self.view.center.y // or use (view.frame.size.height / 2) // or use (faqWebView.frame.size.height / 2)
         let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
@@ -48,19 +76,10 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
         refreshControl?.addTarget(self, action: #selector(getHistoryOrder), for: .valueChanged)
         tableViewHistoryOrder.addSubview(refreshControl!)
     }
-    @IBAction func btnBackAction(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    @objc func getHistoryOrder() {
-        //Start Loading
-        activityIndicatorView.startAnimating()
-        view.addSubview(overlay!)
-        
+    func getData(){
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let header: HTTPHeaders = ["Authorization":token as! String]
-        
-        Alamofire.request(host+"api/donhang/get-history-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
+        Alamofire.request(root_host+"api/donhang/get-history-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
             if response.result.isSuccess{
                 if let data = response.result.value {
                     //Stop Loading
@@ -69,9 +88,9 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
                     self.refreshControl?.endRefreshing()
                     
                     guard let base = try? JSONDecoder().decode([DonHangShip_Base].self, from: data)
-                    else{
-                        self.alertMessager(title: "Thông báo", message: "Dữ liệu bị lỗi")
-                        return
+                        else{
+                            self.alertMessager(title: "Thông báo", message: "Dữ liệu bị lỗi")
+                            return
                     }
                     self.donhangList = base;
                     
@@ -86,13 +105,5 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
                 self.refreshControl?.endRefreshing()
             }
         }
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return donhangList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderCell", for: indexPath) as! ShipperOrderCell
-        return cell
     }
 }

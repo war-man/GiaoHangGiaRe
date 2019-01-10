@@ -20,80 +20,26 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     override func viewDidLoad() {
         tableViewShipperOrder.delegate = self
         tableViewShipperOrder.dataSource = self
-        initLoadingUI()
+        setupUI()
         addUIRefreshControl()
         super.viewDidLoad()
         getDonHangTiepNhan()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    func initLoadingUI() {
-        let xAxis = self.view.center.x
-        let yAxis = self.view.center.y
-        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
-        activityIndicatorView = NVActivityIndicatorView(frame: frame)
-        activityIndicatorView.type = . ballClipRotate // add your type
-        activityIndicatorView.color = UIColor.orange // add your color
-        overlay = UIView(frame: view.frame)
-        overlay?.backgroundColor = UIColor.black
-        overlay?.alpha = 0.3
-        self.view.addSubview(activityIndicatorView)
-    }
     func addUIRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.orange
         refreshControl?.addTarget(self, action: #selector(getDonHangTiepNhan), for: .valueChanged)
         tableViewShipperOrder.addSubview(refreshControl!)
     }
-    func changeTrangThaiDonHang(TrangThai: Int, MaDonHang: Int){
-        //Start Loading
-        activityIndicatorView.startAnimating()
-        view.addSubview(overlay!)
-        let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://giaohanggiare.gearhostpreview.com/"
-        let params = [
-            "MaDonHang": MaDonHang]
-        let header: HTTPHeaders = ["Authorization":token as! String]
-        var url=""
-        if TrangThai == 2{
-            url = host+"api/donhang/lay-hang"
-        }
-        if TrangThai == 3{
-            url = host+"api/donhang/lay-thanh-cong"
-        }
-        if TrangThai == 4{
-            url = host+"api/donhang/dang-giao-hang"
-        }
-        if TrangThai == 6{
-            url = host+"api/donhang/giao-hang-thanh-cong"
-        }
-        if TrangThai == -2{
-            url = host+"api/donhang/khong-the-lay-hang"
-        }
-        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseJSON{ (response) in
-            switch(response.result) {
-            case .success(_):
-                //Stop Loading
-                self.activityIndicatorView.stopAnimating()
-                self.overlay?.removeFromSuperview()
-                DispatchQueue.main.async { self.getDonHangTiepNhan() }
-                break
-            case .failure(_):
-                break
-            }
-        }
-    }
     @objc func getDonHangTiepNhan(){
         //Start Loading
         activityIndicatorView.startAnimating()
         view.addSubview(overlay!)
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let header: HTTPHeaders = ["Authorization":token as! String]
         
-        Alamofire.request(host+"api/donhang/get-current-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
+        Alamofire.request(root_host+"api/donhang/get-current-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in
             if response.result.isSuccess{
                 if let data = response.result.value {
                     let base = try? JSONDecoder().decode([DonHangShip_Base].self, from: data)
@@ -116,25 +62,25 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     }
     @objc func btnChuyenTrangThai (sender: UIButton){
         if donhangList[sender.tag].donHang?.tinhTrang == 1{
-            self.changeTrangThaiDonHang(TrangThai: 2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 2 đang lấy hàng
+            self.chuyenTrangThai(TrangThai: 2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 2 đang lấy hàng
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG LẤY HÀNG\"")
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 2{
-            self.changeTrangThaiDonHang(TrangThai: 3,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 3 lấy hàng thành công
+            self.chuyenTrangThai(TrangThai: 3,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = 3 lấy hàng thành công
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG GIAO\"")
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 3{
              self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO HÀNG\"")
-            self.changeTrangThaiDonHang(TrangThai: 4,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
+            self.chuyenTrangThai(TrangThai: 4,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 4{//đang giao chuyển sang giao thành công
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO THÀNH CÔNG\"")
-            self.changeTrangThaiDonHang(TrangThai: 6,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
+            self.chuyenTrangThai(TrangThai: 6,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
         }
     }
     @objc func btnHuyDonHang (sender: UIButton){
         if donhangList[sender.tag].donHang?.tinhTrang == 2 {
-            self.changeTrangThaiDonHang(TrangThai: -2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = -2 khong the lay hang
+            self.chuyenTrangThai(TrangThai: -2,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)// Tinh Trang = -2 khong the lay hang
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"KHÔNG THỂ LẤY HÀNG\"")
         }else{
             if donhangList[sender.tag].donHang?.tinhTrang == 4 {
@@ -207,5 +153,58 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
         vc.MaDonHang = donhangList[indexPath.row].donHang?.maDonHang
         self.navigationController?.pushViewController( vc , animated: true)
+    }
+}
+extension ShipperOrderViewController{
+    //MARK: SetupUI
+    func setupUI() {
+        let xAxis = self.view.center.x
+        let yAxis = self.view.center.y
+        let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame)
+        activityIndicatorView.type = . ballClipRotate // add your type
+        activityIndicatorView.color = UIColor.orange // add your color
+        overlay = UIView(frame: view.frame)
+        overlay?.backgroundColor = UIColor.black
+        overlay?.alpha = 0.3
+        self.view.addSubview(activityIndicatorView)
+    }
+    //MARK: Gọi api chuyển trạng thái
+    func chuyenTrangThai (TrangThai: Int, MaDonHang: Int) {
+        //Start Loading
+        self.activityIndicatorView.startAnimating()
+        view.addSubview(overlay!)
+        let token = UserDefaults.standard.object(forKey: "access_token")
+        let params = [
+            "MaDonHang": MaDonHang]
+        let header: HTTPHeaders = ["Authorization":token as! String]
+        var url=""
+        if TrangThai == 2{
+            url = root_host+"api/donhang/lay-hang"
+        }
+        if TrangThai == 3{
+            url = root_host+"api/donhang/lay-thanh-cong"
+        }
+        if TrangThai == 4{
+            url = root_host+"api/donhang/dang-giao-hang"
+        }
+        if TrangThai == 6{
+            url = root_host+"api/donhang/giao-hang-thanh-cong"
+        }
+        if TrangThai == -2{
+            url = root_host+"api/donhang/khong-the-lay-hang"
+        }
+        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseJSON{ (response) in
+            switch(response.result) {
+            case .success(_):
+                //Stop Loading
+                self.activityIndicatorView.stopAnimating()
+                self.overlay?.removeFromSuperview()
+                DispatchQueue.main.async { self.getDonHangTiepNhan() }
+                break
+            case .failure(_):
+                break
+            }
+        }
     }
 }

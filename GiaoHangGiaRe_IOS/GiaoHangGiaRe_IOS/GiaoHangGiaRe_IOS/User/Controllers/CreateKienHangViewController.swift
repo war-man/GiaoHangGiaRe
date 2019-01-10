@@ -26,11 +26,13 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     var ourDelegate: TaoKienHangDelegate? = nil
     var imagePickerCtrl: UIImagePickerController?
     override func viewDidLoad() {
+        tfNoiDung.text = "Noi dung  2"
+        tfChieuDai.text = "2"
+        tfChieuRong.text = "3"
+        tfTrongLuong.text = "12"
+        tfSoLuong.text = "2"
+        tfMoTa.text = "Mo ta 2"
         super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func btnChoseImage_Clicked(_ sender: Any) {
@@ -42,7 +44,6 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
                 self.imagePickerCtrl?.sourceType = .camera
                 self.present(self.imagePickerCtrl!, animated: true, completion: nil)
             }else{
-                
             }
 
         }))
@@ -66,18 +67,14 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
         if validation() == true{
             
             let kh: KienHang = KienHang(NoiDung: tfNoiDung.text!, ChieuDai: Float(tfChieuDai.text!)!, ChieuRong: Float(tfChieuRong.text!)!, MoTa: tfMoTa.text!, TrongLuong: Float(tfTrongLuong.text!)!, SoLuong: Int(tfSoLuong.text!)!)
-          
             self.ourDelegate?.TaoKienHang(kienhang: kh)
         }else{
-            
         }
         self.dismiss(animated: true, completion: {
-            
         })
     }
     @IBAction func btnBackClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            
         })
     }
     func validation()->Bool{

@@ -77,11 +77,10 @@ class DonHangDetailsViewController: UIViewController,UITableViewDelegate,UITable
         activityIndicatorView.startAnimating()
         view.addSubview(overlay!)
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let host = "http://giaohanggiare.gearhostpreview.com/"
         let params = [
             "id": self.MaDonHang!]
         let header: HTTPHeaders = ["Authorization":token as! String]
-        Alamofire.request(host+"api/donhang/get-by-id", method: .get, parameters: params, encoding: URLEncoding.queryString, headers: header).responseData { (response) in
+        Alamofire.request(root_host+"api/donhang/get-by-id", method: .get, parameters: params, encoding: URLEncoding.queryString, headers: header).responseData { (response) in
             response.result.ifSuccess {
                 if let data = response.result.value {
                     //Stop loading

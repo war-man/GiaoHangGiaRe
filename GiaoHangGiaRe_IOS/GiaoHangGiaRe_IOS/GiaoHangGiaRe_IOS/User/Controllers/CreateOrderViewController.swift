@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 import NVActivityIndicatorView
 
 class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableViewDelegate,UITableViewDataSource {
@@ -75,14 +76,17 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             view.addSubview(overlay!)
             
             let donhang: DonHangModel = DonHangModel(NguoiGui: tfNguoiGui.text!, SoDienThoaiNguoiGui: tfSoDienThoaiGui.text!, DiaChiGui: tfDiaChiGui.text!, NguoiNhan: tfNguoiNhan.text!, SoDienThoaiNguoiNhan: tfSoDienThoaiNhan.text!, DiaChiNhan: tfDiaChiNhan.text!, GhiChu: tfGhiChu.text!, cod: Int(tfCod.text!)!)
-//            donhang.NguoiGui = tfNguoiGui.text!
-//            donhang.SoDienThoaiGui = tfSoDienThoaiGui.text!
-//            donhang.DiaChiGui = tfDiaChiGui.text!
-//            donhang.NguoiNhan = tfNguoiNhan.text!
-//            donhang.SoDienThoaiNhan = tfSoDienThoaiNhan.text!
-//            donhang.DiaChiNhan = tfDiaChiNhan.text!
-//            donhang.GhiChu = tfGhiChu.text!
-//            donhang.cod = Int(tfCod.text!)!
+//            var dataJson: JSON = JSON([
+//                "NguoiGui": tfNguoiGui.text!,
+//                "SoDienThoaiGui": tfSoDienThoaiGui.text!,
+//                "DiaChiGui": tfNguoiNhan.text!,
+//                "NguoiNhan": tfNguoiNhan.text!,
+//                "SoDienThoaiNhan": tfSoDienThoaiNhan.text!,
+//                "DiaChiNhan": tfDiaChiNhan.text!,
+//                "GhiChu": tfNguoiGui.text!,
+//                "cod": Int(tfCod.text!)!
+//                ])
+            
             var _:CreateDonHang = CreateDonHang(kienHang:listKienHang, donHang: donhang)
             
             let token = UserDefaults.standard.object(forKey: "access_token")
@@ -91,25 +95,22 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             for item in listKienHang {
                 kienHangData.append(item.toJSON()) 
             }
-            print(kienHangData)
-            let params = ["donHang" : donhang.toJSON(), "kienHang":kienHangData
-                ] as [String : Any]
+            let params = ["donHang" : donhang.toJSON(), "kienHang":kienHangData] as [String : Any]
             Alamofire.request(root_host + "api/donhang/create", method: .post, parameters: params, headers:headers).responseJSON { response in
                 switch(response.result) {
                 case .success(_):
                     self.stopLoading()
                     print(response.result.value)
-                    guard let respon = response.result.value else{
+                    guard response.result.value != nil else{
                         self.stopLoading()
+                        self.alertMessager(title: "Messager", message: "Tạo đơn hàng không thành công.")
                         return
                     }
-//                    let res = respon as! NSDictionary
-//
-//                    let succeeded = res.object(forKey:"Succeeded")
-//                    if succeeded as! Int == 1{
-//                    }else{
-//                        print(res)
-//                    }
+                    if 1 == 1{
+                        self.alertMessager(title: "Messager",message: "Thành công " )
+                    }else{
+                        self.alertMessager(title: "Messager",message: "Thất bai" )
+                    }
                     break
 
                 case .failure(_):
@@ -145,6 +146,9 @@ extension CreateOrderViewController{
         self.overlay?.removeFromSuperview()
     }
     func initLoadingUI() {
+        //Xoa bỏder table view 
+        tableKienHang.separatorStyle = UITableViewCellSeparatorStyle.none
+        
         let xAxis = self.view.center.x
         let yAxis = self.view.center.y
         let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)

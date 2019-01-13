@@ -61,10 +61,10 @@ extension UserOrderViewController{
         view.addSubview(overlay!)
         let token = UserDefaults.standard.object(forKey: "access_token")
         let params = [
-            "TinhTrang": TinhTrang]
+            "tinhtrang": TinhTrang]
         let header: HTTPHeaders = ["Authorization":token as! String]
         
-        Alamofire.request(root_host + "api/donhang/get-donhang-curent-user", method: .get, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseData{ (response) in
+        Alamofire.request(root_host + "user/api/donhang/get-all", method: .get, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseData{ (response) in
             switch(response.result) {
             case .success(_):
                 if let data = response.result.value {
@@ -77,6 +77,16 @@ extension UserOrderViewController{
                         return
                     }
                     self.listDonHang = list
+                    if self.listDonHang.count == 0{
+                        //Xoa bỏder table view
+                        self.tableViewUserOrder.separatorStyle = UITableViewCellSeparatorStyle.none
+                        let label: UILabel = UILabel()
+                        label.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 40)
+                        label.textAlignment = .center
+                        label.text = "Không có dữ liệu đơn hàng."
+                        self.view.addSubview(label)
+                    }
+                    
                     self.stopLoading()
                     DispatchQueue.main.async {
                         self.tableViewUserOrder.reloadData()

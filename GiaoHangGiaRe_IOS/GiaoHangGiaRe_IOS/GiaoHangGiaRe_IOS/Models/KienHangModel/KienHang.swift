@@ -27,4 +27,8 @@ struct KienHang {
             "SoLuong": SoLuong as Any,
         ]
     }
+//    func getDictFormat() -> [String: String]{
+//        
+//        return ["firstName" : firstName!, "lastName" : lastName!, "email" : email!, "state" : state!]
+//    }
 }

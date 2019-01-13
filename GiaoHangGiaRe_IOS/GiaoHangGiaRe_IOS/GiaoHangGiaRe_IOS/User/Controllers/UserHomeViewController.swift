@@ -62,7 +62,7 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
             vc.title2 = "Đơn hàng đang giao"
             break
         case 1:
-            vc.TinhTrang = 0 //DangGiao = 4
+            vc.TinhTrang = 0 //dang cho = 4
             vc.title2 = "Đơn hàng đang chờ"
             break
         case 2:
@@ -74,11 +74,11 @@ class UserHomeViewController: UIViewController, UISearchBarDelegate,UITableViewD
             vc.title2 = "Đơn hàng bị huỷ"
             break
         case 4:
-            vc.TinhTrang = nil
+            vc.TinhTrang = -10
             vc.title2 = "Tất cả"
             break
         default:
-            vc.TinhTrang = nil
+            vc.TinhTrang = -10
             vc.title2 = "Tất cả"
             break
         }

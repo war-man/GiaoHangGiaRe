@@ -35,7 +35,9 @@ namespace GiaoHangGiaRe.Controllers
             return Ok(new
             {
                 list = _donHangServices.GetDonHangCurrentuser(tinhtrang),
-                total = _donHangServices.GetDonHangCurrentuser(tinhtrang).Count
+                total = _donHangServices.GetDonHangCurrentuser(tinhtrang).Count,
+                page = 0,
+                size = 0
             });
         }
 

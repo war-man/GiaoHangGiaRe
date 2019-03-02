@@ -44,6 +44,7 @@
 		84386675210B4C5000F7919F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84386674210B4C5000F7919F /* User.swift */; };
 		8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446CDA9210C64C8003BFC7B /* UserRegister.swift */; };
 		844CA8E32119E100009E6D12 /* DetailDHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */; };
+		8452D1A22205EDDF000DCCE9 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452D1A12205EDDF000DCCE9 /* HomeCollectionViewCell.swift */; };
 		845321AF2142DBBE00C748D9 /* ShipperOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845321AE2142DBBE00C748D9 /* ShipperOrderViewController.swift */; };
 		8470B5F421DF56EA008DAA22 /* Shipper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8470B5F321DF56EA008DAA22 /* Shipper.storyboard */; };
 		8473E2CB21450F93003EAAE3 /* HistoryOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473E2CA21450F93003EAAE3 /* HistoryOrderViewController.swift */; };
@@ -60,6 +61,7 @@
 		84B42AB421074D81008467DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB321074D81008467DA /* Assets.xcassets */; };
 		84B42AB721074D81008467DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B42AB521074D81008467DA /* LaunchScreen.storyboard */; };
 		84D092FD21DF590B0060E87F /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D092FC21DF590B0060E87F /* User.storyboard */; };
+		84DDF5B5221FA2DB00FF3BBB /* HistoryOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDF5B4221FA2DB00FF3BBB /* HistoryOrderCell.swift */; };
 		84E0D5DF2109F03E00DB9728 /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */; };
 		84E0D5E12109F5FA00DB9728 /* CreateKienHangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */; };
 		84E87BD0214D0B4A00849EB7 /* UserOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */; };
@@ -107,6 +109,7 @@
 		84386674210B4C5000F7919F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8446CDA9210C64C8003BFC7B /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		844CA8E22119E100009E6D12 /* DetailDHCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDHCollectionViewCell.swift; sourceTree = "<group>"; };
+		8452D1A12205EDDF000DCCE9 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		845321AE2142DBBE00C748D9 /* ShipperOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipperOrderViewController.swift; sourceTree = "<group>"; };
 		84659EEAB5F3161F310B1AFA /* Pods-GiaoHangGiaRe_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8470B5F321DF56EA008DAA22 /* Shipper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shipper.storyboard; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		84B42AB621074D81008467DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B42AB821074D81008467DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84D092FC21DF590B0060E87F /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		84DDF5B4221FA2DB00FF3BBB /* HistoryOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderCell.swift; sourceTree = "<group>"; };
 		84E0D5DE2109F03E00DB9728 /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
 		84E0D5E02109F5FA00DB9728 /* CreateKienHangViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateKienHangViewController.swift; sourceTree = "<group>"; };
 		84E87BCF214D0B4A00849EB7 /* UserOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +206,6 @@
 		8415C70C210F1E9B008A26CF /* ViewCustom */ = {
 			isa = PBXGroup;
 			children = (
-				84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */,
 				8496E9F5211D7DB900D14609 /* KienHangCell */,
 				84006143211C834700116E0A /* UserDetailsCell */,
 				8415C70D210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift */,
@@ -269,6 +272,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		8452D1A02205ED96000DCCE9 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				84B16F39214E50E100606F9D /* UserOrderTableViewCell.swift */,
+				8452D1A12205EDDF000DCCE9 /* HomeCollectionViewCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		8470B5F021DF552F008DAA22 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				8470B5F321DF56EA008DAA22 /* Shipper.storyboard */,
+				84DDF5B3221FA29C00FF3BBB /* CustomCell */,
 				84C054AF2108879C008310FC /* Controllers */,
 				849986D821E762CE00BC3ECA /* Models */,
 			);
@@ -416,9 +429,18 @@
 			children = (
 				84D092FC21DF590B0060E87F /* User.storyboard */,
 				84C054AE2108878E008310FC /* Controllers */,
+				8452D1A02205ED96000DCCE9 /* CustomCell */,
 				849986D421E75EEC00BC3ECA /* Model */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		84DDF5B3221FA29C00FF3BBB /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				84DDF5B4221FA2DB00FF3BBB /* HistoryOrderCell.swift */,
+			);
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		DECB12C269A22C5BB5BE2AF2 /* Frameworks */ = {
@@ -440,7 +462,7 @@
 				84B42AA521074D80008467DA /* Sources */,
 				84B42AA621074D80008467DA /* Frameworks */,
 				84B42AA721074D80008467DA /* Resources */,
-				0A152AA71C81A046A724478B /* [CP] Embed Pods Frameworks */,
+				2B6F9FD49B3C0F2053D620C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -500,13 +522,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A152AA71C81A046A724478B /* [CP] Embed Pods Frameworks */ = {
+		2B6F9FD49B3C0F2053D620C1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -514,6 +538,8 @@
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
@@ -523,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiaoHangGiaRe_IOS/Pods-GiaoHangGiaRe_IOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3C2B123E3D5FB0F8F93B38A /* [CP] Check Pods Manifest.lock */ = {
@@ -555,6 +581,7 @@
 				841A9B53210758410085DDC4 /* LoginViewController.swift in Sources */,
 				8446CDAA210C64C8003BFC7B /* UserRegister.swift in Sources */,
 				8415C70E210F1F47008A26CF /* DonHangCellCustomTableViewCell.swift in Sources */,
+				8452D1A22205EDDF000DCCE9 /* HomeCollectionViewCell.swift in Sources */,
 				840F10BB2108D400004383A0 /* ShipperMainViewController.swift in Sources */,
 				843484C021A3A620001D0377 /* DonHangShip_Base.swift in Sources */,
 				843484BA21A39D23001D0377 /* DonHangWait_Base.swift in Sources */,
@@ -573,6 +600,7 @@
 				84006142211C7CDD00116E0A /* Roles.swift in Sources */,
 				840C0A1C210799FC00BDAB27 /* TaiKhoanApi.swift in Sources */,
 				842DD3C72114600500F2AC25 /* UserViewTableViewCell.swift in Sources */,
+				84DDF5B5221FA2DB00FF3BBB /* HistoryOrderCell.swift in Sources */,
 				8414F730210B721C0049A917 /* RegisterViewController.swift in Sources */,
 				8400613D211C726700116E0A /* UserDetailsViewController.swift in Sources */,
 				841A9B51210757980085DDC4 /* SqlLiteViewController.swift in Sources */,
@@ -749,7 +777,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B586FZ37F3;
+				DEVELOPMENT_TEAM = 74CV7X9D4C;
 				INFOPLIST_FILE = GiaoHangGiaRe_IOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -769,7 +797,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B586FZ37F3;
+				DEVELOPMENT_TEAM = 74CV7X9D4C;
 				INFOPLIST_FILE = GiaoHangGiaRe_IOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (

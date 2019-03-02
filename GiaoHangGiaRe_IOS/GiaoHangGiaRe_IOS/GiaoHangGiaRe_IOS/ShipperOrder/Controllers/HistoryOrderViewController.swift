@@ -19,12 +19,10 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableViewHistoryOrder: UITableView!
     var refreshControl: UIRefreshControl?
     override func viewDidLoad() {
-        tableViewHistoryOrder.delegate = self
-        tableViewHistoryOrder.dataSource = self
+        super.viewDidLoad()
         setupUI()
         addUIRefreshControl()
         getHistoryOrder()
-        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,24 +32,27 @@ class HistoryOrderViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func btnBackAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
-    @objc func getHistoryOrder() {
-        //Start Loading
-        activityIndicatorView.startAnimating()
-        view.addSubview(overlay!)
-        
-        //Gọi API
-       getData()
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return donhangList.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderCell", for: indexPath) as! ShipperOrderCell
-        cell.lblDiaChiGui.text = donhangList[indexPath.row].donHang?.diaChiGui
-        cell.lblDiaChiNhan.text = donhangList[indexPath.row].donHang?.diaChiNhan
-        cell.lblHistoryOrderThoiDiemDatHang.text = donhangList[indexPath.row].donHang?.thoiDiemDatDonHang
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderCell", for: indexPath) as! HistoryOrderCell
+        cell.imageTitie.layer.cornerRadius = 10
+        guard let donhang = donhangList[indexPath.row].donHang else {
+            return cell
+        }
+        cell.lblDiaChiGui.text = donhang.diaChiGui
+        cell.lblDiaChiNhan.text = donhang.diaChiNhan
+        cell.lblThoiDiemDatHang.text = donhang.thoiDiemDatDonHang
+        cell.lblThanhTien.text = "\(donhang.thanhTien)"
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        vc.MaDonHang = donhangList[indexPath.row].donHang!.maDonHang
+        self.navigationController?.pushViewController( vc , animated: true)
     }
 }
 
@@ -76,7 +77,11 @@ extension HistoryOrderViewController{
         refreshControl?.addTarget(self, action: #selector(getHistoryOrder), for: .valueChanged)
         tableViewHistoryOrder.addSubview(refreshControl!)
     }
-    func getData(){
+     @objc func getHistoryOrder(){
+        //Start Loading
+        activityIndicatorView.startAnimating()
+        view.addSubview(overlay!)
+        
         let token = UserDefaults.standard.object(forKey: "access_token")
         let header: HTTPHeaders = ["Authorization":token as! String]
         Alamofire.request(root_host+"api/donhang/get-history-shipper", method: .get, encoding: URLEncoding.httpBody, headers: header).responseData { (response) in

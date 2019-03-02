@@ -10,12 +10,12 @@ import UIKit
 
 struct KienHang {
     public var NoiDung: String
-    public var ChieuDai: Float
-    public var ChieuRong: Float
+    public var ChieuDai: Int
+    public var ChieuRong: Int
     public var MoTa: String
-    public var TrongLuong: Float
+    public var TrongLuong: Int
     public var SoLuong: Int
-    
+//    "NoiDung":"Keo2","MoTa":"huhihi","TrongLuong":1,"ChieuRong":2,"ChieuDai":2,"SoLuong":1
     func toJSON() -> [String: Any] {
         return [
             "NoiDung": NoiDung as Any,
@@ -27,8 +27,4 @@ struct KienHang {
             "SoLuong": SoLuong as Any,
         ]
     }
-//    func getDictFormat() -> [String: String]{
-//        
-//        return ["firstName" : firstName!, "lastName" : lastName!, "email" : email!, "state" : state!]
-//    }
 }

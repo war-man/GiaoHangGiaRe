@@ -49,7 +49,7 @@ class UserInforViewController: UIViewController,UITableViewDelegate, UITableView
         Alamofire.request(root_host + "user/api/taikhoan/get-current-user", method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { response in
             switch response.result {
             case .success:
-                if response.result.value != nil{
+                if response.result.value != nil && (UserDefaults.standard.object(forKey: "role") != nil){
                     if (UserDefaults.standard.object(forKey: "role")as! String == "shipper"){
                         self.listTask.append("Lịch sử giao hàng")
                         self.tableUserView.reloadData()

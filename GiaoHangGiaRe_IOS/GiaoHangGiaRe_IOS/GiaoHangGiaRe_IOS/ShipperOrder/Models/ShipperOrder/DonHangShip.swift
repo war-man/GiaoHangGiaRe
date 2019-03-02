@@ -12,7 +12,7 @@ struct DonHangShip : Codable {
 	var tinhTrang : Int = 0
 	var thoiDiemDatDonHang : String = ""
 	var thoiDiemTiepNhanDon : String = ""
-	var thoiDiemHoanThanhDH : String? = ""
+//    var thoiDiemHoanThanhDH : String? = ""
 	var thanhTien : Int = 0
 	var deleted : Bool = false
 	var tenTaiKhoan : String = ""
@@ -34,7 +34,7 @@ struct DonHangShip : Codable {
 		case tinhTrang = "TinhTrang"
 		case thoiDiemDatDonHang = "ThoiDiemDatDonHang"
 		case thoiDiemTiepNhanDon = "ThoiDiemTiepNhanDon"
-		case thoiDiemHoanThanhDH = "ThoiDiemHoanThanhDH"
+//        case thoiDiemHoanThanhDH = "ThoiDiemHoanThanhDH"
 		case thanhTien = "ThanhTien"
 		case deleted = "deleted"
 		case tenTaiKhoan = "TenTaiKhoan"
@@ -57,7 +57,7 @@ struct DonHangShip : Codable {
         tinhTrang = (try values.decodeIfPresent(Int.self, forKey: .tinhTrang))!
         thoiDiemDatDonHang = (try values.decodeIfPresent(String.self, forKey: .thoiDiemDatDonHang))!
         thoiDiemTiepNhanDon = (try values.decodeIfPresent(String.self, forKey: .thoiDiemTiepNhanDon))!
-        thoiDiemHoanThanhDH = (try values.decodeIfPresent(String.self, forKey: .thoiDiemHoanThanhDH))!
+//        thoiDiemHoanThanhDH = (try values.decodeIfPresent(String.self, forKey: .thoiDiemHoanThanhDH))!
         thanhTien = (try values.decodeIfPresent(Int.self, forKey: .thanhTien))!
         deleted = (try values.decodeIfPresent(Bool.self, forKey: .deleted))!
         tenTaiKhoan = (try values.decodeIfPresent(String.self, forKey: .tenTaiKhoan))!

@@ -31,15 +31,6 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
     var overlay : UIView?
     
     override func viewDidLoad() {
-        tfNguoiGui.text = "qwe"
-        tfSoDienThoaiGui.text = "12132"
-        tfDiaChiGui.text = "qwe1"
-        tfNguoiNhan.text = "qwe"
-        tfSoDienThoaiNhan.text = "21321312"
-        tfDiaChiNhan.text = "qwe"
-        tfGhiChu.text = "qwe"
-        tfCod.text = "12"
-        
         btnTaoKienHang.layer.cornerRadius = btnTaoKienHang.frame.size.width / 2
         btnTaoKienHang.layer.masksToBounds = true
         tableKienHang.delegate = self
@@ -47,26 +38,25 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
         initLoadingUI()
         super.viewDidLoad()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
+    
     @IBAction func btnTaoKienHang_Clicked(_ sender: Any) {
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoCreateKH"{
-            
             let des = segue.destination as? CreateKienHangViewController
             des?.ourDelegate = self as TaoKienHangDelegate
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if listKienHang.count == 0 {
+            tableView.isHidden = true
+        }else{
+            tableView.isHidden = false
+        }
         return listKienHang.count
     }
     @IBAction func btnSubmitClicked(_ sender: Any) {
-
         //check input
         if listKienHang.count == 0{
             alertMessager(title: "Thông báo", message: "Hãy thêm kiện hàng.")
@@ -75,44 +65,38 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             activityIndicatorView.startAnimating()
             view.addSubview(overlay!)
             
-            let donhang: DonHangModel = DonHangModel(NguoiGui: tfNguoiGui.text!, SoDienThoaiNguoiGui: tfSoDienThoaiGui.text!, DiaChiGui: tfDiaChiGui.text!, NguoiNhan: tfNguoiNhan.text!, SoDienThoaiNguoiNhan: tfSoDienThoaiNhan.text!, DiaChiNhan: tfDiaChiNhan.text!, GhiChu: tfGhiChu.text!, cod: Int(tfCod.text!)!)
-//            var dataJson: JSON = JSON([
-//                "NguoiGui": tfNguoiGui.text!,
-//                "SoDienThoaiGui": tfSoDienThoaiGui.text!,
-//                "DiaChiGui": tfNguoiNhan.text!,
-//                "NguoiNhan": tfNguoiNhan.text!,
-//                "SoDienThoaiNhan": tfSoDienThoaiNhan.text!,
-//                "DiaChiNhan": tfDiaChiNhan.text!,
-//                "GhiChu": tfNguoiGui.text!,
-//                "cod": Int(tfCod.text!)!
-//                ])
-            
-            var _:CreateDonHang = CreateDonHang(kienHang:listKienHang, donHang: donhang)
-            
             let token = UserDefaults.standard.object(forKey: "access_token")
-            let headers: HTTPHeaders = ["Authorization":token as! String]
+            let headers: HTTPHeaders = ["Authorization":token as! String, "content-type": "application/json; charset=utf-8"]
             var kienHangData: [[String: Any]] = []
             for item in listKienHang {
                 kienHangData.append(item.toJSON()) 
             }
-            let params = ["donHang" : donhang.toJSON(), "kienHang":kienHangData] as [String : Any]
-            Alamofire.request(root_host + "api/donhang/create", method: .post, parameters: params, headers:headers).responseJSON { response in
+            var params = [String : Any]()
+            var package = [[String:Any]]()
+            
+            var order = [String:Any]()
+            order["NguoiGui"] = tfNguoiGui.text!
+            order["SoDienThoaiNguoiGui"] = tfSoDienThoaiGui.text!
+            order["DiaChiGui"] = tfDiaChiGui.text!
+            order["NguoiNhan"] = tfNguoiNhan.text!
+            order["SoDienThoaiNguoiNhan"] = tfSoDienThoaiNhan.text!
+            order["DiaChiNhan"] = tfDiaChiNhan.text!
+            order["GhiChu"] = tfGhiChu.text!
+            order["cod"] = Int(tfCod.text!)!
+            package = kienHangData
+            params["donHang"] = order
+            params["kienHang"] = package
+            print(params)
+            Alamofire.request(root_host + "api/donhang/create", method: .post, parameters: params,encoding: JSONEncoding.default, headers:headers).responseJSON { response in
                 switch(response.result) {
                 case .success(_):
                     self.stopLoading()
-                    print(response.result.value)
                     guard response.result.value != nil else{
                         self.stopLoading()
                         self.alertMessager(title: "Messager", message: "Tạo đơn hàng không thành công.")
                         return
                     }
-                    if 1 == 1{
-                        self.alertMessager(title: "Messager",message: "Thành công " )
-                    }else{
-                        self.alertMessager(title: "Messager",message: "Thất bai" )
-                    }
                     break
-
                 case .failure(_):
                     self.stopLoading()
                     self.alertMessager(title: "Kết nối thất bại", message: "Hãy thử lại")
@@ -121,7 +105,6 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
             }
         }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "KienHangViewCell", for: indexPath) as! KienHangViewCell
         cell.lblNoiDung.text = listKienHang[indexPath.row].NoiDung
@@ -132,10 +115,9 @@ class CreateOrderViewController: UIViewController, TaoKienHangDelegate,UITableVi
         cell.lblTrongLuong.text = "\(listKienHang[indexPath.row].TrongLuong)"
         return cell
     }
-    
     func TaoKienHang(kienhang: KienHang) {
         listKienHang.append(kienhang)
-        lblSoKienHang.text = "\(listKienHang.count)"
+        lblSoKienHang.text = "Số kiên hàng: \(listKienHang.count)"
         tableKienHang.reloadData()
     }
 }
@@ -146,8 +128,10 @@ extension CreateOrderViewController{
         self.overlay?.removeFromSuperview()
     }
     func initLoadingUI() {
+        btnTaoKienHang.layer.cornerRadius = 20
+        btnSubmit.layer.cornerRadius = 5
         //Xoa bỏder table view 
-        tableKienHang.separatorStyle = UITableViewCellSeparatorStyle.none
+        //tableKienHang.separatorStyle = UITableViewCellSeparatorStyle.none
         
         let xAxis = self.view.center.x
         let yAxis = self.view.center.y

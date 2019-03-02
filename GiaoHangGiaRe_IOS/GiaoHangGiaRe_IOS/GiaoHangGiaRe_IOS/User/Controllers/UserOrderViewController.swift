@@ -17,7 +17,7 @@ class UserOrderViewController: UIViewController,UITableViewDataSource,UITableVie
     var activityIndicatorView : NVActivityIndicatorView!
     var overlay : UIView?
     var refreshControl: UIRefreshControl?
-    var listDonHang: [OrderUser] = []
+    var listDonHang: [OrderUserNotFull] = []
     @IBOutlet weak var tableViewUserOrder: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,16 @@ class UserOrderViewController: UIViewController,UITableViewDataSource,UITableVie
         cell.lblThoiDiemDatHang.text = listDonHang[indexPath.row].thoiDiemDatDonHang
         cell.lblDiaChiNhan.text = listDonHang[indexPath.row].diaChiNhan
         cell.lblSoDienThoaiNhan.text = listDonHang[indexPath.row].soDienThoaiNguoiNhan
-        cell.imageUserOrder.image = UIImage(named: "box")
+        cell.lblNguoiGui.text = listDonHang[indexPath.row].nguoiGui
+        cell.lblDiaChiGui.text = listDonHang[indexPath.row].diaChiGui
+        cell.lblThanhTien.text = "\(listDonHang[indexPath.row].thanhTien ?? 0)"
+        cell.imageUserOrder.backgroundColor = UIColor.brown
+        cell.imageUserOrder.layer.cornerRadius = 16
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
         vc.MaDonHang = listDonHang[indexPath.row].maDonHang
         self.navigationController?.pushViewController( vc , animated: true)
     }
@@ -60,24 +65,22 @@ extension UserOrderViewController{
         activityIndicatorView.startAnimating()
         view.addSubview(overlay!)
         let token = UserDefaults.standard.object(forKey: "access_token")
-        let params = [
-            "tinhtrang": TinhTrang]
+        let params = ["tinhtrang": TinhTrang]
         let header: HTTPHeaders = ["Authorization":token as! String]
-        
-        Alamofire.request(root_host + "user/api/donhang/get-all", method: .get, parameters: params, encoding: URLEncoding(destination: .queryString), headers: header).responseData{ (response) in
+        Alamofire.request(root_host + "user/api/donhang/get-all", method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseData{ (response) in
             switch(response.result) {
             case .success(_):
                 if let data = response.result.value {
-                    
-                    guard let list = try? JSONDecoder().decode([OrderUser].self, from: data)else {
+                    //OrderUserNotFull
+                    guard let list = try? JSONDecoder().decode(DonHangUser_Base.self, from: data)else {
                         self.stopLoading()
                         DispatchQueue.main.async {
                             self.tableViewUserOrder.reloadData()
                         }
                         return
                     }
-                    self.listDonHang = list
-                    if self.listDonHang.count == 0{
+                    self.listDonHang = list.listDH!
+                    if self.listDonHang.count == 0 {
                         //Xoa bỏder table view
                         self.tableViewUserOrder.separatorStyle = UITableViewCellSeparatorStyle.none
                         let label: UILabel = UILabel()
@@ -86,7 +89,6 @@ extension UserOrderViewController{
                         label.text = "Không có dữ liệu đơn hàng."
                         self.view.addSubview(label)
                     }
-                    
                     self.stopLoading()
                     DispatchQueue.main.async {
                         self.tableViewUserOrder.reloadData()

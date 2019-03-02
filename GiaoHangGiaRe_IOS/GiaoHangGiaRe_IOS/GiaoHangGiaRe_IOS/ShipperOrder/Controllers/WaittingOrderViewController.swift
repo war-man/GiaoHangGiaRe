@@ -11,7 +11,7 @@ import Alamofire
 import NVActivityIndicatorView
 
 class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
+    
     @IBOutlet weak var tableDonHangCho: UITableView!
     var listDonHang : [DonHangWait_List] = []
     var overlay : UIView?
@@ -22,7 +22,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
         tableDonHangCho.delegate = self
         tableDonHangCho.dataSource = self
         addUIRefreshControl()
-        initLoadingUI()
+        setupUI()
         getDonHang()
     }
     override func didReceiveMemoryWarning() {
@@ -33,7 +33,7 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
             _ = segue.destination as? DonHangDetailsViewController
         }
     }
-    func initLoadingUI() {
+    func setupUI() {
         let xAxis = self.view.center.x // or use (view.frame.size.width / 2) // or use (faqWebView.frame.size.width / 2)
         let yAxis = self.view.center.y // or use (view.frame.size.height / 2) // or use (faqWebView.frame.size.height / 2)
         let frame = CGRect(x: (xAxis - 25), y: (yAxis - 35), width: 50, height: 50)
@@ -73,14 +73,42 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
                         self.alertMessager(title: "Thông báo", message: "Không có dữ liệu đơn hàng")
                         return
                 }
-                
                 self.listDonHang = list.list!
-               
+                if self.listDonHang.count == 0{
+                    self.tableDonHangCho.separatorStyle = UITableViewCellSeparatorStyle.none
+                    let label: UILabel = UILabel()
+                    label.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 40)
+                    label.textAlignment = .center
+                    label.text = "Không có đơn hàng, kéo xuống để cập nhật lại."
+                    self.view.addSubview(label)
+                }
                 DispatchQueue.main.async {
                     self.tableDonHangCho.reloadData()
                 }
             }
         }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listDonHang.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangChoCell", for: indexPath) as! DonHangCellCustomTableViewCell
+        cell.btnTiepNhan.layer.cornerRadius = 5
+        cell.imgtitleImage.layer.cornerRadius = 10
+        cell.btnTiepNhan.addTarget(self, action: #selector(self.btnTiepNhanDonHang(sender:)), for: UIControlEvents.touchUpInside)
+        cell.btnTiepNhan.tag = listDonHang[indexPath.row].maDonHang!
+        cell.lblDiaChiDen.text = listDonHang[indexPath.row].diaChiNhan
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        vc.MaDonHang = listDonHang[indexPath.row].maDonHang
+        self.navigationController?.pushViewController( vc , animated: true)
+    }
+    @objc func btnTiepNhanDonHang (sender: UIButton){
+        tiepNhanDonHang(MaDonHang: sender.tag)
     }
     private func tiepNhanDonHang(MaDonHang: Int) {
         //Start loading
@@ -110,26 +138,5 @@ class WaittingOrderViewController: UIViewController, UITableViewDelegate, UITabl
                 break
             }
         }
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listDonHang.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangChoCell", for: indexPath) as! DonHangCellCustomTableViewCell
-        cell.btnChiTiet.addTarget(self, action: #selector(self.btnChiTiet(sender:)), for: UIControlEvents.touchUpInside)
-        cell.btnTiepNhan.addTarget(self, action: #selector(self.btnTiepNhanDonHang(sender:)), for: UIControlEvents.touchUpInside)
-        cell.btnChiTiet.tag = listDonHang[indexPath.row].maDonHang!
-        cell.btnTiepNhan.tag = listDonHang[indexPath.row].maDonHang!
-        cell.lblDiaChiDen.text = listDonHang[indexPath.row].diaChiNhan
-        return cell
-    }
-    @objc func btnChiTiet (sender: UIButton){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
-        vc.MaDonHang = sender.tag
-        self.navigationController?.pushViewController( vc , animated: true)
-    }
-    @objc func btnTiepNhanDonHang (sender: UIButton){
-        tiepNhanDonHang(MaDonHang: sender.tag)
     }
 }

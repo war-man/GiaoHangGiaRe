@@ -45,7 +45,7 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
                 self.present(self.imagePickerCtrl!, animated: true, completion: nil)
             }else{
             }
-
+            
         }))
         actionSheet.addAction(UIAlertAction(title: "Chọn từ album ảnh", style: .default, handler: { (acion: UIAlertAction) in
             self.imagePickerCtrl?.sourceType = .photoLibrary
@@ -66,7 +66,7 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     @IBAction func btnTaoKienHangClicked(_ sender: Any) {
         if validation() == true{
             
-            let kh: KienHang = KienHang(NoiDung: tfNoiDung.text!, ChieuDai: Float(tfChieuDai.text!)!, ChieuRong: Float(tfChieuRong.text!)!, MoTa: tfMoTa.text!, TrongLuong: Float(tfTrongLuong.text!)!, SoLuong: Int(tfSoLuong.text!)!)
+            let kh: KienHang = KienHang(NoiDung: tfNoiDung.text!, ChieuDai: Int(tfChieuDai.text!)!, ChieuRong: Int(tfChieuRong.text!)!, MoTa: tfMoTa.text!, TrongLuong: Int(tfTrongLuong.text!)!, SoLuong: Int(tfSoLuong.text!)!)
             self.ourDelegate?.TaoKienHang(kienhang: kh)
         }else{
         }
@@ -79,22 +79,22 @@ class CreateKienHangViewController: UIViewController,UIImagePickerControllerDele
     }
     func validation()->Bool{
         if tfNoiDung.text == nil{
-             return false
+            return false
         }
         if tfChieuDai.text == nil{
-             return false
+            return false
         }
         if tfChieuRong.text == nil{
-             return false
+            return false
         }
         if tfTrongLuong.text == nil{
-             return false
+            return false
         }
         if tfSoLuong.text == nil{
-             return false
+            return false
         }
         if tfMoTa.text == nil{
-             return false
+            return false
         }
         return true
     }

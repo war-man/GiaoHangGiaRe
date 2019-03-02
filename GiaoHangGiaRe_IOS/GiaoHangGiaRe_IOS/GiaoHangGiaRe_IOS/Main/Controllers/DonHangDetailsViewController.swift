@@ -68,7 +68,7 @@ class DonHangDetailsViewController: UIViewController,UITableViewDelegate,UITable
         lblNguoiNhan.text = DonHangDetails?.nguoiNhan
         lblDiaChiNhan.text = DonHangDetails?.diaChiNhan
         lblSoDienThoaiNhan.text = DonHangDetails?.soDienThoaiNguoiNhan
-        lblSoKienHang.text = "\(listKienHang.count)"
+        lblSoKienHang.text = "Số kiện hàng: \(listKienHang.count)"
         tableViewDonHangDetail.reloadData()
     }
     //api goi
@@ -90,11 +90,11 @@ class DonHangDetailsViewController: UIViewController,UITableViewDelegate,UITable
                     let jsbase = try? JSONDecoder().decode(DonHangDetais_Base.self, from: data)
                     guard let dh = jsbase?.donhang else{
                         self.alertMessager(title: "Thông báo", message: "Dữ liệu đơn hàng bị thiếu")
-                        return;
+                        return
                     }
                     guard let kh = jsbase?.kienhang else {
                         self.alertMessager(title: "Thông báo", message: "Dữ liệu kiện hàng bị thiếu")
-                        return;
+                        return
                     }
                     self.listKienHang = kh
                     self.DonHangDetails = dh

@@ -24,8 +24,13 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
     override func viewDidLoad() {
         borderButton()
         super.viewDidLoad()
-        viewContent.layer.cornerRadius = 5
+        setupUI()
         checkLogined()
+    }
+    func setupUI() {
+        viewContent.layer.cornerRadius = 5
+        viewContent.layer.borderWidth = 1
+        viewContent.layer.borderColor = UIColor.orange.cgColor
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,7 +87,6 @@ class LoginViewController: UIViewController, RegisterViewControlleDelegete, UITe
             let params = [
                 "grant_type": "password",
                 "username": tfTenTaiKhoan.text!, "password": tfMatKhau.text!]
-            
             Alamofire.request(root_host+"token", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 switch(response.result) {
                 case .success(_):

@@ -13,7 +13,7 @@ import NVActivityIndicatorView
 class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var activityIndicatorView : NVActivityIndicatorView!
     var overlay : UIView?
-    
+
     @IBOutlet weak var tableViewShipperOrder: UITableView!
     var donhangList: [DonHangShip_Base] = []
     var refreshControl: UIRefreshControl?
@@ -25,7 +25,7 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
         super.viewDidLoad()
         getDonHangTiepNhan()
     }
-
+    
     func addUIRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.orange
@@ -43,7 +43,15 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             if response.result.isSuccess{
                 if let data = response.result.value {
                     let base = try? JSONDecoder().decode([DonHangShip_Base].self, from: data)
-                    self.donhangList = base!;
+                    self.donhangList = base!
+                    if self.donhangList.count == 0{
+                        self.tableViewShipperOrder.separatorStyle = UITableViewCellSeparatorStyle.none
+                        let label: UILabel = UILabel()
+                        label.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 40)
+                        label.textAlignment = .center
+                        label.text = "Không có dữ liệu đơn hàng."
+                        self.view.addSubview(label)
+                    }
                     //Stop Loading
                     self.activityIndicatorView.stopAnimating()
                     self.overlay?.removeFromSuperview()
@@ -70,7 +78,7 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"ĐANG GIAO\"")
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 3{
-             self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO HÀNG\"")
+            self.alertMessager(title: "Chuyển trạng thái", message: "Đơn hàng sẽ chuyển trạng thái \"GIAO HÀNG\"")
             self.chuyenTrangThai(TrangThai: 4,MaDonHang: (donhangList[sender.tag].donHang?.maDonHang)!)
         }
         if donhangList[sender.tag].donHang?.tinhTrang == 4{//đang giao chuyển sang giao thành công
@@ -96,13 +104,13 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DonHangTiepNhanCell", for: indexPath) as! ShipperOrderCell
-        cell.DonHangImage.image = UIImage(named: "box")
+        cell.DonHangImage.layer.cornerRadius = 10
         cell.lblDiaChiGui.text = donhangList[indexPath.row].donHang?.diaChiGui
         cell.lblDiaChiNhan.text = donhangList[indexPath.row].donHang?.diaChiNhan
         cell.btnChuyenTrangThai.tag = indexPath.row
-        cell.btnChuyenTrangThai.layer.cornerRadius = 10
+        cell.btnChuyenTrangThai.layer.cornerRadius = 5
         cell.btnHuyDonHang.tag = indexPath.row
-        cell.btnHuyDonHang.layer.cornerRadius = 10
+        cell.btnHuyDonHang.layer.cornerRadius = 5
         cell.btnThoiDiemNhanDonHang.text = donhangList[indexPath.row].donHang?.thoiDiemTiepNhanDon
         cell.btnChuyenTrangThai.addTarget(self, action: #selector(self.btnChuyenTrangThai(sender:)), for: UIControlEvents.touchUpInside)
         cell.btnHuyDonHang.addTarget(self, action: #selector(self.btnHuyDonHang(sender:)), for: UIControlEvents.touchUpInside)
@@ -142,15 +150,16 @@ class ShipperOrderViewController: UIViewController,UITableViewDataSource,UITable
             cell.btnChuyenTrangThai.backgroundColor = UIColor.clear
             cell.btnChuyenTrangThai.frame = CGRect(x: cell.btnChuyenTrangThai.frame.minX, y: cell.btnChuyenTrangThai.frame.minY, width: 40, height: 40)
             
-            cell.btnHuyDonHang.setTitle("", for: .normal)   // HUỶ
-            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "more"), for: .normal)
-            cell.btnHuyDonHang.backgroundColor = UIColor.clear
-            cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
+//            cell.btnHuyDonHang.setTitle("", for: .normal)   // HUỶ
+//            cell.btnHuyDonHang.setBackgroundImage(#imageLiteral(resourceName: "more"), for: .normal)
+//            cell.btnHuyDonHang.backgroundColor = UIColor.clear
+//            cell.btnHuyDonHang.frame = CGRect(x: cell.btnHuyDonHang.frame.minX, y: cell.btnHuyDonHang.frame.minY, width: 40, height: 40)
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DonHangDetailsViewController") as! DonHangDetailsViewController
         vc.MaDonHang = donhangList[indexPath.row].donHang?.maDonHang
         self.navigationController?.pushViewController( vc , animated: true)
     }
